@@ -1,0 +1,280 @@
+<div class="topTab"><span style='color:#eee;'>Create your commercial account</span></div>
+	<div id='formQuestions' style="width:700px;margin:auto;font-family:arial;"> 
+		
+		<div class="newQuestionHolder">
+			<div style="width:680px;margin:auto;">
+				<div class='newQuestionbLabels1'>Contact First name</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input type='textbox' class="inputboxnew" id='agape_commercial_Rep_Firstname' />
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+					
+
+		<div class="newQuestionHolder">
+			<div style="width:680px;margin:auto;">
+				<div class='newQuestionbLabels1'>Contact Last name</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input type='textbox' class="inputboxnew" id='agape_commercial_Rep_Lastname' />
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		
+		</div>
+
+		<div class="newQuestionHolder">
+			<div style="width:680px;margin:auto;">
+				<div class='newQuestionbLabels1'>Company name</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input type='textbox' class="inputboxnew" id='agape_commercial_Company' />
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+		<div class="newQuestionHolder">
+			<div style="width:680px;margin:auto;">
+				<div class='newQuestionbLabels1'>Industry</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<select class="dropDownNew" id='agape_commercial_Industry'>
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+
+		<div class="newQuestionHolder">
+			<div style="width:680px;margin:auto;">
+				<div class='newQuestionbLabels1'>Company address</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input type='textbox' class="inputboxnew" id='agape_commercial_Address' />
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+		
+		<div class="newQuestionHolder">
+			<div style="width:680px;margin:auto;">
+				<div class='newQuestionbLabels1'>Company state</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<select class="dropDownNew" id='agape_commercial_Rep_State'>
+					</select>
+					
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+		<div class="newQuestionHolder">
+			<div style="width:680px;margin:auto;">
+				<div class='newQuestionbLabels1'>Company city</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<select class="dropDownNew" id='agape_commercial_Rep_City'>
+				
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+		
+
+		<div class="newQuestionHolder">
+			<div style="width:680px;margin:auto;">
+				<div class='newQuestionbLabels1'>Company zip</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input type='textbox' class="inputboxnew" id='agape_commercial_zipCode' />
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+						
+
+		<div class="newQuestionHolder">
+			<div style="width:680px;margin:auto;">
+				<div class='newQuestionbLabels1'>Company phone number</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input type='textbox' class="inputboxnew" id='agape_commercial_RepPhoneNumber' />
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+		<div class="newQuestionHolder">
+			<div style="width:680px;margin:auto;">
+				<div class='newQuestionbLabels1'>Company email address</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input id='agape_commercial_Email' type='textbox' class="inputboxnew"/>
+					
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+
+
+		<!--	agape_commercial_AccountCreated --> 
+
+		<div style='width:600px;'>
+			<div style='width:170px;margin:auto;'>
+				<div id="gStartedButtonCommercial" class='optButtons1' >Submit</div>
+				
+				<div style='clear:both;'></div>
+			</div>
+		</div>
+	
+	</div>
+
+</div>
+
+			
+					<script type="text/javascript">
+
+					console.log(global.userObj)
+					
+				
+						$(document).ready(function(){
+
+							var stateObj
+							var verif=Verifyuser();
+							if(verif=="false"){
+								//user logged out
+								stateObj = new stateElem('states',"agape_commercial_Rep_State","agape_commercial_Rep_City","true","true");
+							}else{
+								//user logged in
+								stateObj = new stateElem('statesFull',"agape_commercial_Rep_State","agape_commercial_Rep_City","true","true",global.userObj.agape_profile_state,global.userObj.agape_profile_city);
+
+								for(var key in global.userObj){
+									if($("#"+key)){
+										$("#"+key).val(global.userObj[key])
+									}
+								}
+							}
+
+							
+						
+
+							$("#opacback").css("height","849px");
+							$("#footerPush").css({"height":"850px"})
+
+							// add on keyup to form fields
+							$("#formQuestions :input").each(function(){
+								$(this).unbind("keyup").bind("keyup",function(){
+									$(this).css("backgroundColor","#dedede");
+									$(this).parent().css("backgroundColor","#dedede");
+								})
+							})
+						
+					
+
+							/**$(this).on("change",function(){
+								var pass="true"
+								$("#formQuestions :input").each(function(){
+									if($(this).val()=="" || $(this).val()=="Select one"){
+										pass="false";
+										
+									}
+								})
+
+								if(pass=="true"){
+									//openButtons();
+									//addMouseOver1();
+									//$("#gStartedButton").unbind("click");
+									$("#gStartedButton").bind("click",function(){
+										getstarted1();
+									})
+									
+								
+								}
+								if(pass=="false"){
+									$(".optButtons1").each(function(){
+										//$(this).addClass("optButtonOff");
+										//$(this).unbind("click");
+									})
+								}
+							})**/
+						
+
+
+
+							$("#gStartedButtonCommercial").unbind("click").bind("click",function(){
+								var yObj={}
+								var sender ={}
+								sender.dbase="agape_commercial"
+								var submit="true";
+								$("#formQuestions :input").each(function(){
+									yObj[$(this).prop("id")]=$(this).val();
+									if($(this).val()==""){
+										submit="false"
+										$(this).css("backgroundColor","gray");
+										$(this).parent().css("backgroundColor","gray");
+									}
+									
+								})
+
+								
+
+								if(submit=="true"){
+									
+									sender.job="quickInsertAtomic";
+									sender.obj=yObj
+									sender.key="false";
+									sender.obj.agape_commercial_profile_Id=global.userObj.agape_profile_memberID;
+									sender.obj.agape_commercial_AccountCreated=convertNowToPhP();
+									sender.obj.agape_commercial_LastUpdated=sender.obj.agape_commercial_AccountCreated
+									console.log(sender)
+
+						
+									var tFunk=function(data){
+										//global.userObj.agape_profile_commercial_Account="true";
+										//quickJamUpdate
+
+										var sender1={};
+										sender1.job="quickJamUpdate";
+										sender1.dbase="agape_profile"
+										sender1.updateStr="agape_profile_commercial_Account='True'";
+										sender1.param="agape_profile_memberID";
+										sender1.vals=global.userObj.agape_profile_memberID;
+										sender1.selFunc="selectFunc"
+										sender1.kob="where agape_profile_memberID="+global.userObj.agape_profile_memberID;
+										
+										var tFunk1=function(data1){
+									
+											var bre=globalTools.verify(data1)
+											global.userObj=bre.returnObj[0]
+										
+											globalTools.save();
+											location.href="advertise"
+
+										}
+
+										ajaxCallPost(sender1,tFunk1);
+
+									}
+									ajaxCallPost(sender,tFunk);
+
+								}else{
+									
+								}
+							
+							})
+
+
+							// Fill industry select
+							var fIndx=formObj.fields[43].quesParams.length;
+							for(var b=0;b<fIndx;b++){
+								$("#agape_commercial_Industry").append("<option value="+formObj.fields[43].quesParams[b]+">"+formObj.fields[43].quesParams[b]+"</option>");
+							}
+
+							$("#agape_commercial_Rep_Firstname").val(global.userObj.agape_profile_firstname);
+							$("#agape_commercial_Rep_Lastname").val(global.userObj.agape_profile_lastname)
+
+					})
+
+
+
+
+						
+				</script>

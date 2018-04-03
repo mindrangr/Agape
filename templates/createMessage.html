@@ -1,0 +1,409 @@
+<html>					
+	<head>
+		<script type="text/javascript">
+		</script>
+
+		<style>
+			.newQuestionbLabels{
+				width:150px;
+			}
+		</style>
+	
+	</head>
+	<body bgcolor="#000000" >
+		<div  id="proView" style="float:left;width:100%;height:500px;padding:4px;">	
+			<!-- Begin View panel-->
+			<div id="view" style="position:absolute;z-index:15;width:100%;">
+				<br/>
+				<div id="innerView" style="width:90%;background-color:#2e2e2e;border:solid 2px #246970;height:405px;margin:auto;border-radius:7px">
+					<div style="width:670px;margin:auto;color:#eee;font-family:arial;padding:8px;font-size:18px;">
+						Messages
+					</div>	
+					<div style='float:left;margin-left:20px;margin-right:10px;'><img id="createmessPic" src="" style="height:130px;width:120px" height="90" /></div>
+					<div style='float:left;'>
+						<div class="newQuestionbLabels" style='color:#eee;font-family:arial;font-size:18px;float:left;padding-top:10px;float:left;'>
+							To:
+						</div>
+						<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;">
+							<div id="Sendtextbox"  style="width:200px;height:25px;font-family:arial;font-weight:bold;text-align:left;padding-left:10px;"></div>
+						</div>
+						<div style="clear:both"></div>
+						<div class="newQuestionbLabels" style='color:#eee;font-family:arial;font-size:18px;float:left;padding-top:10px;'>
+							Title:
+						</div>
+						<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;margin-top:10px;">
+							<input id="agape_message_title"  style="width:200px;height:25px;font-family:arial;font-weight:bold;background-color:#dedede;border:none;padding-left:10px" />
+						</div>
+						<div style="clear:both"></div>
+						<div class="newQuestionbLabels" style='color:#eee;font-family:arial;font-size:18px;float:left;padding-top:10px;'>
+							Message:
+						</div>
+						<div style='float:left;padding-top:10px;'>
+							<textarea id="agape_message" style="background-color:#dedede;border-radius:8px;" rows="11" cols="55">	
+							</textarea>
+						</div>
+						<div style="clear:both"></div>
+					<div style="width:90px;font-size:18px;text-align:center;" class="sliderButtonStyle1 buttonViewPro" onmouseover="buttonMouseOver(this,'#0b8d0b','par')" onmouseout="buttonMouseOver(this,'green','par')" >send</div>
+					</div>
+					<div style="clear:both"></div>
+					<br/>
+				</div>
+			</div>							
+			<!-- End View panel-->
+		</div>		
+	</body>
+</html>
+<script type="text/javascript" >
+
+	var sendObj={};
+	global.sendMessage="true"
+	$.each($(".messageReply_Style :input"),function(){
+		if($(this).val()!=""){
+			sendObj[$(this).attr("id")]=$(this).val();
+		}else{
+			global.sendMessage="false"
+		}
+	})
+	var friendO,ling,picture
+	Idex="false";
+	var y=global.module;
+	alert(y)
+	switch(y){
+		
+		case 'searchCandidates':
+
+
+			$(".buttonViewPro").unbind("click").on("click",function(){
+				clocks=convertNowToPhP();
+				var sendo={};
+				sendo.job="createMessage"
+				sendo.obj={};
+				sendo.obj.agape_message_title=$.trim($("#agape_message_title").val());
+				sendo.obj.agape_message=$.trim($("#agape_message").val());
+				sendo.obj.agape_message_sender_ID=global.userObj.agape_profile_memberID
+				sendo.obj.agape_message_sender_username=global.userObj.agape_profile_username
+				sendo.obj.agape_message_receiver_username=global.dataHolder.searchObj.returnObj[global.candidate.param].agape_profile_username;
+				sendo.obj.agape_message_receiver_url=global.dataHolder.searchObj.returnObj[global.candidate.param].agape_profile_default_img;
+				sendo.obj.agape_message_receiver_ID=global.dataHolder.searchObj.returnObj[global.candidate.param].agape_profile_memberID;
+
+				sendo.obj.agape_message_update=clocks;
+				sendo.obj.agape_message_send_date=clocks;
+				sendo.obj.agape_sender_url=global.userObj.agape_profile_default_img;
+				var func1=function(data){
+					messageSentcloser();
+				}
+				ajaxCall(sendo,func1);
+				console.log(13)
+				console.log(sendo)
+				console.log(13)
+
+			})
+
+		
+			console.log(global.dataHolder.searchObj.returnObj[global.candidate.param].agape_profile_username);
+			picture=$.parseJSON(global.dataHolder.searchObj.returnObj[global.candidate.param].agape_profile_default_img)
+			$("#Sendtextbox").html(global.dataHolder.searchObj.returnObj[global.candidate.param].agape_profile_username)
+			$("#createmessPic").attr("src",picture.defaultPic);
+			
+		break;
+		
+		
+		case 'messages':
+			var messOsent= globalTools.verify(sessionStorage.getItem('messages'));
+			var Idex=0;
+			ling=messOsent.returnObj.length;
+			for(var r=0;r<ling;r++){
+				if(messOsent.returnObj[r].agape_message_sender_username==global.candidate.id){
+					Idex=r;
+					console.log(messOsent.returnObj[r].agape_message_sender_username+"=="+global.candidate.id)
+				}
+			}
+
+
+			$(".buttonViewPro").unbind("click").on("click",function(){
+				clocks=convertNowToPhP();
+				var sendo={};
+				sendo.job="createMessage"
+				sendo.obj={};
+				sendo.obj.agape_message_title=$("#agape_message_title").val();
+				sendo.obj.agape_message=$.trim($("#agape_message").val());
+				sendo.obj.agape_message_sender_ID=global.userObj.agape_profile_memberID
+				sendo.obj.agape_message_sender_username=global.userObj.agape_profile_username
+				sendo.obj.agape_message_receiver_username=messOsent.returnObj[Idex].agape_message_sender_username;
+				sendo.obj.agape_message_receiver_url=messOsent.returnObj[Idex].agape_sender_url;
+				sendo.obj.agape_message_receiver_ID=messOsent.returnObj[Idex].agape_message_sender_ID;
+
+				sendo.obj.agape_message_update=clocks;
+				sendo.obj.agape_message_send_date=clocks;
+				sendo.obj.agape_sender_url=global.userObj.agape_profile_default_img;
+				var func1=function(data){
+					messageSentcloser();
+				}
+				ajaxCall(sendo,func1);
+
+			})
+
+
+
+			picture=$.parseJSON(messOsent.returnObj[Idex].agape_sender_url)
+			$("#Sendtextbox").html(messOsent.returnObj[Idex].agape_message_sender_username)
+			$("#createmessPic").attr("src",picture.defaultPic);
+		break;
+
+		case 'messages_sent':
+			var messOsent= globalTools.verify(sessionStorage.getItem('messages_sent'))
+			ling=messOsent.returnObj.length;
+			for(var r=0;r<ling;r++){
+				if(messOsent.returnObj[r].agape_message_receiver_username==global.candidate.id){
+					Idex=r;
+					console.log(messOsent.returnObj[r].agape_message_receiver_username+"=="+global.candidate.id)
+				}
+			}
+
+			$(".buttonViewPro").unbind("click").on("click",function(){
+				clocks=convertNowToPhP();
+				var sendo={};
+				sendo.job="createMessage"
+				sendo.obj={};
+				sendo.obj.agape_message_title=$("#agape_message_title").val();
+				sendo.obj.agape_message=$.trim($("#agape_message").val());
+				sendo.obj.agape_message_sender_ID=global.userObj.agape_profile_memberID
+				sendo.obj.agape_message_sender_username=global.userObj.agape_profile_username
+				sendo.obj.agape_message_receiver_username=messOsent.returnObj[Idex].agape_message_receiver_username;
+				sendo.obj.agape_message_receiver_url=messOsent.returnObj[Idex].agape_message_receiver_url;
+				sendo.obj.agape_message_receiver_ID=messOsent.returnObj[Idex].agape_message_receiver_ID;
+
+				sendo.obj.agape_message_update=clocks;
+				sendo.obj.agape_message_send_date=clocks;
+				sendo.obj.agape_sender_url=global.userObj.agape_profile_default_img;
+
+				var func1=function(data){
+					require(['modules/forms'],function(forms){
+						forms.populateForm_Messages_sent(0);
+					});
+					messageSentcloser();
+				}
+				ajaxCall(sendo,func1);
+			})
+
+			picture=$.parseJSON(messOsent.returnObj[Idex].agape_message_receiver_url)
+			$("#Sendtextbox").html(messOsent.returnObj[Idex].agape_message_receiver_username)
+			$("#createmessPic").attr("src",picture.defaultPic);
+		break;
+
+
+		case 'friendMessage':
+			friendO=$.parseJSON(sessionStorage.getItem("friendsObj"));
+			ling=friendO.returnObj.length;
+			for(var r=0;r<ling;r++){
+				if(friendO.returnObj[r].agape_profile_username==global.candidate.id){
+					Idex=r;
+				}
+			}
+			picture=$.parseJSON(friendO.returnObj[Idex].agape_profile_default_img)
+			console.log("friendO")
+			console.log(friendO)
+			//var pic=$.parseJSON(friendO.returnObj[global.candidate.id].agape_profile_default_img)
+			$("#Sendtextbox").html(global.candidate.id)
+			$("#createmessPic").attr("src",picture.defaultPic);
+
+
+
+		break;
+
+
+		case 'candidate':
+			friendO=$.parseJSON(sessionStorage.getItem("friendRequestObj"));
+			var Idex=0;
+			ling=friendO.returnObj.length;
+			for(var r=0;r<ling;r++){
+				if(friendO.returnObj[r].requestorUsername==global.candidate.id){
+					Idex=r;
+				}
+			}
+
+
+
+			$(".buttonViewPro").unbind("click").on("click",function(){
+			clocks=convertNowToPhP();
+				var sendo={};
+				sendo.job="createMessage"
+				sendo.obj={};
+				sendo.obj.agape_message_title=$.trim($("#agape_message_title").val());
+				sendo.obj.agape_message=$.trim($("#agape_message").val());
+				sendo.obj.agape_message_sender_ID=global.userObj.agape_profile_memberID
+				sendo.obj.agape_message_sender_username=global.userObj.agape_profile_username
+				sendo.obj.agape_message_receiver_username=friendO.returnObj[Idex].requestorUsername;
+				sendo.obj.agape_message_receiver_url=friendO.returnObj[Idex].requestorImgUrl;
+				sendo.obj.agape_message_receiver_ID=friendO.returnObj[Idex].requestorID;
+
+				sendo.obj.agape_message_update=clocks;
+				sendo.obj.agape_message_send_date=clocks;
+				sendo.obj.agape_sender_url=global.userObj.agape_profile_default_img;
+				var func1=function(data){
+					messageSentcloser();
+				}
+				ajaxCall(sendo,func1);
+
+				console.log(0)
+				console.log(sendo)
+				console.log(0)
+
+
+			})
+
+
+
+			picture=$.parseJSON(friendO.returnObj[global.candidate.id].requestorImgUrl)
+
+
+
+
+
+
+
+
+
+			$("#Sendtextbox").html(friendO.returnObj[global.candidate.id].requestorUsername)
+			$("#createmessPic").attr("src",picture.defaultPic);
+
+		break;
+
+
+		case 'friend':
+	
+			friendO=$.parseJSON(sessionStorage.getItem("friendsObj"));
+			ling=friendO.returnObj.length;
+			for(var r=0;r<ling;r++){
+				if(friendO.returnObj[r].agape_profile_username==global.candidate.id){
+					Idex=r;
+				}
+			}
+			picture=$.parseJSON(friendO.returnObj[Idex].agape_profile_default_img)
+			//var pic=$.parseJSON(friendO.returnObj[global.candidate.id].agape_profile_default_img)
+			$("#Sendtextbox").html(global.candidate.id)
+			$("#createmessPic").attr("src",picture.defaultPic);
+			
+		
+
+
+			
+			
+		break;
+
+		case 'seachViewer':
+			
+			friendO=global.dataHolder.searchObj;
+			var pic=$.parseJSON(friendO.returnObj[global.candidate.param].agape_profile_default_img)
+			$("#Sendtextbox").html(friendO.returnObj[global.candidate.param].agape_profile_username)
+			$("#createmessPic").attr("src",pic.defaultPic);
+			
+		
+
+
+			$(".buttonViewPro").on("click",function(){
+				var clocks="";
+				require(['modules/timeObj'],function(clock){
+					clocks= clock.convertToPhP();
+					
+					var sent={};
+					sent.job="createMessage";
+					sent.message={};
+					var free=$.parseJSON(sessionStorage.getItem("user"));
+					sent.message.agape_message_title=$("#agape_message_title").val();
+					sent.message.agape_message=$("#agape_message").val();
+					sent.message.agape_message_sender_ID=free.agape_profile_memberID
+					sent.message.agape_message_sender_username=free.agape_profile_username
+					sent.message.agape_message_receiver_username=friendO.returnObj[global.candidate.param].agape_profile_username;
+					sent.message.agape_message_receiver_url=friendO.returnObj[global.candidate.param].agape_profile_default_img;
+					sent.message.agape_message_receiver_ID=friendO.returnObj[global.candidate.param].agape_profile_memberID;
+					sent.message.agape_message_update=clocks;
+					sent.message.agape_message_send_date=clocks;
+					sent.message.agape_sender_url=free.agape_profile_default_img;
+					
+					func=function(data){
+						var success=$.trim(data)
+						if(success=="success"){
+							$(".closeButton").click();
+						}
+					}
+
+					ajaxCall(sent,func)	
+					
+				});	
+		
+		
+			})
+		break;
+
+	}
+
+
+	
+		
+$(".buttonViewPro").on("click",function(){
+				var clocks="";
+				require(['modules/timeObj'],function(clock){
+					clocks= clock.convertToPhP();
+					friendO=$.parseJSON(sessionStorage.getItem("friendsObj"));
+					var sent={};
+					sent.job="createMessage";
+					sent.message={};
+					var free=$.parseJSON(sessionStorage.getItem("user"));
+					sent.message.agape_message_title=$("#agape_message_title").val();
+					sent.message.agape_message=$("#agape_message").val();
+
+
+					switch(y){
+						case 'friendMessage':
+							friendO=$.parseJSON(sessionStorage.getItem("friendsObj"));
+							ling=friendO.returnObj.length;
+							for(var r=0;r<ling;r++){
+								if(friendO.returnObj[r].agape_profile_username==global.candidate.id){
+									Idex=r;
+								}
+							}
+							
+							sent.message.agape_message_receiver_username=friendO.returnObj[Idex].agape_profile_username;
+							sent.message.agape_message_receiver_url=friendO.returnObj[Idex].agape_profile_default_img;
+							sent.message.agape_message_receiver_ID=friendO.returnObj[Idex].agape_profile_memberID;
+						break;
+
+
+						case 'candidate':
+							friendO=$.parseJSON(sessionStorage.getItem("friendRequestObj"));
+							
+							sent.message.agape_message_receiver_username=friendO.returnObj[global.candidate.id].requestorUsername
+							sent.message.agape_message_receiver_url=friendO.returnObj[global.candidate.id].agape_message_receiver_url;
+							sent.message.agape_message_receiver_ID=friendO.returnObj[global.candidate.id].agape_message_receiver_ID;
+
+						break;
+					}
+
+					sent.message.agape_message_sender_ID=global.userObj.agape_profile_memberID
+					sent.message.agape_message_sender_username=free.agape_profile_username
+					
+					sent.message.agape_message_update=clocks;
+					sent.message.agape_message_send_date=clocks;
+					sent.message.agape_sender_url=free.agape_profile_default_img;
+					
+					func=function(data){
+						var success=$.trim(data)
+						if(success=="success"){
+							$(".closeButton").click();
+						}
+					}
+					//ajaxCall(sent,func)	
+
+					
+				});	
+		
+		
+			})
+
+
+
+
+
+
+		</script>

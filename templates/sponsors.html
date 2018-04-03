@@ -1,0 +1,43 @@
+<div style='background-color:#eee;width:870px;padding:8px;border-radius:6px;margin:auto;height:400px;border:solid 2px #246970;font-family: tahoma'>
+	<div style='float:left;width:330px;'><a id='mainSponsorLink' href=""><img id='mainSponsor' src="" style="height:100px" /></a></div>
+
+	<div id='mainMessage' style='float:left;height:300px;overflow: auto;width:500px;background-color: #ededed;'></div>
+	<div style='clear:both'></div>
+	<div id="sponsorImg" style='width:600px;margin:auto;background-color: #eee;height:70px;border-radius:5px 5px 5px 5px;margin-top:15px'></div>		
+	<div id="becomeSponsor" style='text-decoration: underline;cursor: pointer;'>Become a sponsor</div>
+</div>
+
+<script type="text/javascript">
+	var query  = window.location.search.substring(1);
+	query=query.split("=");
+	var val="true";
+	$("#becomeSponsor").unbind("click").on("click",function(){
+		location.href=global.baseUrl+"/contact";
+	})
+
+	var chk1
+	console.log(query[1])
+	if(!query[1]){
+		chk1=1
+	}else{
+		chk1=query[1];
+	}
+
+	var val1=global.userObj.sponsorList.length;
+	for(v=0;v<val1;v++){
+		var t=global.baseUrl
+		if(global.userObj.sponsorList[v].agape_sponsors_ID==chk1){
+			$("#mainSponsor").attr("src",t+"/"+global.userObj.sponsorList[v].agape_sponsors_Image);
+			$("#mainSponsorLink").prop("href",global.userObj.sponsorList[v].agape_sponsors_URL);
+			$("#mainSponsorLink").prop("target","_blank")
+			$("#mainMessage").html(global.userObj.sponsorList[v].agape_sponsors_Message);
+		}else{
+			var h=global.baseUrl+"/"
+			var ft="<a href='"+h+"sponsors?="+global.userObj.sponsorList[v].agape_sponsors_ID+"' ><img src='"+t+"/"+global.userObj.sponsorList[v].agape_sponsors_Image+"' style='height:40px;margin-right:10px;' /></a>";
+			$("#sponsorImg").append(ft);
+		}
+	}
+
+	$("#opacback").css("height","796px");
+	$("#footerPush").css("height","636px");
+</script>

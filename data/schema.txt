@@ -1,0 +1,83 @@
+CREATE TABLE IF NOT EXISTS `agape_messages` (
+  `agape_message_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `agape_message_title` varchar(125) DEFAULT NULL,
+  `agape_message` text,
+  `agape_message_sender_ID` varchar(15) DEFAULT NULL,
+  `agape_message_sender_username` varchar(45) DEFAULT NULL,
+  `agape_message_receiver_username` varchar(45) DEFAULT NULL,
+  `agape_message_receiver_url` text,
+  `agape_message_receiver_ID` varchar(15) DEFAULT NULL,
+  `agape_message_send_date` datetime DEFAULT NULL,
+  `agape_message_update` datetime NOT NULL,
+  `agape_message_active` varchar(16) DEFAULT 'true',
+  `agape_message_opened` varchar(25) DEFAULT 'Sealed',
+  `agape_sender_url` text,
+  `agape_message_responses` text,
+  PRIMARY KEY (`agape_message_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+
+CREATE TABLE IF NOT EXISTS `agape_profile` (
+  `agape_profile_memberID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `agape_profile_firstname` varchar(45) DEFAULT NULL,
+  `agape_profile_lastname` varchar(45) DEFAULT NULL,
+  `agape_profile_gender` varchar(15) DEFAULT NULL,
+  `agape_profile_dateOfBirth` datetime DEFAULT NULL,
+  `agape_profile_bodyType` varchar(25) DEFAULT NULL,
+  `agape_profile_height` varchar(25) DEFAULT 'Not Answered',
+  `agape_profile_city` varchar(45) DEFAULT NULL,
+  `agape_profile_state` varchar(25) DEFAULT NULL,
+  `agape_profile_email` varchar(45) DEFAULT NULL,
+  `agape_profile_intentions` varchar(45) DEFAULT NULL,
+  `agape_profile_education` varchar(45) DEFAULT NULL,
+  `agape_profile_children` varchar(15) DEFAULT 'Not Answered',
+  `agape_profile_description` text,
+  `agape_profile_partner_description` text,
+  `agape_profile_firstDate` text,
+  `agape_profile_salary` varchar(25) DEFAULT 'Not Answered',
+  `agape_profile_username` varchar(45) DEFAULT NULL,
+  `agape_profile_default_img` text,
+  `agape_profile_password` varchar(45) DEFAULT NULL,
+  `agape_profile_religion` varchar(35) DEFAULT NULL,
+  `agape_profile_register_date` datetime DEFAULT NULL,
+  `agape_profile_drugs` varchar(25) DEFAULT 'Not answered',
+  `agape_profile_alcohol` varchar(25) DEFAULT 'Not answered',
+  `agape_partner_age_range` varchar(25) DEFAULT 'Not answered',
+  `agape_partner_salary` varchar(25) DEFAULT NULL,
+  `agape_partner_drugs` varchar(25) DEFAULT 'Not answered',
+  `agape_partner_religion` varchar(35) DEFAULT 'Not answered',
+  `agape_partner_education` varchar(45) DEFAULT 'Not anwsered',
+  `agape_partner_alcohol` varchar(25) DEFAULT 'Not answered',
+  `agape_partner_children` varchar(15) DEFAULT 'Not answered',
+  `agape_partner_bodyType` varchar(25) DEFAULT NULL,
+  `agape_profile_opts` varchar(250) DEFAULT NULL,
+  `agape_profile_race` varchar(45) DEFAULT 'Not answered',
+  `agape_profile_fRequest` text,
+  `agape_partner_race` varchar(25) DEFAULT 'Not Answered',
+  `agape_partner_height` varchar(25) DEFAULT 'Not Answered',
+  `agape_profile_children_future` varchar(25) DEFAULT 'Not Answered',
+  `agape_profile_amt2Invest` varchar(25) DEFAULT 'Not Answered',
+  `agape_profile_nation` varchar(45) DEFAULT 'USA',
+  `agape_profile_opts_partner` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`agape_profile_memberID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+CREATE TABLE IF NOT EXISTS `agape_friendrequest` (
+  `requestID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `requestorID` varchar(45) DEFAULT NULL,
+  `requestorUsername` varchar(35) DEFAULT NULL,
+  `requestedID` varchar(45) DEFAULT NULL,
+  `requestedUsername` varchar(45) DEFAULT NULL,
+  `requestSent` datetime DEFAULT NULL,
+  `requestStatus` varchar(45) DEFAULT 'sent',
+  `requestMessage` varchar(250) DEFAULT NULL,
+  `requestorImgUrl` text,
+  PRIMARY KEY (`requestID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+
+
+CREATE VIEW Florida AS
+SELECT *
+FROM agape_profile
+WHERE   agape_profile_state='Florida'

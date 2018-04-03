@@ -1,0 +1,53 @@
+<DOCTYPE html/>
+<body>
+
+<div style="width:300px;height:40px;box-shadow: 0px 0px 4px 4px #dedede;">ghgh</div>
+<div>
+		<video id="videoEle" width="640" height="480" autoplay="true" ></video>
+		<button id="camOnButton">Turn On my webcam</button>
+    	<button id="saveImgButton">Save Image</button>
+</div>
+		<script>
+
+
+
+			// Full tutorial on http://www.attuts.com/webcam-and-video-using-html5-send-video-image-to-server/
+var vidObj = document.querySelector("video");;
+
+errCallBack = function(error) {	// Video Error Handler 	
+console.log("Video  error: ", error.code); 
+};
+
+//Attach Click event with camOnButton 
+document.getElementById("camOnButton").addEventListener("click",function(){
+  // check web camera support on clicking camOnButton
+if(navigator.getUserMedia) { // Standard
+		navigator.getUserMedia({"video": true }, function(stream) {
+			vidObj.src = stream;
+			vidObj.play();
+			alert(24)
+		}, errCallBack);
+	} else if(navigator.webkitGetUserMedia) { // For  WebKit
+		
+		navigator.webkitGetUserMedia({ "video": true }, function(stream){
+			alert("eys")
+			vidObj.src = navigator.webkitGetUserMedia.createObjectURL(stream);
+			vidObj.play();
+		}, errCallBack);
+		 console.log(3333);
+		 console.log(errCallBack)
+	}
+	else if(navigator.mozGetUserMedia) { // For Firefox
+		navigator.mozGetUserMedia({ "video": true }, function(stream){
+			vidObj.src = window.URL.createObjectURL(stream);
+			vidObj.play();
+		}, errCallBack);
+	}
+
+});
+
+
+
+		</script>
+</body>
+

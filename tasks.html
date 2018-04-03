@@ -1,0 +1,1334 @@
+<script src="/agape/scripts/jquery-1.8.2.js"></script>	
+<script src="/agape/scripts/TweenMax.js"></script>
+<style>
+
+.task{
+	border:solid 1px #eee;
+	padding:5px;
+}
+
+
+.dClass{
+	background-color:red;
+	color:#eee;
+	font-family:arial;
+}
+
+.nClass{
+	background-color:lime;
+	color:#000;
+	font-family:arial;
+}
+
+.taskUpdateBox{
+
+	position:absolute;
+	top:-10px;
+	left:480px;
+	width:300px;
+	height:200px;
+	background-color:#eee;
+	border:solid 1px #000;
+	border-radius: 4px;
+	box-shadow: 0px 0px 9px #000;
+	padding:10px;
+	display:none;
+}
+
+
+.TaskEvents{
+
+	font-weight:none;
+	text-decoration: underline;
+	font-size: 12px;
+	color:blue;
+	cursor:pointer;
+
+
+}
+
+
+
+	.grad2{
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b5bdc8+0,828c95+36,28343b+100;Grey+Black+3D */
+background: #b5bdc8; /* Old browsers */
+background: -moz-linear-gradient(top,  #b5bdc8 0%, #828c95 36%, #28343b 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #b5bdc8 0%,#828c95 36%,#28343b 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #b5bdc8 0%,#828c95 36%,#28343b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
+
+		
+	}
+
+
+	.rowClass_even{
+		width:800px;
+		margin:auto;
+		background-color:#eee;
+		border-bottom:solid 1px #000;
+		font-family:arial;
+		font-size:12px;
+
+	}
+
+
+	.rowClass_odd{
+		width:800px;
+		margin:auto;
+		background-color:#dedede;
+		border-bottom:solid 1px #000;
+		font-family:arial;
+		font-size:12px;
+
+	}
+
+	.rowClass_odd_o{
+		width:800px;
+		margin:auto;
+		background-color:#c1c0e3;
+		border-bottom:solid 1px #000;
+		font-family:arial;
+		font-size:12px;
+
+	}
+
+
+	.rowClass_odd_l{
+		width:800px;
+		margin:auto;
+		background-color:#c0e3c6;
+		border-bottom:solid 1px #000;
+		font-family:arial;
+		font-size:12px;
+
+	}
+
+	.rowClass_odd_n{
+		width:800px;
+		margin:auto;
+		background-color:#f5c1c1;
+		border-bottom:solid 1px #000;
+		font-family:arial;
+		font-size:12px;
+
+	}
+
+
+	.rowClass_odd_p{
+		width:800px;
+		margin:auto;
+		background-color:#96937f;
+		border-bottom:solid 1px #000;
+		font-family:arial;
+		font-size:12px;
+		color:#f3f0e9;
+
+	}
+
+
+
+	
+
+
+	
+.tabStyle1{
+	width:120px;
+	margin:auto;
+	text-align:center;
+	background-color: #fff;
+	border-radius: 5px 5px 0px 0px;
+	padding:3px;
+	margin-top:15px;
+	font-family:arial;
+}
+
+
+	
+</style>
+<body >
+<div id="editback" style="position:absolute;z-index:5;width:100%;height:100%;background-color:#000;top:0px;opacity:0;color:#000;display:none;">.</div>
+<div id="editDiv" style="width:800px;background-color:#fff;padding:10px;position:absolute;z-index:8;display:none;height:600px;left:300px;">
+	<div id="closebutt" style="font-family:arial;color:red;cursor:pointer;">Close</div>
+	<div id="EditForm"></div>
+</div>
+
+<div id="baseDiv" style="width:800px;margin:auto;background-color:gray;padding:10px;position:relative;z-index:1">
+	<div  style='padding:10px;font-family:arial;width:800px;margin:auto;' id="tasks">
+		<div style='float:left;width:400px;'>
+			<div>remaining tasks:0</div>
+			<div id='createTask' style='text-decoration:underline;cursor:pointer;'>create new task</div>
+			<div>Assigned to:</div>
+			<select id="agape_TaskAssignTo">
+				<option>Marcus Estes</option>
+			</select>
+		</div>
+
+		<div style='float:left;width:400px;'>
+			<div style='float:left;width:100px;'>
+			<div>Task type:</div>
+
+			</div>
+			<div style='float:left;width:100px;'>
+				
+			</div>
+			<div style='clear:both'></div>
+
+		
+		</div>
+		<div style='clear:both'></div>
+	</div>
+
+	<div>
+		
+
+		<div  class="tabStyle1">In Progress(<span id='nProgressTtotal'></span>)</div>
+		<div style="background-color:#fff;padding:3px;font-family: arial;border-radius:4px 4px 0px 0px;font-size:12px;font-weight: bold;border-bottom: 1px solid #000;"><span style='display: inline-block;width:410px;'>Task title</span><span style='display: inline-block;width:90px;'>Task Status</span><span style='display: inline-block;width:130px;'>Task type</span><span style='display: inline-block;width:140px;'>Task Due date</span></div>
+		<div id="progressingTasks" style="width:800px;margin:auto;"></div>
+
+
+		<div  class="tabStyle1">Not started(<span id='notBegunTtotal'></span>)</div>
+		<div style="background-color:#fff;padding:3px;font-family: arial;border-radius:4px 4px 0px 0px;font-size:12px;font-weight: bold;"><span style='display: inline-block;width:410px;'>Task title</span><span style='display: inline-block;width:90px;'>Task Status</span><span style='display: inline-block;width:130px;'>Task type</span><span style='display: inline-block;width:140px;'>Task Due date</span></div>
+		<div id="notBegunTasks" style="width:800px;margin:auto;"></div>
+
+		<div  class="tabStyle1">On hold(<span id='oHoldTotal'></span>)</div>
+		<div style="background-color:#fff;padding:3px;font-family: arial;border-radius:4px 4px 0px 0px;font-size:12px;font-weight: bold;"><span style='display: inline-block;width:410px;'>Task title</span><span style='display: inline-block;width:90px;'>Task Status</span><span style='display: inline-block;width:130px;'>Task type</span><span style='display: inline-block;width:140px;'>Task Due date</span></div>
+		<div id="onholdTasks" style="width:800px;margin:auto;"></div>
+
+		<div  style="width:120px;margin:auto;text-align:center;background-color: #fff;border-radius: 5px 5px 0px 0px;padding:3px;margin-top:15px;">Completed(<span id='compTotal'></span>)</div>
+		<div style="background-color:#fff;padding:3px;font-family: arial;border-radius:4px 4px 0px 0px;font-size:12px;font-weight: bold;"><span style='display: inline-block;width:410px;'>Task title</span><span style='display: inline-block;width:90px;'>Task Status</span><span style='display: inline-block;width:130px;'>Task type</span><span style='display: inline-block;width:140px;'>Task Due date</span></div>
+		<div id="completedTasks" style="width:800px;margin:auto;height:500px;overflow:auto;"></div>
+
+
+		<div  style="width:90px;margin:auto;text-align:center;background-color: #fff;border-radius: 5px 5px 0px 0px;padding:3px;margin-top:15px;">Phase 2(<span id='phase2Ttotal'></span>)</div>
+		<div style="background-color:#fff;padding:3px;font-family: arial;border-radius:4px 4px 0px 0px;font-size:12px;font-weight: bold;"><span style='display: inline-block;width:410px;'>Task title</span><span style='display: inline-block;width:90px;'>Task Status</span><span style='display: inline-block;width:130px;'>Task type</span><span style='display: inline-block;width:140px;'>Task Due date</span></div>
+		<div id="nextPhaseTasks" style="width:800px;margin:auto;height:500px;overflow:auto;"></div>
+
+		<div id="janky" style="width:800px;margin:auto;">
+
+		</div>
+	</div>
+</div>
+</body>
+<script>
+var global={};
+$(document).ready(function(){
+	loadNew();
+})
+
+
+
+
+var timeObj={
+				fullMonthsName: ["January","February","March","April","May","June","July","August","September","October","November","December"],
+				fullDay:[31,28,31,30,31,30,31,31,30,31,30,31],
+				halfMonthsName: ["Jan","Feb","Mar","Apri","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+				days:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+			}
+
+
+
+
+
+
+function getTime(dateVal,time,native)
+{
+
+	var currentTime;
+	var hours;
+	var minutes;
+	var mon;
+	var day;
+	var FullYear ;
+	var presTime;
+	
+
+
+	var browserDetect=navigator.userAgent;
+	var bd=browserDetect.search(/MSIE/i);	
+	if(bd!=-1)
+	{
+		
+		var firstBreak=dateVal.split(" ");		
+		var ieObj=firstBreak[0].split("-");			
+		day=parseInt(ieObj[2])
+		mon=parseInt(ieObj[1])-1
+		FullYear=ieObj[0];
+		tme=firstBreak[1].split(":");
+		minutes=parseInt(tme[1]);
+		hours=parseInt(tme[0]);
+	}
+
+	
+	bd=browserDetect.search(/Chrome/i);	
+	if(bd!=-1)
+	{
+		currentTime = new Date(dateVal)
+		hours = currentTime.getHours()
+		minutes = currentTime.getMinutes()
+		mon = currentTime.getMonth()
+		day = currentTime.getDate()
+		FullYear = currentTime.getFullYear();	
+	}
+	
+	
+	bd=browserDetect.search(/Firefox/i);	
+	if(bd!=-1)
+	{
+		
+		if(native!='Firefox'){
+			var f=dateVal+""
+			var format=f.split(" ");
+			var tre=format[0]+""
+			var formatedDate = tre.split("-");
+			var newDateString= formatedDate[1]+"/"+formatedDate[2]+"/"+formatedDate[0]+" "+format[1]
+		}else{
+			var f=dateVal+""
+			var format=f.split(" ");
+			
+			
+			switch(format[1])
+	       	{
+		       	case 'Jan':
+		           	mon = 1
+		           	break;
+		       	case 'Feb':
+		           	mon = 2
+		           	break;
+		       	case 'Mar':
+		       		mon = 3
+		       		break;
+
+		       	case 'Apr':
+	      			mon = 4
+		      	 	break;
+
+		       	case 'May':
+		       		mon = 5
+		       		break;
+
+		       	case 'Jun':
+		      		 mon = 6
+		       	break;
+
+		       	case 'Jul':
+		       		mon = 7
+		       		break;
+
+		       	case 'Aug':
+		       		mon = 8
+		       		break;
+
+		       	case 'Sep':
+		       		mon = 9
+		       		break;
+
+		       	case  'Oct':
+		       		mon = 10
+		       		break;
+
+		       	case 'Nov':
+		       		mon = 11
+		       		break;
+
+		       	case 'Dec':
+		       		mon = 12
+		       		break;
+
+	       	}
+		
+			var newDateString= mon+"/"+format[2]+"/"+format[3]+" "+format[4];
+			//alert("native: "+newDateString)
+		}
+
+		currentTime = new Date(newDateString);
+		hours = currentTime.getHours()
+		minutes = currentTime.getMinutes()
+		mon = currentTime.getMonth()
+		day = currentTime.getDate()
+		FullYear = currentTime.getFullYear();	
+		
+	}
+
+	mon=timeObj.fullMonthsName[mon];
+	
+    var suffix = "AM";	
+	if(time=="true")
+	{
+    if (hours >= 12)
+        {
+            suffix = "PM";
+            hours = hours - 12; 
+        } 
+		
+		if (hours == 0)
+        {
+            hours = 12; 
+        } 
+			
+
+		if (minutes < 10)
+		{
+			minutes = "0" + minutes
+		} 	
+		presTime=mon+" "+day+", "+FullYear+" "+hours+":"+minutes+" "+suffix;
+	}
+	else
+	{
+		presTime=mon+" "+day+", "+FullYear;
+
+	}
+    return presTime;
+} 
+
+
+
+
+
+$("#createTask").on("click",function(){
+var Lb="<div id='createNewEntry'>"
+
+
+Lb=Lb+"<div style='padding:3px'><div style='float:left;width:220px;'>Task title:</div>"
+Lb=Lb+"<div style='float:left;'><input id='agape_TaskTitle' style='width:300px' type='textbox'/></div>"
+Lb=Lb+"<div style='clear:both;'></div></div>"
+
+
+Lb=Lb+"<div style='padding:3px'><div style='float:left;width:220px;'>Task type:</div>"
+Lb=Lb+"<div style='float:left;'><select id='agape_TaskType' style='width:300px' ><option>Test</option><option>Database work</option><option>New development</option><option>Extend current work</option><option>Bug fix</option></select></div>"
+Lb=Lb+"<div style='clear:both;'></div></div>"
+
+Lb=Lb+"<div style='padding:3px'><div style='float:left;width:220px;'>Task description:</div>"
+Lb=Lb+"<div style='float:left;'><input id='agape_TaskData' style='width:300px' type='textbox'/></div>"
+Lb=Lb+"<div style='clear:both;'></div></div>"
+
+Lb=Lb+"<div style='padding:3px'><div style='float:left;width:220px;'>Task due date:</div>"
+Lb=Lb+"<div style='float:left;'><input id='agape_TaskExpectedDue_Date' style='width:300px' type='textbox'/></div>"
+Lb=Lb+"<div style='clear:both;'></div></div>"
+
+
+Lb=Lb+"<div style='padding:3px'><div style='float:left;width:220px;'>Task status:</div>"
+Lb=Lb+"<div style='float:left;'><select id='agape_TaskStatus' style='width:300px'><option>Not Started</option><option>Started</option><option>In Progress</option><option>On Hold</option><option>Completed</option><option>Phase 2</option></select></div>"
+Lb=Lb+"<div style='clear:both;'></div></div>"
+
+Lb=Lb+"<div style='padding:3px;'><input type='button' value='create entry' id='create_entry'>&nbsp;</div>"
+
+Lb=Lb+"</div>"
+var foBj={}
+foBj.form=Lb
+foBj.Type="new";
+
+foBj.createEntry=function(){
+	var bendo={}
+	bendo.obj={}
+	bendo.job="insertNewtask";
+	bendo.dbase="agape_task";
+	var sendit="true";
+	$("#createNewEntry :input").each(function(){
+		
+		if($(this).attr("id")!="create_entry"){
+			if($(this).attr("id")!=""){
+				bendo.obj[$(this).attr("id")]=$(this). val()
+			}else{
+				sendit="false";
+			}
+		}
+		
+	})
+
+	bendo.obj.agape_TaskNotes="[]";
+	bendo.obj.agape_TaskCreate_Date=convertNowToPhP();
+	bendo.obj.agape_TaskUpdated_Date=bendo.obj.agape_TaskCreate_Date;
+	bendo.obj.agape_TaskCreator="Marcus Estes"
+
+	if(sendit=='true'){
+
+
+		$.ajax({
+			  url: "tasksWorker.php",
+			  type:'POST',
+			  data: bendo
+			}).done(function(data) {
+				loadNew();
+				alert("task created")
+			})
+		
+
+
+	}
+
+}
+openLightBox(foBj)
+
+	/*var confirmBox=confirm("Create this task?");
+
+	if(confirmBox==true){
+		var more={}
+		var sendChk="true";
+		more.obj={}
+		more.dbase="agape_task"
+		more.obj.agape_TaskCreate_Date=convertNowToPhP();
+		more.obj.agape_TaskStart_Date=more.obj.agape_TaskCreate_Date;
+		more.obj.agape_TaskExpectedDue_Date=more.obj.agape_TaskCreate_Date;
+		more.obj.agape_TaskStatus="Not Started"
+		more.obj.agape_TaskUpdated_Date=more.obj.agape_TaskCreate_Date;
+		$("#tasks :input").each(function(){
+			if($(this).val()!=""){
+				more.obj[$(this).attr("id")]=$(this).val();
+			}else{
+				sendChk="false"
+			}
+			
+		})
+		if(sendChk=="true"){
+			
+			more.job="insertNewtask"
+			$.ajax({
+			  url: "tasksWorker.php",
+			  type:'POST',
+			  data: more
+			}).done(function(data) {
+				loadNew();
+				alert("task created")
+			})
+		}else{
+			alert("incomplete")
+		}
+
+	}*/
+
+})
+
+
+
+
+
+
+function convertNowToPhP(){
+	var currentTime = new Date()
+    var hours = currentTime.getHours()
+    var minutes = currentTime.getMinutes()
+    var mon = parseInt(currentTime.getMonth())+1;
+    var day = currentTime.getDate()
+    var FullYear = currentTime.getFullYear()
+	
+	if(parseInt(day)<10){
+		day="0"+day;
+	}
+	
+	if(parseInt(minutes)<10){
+		minutes="0"+minutes;
+	}
+	
+	if(parseInt(hours)<10){
+		hours="0"+hours;
+	}
+	
+	if(parseInt(mon)<10){
+		mon="0"+mon;
+	}
+	presTime =FullYear +"-"+mon+"-"+day +" "+hours+":"+minutes+":00"
+	return presTime;
+
+}
+
+
+
+
+//function gets tasks and sets them up for viewing
+
+function loadNew(){
+	var yodle={};
+	yodle.job="loadInfo";
+
+	$.ajax({
+  		url: "tasksWorker.php",
+  		type:'POST',
+  		data: yodle
+	}).done(function(data) {
+
+	
+		var bin=data.split("**");
+		var tObj=$.parseJSON(bin[1]);
+		global.task=tObj;
+		var neLength=tObj.returnObj.length;
+		strg="";
+		var rowClass="rowClass_even";
+		var bClass="rowClass_even";
+		var lClass="rowClass_even";
+		var oClass="rowClass_even";
+		var nClass="rowClass_even";
+		var pClass="rowClass_even";
+		var rChntr=0;
+		var lChntr=0;
+		var bChntr=0;
+		var oChntr=0;
+		var brChntr=0;
+		$("#completedTasks").empty();
+		$("#progressingTasks").empty();
+		$("#notBegunTasks").empty();
+		$("#onholdTasks").empty();
+		$("#nextPhaseTasks").empty();
+		for(i=0;i<neLength;i++){
+
+			var colorstatus="lime"
+
+			switch(tObj.returnObj[i].agape_TaskStatus){
+				case 'Not Started':
+					colorstatus="red";
+					rChntr=rChntr+1
+
+				break;
+
+				case 'Started':
+					colorstatus="lime";
+					lChntr=lChntr+1;
+				break;
+
+
+				case 'In Progress':
+					colorstatus="lime";
+					lChntr=lChntr+1;
+				break;
+
+				case 'Completed':
+					colorstatus="blue";
+					bChntr=bChntr+1
+				break;
+
+				case 'On Hold':
+					colorstatus="orange";
+					oChntr=oChntr+1;
+				break;
+
+				case 'Phase 2':
+					colorstatus="brown";
+					brChntr=brChntr+1;
+				break;
+
+			}
+
+			var dat=getTime(tObj.returnObj[i].agape_TaskExpectedDue_Date,'true')
+			var dat1=getTime(tObj.returnObj[i].agape_TaskStart_Date,'true');
+
+			var q;
+			var colr='#000'
+			
+			
+			
+
+
+			switch(colorstatus){
+
+
+				case 'blue':
+
+
+					$("#completedTasks").append("<div class='"+bClass+"'><div id='taskRun"+i+"' style='float:left;margin-right:10px;padding:3px;width:400px;cursor:pointer;text-decoration:underline'><span style='font-weight:bold;'>"+bChntr+") </span>"+tObj.returnObj[i].agape_TaskTitle+"</div><div style='float:left;margin-right:10px;padding:3px;'>"+tObj.returnObj[i].agape_TaskStatus+"</div><div style='float:left;padding:3px;width:120px;'>"+tObj.returnObj[i].agape_TaskType+"</div><div style='float:left;margin-right:10px;padding:3px;'>"+dat+"</div><div style='clear:both'></div></div>")
+						if(bClass=="rowClass_odd"){
+							bClass="rowClass_even";
+						}else{
+							bClass="rowClass_odd";
+						}
+				break;
+
+
+				case 'lime':
+
+
+					$("#progressingTasks").append("<div class='"+lClass+"'><div id='taskRun"+i+"'  style='float:left;margin-right:10px;padding:3px;width:400px;cursor:pointer;text-decoration:underline'><span style='font-weight:bold;'>"+lChntr+") </span>"+tObj.returnObj[i].agape_TaskTitle+"</div><div style='float:left;margin-right:10px;padding:3px;'>"+tObj.returnObj[i].agape_TaskStatus+"</div><div style='float:left;padding:3px;width:120px;'>"+tObj.returnObj[i].agape_TaskType+"</div><div style='float:left;margin-right:10px;padding:3px;'>"+dat+"</div><div style='clear:both'></div></div>");
+						if(lClass=="rowClass_odd_l"){
+							lClass="rowClass_even";
+						}else{
+							lClass="rowClass_odd_l";
+						}
+				break;
+
+				case 'red':
+
+
+					$("#notBegunTasks").append("<div class='"+nClass+"'><div id='taskRun"+i+"'  style='float:left;margin-right:10px;padding:3px;width:400px;cursor:pointer;text-decoration:underline'><span style='font-weight:bold;'>"+rChntr+") </span>"+tObj.returnObj[i].agape_TaskTitle+"</div><div style='float:left;margin-right:10px;padding:3px;'>"+tObj.returnObj[i].agape_TaskStatus+"</div><div style='float:left;padding:3px;width:120px;'>"+tObj.returnObj[i].agape_TaskType+"</div><div style='float:left;margin-right:10px;padding:3px;'>"+dat+"</div><div style='clear:both'></div></div>");
+						if(nClass=="rowClass_odd_n"){
+							nClass="rowClass_even";
+						}else{
+							nClass="rowClass_odd_n";
+						}
+				break;
+
+				case 'orange':
+
+
+					$("#onholdTasks").append("<div class='"+oClass+"'><div id='taskRun"+i+"'  style='float:left;margin-right:10px;padding:3px;width:400px;cursor:pointer;text-decoration:underline'><span style='font-weight:bold;'>"+oChntr+") </span>"+tObj.returnObj[i].agape_TaskTitle+"</div><div style='float:left;margin-right:10px;padding:3px;'>"+tObj.returnObj[i].agape_TaskStatus+"</div><div style='float:left;padding:3px;width:120px;'>"+tObj.returnObj[i].agape_TaskType+"</div><div style='float:left;margin-right:10px;padding:3px;'>"+dat+"</div><div style='clear:both'></div></div>");
+					if(oClass=="rowClass_odd_o"){
+							oClass="rowClass_even";
+						}else{
+							oClass="rowClass_odd_o";
+						}
+				break;
+
+
+
+				case 'brown':
+
+
+					$("#nextPhaseTasks").append("<div class='"+pClass+"'><div id='taskRun"+i+"'  style='float:left;margin-right:10px;padding:3px;width:400px;cursor:pointer;text-decoration:underline'><span style='font-weight:bold;'>"+brChntr+") </span>"+tObj.returnObj[i].agape_TaskTitle+"</div><div style='float:left;margin-right:10px;padding:3px;'>"+tObj.returnObj[i].agape_TaskStatus+"</div><div style='float:left;padding:3px;width:120px;'>"+tObj.returnObj[i].agape_TaskType+"</div><div style='float:left;margin-right:10px;padding:3px;'>"+dat+"</div><div style='clear:both'></div></div>");
+					if(pClass=="rowClass_odd_p"){
+							pClass="rowClass_even";
+						}else{
+							pClass="rowClass_odd_p";
+						}
+				break;
+
+
+				
+
+
+			}
+
+
+		}
+
+
+		//$("#janky").empty().append(strg);
+
+		//addTaskEvents();
+		$("#compTotal").html(bChntr);
+		$("#oHoldTotal").html(oChntr)
+		$("#notBegunTtotal").html(rChntr)
+		$("#nProgressTtotal").html(lChntr)
+		$("#phase2Ttotal").html(brChntr)
+
+
+
+
+		var tLength=global.task.returnObj.length;
+		for(i=0;i<tLength;i++){
+			$("#sel"+i).val(global.task.returnObj[i].agape_TaskStatus);
+		}
+
+
+
+		$("[id^='taskRun']").each(function(){
+			$(this).on("click", function(){
+				var Lb={}
+				Lb.form="<div style='font-family:arial;'>"
+
+				Lb.form=Lb.form+"<div id='records' ><div style='padding:3px;'><div style='float:left;width:220px;'>Task title</div><div style='float:left;'><input type='textbox' id='agape_TaskTitle' style='width:300px' /></div><div style='clear:both;'></div></div>";
+				
+				Lb.form=Lb.form+"<div style='padding:3px;'><div style='float:left;width:220px;'>Task type</div><div style='float:left;'><select id='agape_TaskType' style='width:300px' ><option>Test</option><option>Database work</option><option>New development</option><option>Extend current work</option><option>Bug fix</option></select></div><div style='clear:both;'></div></div>"
+
+				Lb.form=Lb.form+"<div style='padding:3px;'><div style='float:left;width:220px;'>Task description</div><div style='float:left;'><textarea type='textbox' id='agape_TaskData' style='width:300px;height:60px;' ></textarea></div><div style='clear:both;'></div></div>";
+
+				Lb.form=Lb.form+"<div style='padding:3px;'><div style='float:left;width:220px;'>Task due date</div><div style='float:left;'><input type='textbox' id='agape_TaskExpectedDue_Date' style='width:300px' /></div><div style='clear:both;'></div></div>";
+
+				Lb.form=Lb.form+"<div style='padding:3px;'><div style='float:left;width:220px;'>Task status</div><div style='float:left;'><select id='agape_TaskStatus' style='width:300px'><option>Not Started</option><option>Started</option><option>In Progress</option><option>On Hold</option><option>Completed</option><option>Phase 2</option></select></div><div style='clear:both;'></div></div></div>"
+
+
+				Lb.form=Lb.form+"<div style='padding:3px;'><input type='button' value='update' id='updateTask' >&nbsp;<input id='createSubTask' type='button' value='add job' ></div>"
+				Lb.form=Lb.form+"<div style='height:0px;width:522px;border:solid 1px #bbbbbb;overflow:auto;overflow-y:hidden;' id='subTaskDivForm'>"
+
+				Lb.form=Lb.form+"<div style='padding:3px;'><span style='display:inline-block;width:100px;'>task name</span><span><input id='task'/></span></div>";
+
+				Lb.form=Lb.form+"<div style='padding:3px;'><span style='display:inline-block;width:100px;'>start date</span><span><input id='createDate'/></div>"
+
+				Lb.form=Lb.form+"<div style='padding:3px;'><span style='display:inline-block;width:100px;'>End date</span><span><input id='Enddate'/></div>"
+
+
+
+				Lb.form=Lb.form+"<div><input type='button' value='create' id='submitSubTask' /></div>"
+
+				Lb.form=Lb.form+"</div>"
+
+				Lb.form=Lb.form+"<div style='padding:3px;' id='subTaskDiv'></div>"
+
+				Lb.form=Lb.form+"</div>";
+				var dataObj={};
+			
+			
+				var f=$(this).attr("id")+"";
+				var f1=parseInt(f.substr(7))
+				
+				Lb.Type="update"
+				Lb.obj=global.task.returnObj[f1];
+				
+				Lb.index=f1;
+				Lb.submitSubTask=function(){
+					submitSubTask(Lb);
+				}
+				Lb.updateButton=function(){
+					updateTasks(Lb)
+				};
+				Lb.addSubButton=function(){
+					createSubTasks(Lb)
+				};
+				openLightBox(Lb)
+				
+			})
+		})
+
+//agape_TaskExpectedDue_Date,agape_TaskData,agape_TaskType,agape_TaskTitle
+
+		$("[id^='sel']").each(function(){
+			$(this).on("change",function(){
+				var f1=$(this).attr("id")+"";
+				f2=f1.substr(3);
+				var r=convertNowToPhP();
+				var t=$(this).val();
+				var sent1={}
+				sent1.job="updateTaskStatus"
+				sent1.selectField="agape_TaskUpdated_Date='"+r+"',agape_TaskStatus='"+t+"'";
+				sent1.selectParam="agape_TaskID";
+				sent1.issuesID=global.task.returnObj[f2].agape_TaskID;
+				sent1.dbase="agape_task";
+
+				$.ajax({
+				  url: "tasksWorker.php",
+				  type:'POST',
+				  data: sent1
+				}).done(function(data) {
+
+					loadNew();
+
+					
+
+				})
+				
+			})
+		})
+
+
+		/*$("[id^='taskSel']").each(function(){
+			$(this).on("change",function(){
+				var f1=$(this).attr("id")+"";
+				f2=f1.substr(7);
+				var q1=f2.split("_");
+			
+				var r=convertNowToPhP();
+				var t=$(this).val();
+				var sent1={}
+				sent1.job="updateTaskStatus";
+
+				
+				
+				sent1.selectParam="agape_TaskID";
+				sent1.issuesID=global.task.returnObj[q1[0]].agape_TaskID;
+				sent1.dbase="agape_task";
+				var v=$.parseJSON(global.task.returnObj[q1[0]].agape_TaskNotes);
+				v[q1[1]].status=$(this).val();
+
+				var t1=JSON.stringify(v);
+				sent1.selectField="agape_TaskNotes='"+t1+"'";
+			
+				
+				$.ajax({
+				  url: "tasksWorker.php",
+				  type:'POST',
+				  data: sent1
+				}).done(function(data) {
+
+					loadNew();
+	
+
+					
+
+				})
+				
+			})
+		})*/
+
+
+
+
+
+	});
+}
+
+
+
+
+
+/*
+function addTaskEvents(){
+	$(".TaskEvents").each(function(){
+		$(this).on("click",function(){
+			var y1=$(this).attr("id")+"";
+			y1=y1.substr(10)
+
+			var kstring="<div style='margin-top:15px;' id='box"+y1+"'><div style='float:left;margin-right:10px;'>Add task</div><div style='float:left;'><textarea cols='18' rows='3' id='textArea'></textarea></div><div style='clear:both;'></div><div style='margin-top:10px;'><input type='button' value='add task' onclick='addTaskFunc("+y1+")' /> <input type='button' value='cancel' onclick='classTaskwindow("+y1+")' /></div></div>"
+			//TaskEvents
+			$("#taskUpdateBox"+y1).fadeIn("slow").append(kstring);
+
+
+
+			//alert(y1)
+		})
+	})
+}
+
+
+
+function addTaskFunc(val1){
+	//alert(val1)
+	var sendo={}
+	sendo.job="updateTaskStatus";
+	sendo.dbase="agape_task"
+	sendo.selectParam="agape_TaskID"
+	sendo.obj={}
+	var q=$("#box"+val1).html()
+	//console.log(2323)
+	//console.log(q)
+	//console.log(2323)
+	
+	var e={}
+	$("#box"+val1+ " :input").each(function(){
+
+		if($(this).attr("id")!=undefined){
+			if($(this).val()!=""){
+				e.task=$(this).val()
+			}
+		}
+	})
+	
+
+	var fTime=convertNowToPhP();
+	e.createDate=getTime(fTime,"true")
+	e.status="Not Started"
+	e.param="none";
+	e.assignedTo="Marcus E";
+	
+	e.Enddate=e.createDate
+	
+	var t,p
+
+	if(global.task.returnObj[val1].agape_TaskNotes!="none"){
+
+		t=$.parseJSON(global.task.returnObj[val1].agape_TaskNotes);
+		console.log(12212)
+	console.log(global.task.returnObj[val1].agape_TaskNotes)
+	console.log(22212)
+		t.push(e)
+		
+	}else{
+		t=[]
+		t[0]=e
+		
+	}
+
+
+	var g=JSON.stringify(t);
+	
+	//sendo.obj["agape_TaskNotes"]=$.parseJSON(t)
+	//sendo.obj["agape_TaskUpdated_Date"]=fTime;
+	sendo.selectField="agape_TaskNotes='"+g+"',agape_TaskUpdated_Date='"+fTime+"'";
+	
+	sendo.issuesID=global.task.returnObj[val1].agape_TaskID;
+	
+	$.ajax({
+	  url: "tasksWorker.php",
+	  type:'POST',
+	  data: sendo
+	}).done(function(data) {
+
+		loadNew();
+		console.log(4343)
+		console.log(data)
+		console.log(4343)
+
+
+		
+
+	})
+
+}
+*/
+function classTaskwindow(val){
+	$("#taskUpdateBox"+val).empty().hide();
+}
+
+function openLightBox(obj){
+
+
+
+
+
+	var elem1=$("#editback")[0]
+	var elem2=$("#editDiv")[0];
+
+	//TweenMax.To()
+	TweenMax.to(elem1,.1,{css:{display:"block"},onComplete:function(){
+		TweenMax.to(elem1,.6,{css:{opacity:".8"},onComplete:function(){
+
+		switch(obj.Type){
+
+			case 'update':
+
+				TweenMax.to(elem2,.1,{css:{display:"block"},onComplete:function(){
+					$("#EditForm").empty().append(obj.form);
+					for(var key in obj.obj){
+						if($("#"+key)){
+							var b=clearBack(obj.obj[key])
+							$("#"+key).val(b)
+						}
+					}
+						
+
+
+						//updateTask
+						$("#updateTask").unbind("click").on("click",function(){
+							obj.updateButton();
+						})
+						$("#createSubTask").unbind("click").on("click",function(){
+							obj.addSubButton();
+						})
+
+						$("#submitSubTask").unbind("click").on("click",function(){
+							obj.submitSubTask();
+						})
+
+
+						var t
+
+						if(obj.obj.agape_TaskNotes!="none"){
+
+							t=$.parseJSON(obj.obj.agape_TaskNotes);
+							
+							var h=t.length;
+							var q="";
+							for(j=0;j<h;j++){
+								var g1=j+1;
+								var u1="";
+								var u2="";
+								var u3="";
+								var u4="";
+
+								var backGColor="#eee"
+								if(t[j].status=="Started"){
+									u2="selected";
+									backGColor="lime"
+								}
+
+								if(t[j].status=="On hold"){
+									u3="selected"
+									backGColor="orange"
+								}
+
+								if(t[j].status=="Completed"){
+									u4="selected";
+									backGColor="blue";
+									colr="#eee"
+								}
+
+								if(t[j].status=="Not started"){
+									
+									backGColor="red";
+								}
+
+
+								q=q+"<div style='width:600px;padding:3px;border:solid 1px #000;background-color:#eee;border-left:none;border-right:none;margin:auto;'><div style='width:480px;float:left;'>"+g1+". "+t[j].task+"</div><div style='width:70px;float:left;'><div style='float:left;margin-right:10px;'><select id='taskSel"+obj.index+"_"+j+"'><option "+u1+">Not Started</option><option "+u2+">Started</option><option "+u3+">On hold</option><option "+u4+">Completed</option></select></div></div>&nbsp;&nbsp;<div id='colorBox"+obj.index+"_"+j+"' style='width:20px;float:right;height:20px;background-color:"+backGColor+";border:solid 1px #000;'></div><div style='clear:both'></div></div>"
+							}
+
+							$("#subTaskDiv").empty().append(q);
+
+							//Add subtask events
+							addtaskSelEvent();
+							
+						}else{
+							$("#subTaskDiv").empty()
+						}
+
+					}
+				})
+
+				break;
+
+
+
+				case 'new':
+
+					TweenMax.to(elem2,.1,{css:{display:"block"},onComplete:function(){
+						$("#EditForm").empty().append(obj.form);
+							$("#create_entry").unbind("click").on("click",function(){
+								
+								obj.createEntry();
+							})
+						}
+					})
+					
+
+
+				
+					
+
+
+				break;
+
+			}
+
+
+			$("#closebutt").unbind("click").on("click",function(){
+				var elem3=$("#editback")[0]
+				var elem4=$("#editDiv")[0];
+
+				TweenMax.to(elem3,.1,{css:{display:"none"}})
+				TweenMax.to(elem3,.1,{css:{opacity:"0"}})
+				TweenMax.to(elem4,.1,{css:{display:"none"}})
+
+			})
+
+					
+		}
+	})
+
+	}
+})
+}
+
+
+function loadSubTasks(){
+
+alert("ffgfg")
+console.log("fgdfg")
+
+
+console.log(global.task.returnObj[f1])
+console.log("fgdfg")
+
+t=$.parseJSON(obj.obj.agape_TaskNotes);
+
+							
+	var h=t.length;
+	var q="";
+	for(j=0;j<h;j++){
+		var g1=j+1
+
+
+
+
+		var u1="";
+		var u2="";
+		var u3="";
+		var u4="";
+
+		var backGColor="#eee"
+		if(t[j].status=="Started"){
+			u2="selected";
+			backGColor="lime"
+		}
+
+		if(t[j].status=="On hold"){
+			u3="selected"
+			backGColor="orange"
+		}
+
+		if(t[j].status=="Completed"){
+			u4="selected";
+			backGColor="blue";
+			colr="#eee"
+		}
+
+		if(t[j].status=="Not started"){
+			
+			backGColor="red";
+		}
+
+
+		q=q+"<div style='width:600px;padding:3px;border:solid 1px #000;background-color:#eee;border-left:none;border-right:none;margin:auto;'><div style='width:480px;float:left;'>"+g1+". "+t[j].task+"</div><div style='width:70px;float:left;'><div style='float:left;margin-right:10px;'><select id='taskSel"+obj.index+"_"+j+"'><option "+u1+">Not Started</option><option "+u2+">Started</option><option "+u3+">On hold</option><option "+u4+">Completed</option></select></div></div>&nbsp;&nbsp;<div id='colorBox"+obj.index+"_"+j+"' style='width:20px;float:right;height:20px;background-color:"+backGColor+";border:solid 1px #000;'></div><div style='clear:both'></div></div>"
+	}
+
+	//$("#subTaskDiv").empty().append(q);
+
+
+
+
+
+
+
+}
+
+
+
+ function stringClear(str){
+	var t=$.trim(str)+"";
+	t = t.replace(/'/g,"&#39;");
+	t = t.replace(/"/g,"&#34;");
+	
+	t = t.replace(/</g,"&#60;");
+	t = t.replace(/(\r\n|\n|\r)/g, "<br>");
+	//t = t.replace(/\//g,"&#47;");
+	return t;
+}
+
+
+function clearBack(str){
+	var t=str+"";
+	t = t.replace(/&#39;/g,"'");
+	t = t.replace(/&#60;/g,"<");
+	t = t.replace(/&quot;/g,"\"");
+	t = t.replace(/&#13;/g,"\n");
+	//t = t.replace(/&#47;/g,"\/");
+	//t = t.replace(/\\/g,"");
+	return t;
+}
+
+
+
+
+function updateTasks(nob){
+
+	var modem={}
+	var sendObj={}
+	$("#records :input").each(function(){
+		var g=stringClear($(this).val());
+		modem[$(this).attr("id")]=g;
+	})
+	sendObj.job="updateTaskStatus"
+	sendObj.obj = modem
+	sendObj.dbase="agape_task";
+	sendObj.param="agape_TaskID";
+	sendObj.val=global.task.returnObj[nob.index].agape_TaskID
+
+
+	$.ajax({
+	  url: "tasksWorker.php",
+	  type:'POST',
+	  data: sendObj
+	}).done(function(data) {
+		//alert("been")
+
+
+	loadNew();
+		
+	})
+}
+
+
+
+function createSubTasks(nob){
+
+	//alert("Spunky");
+	var elem=$('#subTaskDivForm')[0]
+	global.index=nob.index;
+	if($('#subTaskDivForm').hasClass("open")){
+		$('#subTaskDivForm').removeClass("open")
+		TweenMax.to(elem,.4,{css:{"height":"0px"}})
+
+	}else{
+		$('#subTaskDivForm').addClass("open")
+		TweenMax.to(elem,.3,{css:{"height":"188px"}})
+	}
+	
+
+}
+
+function submitSubTask(obj){
+	var model2={}
+	var sendObj={};
+	var sub="true";
+	$("#subTaskDivForm :input").each(function(){
+		if($(this).attr("id")!="submitSubTask"){
+			if($(this).val()!=""){
+				model2[$(this).attr("id")]=$(this).val();
+			}else{
+				sub="false"
+			}
+		}
+	})
+
+	model2.status="Not Started";
+	model2.param="none";
+	model2.assignedTo="Marcus Estes";
+
+	console.log(0)
+	console.log(global.task.returnObj[global.index])
+	console.log(global.index)
+	console.log(0)
+
+	var f1=$.parseJSON(global.task.returnObj[global.index].agape_TaskNotes);
+	f1.push(model2)
+	var f={}
+	var pObj=obj
+	f.agape_TaskNotes=JSON.stringify(f1)
+	sendObj.obj=f;
+	sendObj.job="updateTaskStatus";
+	sendObj.dbase="agape_task";
+	sendObj.param="agape_TaskID";
+	sendObj.val=global.task.returnObj[global.index].agape_TaskID;
+	if(sub=="true"){
+
+	}
+
+
+
+	$.ajax({
+	  url: "tasksWorker.php",
+	  type:'POST',
+	  data: sendObj
+	}).done(function(data) {
+		loadNew();
+		var tree=$('#subTaskDiv').children('div').length;
+		var d="";
+		var de=tree+1
+		d=d+"<div style='width:600px;padding:3px;border:solid 1px #000;background-color:#eee;border-left:none;border-right:none;margin:auto;'><div style='width:480px;float:left;'>"+de+". "+model2.task+"</div><div style='width:70px;float:left;'><div style='float:left;margin-right:10px;'><select id='taskSel"+pObj.index+"_"+tree+"'><option >Not Started</option><option>Started</option><option >On hold</option><option >Completed</option><option>Phase 2</option></select></div></div>&nbsp;&nbsp;<div id='colorBox"+pObj.index+"_"+tree+"' style='width:20px;float:right;height:20px;background-color:#eee;border:solid 1px #000;'></div><div style='clear:both'></div></div>";
+		$("#subTaskDiv").append(d);
+		addtaskSelEvent();
+	})
+
+}
+
+
+function addtaskSelEvent(){
+	$("[id^='taskSel']").each(function(){
+		$(this).unbind("change").on("change",function(){
+			var f1=$(this).attr("id")+"";
+			f2=f1.substr(7);
+			var q1=f2.split("_");
+			var r=convertNowToPhP();
+			var t=$(this).val();
+			var sent1={}
+			sent1.job="updateTaskStatus";
+			sent1.obj={}
+			var selval=$(this).val();
+			sent1.param="agape_TaskID";
+			sent1.val=global.task.returnObj[q1[0]].agape_TaskID;
+			sent1.dbase="agape_task";
+			var v=$.parseJSON(global.task.returnObj[q1[0]].agape_TaskNotes);
+			v[q1[1]].status=$(this).val();
+			var gyh={}
+			gyh.updateTaskStatus=v
+			var t1=JSON.stringify(v);
+			sent1.obj.agape_TaskNotes=t1;
+
+			
+			$.ajax({
+			  url: "tasksWorker.php",
+			  type:'POST',
+			  data: sent1
+			}).done(function(data) {
+				loadNew();
+				switch(selval){
+					case 'Started':
+						$("#colorBox"+f2).css("backgroundColor","lime");
+					break;
+
+					case 'Not Started':
+						$("#colorBox"+f2).css("backgroundColor","red");
+					break;
+
+					case 'Completed':
+						$("#colorBox"+f2).css("backgroundColor","blue");
+					break;
+
+					case 'On hold':
+						$("#colorBox"+f2).css("backgroundColor","orange");
+					break;
+
+
+				}
+
+			})
+			
+		})
+	})
+}
+
+</script>
+

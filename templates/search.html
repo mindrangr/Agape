@@ -1,0 +1,1680 @@
+ <script>
+checkGuid()
+ var ingniteLightBox;
+
+</script>
+
+<div class="topTab" style="margin:auto;color:#5e6786;">Welcome to Agape Romance</span></div>
+<div class="topTab" ><img style='border-radius:7px;border:solid 1px #eee;' src="images/romanceBanner.gif"/></div>
+
+
+<div class="respAdverDiv">
+	<div id='AdvertiseRow0' style="float:left;width:150px;" id="leftSearchDiv">
+		<div style="opacity:0;">open</div>
+
+		<div id='AdvertiseRowC' style="width:150px;" >
+			<div style="opacity:0;">open</div>
+			
+		</div>
+		
+	</div>
+
+	
+
+	<div class="searchListResp">
+
+		<div id='onlineUse1' style="padding-left:20px;">
+		</div>
+
+		<div id='onlineUse2' style="padding-left:20px;">
+		</div>
+		
+		<div id='searchPagination' class='searchPagination'></div>
+		<div id='searchBox' class="searchBox">
+			<div  id='resultsHolder'>
+				<div style='width:100%;text-align:center;'><img src="images/loading37.gif" height='185'/></div>
+			</div>
+		</div>
+		<div class="quesFormDiv" >
+			<div id='quesForm' class="quesForm" >
+				<div style='float:left;width:350px;'>
+					<div class='optButtons1'  style='float:left;margin:auto;' id='searchButt'>Search</div>
+					
+						<div id='resetButton' style='float:left;color:lime;font-family:arial;margin-left:10px;margin-top:10px;text-decoration: underline;cursor:pointer;' >reset</div>
+					<div style="clear:both"></div>
+					<div class="optHolder1">
+						<div class='newQuestionbLabels newQuestionbLabels_search' >Gender</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<select id="agape_partner_gender" class="dropDownNew">
+								<option value='none'>Select one</option>
+							</select>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+					<div class="optHolder1">
+						<div class='newQuestionbLabels newQuestionbLabels_search' >State</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<input id='agape_profile_state' class="inputboxnew" readonly>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+					<div class="optHolder1">
+						<div class='newQuestionbLabels newQuestionbLabels_search' >
+							<div>City</div>
+						
+							<div class='multiOptSelectText' >
+								<div class='innerText1' style='color:#c6c0f2;' >select up to</div>
+								<div class='checkOpt changeselectQuant_val' style='width:100%;text-align:center;font-size:15px;' >3</div> 
+								<div class='innerText1'>options</div>
+							</div>
+						</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<select id='agape_profile_city' multiple class="dropDownNew changeselectQuant">
+							
+							</select>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+					<div style='clear:both;'></div>
+					
+					<div class="optHolder1">
+						<div class='newQuestionbLabels newQuestionbLabels_search' >
+						<div>Race</div>
+							<div class='multiOptSelectText' >
+								<div class='innerText1' >select up to</div>
+								<div class='checkOpt changeselectQuant_val' style='width:100%;text-align:center;font-size:15px;' >3</div> 
+								<div class='innerText1'>options</div>
+							</div>
+							</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<select id='agape_partner_race' multiple class="dropDownNew changeselectQuant"  >
+								<option value='none'>Select one</option>
+							</select>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+					
+					<div class="optHolder1">
+						<div class='newQuestionbLabels newQuestionbLabels_search' >
+						<div>Intentions</div>
+							<div class='multiOptSelectText' >
+								<div class='innerText1' >select up to</div>
+								<div class='checkOpt changeselectQuant_val' style='width:100%;text-align:center;font-size:15px;' >3</div> 
+								<div class='innerText1'>options</div>
+							</div>
+						</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<select  id="agape_profile_intentions" multiple class="dropDownNew changeselectQuant">
+								<option value='none'>Select one</option>
+							</select>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+				</div>
+				<div style='float:left;width:340px;'>
+					<div class="optHolder1">
+						<div class='newQuestionbLabels newQuestionbLabels_search' >
+						<div>Age</div>
+							<div class='multiOptSelectText' >
+							
+								<div class='innerText1' >select up to</div>
+								<div class='checkOpt changeselectQuant_val' style='width:100%;text-align:center;font-size:15px;' >2</div> 
+								<div class='innerText1'>options</div>
+							</div>
+						</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<select id='agape_partner_age_range' multiple class="dropDownNew changeselectQuant">
+								<option value='none' selected>Select one</option>
+							</select>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+					<div class="optHolder1">
+						<div class='newQuestionbLabels newQuestionbLabels_search' >
+							<div>Religion</div>
+							<div class='multiOptSelectText' >
+								<div class='innerText1' >select up to</div>
+								<div class='checkOpt changeselectQuant_val' style='width:100%;text-align:center;font-size:15px;' >3</div> 
+								<div class='innerText1'>options</div>
+							</div>
+						</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<select id="agape_partner_religion" multiple class="dropDownNew changeselectQuant">
+								<option value='none'>Select one</option>
+							</select>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+
+					<div class="optHolder1">
+						<div class='newQuestionbLabels newQuestionbLabels_search' >
+						<div>Education</div>
+							<div class='multiOptSelectText' >
+								<div class='innerText1' >select up to</div>
+								<div class='checkOpt changeselectQuant_val' style='width:100%;text-align:center;font-size:15px;' >3</div> 
+								<div class='innerText1'>options</div>
+							</div>
+						
+						</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<select id='agape_partner_education' multiple class="dropDownNew changeselectQuant">
+								<option value='none'>Select one</option>
+							</select>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+				</div>
+				
+				<div style='float:left;width:240px;'>
+				
+					<div class="optHolder1">
+						<div class='newQuestionbLabels newQuestionbLabels_search' >
+							<div>Body type</div>
+							<div class='multiOptSelectText' >
+								<div class='innerText1' >select up to</div>
+								<div class='checkOpt changeselectQuant_val' style='width:100%;text-align:center;font-size:15px;' >3</div> 
+								<div class='innerText1'>options</div>
+							</div>
+						
+						</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<select id='agape_partner_bodyType' multiple class="dropDownNew changeselectQuant">
+								<option value='none'>Select one</option>
+							</select>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+				
+					<div class="optHolder1">
+						<div class='newQuestionbLabels newQuestionbLabels_search' >
+							<div>Children</div>
+							
+							<div class='multiOptSelectText' >
+								<div class='innerText1' >select up to</div>
+								<div class='checkOpt changeselectQuant_val' style='width:100%;text-align:center;font-size:15px;' >3</div> 
+								<div class='innerText1'>options</div>
+							</div>
+						</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<select id='agape_partner_children' multiple class="dropDownNew changeselectQuant">
+								<option value='none'>Select one</option>
+							</select>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+
+					<div class="optHolder1">
+						<div class='newQuestionbLabels newQuestionbLabels_search' >
+							<div>Politicals</div>
+							<div class='multiOptSelectText' >
+								<div class='innerText1' >select up to</div>
+								<div class='checkOpt changeselectQuant_val' style='width:100%;text-align:center;font-size:15px;' >3</div> 
+								<div class='innerText1'>options</div>
+							</div>
+						
+						</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<select id='agape_partner_political' multiple class="dropDownNew changeselectQuant">
+								<option value='none'>Select one</option>
+							</select>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+				
+			</div>
+			<div style='clear:both;'></div>
+		</div>
+
+
+
+		<div id='rightCol' style="float:left;width:330px;color:#c6c0f2;font-family:arial;margin-top:15px;height:910px;overflow: auto;display:none;">
+			<div style='position:relative;padding: 4px;'><span id="potViews" style="color:red;text-decoration: underline;cursor:pointer;">0</span> people have viewed your profile.
+				<div id="cViews" style="position: absolute;z-index:10;height:140px;width:270px;height:0px;background-color:#eee;overflow: auto;">
+				
+				
+			</div>
+
+
+
+
+		</div>
+			<div style="margin-top: 5px;margin-bottom: 5px;">There are <span id="potCands" style="color:red;"></span> potential matches in your area.</div>
+			<div class="topTab" style="margin:auto;color:#5e6786;">Legend</div>
+			<div style="padding:10px;">
+				<div>
+					<div style="float:left;background-color:#000;border:solid 1px #eee; height:20px;width:20px;"></div>
+					<div style="float:left;margin-left:5px;"><span style='color:#fff;display: inline-block;width:60px;'>1 - 35</span> Not a lot matching parameters</div>
+					<div style="clear:both"></div>
+				</div>
+			</div>
+
+			<div style="padding:10px;">
+				<div>
+					<div style="float:left;background-color:gray;border:solid 1px #eee; height:20px;width:20px;"></div>
+					<div style="float:left;margin-left:5px;"><span style='color:#fff;display: inline-block;width:60px;'>36 - 50</span> Approach with caution</div>
+					<div style="clear:both"></div>
+				</div>
+			</div>
+
+			<div style="padding:10px;">
+				<div>
+					<div style="float:left;background-color:orange;border:solid 1px #eee; height:20px;width:20px;"></div>
+					<div style="float:left;margin-left:5px;"><span style='color:#fff;display: inline-block;width:60px;'>50 - 73</span> Good prospect</div>
+					<div style="clear:both"></div>
+				</div>
+			</div>
+
+			<div style="padding:10px;">
+				<div>
+					<div style="float:left;background-color:lime;border:solid 1px #eee; height:20px;width:20px;"></div>
+					<div style="float:left;margin-left:5px;"><span style='color:#fff;display: inline-block;width:60px;'>74+</span> Go get em!!</div>
+					<div style="clear:both"></div>
+				</div>
+			</div>
+			<hr style='background-color: #fff;' />
+			<div class="topTab" style="margin:auto;color:#5e6786;">Search parameters</div>
+			<div id='searchparams' style='color:#eee;'>
+				<div id='searchparamsList' style='height:100px;overflow:auto;'>
+				</div>
+			</div>
+			<hr style='background-color: #fff;' />
+			<div class="topTab" style="margin:auto;color:#5e6786;">Featured Videos</div>
+			<div id='searchUtubes' style='height:400px;overflow:auto;'>
+			</div>
+
+		</div>
+
+	</div>
+	<div style="clear:both;"></div>
+
+
+	<script>
+
+		var obj1={}
+		obj1.div="#searchUtubes";
+		obj1.id=[845,844];
+		loadUTube_pro(obj1)
+		
+	</script>
+
+
+
+</div>
+
+
+
+
+	<div id='AdvertiseRow1' class="AdvertiseRow1" >
+
+	<div style="opacity:0;">open</div>
+
+
+	</div>
+<div style='clear:both'></div>
+	<div id='rightCol' style="width:330px;color:#c6c0f2;font-family:arial;margin-top:15px;overflow: auto;">
+			<div style='position:relative;padding: 4px;'><span id="potViews" style="color:red;text-decoration: underline;cursor:pointer;">0</span> people have viewed your profile.
+				<div id="cViews" style="position: absolute;z-index:10;height:140px;width:270px;height:0px;background-color:#eee;overflow: auto;">
+				
+				
+			</div>
+
+
+
+
+		</div>
+			<div style="margin-top: 5px;margin-bottom: 5px;">There are <span id="potCands" style="color:red;"></span> potential matches in your area.</div>
+			<div class="topTab" style="margin:auto;color:#5e6786;">Legend</div>
+			<div style="padding:10px;">
+				<div>
+					<div style="float:left;background-color:#000;border:solid 1px #eee; height:20px;width:20px;"></div>
+					<div style="float:left;margin-left:5px;"><span style='color:#fff;display: inline-block;width:60px;'>1 - 35</span> Not a lot matching parameters</div>
+					<div style="clear:both"></div>
+				</div>
+			</div>
+
+			<div style="padding:10px;">
+				<div>
+					<div style="float:left;background-color:gray;border:solid 1px #eee; height:20px;width:20px;"></div>
+					<div style="float:left;margin-left:5px;"><span style='color:#fff;display: inline-block;width:60px;'>36 - 50</span> Approach with caution</div>
+					<div style="clear:both"></div>
+				</div>
+			</div>
+
+			<div style="padding:10px;">
+				<div>
+					<div style="float:left;background-color:orange;border:solid 1px #eee; height:20px;width:20px;"></div>
+					<div style="float:left;margin-left:5px;"><span style='color:#fff;display: inline-block;width:60px;'>50 - 73</span> Good prospect</div>
+					<div style="clear:both"></div>
+				</div>
+			</div>
+
+			<div style="padding:10px;">
+				<div>
+					<div style="float:left;background-color:lime;border:solid 1px #eee; height:20px;width:20px;"></div>
+					<div style="float:left;margin-left:5px;"><span style='color:#fff;display: inline-block;width:60px;'>74+</span> Go get em!!</div>
+					<div style="clear:both"></div>
+				</div>
+			</div>
+			<hr style='background-color: #fff;' />
+			<div class="topTab" style="margin:auto;color:#5e6786;">Search parameters</div>
+			<div id='searchparams' style='color:#eee;'>
+				<div id='searchparamsList' style='height:100px;overflow:auto;'>
+				</div>
+			</div>
+			<hr style='background-color: #fff;' />
+			<div class="topTab" style="margin:auto;color:#5e6786;">Featured Videos</div>
+			<div id='searchUtubes' style=''>
+			</div>
+
+		</div>
+
+<div style="clear:both"></div>
+
+	<div class="slideResp" >
+		<div id="slider1_container" style="width: 85%; height: 70px;margin:auto;margin-top:6px;background-color:#fff;border-radius:10px 10px 0px 0px;">
+			<br/>
+			<div class='textSearchDiv'>What are they talking about in Agape Romance?</div>
+		</div>
+
+
+		<div  class="responseArtSearch">
+			<div id="headerHolder" style="height:390px;overflow:auto;width:100%;margin:auto;overflow-x:hidden;margin-top:5px;">
+			
+				<div id="newsContent" style="width:99%;margin:auto;"></div>
+			</div>
+			<div id="mainsearchpagination" style='padding-left:10px;font-family:arial;'></div>
+			<div style="width:100%;font-weight:bold;font-size:28px;color:brown;background-color:#fff;height:50px;text-align:center;padding-top:14px;font-family:arial;margin:auto;margin-top:10px;">What do you think?</div>
+
+		</div>
+	</div>
+	<div class="searchPolls">
+
+		<!--poll 1 -->
+		<div class="pStyleDiv">
+			<div class="pollStyle">
+				<div id="polltitle" class="rowHolderHeaders_search" style="width:100%;margin-top:15px;padding-top:9px;height:56px;padding-left:6px;padding-right:6px;padding-bottom:15px;"></div>
+				<input type="hidden" id="poll_ID" />
+				<div id="pollHolder" class='pollHolder'>
+					
+				</div>
+
+			</div>
+
+			<div class="pollStyle" >
+				<div id="polltitle1" class="rowHolderHeaders_search" style="width:100%;margin-top:15px;padding-top:9px;height:56px;padding-left:6px;padding-right:6px;padding-bottom:15px;"></div>
+				<input type="hidden" id="poll_ID1" />
+				<div id="pollHolder1" class='pollHolder'>
+					
+				</div>
+
+			</div>
+
+
+
+			<div class="pollStyle" >
+				<div id="polltitle2" class="rowHolderHeaders_search" style="width:100%;margin-top:15px;padding-top:9px;height:56px;padding-left:6px;padding-right:6px;padding-bottom:15px;"></div>
+				<input type="hidden" id="poll_ID2" />
+				<div id="pollHolder2" class='pollHolder'>
+					
+				</div>
+
+			</div>
+		</div>	
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<script type="text/javascript">
+		$("#opacback").css("height","2796px");
+
+		var t=$("body").width();
+
+		if(t<700){
+			$("#footerPush").css("height","0px");
+		}else{
+			$("#footerPush").css("height","2636px");
+		}
+		
+		var t5=$(window).width();
+		var e1=parseInt((t5-(t5*.80))/2)	
+		$("#transBack").removeClass().show().css("left",e1+"px").addClass("transBack_search");
+	
+		
+	$(document).ready(function(){
+		var t = new CommentBoss('romance','newsContent',"none","true","mainsearchpagination");
+		
+		$("#potViews").unbind("click").on("click",function(){
+			var dataElement=$("#cViews")[0];
+			if($("#potViews").hasClass("opened")){
+				TweenMax.to(dataElement,.3,{css:{height:0},delay:-.3,onComplete:function(){
+					
+					$("#potViews").removeClass("opened")
+				}})
+			}else{
+				TweenMax.to(dataElement,.3,{css:{display:"block"},delay:-.3,onComplete:function(){
+					TweenMax.to(dataElement,.5,{css:{height:90}})
+					$("#potViews").addClass("opened")
+				}})
+			}
+			
+		})
+
+
+		
+
+		global.paginate=0;
+		global.lastNav='search.html';
+		$(".optButtons1").on("mouseenter", function(){
+			$(this).addClass("optButtonHover")
+		})
+		$(".optButtons1").on("mouseleave", function(){
+			$(this).removeClass("optButtonHover")
+		})
+		global.view.Type='fullElem';
+
+				
+
+
+		$("#resetButton").unbind("click").on("click",function(){
+			$("#quesForm :input").each(function(){
+				if($(this).attr("id")!="agape_profile_state" && $(this).attr("id")!="agape_partner_gender"){
+					$(this).val("none")
+				}
+			})
+		})
+
+
+
+		//Function for loading form fields as we as options
+		for(i=0;i<formObj.fields.length;i++){
+			if(formObj.fields[i].quesType=="select"){
+				if($("#"+formObj.fields[i].col)){
+					_.each(formObj.fields[i].quesParams,function(value2,b){
+						switch(value2){
+							case 'records':
+								_.each(formObj.fields[i].records,function(value3,index3){
+									var val=value3;
+									if(index3==(formObj.fields[i].records.length-1)){
+										val=val+"+";
+									}else{
+										var gg=parseInt(formObj.fields[i].records[index3+1])-1
+										val=val+"-"+gg;
+									}
+									$("#"+formObj.fields[i].col).append("<option value="+val+">"+val+"</option>")
+
+								})
+								
+							break;
+							
+							default:
+							if(value2!="Not Answered" && value2!="Not Important"){
+								$("#"+formObj.fields[i].col).append("<option>"+value2+"</option>")
+							}
+								
+								
+							break;
+						
+						}
+					
+					})
+							
+				}
+				if(formObj.fields[i].basicOptions){
+					$("#"+formObj.fields[i].col).parent().prev().children().eq(1).children().eq(1).html(formObj.fields[i].basicOptions.searchOpts);
+					var str1="search"+formObj.fields[i].basicOptions.searchOpts;
+					
+					$("#"+formObj.fields[i].col).parent().prev().children().eq(1).children().eq(1).attr("id",str1)
+					
+				}
+			}
+		}
+
+		
+			
+			
+
+
+
+
+
+
+	//Populate fields
+	var userObj=global.userObj;
+	//userObj=$.parseJSON(userObj);
+	for(var key in userObj){
+		if(document.getElementById(key)!='undefined'){
+			$("#"+key).val(userObj[key]);
+		}
+	}
+
+			
+			
+			
+	if(global.userObj.agape_friendList!="none"){
+		var flObj=$.parseJSON(global.userObj.agape_friendList);
+		peopleProView(flObj);
+	}
+
+
+
+
+
+	// search button click event
+	$("#searchButt").unbind("click").on("click",function(){
+		var sendObj1={};
+		var searstrg="true";
+		var bsearstrg="true";
+		sendObj1.job="contactsearch_set"
+		sendObj1.obj={};
+		sendObj1.obj1={};
+		sendObj1.initRec=0;
+		var t=0;
+		$("#quesForm :input").each(function(){
+			var send1=$(this).attr("id");
+
+			if(send1=="agape_partner_bodyType"){
+				send1="agape_profile_bodyType"
+			}
+
+			if(send1=="agape_partner_education"){
+				send1="agape_profile_education"
+			}
+
+			if(send1=="agape_partner_religion"){
+				send1="agape_profile_religion"
+			}
+
+			if(send1=="agape_partner_race"){
+				send1="agape_profile_race"
+			}
+
+			if(send1=="agape_partner_children"){
+				send1="agape_profile_children"
+			}
+
+
+			if(send1=="agape_partner_political"){
+				send1="agape_profile_political"
+			}
+
+
+			if(send1=="agape_partner_political"){
+				send1="agape_profile_political"
+			}
+
+
+
+			if(send1=="agape_partner_gender"){
+				send1="agape_profile_gender"
+			}
+
+
+			
+			if($(this).val()!==null && $(this).val()!="" && $(this).val()!="Select one" && $(this).val()!="Not Important" && $(this).val()!="Not Answered" && $(this).val()!="none"  && $(this).attr("id")!="agape_partner_age_range" && $(this).attr("id")!="agape_partner_gender"){
+
+
+					if(Array.isArray($(this).val())){
+						var rbr=$(this).val();
+						var trgClose="true";
+						
+						var rbr1=rbr.length;
+						var uj=" and ("
+						for(var w=0;w<rbr1;w++){
+							
+							
+							if(searstrg=="true" || rbr.length==1){
+
+								if(searstrg=="true"){
+									searstrg=send1+"='"+rbr[w]+"'";
+								}else{
+									searstrg=searstrg+" and "+send1+"='"+rbr[w]+"'";
+									trgClose="false";
+								}
+
+								
+							}else{
+								searstrg=searstrg+uj+send1+"='"+rbr[w]+"'";
+							}
+							uj=" or ";
+						}
+						if(trgClose=="true"){
+							searstrg=searstrg+")";
+						}
+
+
+						
+
+					
+					}else{
+					
+						if(searstrg=="true"){
+							searstrg=send1+"='"+$(this).val()+"'";
+						}else{
+							searstrg=searstrg+" and "+send1+"='"+$(this).val()+"'";
+						}
+						sendObj1.obj[send1]=$(this).val();
+						
+					}
+
+					
+
+				}else if($(this).attr("id")=="agape_partner_age_range" && $(this).val()!="none"){
+			
+			
+					var ageR=$(this).val();
+					var ageR_L=ageR.length;
+
+					for(var z=0;z<ageR_L;z++){
+
+			
+						var rang=ageR[z]+"";
+						var rango=rang.split("-")
+
+						var tp=parseInt(rango[1])+1;
+						var btm=parseInt(rango[0]);
+
+						var inStrg="true";
+						for(var n=btm;n<tp;n++){
+							if(inStrg=="true"){
+								inStrg=" in ("+n;
+							}else{
+								inStrg=inStrg+","+n;
+							}
+
+						}
+						inStrg=inStrg+")"
+
+						if(z==(ageR_L-1)){
+								inStrg=inStrg+")"
+							
+						}
+						if(z==0){
+							searstrg=searstrg+" and  (agape_profile_age "+inStrg;
+						}else{
+							searstrg=searstrg+" or agape_profile_age "+inStrg;
+							
+						}
+						
+						
+
+					}
+					
+			
+
+					
+				}else if($(this).attr("id")=="agape_partner_gender" ){
+					var c1
+			
+					if(global.userObj.agape_profile_gender==$(this).val()){
+						c1=" agape_profile_gender='"+ $(this).val() +"' and agape_partner_gender='"+$(this).val()+"'";
+
+					}else{
+						c1=" agape_profile_gender='"+ $(this).val() +"' and agape_partner_gender='"+global.userObj.agape_profile_gender+"'";
+						
+					}
+
+					if(searstrg=="true"){
+						searstrg=c1;
+
+					}else{
+						searstrg=searstrg+" and "+c1;
+					}
+				}
+				t=t+1;
+			})
+
+
+
+		
+			
+		searstrg="Select * from agape_profile where "+searstrg;
+
+		
+
+	
+		sendObj1.sql=encodeURIComponent(searstrg);
+
+		
+		func=function(data){
+
+			data=data+"";
+			var h=data.split("**")
+			var retObj=$.trim(data)+"";
+			retObj=globalTools.verify(retObj);
+			retObj.sql=h[2];
+			global.paginate=0;
+			//var tie=$.parseJSON(retObj[1])
+			loadSearchRecs(retObj)
+			var gret={}
+			$("#quesForm :input").each(function(){
+				
+				if($(this).val()!=""){
+					gret[$(this).attr("id")]=$(this).val()
+				}
+				
+			})
+		
+			//loadsearchparams(global.searchObj.searchparams[0])
+
+			for(var key in gret){
+
+				if(gret[key]!="none"){
+					global.searchObj.searchparams[0][key]=gret[key]
+				}
+				
+			}
+			global.searchObj.searchparams[0].gender=gret.agape_partner_gender;
+			global.searchObj.searchparams[0].state=gret.agape_profile_state;
+
+			delete global.searchObj.searchparams[0].agape_partner_gender
+			delete global.searchObj.searchparams[0].agape_profile_state;
+			loadsearchparams(global.searchObj.searchparams[0])
+			
+			
+			
+		}
+
+	ajaxCallPost(sendObj1,func)	
+})
+		// End of search button click event
+				
+				
+			/*require(['modules/getstateObj_new'],function(cityLoader){
+				cityLoader.loadCities('agape_profile_city',global.userObj.agape_profile_state)
+			})*/
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+		var t=function(){}
+		StateObj={};
+		StateObj.opt="setCities";
+		StateObj.elem="agape_profile_state"
+		StateObj.cityElem="agape_profile_city";
+		StateObj.citySet=global.userObj.agape_profile_state;
+		getStates(StateObj, t);
+			
+		
+		//agape_profile_state
+
+			
+		$(".changeselectQuant").on("click",function(event){
+			var main =$(this).parent().prev().children().eq(1).children().eq(1).attr("id")+"";
+			var mainer=parseInt(main.substring(6));
+			var con=$(this).val();
+			$(this).removeAttr('selected');
+
+			var conlength=con.length;
+			if(conlength<=mainer){
+				$(this).val(con);
+				var val=mainer-conlength;
+				$(this).parent().prev().children().eq(1).children().eq(1).html(val);
+				AddKeysQuant(con,$(this).attr("id"));
+		
+			}else{
+
+				
+				var med=[];
+				for(m=0;m<mainer;m++){
+					med[m]=con[m];
+				};
+				$(this).val(med)
+				var val=3-med.length;
+				$(this).parent().prev().children().eq(1).children().eq(1).html(val);
+			}
+		})
+
+	})
+
+	function AddKeysQuant(vObh,id){
+		if(vObh[0]!="none"){
+			global.searchObj.searchparams[0][id]=vObh;
+		}else{
+			delete global.searchObj.searchparams[0][id]
+		}
+		loadsearchparams(global.searchObj.searchparams[0]);
+		
+	}
+
+	function peopleProView(obj){
+		
+		var potv=obj.length;
+		$("#potViews").html(potv);
+		var strg="";
+		for(var v=0;v<potv;v++){
+			strg=strg+"<div style='border-bottom: solid 1px #000;'><div style='float:left;width:50px;''><img style='height:40px;width:50px;' src='"+obj[v].img+"'></div><div style='float:left;margin-left:15px;color:#000;width:160px;'><div style='text-align: center;'>Viewed profile</div><div style='font-size:12px;text-align: center;cursor:pointer;'>"+obj[v].whenViewed+"</div><div id='gtp"+v+"' style='text-decoration: underline;font-size:12px;text-align: center;cursor:pointer;'>go to profile</div></div><div id='xcl"+v+"' style='float:left;margin-left:15px;color:red;cursor:pointer;'>x</div><div style='clear:both;'></div></div>";
+		}
+
+		
+		$("#cViews").empty().append(strg);
+		$("div[id^='gtp']").each(function(){
+			$(this).unbind("click").on("click",function(){
+				
+				var div1=document.getElementById("_lboxBackground");
+				var div2=document.getElementById("_lBoxMainDiv");
+				var template={};
+				template.page="viewpro1_open.html";
+				var dato={}
+				var id=7
+				var s=$(this).attr("id")+"";
+				s1=s.substr(3);
+				var bree=$.parseJSON(global.userObj.agape_friendList)
+				global.candidate.id=bree[s1].uname;
+				template.param=dato;
+				global.module="searchCandidates"
+				ingniteLightBox = new LightBox(div1,div2,template,id)
+				ingniteLightBox.lightBoxOn()
+			})
+		})
+
+		$("div[id^='xcl']").each(function(){
+			$(this).unbind("click").on("click",function(){
+				var b=$(this).attr("id")+"";
+				var b1=b.substr(3);
+				var nob=globalTools.arrayTool(obj,'removeIndex',b1,5);
+				var nob1=JSON.stringify(nob);
+				var model={}
+				model.job="quickJamUpdate";
+				model.param="agape_profile_memberID";
+				model.vals=global.userObj.agape_profile_memberID;
+				model.updateStr="agape_friendList='"+nob1+"'";
+				model.dbase="agape_profile"
+				var retFunk=function(datak){
+					var sfun=function(){
+						peopleProView(nob);
+					}
+					globalTools.getNewUserObj(global.userObj.agape_profile_memberID,sfun);
+				}
+				ajaxCallPost(model,retFunk);
+			})
+		})
+
+	}
+	
+	function searchelems(elemID){
+		var select1 = document.getElementById(elemID);
+		var selected1 = [];
+		var newstrg="true"
+		var tag=$("#"+elemID).prop('tagName');
+		if(tag=='SELECT'){
+			if(select1.selectedOptionse!=='null' && select1.selectedOptions!=undefined){
+			
+				if(elemID!="agape_partner_age_range"){
+					elemID=elemID.replace("partner", "profile");
+					var index1=select1.selectedOptions.length;
+					if(index1>1){
+						newstrg="(";
+						for(q=0;q<index1;q++){
+							var ender=" or "
+							if(q==index1-1){
+								ender="";
+							}
+							
+							if(elemID!="agape_profile_age"){
+								if(select1.selectedOptions[q].text!="Select one"){
+									newstrg=newstrg+elemID+"='"+select1.selectedOptions[q].text+"'"+ender;
+								}
+							}
+							
+							if(elemID=="agape_profile_age"){
+								var aindex=select1.selectedOptions[q].text+"";
+								aindex=aindex.split("-");
+								if(aindex!="Select one"){
+									var ainner=" or "
+									for(var h=parseInt(aindex[0]);h<parseInt(aindex[1]);h++){
+									
+										if(h==(aindex[1])-1){
+											ainner="";
+										}
+										newstrg=newstrg+elemID+"='"+h+"'"+ainner;
+										
+										if(h==(aindex[1])-1){
+											newstrg=newstrg+elemID+"='"+h+"'"+ainner+")";
+										}
+									}
+								}
+							}
+						}
+						newstrg=newstrg+")";
+					}else{
+						newstrg=elemID+"='"+select1.selectedOptions[0].text+"'";
+					}
+					return newstrg;
+				}
+				
+				
+				if(elemID=="agape_partner_age_range"){
+					elemID="agape_profile_age"
+					var xtraStrg="";
+					var index1=select1.selectedOptions.length;
+					if(index1>1){
+						var tinert="";
+						for(t=0;t<index1;t++){
+							tinert=select1.selectedOptions[t].text+"";
+							tinert=tinert.split("-");
+							var endg=" or ";
+							if(tinert[0]!="Select one"){
+								for(w=parseInt(tinert[0]);w<parseInt(tinert[1]);w++){
+								
+									if(w==parseInt(tinert[1])-1 && t==(index1)-1){
+										endg=""
+									}
+									xtraStrg=xtraStrg+"agape_profile_age='"+w+"'"+endg;
+									
+								}
+							}
+						
+						}
+					
+						return "("+xtraStrg+")";
+					
+					}else{
+						
+					}
+				}
+			}
+				
+		}
+				
+		if(tag=='INPUT'){
+			var newstrg=elemID+"='"+$("#"+elemID).val()+"'";
+			return newstrg;
+		}
+	
+	}
+		
+			
+
+
+
+
+
+
+	f25Searches(0);
+
+			/* President Poll  begin*/
+	var qb 
+	var quesObj={};
+	quesObj.job="atomic_selectAll"
+	quesObj.dbase="agape_pollQuestions";
+	quesObj.ob="where question_ID=35";
+	quesObj.value=35;
+	func21=function(data){
+		var data1=globalTools.verify(data);
+		qb = new questionBuilder({
+			"background-color":"gray",
+			"color":"#000",
+			"chartSlider":{
+				"background-color":"purple",
+				"color":"#fff"
+			},
+			"innerStyle":{
+					"tColor":"#eee"
+			}
+		});
+		qb.createPoll(data1,"polltitle",'pollHolder','poll_ID',35);
+		qb.pollVerify(quesObj.value,qb);
+	}
+	ajaxCallMedia(quesObj,func21);
+
+
+
+
+	var qb1 
+	var quesObj1={};
+	quesObj1.job="atomic_selectAll"
+	quesObj1.dbase="agape_pollQuestions";
+	quesObj1.ob="where question_ID=22";
+	quesObj1.value=22;
+	var func1=function(data){
+		var data1=globalTools.verify(data);
+		qb1 = new questionBuilder({
+			"background-color":"gray",
+			"color":"#000",
+			"chartSlider":{
+				"background-color":"purple",
+				"color":"#fff"
+			},
+			"innerStyle":{
+					"tColor":"#eee"
+			}
+		});
+		qb1.createPoll(data1,"polltitle1",'pollHolder1','poll_ID1',22);
+		qb1.pollVerify(quesObj1.value,qb1);
+	}
+	ajaxCallMedia(quesObj1,func1);
+
+
+
+	var qb2 
+	var quesObj2={};
+	quesObj2.job="atomic_selectAll"
+	quesObj2.dbase="agape_pollQuestions";
+	quesObj2.value=34;
+	quesObj2.ob="where question_ID="+quesObj2.value;
+	
+	var func2=function(data){
+		var data1=globalTools.verify(data);
+		qb2 = new questionBuilder({
+			"background-color":"gray",
+			"color":"#000",
+			"chartSlider":{
+				"background-color":"purple",
+				"color":"#fff"
+			},
+			"innerStyle":{
+					"tColor":"#eee"
+			}
+		});
+		qb2.createPoll(data1,"polltitle2",'pollHolder2','poll_ID2',quesObj2.value);
+		qb2.pollVerify(quesObj2.value,qb2);
+	}
+	ajaxCallMedia(quesObj2,func2);
+	/* President Poll  Ends*/
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		function f25Searches(lim){
+			
+			var userObj=global.userObj;
+			sendObj={};
+			sendObj.job='f25searches';
+			sendObj.myGender=global.userObj.agape_profile_gender;
+			sendObj.city=global.userObj.agape_profile_city;
+			var fr=global.userObj.agape_profile_state+"";
+			fr1=fr.split(" ");
+			fr2=fr1.length;
+			var strg="";
+			for(var g=0;g<fr2;g++){
+				strg=strg+fr1[g]
+			}
+
+			sendObj.state=strg;
+			sendObj.lim=lim;
+			sendObj.gender=global.userObj.agape_partner_gender
+			sendObj.memberID=global.userObj.agape_profile_memberID;
+
+			func = function (data) {
+				var t=globalTools.verify(data);
+				var tw=t.searchparams[0];
+				loadsearchparams(tw);
+	
+				$("#potCands").html(t.countR)
+				global.searchQuery=t.sql;
+				var widt;
+				var searchData=$.trim(data);
+				var serchObj=globalTools.verify(searchData);
+				if(serchObj.countR>0){
+						global.dataHolder.searchObj=serchObj;
+						global.searchQuery=serchObj.sql;
+						global.searchObj=serchObj;
+						globalTools.save();
+						var leng=serchObj.returnObj.length;
+						$("#resultsHolder").empty();
+
+						for(var i=0;i<leng;i++){
+
+							var strg="";
+							var magicnum;
+							magicnum = mNumberFinder(serchObj.returnObj[i]);
+							
+							_color=callColor(magicnum)
+							var age
+							if(serchObj.returnObj[i].agape_profile_dateOfBirth!='none'){
+								age=agefinder(serchObj.returnObj[i].agape_profile_dateOfBirth)
+							}else{
+								age="N/A"
+							}
+
+							
+							var imgObj=$.parseJSON(serchObj.returnObj[i].agape_profile_default_img);
+						
+							strg="<div class='imageDiv'>"
+								strg=strg+"<table>"
+									strg=strg+"<tr>"
+										strg=strg+"<td>";
+
+											strg=strg+"<img src='"+imgObj.defaultPic+"' height='140' width='120'>"
+											strg=strg+"<div style='text-align:center'>"+serchObj.returnObj[i].agape_profile_username+"</div>"
+										strg=strg+"</td>"
+										strg=strg+"<td valign='top'>"
+
+											strg=strg+"<div style='font-size:42px;color:"+_color+";'>"+magicnum+"</div>"
+
+											strg=strg+"<div style='font-size:12px;'>Intentions:</div>"
+											strg=strg+"<div style='font-size:12px;color:blue;text-decoration:underline'>"+serchObj.returnObj[i].agape_profile_intentions+"</div>";
+											
+											strg=strg+"<div style='font-size:12px;float:left;'>"+serchObj.returnObj[i].agape_profile_city+", "+serchObj.returnObj[i].agape_profile_state+"</div>"
+											strg=strg+"<div style='clear:both;'></div>"
+											
+											strg=strg+"<div style='clear:both;'></div>"
+										strg=strg+"<div style='font-size:12px;float:left;'>Age: </div>"
+										strg=strg+"<div style='font-size:12px;float:left;'>"+age+"</div>"
+										strg=strg+"<div style='clear:both;'></div>"
+										strg=strg+"<div class='vp' id='"+serchObj.returnObj[i].agape_profile_username+"' style='font-size:12px;color:red;cursor:pointer;text-decoration:underline;'>more..</div><div id='sObj"+i+"'></div>"
+									strg=strg+"</td>";
+								strg=strg+"</tr>";
+							strg=strg+"</table>";
+						strg=strg+"</div>";
+						widt=276*(i+1);
+						widt=widt+"px"
+						$("#resultsHolder").css("width",widt).append(strg);
+						control="search_results";
+						paginationFunc('searchPagination',serchObj.countR,'search_results');
+					}
+					
+					$("#resultsHolder").append("<div style='clear:both;'></div>")
+					$(".vp").unbind("click").on("click",function(){	
+
+						var div1=document.getElementById("_lboxBackground");
+						var div2=document.getElementById("_lBoxMainDiv");
+						var template={};
+						template.page="viewpro1_open.html";
+						global.module='searchCandidates'
+						template.job="visitprofile";
+						global.candidate.id=$(this).attr('id');
+						var sendX=$(this).next().attr("id");
+						sendX=sendX.substr(4);
+						global.candidate.param=sendX;
+						template.param=$(this).attr('id');
+						ingniteLightBox = new LightBox(div1,div2,template,global.candidate.id);
+						global.candidate.job="seachViewer";
+				
+						global.returnFunction_close=function(){
+							document.body.scrollTop="250";
+						}
+						ingniteLightBox.lightBoxOn();
+						
+					})
+
+					
+				}
+
+				if(serchObj.countR==0){
+
+					$("#resultsHolder").empty().css("width","100%").append("<div style='color:lime;width:100%;margin-top:15px;text-align:center;font-size:25px;'>There are 0 results for this query.</div>")
+				}
+			}
+		
+			ajaxCallPost(sendObj, func);
+		}
+
+
+
+		
+
+function loadsearchparams(obk){
+	
+
+
+
+
+	$("#searchparamsList").empty();
+	for(var key in obk){
+		var lab=key;
+		var combVal=obk[key];
+		switch(key){
+			case 'myGender':
+				lab="My gender"
+			break;
+
+			case 'gender':
+				lab="Gender seeking"
+			break;
+
+			case 'state':
+				combVal=global.userObj.agape_profile_state;
+			break;
+
+			case 'agape_partner_race':
+				lab="Race seeking";
+				var aprInx=obk[key].length;
+				var f="";
+				for(var b=0;b<aprInx;b++){
+					if(f==""){
+						f="<span class='paramC' id='"+key+"_"+b+"' style='text-decoration:underline;cursor:pointer;'>"+obk[key][b]+"</span>"
+					}else{
+						f=f+", <span class='paramC' id='"+key+"_"+b+"' style='text-decoration:underline;cursor:pointer;'>"+obk[key][b]+"</span>"
+					}
+				}
+				combVal=f;
+			break;
+
+
+			case 'agape_profile_intentions' :
+				lab="Intentions";
+			break;
+
+			case 'agape_partner_religion' :
+				lab="Religion seeking";
+				var aprInx=obk[key].length;
+				var f="";
+				for(var b=0;b<aprInx;b++){
+					if(f==""){
+						f="<span class='paramC' id='"+key+"_"+b+"' style='text-decoration:underline;cursor:pointer;'>"+obk[key][b]+"</span>"
+					}else{
+						f=f+", <span class='paramC' id='"+key+"_"+b+"' style='text-decoration:underline;cursor:pointer;'>"+obk[key][b]+"</span>"
+					}
+				}
+				combVal=f;
+			break;
+
+			case 'agape_partner_education' :
+				lab="Education seeking";
+				var aprInx=obk[key].length;
+				var f="";
+				for(var b=0;b<aprInx;b++){
+					if(f==""){
+						f="<span class='paramC' id='"+key+"_"+b+"' style='text-decoration:underline;cursor:pointer;'>"+obk[key][b]+"</span>"
+					}else{
+						f=f+", <span class='paramC' id='"+key+"_"+b+"' style='text-decoration:underline;cursor:pointer;'>"+obk[key][b]+"</span>"
+					}
+				}
+				combVal=f;
+			break;
+
+			case 'agape_profile_city' :
+				lab="City(s) seeking in";
+			break;
+
+			case 'agape_partner_age_range' :
+				lab="Age range seeking";
+
+				var aprInx=obk[key].length;
+				var f="";
+				for(var b=0;b<aprInx;b++){
+					if(f==""){
+						f="<span class='paramC' id='"+key+"_"+b+"' style='text-decoration:underline;cursor:pointer;'>"+obk[key][b]+"</span>"
+					}else{
+						f=f+", <span class='paramC' id='"+key+"_"+b+"' style='text-decoration:underline;cursor:pointer;'>"+obk[key][b]+"</span>"
+					}
+				}
+				combVal=f;
+			break;
+
+			case 'agape_partner_bodyType' :
+				lab="Body type seeking";
+				var aprInx=obk[key].length;
+				var f="";
+				for(var b=0;b<aprInx;b++){
+					if(f==""){
+						f="<span class='paramC' id='"+key+"_"+b+"' style='text-decoration:underline;cursor:pointer;'>"+obk[key][b]+"</span>"
+					}else{
+						f=f+", <span class='paramC' id='"+key+"_"+b+"' style='text-decoration:underline;cursor:pointer;'>"+obk[key][b]+"</span>"
+					}
+				}
+				combVal=f;
+			break;
+
+			case 'agape_partner_children' :
+				lab="Has Children";
+				var aprInx=obk[key].length;
+				var f="";
+				for(var b=0;b<aprInx;b++){
+					if(f==""){
+						f="<span class='paramC' id='"+key+"_"+b+"' style='text-decoration:underline;cursor:pointer;'>"+obk[key][b]+"</span>"
+					}else{
+						f=f+", <span class='paramC' id='"+key+"_"+b+"' style='text-decoration:underline;cursor:pointer;'>"+obk[key][b]+"</span>"
+					}
+				}
+				combVal=f;
+			break;
+
+			case 'agape_partner_political' :
+				lab="Political affil seeking";
+				var aprInx=obk[key].length;
+				var f="";
+				for(var b=0;b<aprInx;b++){
+					if(f==""){
+						f="<span class='paramC' id='"+key+"_"+b+"' style='text-decoration:underline;cursor:pointer;'>"+obk[key][b]+"</span>"
+					}else{
+						f=f+", <span class='paramC' id='"+key+"_"+b+"' style='text-decoration:underline;cursor:pointer;'>"+obk[key][b]+"</span>"
+					}
+				}
+				combVal=f;
+			break;
+			
+		}
+
+		$("#searchparamsList").append("<div><div style='float:left;width:130px;font-size:13px;'>"+lab+"</div><div style='color:lime;float:left;width:100px;font-size:13px;'>: "+combVal+"</div><div style='clear:both;'></div></div>")
+	}
+}
+
+
+
+
+
+
+		function getOnlineUsers(){
+			var sender={}
+			sender.dbase="agape_profile";
+			sender.ob="where agape_profile_state='"+global.userObj.agape_profile_state+"' and agape_profile_gender='"+global.userObj.agape_partner_gender+"' and agape_profile_onlineStatus='Online' and agape_profile_username!='"+global.userObj.agape_profile_username+"' limit 0,48"
+			sender.job="atomic_selectAll";
+			var func21=function(datam){
+				var olUser=globalTools.verify(datam);
+				global.onlineUsersSearch=olUser.returnObj;
+				createOnlineUserDiv(olUser.returnObj);
+			}
+			ajaxCallPost(sender,func21);
+		}
+
+
+
+		function addOlEvents(){
+			$("div[id^='oLuser']").each(function(){
+				$(this).on("click",function(){
+					var h=$(this).attr("id")+"";
+					h=h.substr(6)
+					var div1=document.getElementById("_lboxBackground");
+					var div2=document.getElementById("_lBoxMainDiv");
+					var template={};
+					template.page="viewpro1_open.html";
+					global.module='searchCandidates'
+					template.job="visitprofile";
+					global.candidate.id=global.onlineUsersSearch[h].agape_profile_username
+
+					template.param=global.onlineUsersSearch;
+					ingniteLightBox = new LightBox(div1,div2,template,global.candidate.id)
+					ingniteLightBox.lightBoxOn();
+					global.candidate.job="seachViewer";
+					
+				})
+			})
+		}
+
+
+
+
+
+
+
+
+
+		function createOnlineUserDiv(oba){
+			var obaLeng=oba.length;
+			var string="";
+			var next=1;
+			var img
+			for(i=0;i<16;i++){
+
+
+				if(i<obaLeng){
+
+
+					img=$.parseJSON(oba[i].agape_profile_default_img)
+
+
+					string=string+"<div class='randImgSearchClass' id='oLuser"+i+"''><img src='"+img.defaultPic+"' height='82' width='82'/><div  class='searchPicLabel'>Online</div></div>";
+					if(i<7){
+						$("#onlineUse1").append(string);
+						string="";
+						
+					}
+
+					/*if(i==7){
+						$("#onlineUse1").append("<div style='clear:both'></div>");
+						
+					}*/
+
+					if(i>=8 ){
+						$("#onlineUse2").append(string);
+						string="";
+						
+					}
+
+					if(i==15){
+						$("#onlineUse2").append("<div style='clear:both'></div>");
+					}
+				}
+			}
+			addOlEvents();
+		}
+
+
+		
+
+
+
+
+
+
+		globalTools.getAdvertisements('search');
+
+
+
+
+
+
+
+
+
+
+
+
+		function getArticlesSearch(){
+			var sendo={};
+			sendo.job='atomic_selectAll';
+			sendo.dbase='agape_topics';
+			sendo.ob="where agape_media_type='Blog' and agape_media_group='Romance' order by agape_media_lastComment_date desc limit 0,25";
+			sendo.ob2="where agape_media_type='Blog' and agape_media_group='Romance'"
+			sendo.Getdetail="GetCount"
+			sendo.value='Active';
+			sendo.start=0;
+			func=function(data){
+
+
+
+				var searchObj=globalTools.verify(data)
+			
+
+				if(searchObj.countR){
+					global.newsObj=searchObj;
+					//loadPaginationNews(vat.countR)
+
+					//global.newsObj=vat;
+					//var newsObject=global.newsObj;
+					//global.lastNav='newsHome.html';
+					//globalTools.save();
+
+					//<div class="newsElems" style="background-color:#eee;">
+		/*<div id="SearchNews0" style="float:left;width:300px;margin:auto;text-decoration:underline;font-weight:bold;cursor:pointer;">Almost Trump Time</div>
+		<div style="float:right;font-weight:bold;">Politics</div>
+		<div style="clear:both"></div><div class="fontsize12px" style="float:left;">Created by: uname7</div>
+		<div class="fontsize12px" style="float:right;">Updated by: <span style="color:red;">uname400</span></div>
+		<div style="clear:both"></div><div class="fontsize12px" style="float:left;">Created: June 1, 2017 1:11 AM</div>
+		<div class="fontsize12px" style="float:right;">Updated: January 28, 2017 10:03 AM</div>
+		<div style="clear:both"></div><div style="width:40%;margin:auto;"><div style="float:left;">comments: 95</div>
+		<div style="float:left;margin-left:15px;"><img src="images/thumbsUp.gif" height="13"><span style="margin-left:3px;width:50px;">17</span></div>
+		<div style="float:left;margin-left:15px;"><img src="images/thumbsDown.gif" height="13"><span style="margin-left:3px;width:50px;">9833</span></div><div style="clear:both"></div></div></div>*/
+
+
+					generateArticlesSearch(searchObj);
+					
+				}else{
+
+					//$("#newsContent").empty().append("<div style='width:100%;font-weight:bold;color:#eee;text-align:center;margin-top:20px;'>No articles available</div>")
+				}
+			}
+			threadTool = new ThreadWheel();
+			ajaxCallMedia(sendo,func);
+		}
+
+
+
+		function loadSearchRecs(serObj){
+
+
+
+
+
+
+			if(serObj.countR>0){
+					
+						//var searchObject=$.parseJSON(serchObj[1]);
+						global.dataHolder.searchObj=serObj;
+						global.searchQuery=serObj.sql;
+						global.searchObj=serObj;
+						$("#potCands").html(serObj.countR)
+
+						
+
+						var d=[];
+						d[0]={};
+
+						d[0].state=global.userObj.agape_profile_state;
+						d[0].city=global.userObj.agape_profile_city;
+						d[0].myGender=global.userObj.agape_profile_gender;
+						d[0].gender=global.userObj.agape_partner_gender;
+						global.searchObj.searchparams=d
+
+
+						globalTools.save();
+
+
+						var leng=serObj.returnObj.length;
+						$("#resultsHolder").empty();
+
+						for(var i=0;i<leng;i++){
+
+							var strg="";
+							var magicnum;
+							magicnum = mNumberFinder(serObj.returnObj[i]);
+							
+							_color=callColor(magicnum)
+							var age
+							if(serObj.returnObj[i].agape_profile_dateOfBirth!='none'){
+								age=agefinder(serObj.returnObj[i].agape_profile_dateOfBirth)
+							}else{
+								age="N/A"
+							}
+
+							
+							var imgObj=$.parseJSON(serObj.returnObj[i].agape_profile_default_img);
+						
+							strg="<div class='imageDiv'>"
+								strg=strg+"<table>"
+									strg=strg+"<tr>"
+										strg=strg+"<td>";
+
+											strg=strg+"<img src='"+imgObj.defaultPic+"' height='140' width='120'>"
+											strg=strg+"<div style='text-align:center'>"+serObj.returnObj[i].agape_profile_username+"</div>"
+										strg=strg+"</td>"
+										strg=strg+"<td valign='top'>"
+
+											strg=strg+"<div style='font-size:42px;color:"+_color+";'>"+magicnum+"</div>"
+
+											strg=strg+"<div style='font-size:12px;'>Intentions:</div>"
+											strg=strg+"<div style='font-size:12px;color:blue;text-decoration:underline'>"+serObj.returnObj[i].agape_profile_intentions+"</div>";
+											
+											strg=strg+"<div style='font-size:12px;float:left;'>"+serObj.returnObj[i].agape_profile_city+", "+serObj.returnObj[i].agape_profile_state+"</div>"
+											strg=strg+"<div style='clear:both;'></div>"
+											
+											strg=strg+"<div style='clear:both;'></div>"
+										strg=strg+"<div style='font-size:12px;float:left;'>Age: </div>"
+										strg=strg+"<div style='font-size:12px;float:left;'>"+age+"</div>"
+										strg=strg+"<div style='clear:both;'></div>"
+										strg=strg+"<div class='vp' id='"+serObj.returnObj[i].agape_profile_username+"' style='font-size:12px;color:red;cursor:pointer;'>view</div><div id='sObj"+i+"'></div>"
+									strg=strg+"</td>";
+								strg=strg+"</tr>";
+							strg=strg+"</table>";
+						strg=strg+"</div>";
+						widt=276*(i+1);
+						widt=widt+"px"
+						$("#resultsHolder").css("width",widt).append(strg);
+						control="search_results";
+						paginationFunc('searchPagination',serObj.countR,'search_results');
+					}
+					
+					$("#resultsHolder").append("<div style='clear:both;'></div>")
+					$(".vp").unbind("click").on("click",function(){	
+						var div1=document.getElementById("_lboxBackground");
+						var div2=document.getElementById("_lBoxMainDiv");
+						var template={};
+						template.page="viewpro1_open.html";
+						global.module='searchCandidates'
+						template.job="visitprofile";
+						global.candidate.id=$(this).attr('id');
+						var sendX=$(this).next().attr("id");
+						sendX=sendX.substr(4);
+						global.candidate.param=sendX;
+						template.param=$(this).attr('id');
+						ingniteLightBox = new LightBox(div1,div2,template,global.candidate.id);
+						global.candidate.job="seachViewer";
+				
+						global.returnFunction_close=function(){
+							document.body.scrollTop="250";
+						}
+						ingniteLightBox.lightBoxOn();
+						
+						
+					})
+
+					
+				}else{
+					$("#searchPagination").empty();
+						$("#resultsHolder").css("width","97%")
+						$("#resultsHolder").empty().append("<div style='text-align:center;color:#eee;font-size:35px;width:100%'>There are 0 results for this query.</div>");
+						$("#potCands").html(0)
+
+				}
+
+
+
+
+
+
+
+		}
+		
+		$("#opacback").css("height","0px");
+		$("#transBack").hide();
+		//getOnlineUsers();
+		//getAdvertisements();
+		//getArticlesSearch();
+	
+
+
+
+	</script>

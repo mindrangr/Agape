@@ -1,0 +1,697 @@
+
+				
+	<head>
+
+		<script type="text/javascript">
+			var _userObj;
+		</script>
+		<style>
+		.label_pr{
+			font-size:16px;
+			width:165px !important;
+		}
+		
+		.fields_pr{
+			font-size:16px;
+			width:125px;
+			text-shadow:0px 0px 1px #000;
+		}
+	
+		.buttonViewPro{
+			color:#71aad5;
+			height:20px;
+			padding-top:5px;
+			box-shadow:#061e21 0px 2px 3px 0px;
+			text-align:center;
+		}
+	</style>
+	</head>
+	<body bgcolor="#000000" >
+	
+
+	<div  id="proView" style="float:left;width:100%;height:420px;">	
+		<!-- Begin View panel-->
+		<div id="view" style="z-index:15;width:100%;">
+			<div class="backgroundViewprofileHolder">
+				<div style="width:770px;margin:auto;">
+					<table cellpadding="7" style="text-align:left;">
+						<tr >
+							<td width="150" valign="top">
+								<IMG src="" height="175" width="135"  style="border:solid 1px #dedede;border-radius:7px;" id="hostImg" />
+							</td>
+							<td valign="top" >													
+								<div class="viewStyleInnerBorder">
+									<table valign="top">
+										<tr>
+											<td class="label_pr"  >Username:</td>
+											<td>
+												<div class="fields_pr" id="agape_profile_username" ></div>
+											</td>
+							
+											<td class="label_pr">Gender:</td>
+											<td><div  class="fields_pr" id="agape_profile_gender"></div></td>
+											
+											<td rowspan="2">
+												<img src="" id="flagPost"/>
+											</td>
+										</tr>
+																	
+										<tr>
+											<td class="label_pr"  >Intentions:</td>
+											<td >
+												<div class="fields_pr" style="color:#71aad5;width:165px" id="agape_profile_intentions"></div>
+											</td>
+											<td class="label_pr">Seeking:</td>
+											<td><div class="fields_pr" id="agape_partner_gender"></div></td>
+								
+											
+										</tr>
+										
+										<tr>
+										<td class="label_pr">Age:</td>
+											<td><div class="fields_pr" id="agape_profile_age"></div></td>
+											<td class="label_pr">Religion:</td>
+											<td>
+												<div class="fields_pr" id="agape_profile_religion" style="color:#71aad5;"></div>
+											</td>
+										</tr>
+														
+										<tr>
+											<td class="label_pr">Race:</td>
+											<td><div class="fields_pr" id="agape_profile_race"></div></td>
+											<td class="label_pr" >Body type:</td>
+											<td style="width:165px"><div class="fields_pr" id="agape_profile_bodyType" style="width:165px"></div></td>
+										</tr>
+						
+										<tr>
+											<td class="label_pr">State:</td>
+											<td><div  class="fields_pr" id="agape_profile_state"></div></td>
+											<td class="label_pr">City:</td>
+											<td>
+												<div class="fields_pr" id="agape_profile_city" ></div>
+											</td>
+										</tr>		
+									</table>
+								</div>
+								<div style="width:525px;margin:auto;margin-top:15px;"  >
+									<div style="width:90px;background-color:#524a92;color:#eee;font-weight:normal;font-size:14px;height:26px;padding-top: 8px;letter-spacing: 2px;" class="sliderButtonStyle1 buttonViewPro messsageReqClss" onmouseover="buttonMouseOver(this,'#0b8d0b','par')" onmouseout="buttonMouseOver(this,'#524a92','par')"  >Message</div>
+																			
+									<div style="width:120px;background-color:#524a92;color:#eee;font-weight:normal;font-size:14px;height:26px;padding-top: 8px;letter-spacing: 2px;" class="sliderButtonStyle1 buttonViewPro otherPhots" onmouseover="buttonMouseOver(this,'#0b8d0b','par')" onmouseout="buttonMouseOver(this,'#524a92','par')" >Other photos</div>
+									
+									<div style="width:130px;background-color:#524a92;height:26px;padding-top: 8px;font-weight:normal;font-size:14px;letter-spacing: 2px;" class="sliderButtonStyle1 buttonViewPro friendReqClss" onmouseover="buttonMouseOver(this,'#0b8d0b','par')" onmouseout="buttonMouseOver(this,'#524a92','par')" >Friend request</div>
+									
+									<div id='wink' style="width:120px;color:lime;height:30px;box-shadow:#061e21 0px 2px 3px 0px;text-align:center;margin-bottom: 4px;background-color:#008000" class="sliderButtonStyle1"  ><img id='winkImg' src="" />&nbsp;Wink</div>
+
+
+									<div id='vProf' style="width:120px;background-color:#524a92;height:26px;padding-top: 8px;letter-spacing: 2px;" class="sliderButtonStyle1 buttonViewPro" onmouseover="buttonMouseOver(this,'#0b8d0b','par')" onmouseout="buttonMouseOver(this,'#524a92','par')" >View profile</div>
+									<div style="clear:both;"></div>
+								</div>
+								<div id='visitMess' style="width:160px;color:#eee;font-weight:bold;font-family:arial;margin:auto;margin-top:7px;"></div>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<div id="picDiv" style='height:100px;display:none;width:500px;margin:auto;'>
+					
+				</div>	
+
+				<div id="messDiv" style='height:100px;display:none;width:500px;margin:auto;'>
+					
+				</div>	
+				<div style='width:740px;margin:auto;'><img id='viewOpenAdver' src="" /></div>								
+			
+				<!-- end ideal partner field -->
+				<br/>
+				<div id="bio" style='height:400px;width:700px;margin:auto;color:#eee;display: none;'>
+					<div style='font-family: arial;'><h2>Introduction</h2></div>
+					<div style='border: inset 1px #373906;background-color:#373636;padding:5px;'>
+						<div class='fields_pr' id='agape_profile_description' style='width:680px;height:250px;'  ></div>
+
+					</div>
+
+					<div style='font-family: arial;'><h2>Type of person I'd like to meet</h2></div>
+					<div style='border: inset 1px #373906;background-color:#373636;padding:5px;'>
+						<div class='fields_pr' id='agape_profile_partner_description' style='width:680px;height:250px;'  ></div>
+
+					</div>
+
+					<div style='font-family: arial;'><h2>Things I enjoy doing</h2></div>
+					<div style='padding:5px;'>
+						<div class='fields_pr' id='agape_profile_recreation' style='width:680px;height:75px;'  ></div>
+
+					</div>
+
+					<div style='font-family: arial;'><h2>Good things i'm going to bring</h2></div>
+					<div style='padding:5px;'>
+						<div class='fields_pr' id='agape_profile_opts' style='width:680px;height:75px;'  ></div>
+
+					</div>
+
+					<div style='font-family: arial;'><h2>Good things I expect</h2></div>
+					<div style='padding:5px;'>
+						<div class='fields_pr' id='agape_partner_opts' style='width:680px;height:75px;'  ></div>
+
+					</div>
+					
+					
+				</div>
+			</div>
+		</div>							
+		<!-- End View panel-->
+	</div>
+	</body>
+
+</html>
+<script type="text/javascript" >
+	
+
+$(document).ready(function(){
+	$("#body").scrollTop("0px");
+	$("#picDiv").hide();
+	$("#messDiv").hide();
+	$("#visitMess").hide();
+
+	$("#viewOpenAdver").attr("src",global.baseUrl+"/advertiseImages/flashad.gif");
+	$("#winkImg").attr("src",global.baseUrl+"/images/littleeye.png");
+	$("#wink").on("mouseover",function(){
+		$("#winkImg").attr("src",global.baseUrl+"/images/littleeye_over.png");
+		$(this).css("background-color","#0b8d0b");
+	}).on("mouseout",function(){
+		$("#winkImg").attr("src",global.baseUrl+"/images/littleeye.png");
+		$(this).css("background-color","#008000");
+	})
+
+	//$(".lBoxMainDiv").addClass("bodyStyles_defaultGradient")
+
+	$(".lBoxMainDiv").addClass("bodyStyles_searchGradient");
+	$("#wink").unbind("click").on("click",function(){
+		var con=confirm("Send this person a wink?");
+
+		if(con==true){
+			var mod={};
+			mod.obj={}
+			mod.job="quickInsertAtomic";
+			mod.key="false";
+			mod.uID=global.userObj.agape_profile_memberID;
+			mod.dbase="agape_messages"
+			var t=$.parseJSON(_userObj.returnObj[0].agape_profile_default_img);
+			var gr=formattedPresent();
+			mod.obj.agape_message_title=globalTools.stringClear("You received a wink from <span  style='color:blue;'>"+global.userObj.agape_profile_username+"</span> "+gr);
+			mod.obj.agape_message=globalTools.stringClear("Would you like to <span class='aFriend' style='cursor:pointer;text-decoration:underline;color:red;font-weight:bold;'>wink back</span>?")
+			mod.obj.agape_message_sender_ID=global.userObj.agape_profile_memberID;
+			mod.obj.agape_message_responses=global.userObj.agape_profile_gender;
+			mod.obj.agape_message_sender_username=global.userObj.agape_profile_username;
+			mod.obj.agape_message_receiver_username=_userObj.returnObj[0].agape_profile_username;
+			mod.obj.agape_message_receiver_url=t.defaultPic;
+			mod.obj.agape_message_receiver_ID=_userObj.returnObj[0].agape_profile_memberID;
+			mod.obj.agape_message_send_date=convertNowToPhP()
+			mod.obj.agape_message_update=mod.obj.agape_message_send_date;
+
+			mod.obj.agape_message_active="true";
+			mod.obj.agape_message_opened="Sealed";
+			t=$.parseJSON(global.userObj.agape_profile_default_img);
+			mod.obj.agape_sender_url=t.defaultPic;
+			mod.obj.agape_message_type="Agape Notification";
+			var retFunc=function(data){
+				
+				
+			}
+
+			ajaxCallPost(mod,retFunc)
+
+
+		}
+	})
+
+
+
+
+	$("#vProf").unbind("click").on("click",function(){
+	
+
+		//backgroundViewprofileHolder
+			if($(".backgroundViewprofileHolder").hasClass("viewProfileOpen")){
+				element=$(".backgroundViewprofileHolder")[0]
+				element1=$("#proView")[0]
+				element2=$("#bio")[0]
+				TweenMax.to(element2,.1,{css:{display:"none"}})
+				TweenMax.to(element1,.3,{css:{height:"460"}})
+				TweenMax.to(element,.3,{css:{height:"406"}})
+
+				$(".backgroundViewprofileHolder").removeClass("viewProfileOpen")
+
+			}else{
+				element=$(".backgroundViewprofileHolder")[0]
+				element1=$("#proView")[0]
+				element2=$("#bio")[0]
+				TweenMax.to(element,.5,{css:{height:"1600"}})
+				TweenMax.to(element1,.2,{css:{height:"1660"},onComplete:function(){
+					TweenMax.to(element2,.5,{css:{display:"block"}})
+				}})
+
+				$(".backgroundViewprofileHolder").addClass("viewProfileOpen");
+
+				var mfdl={}
+				mfdl.job="quickJamUpdate"
+				mfdl.dbase="agape_profile";
+				mfdl.param="agape_profile_memberID";
+				mfdl.vals=_userObj.returnObj[0].agape_profile_memberID;
+
+
+				var ini={}
+				ini.uname=global.userObj.agape_profile_username;
+				var der=$.parseJSON(global.userObj.agape_profile_default_img)
+				ini.img=der.defaultPic
+				ini.uid=global.userObj.agape_profile_memberID
+				ini.whenViewed=convertNowToPhP()
+				var fl, run
+
+				run="go";
+				if(_userObj.returnObj[0].agape_friendList!="none"){
+					fl=$.parseJSON(_userObj.returnObj[0].agape_friendList);
+					var ee=fl.length;
+					for(var n=0;n<ee;n++){
+						if(fl[n].uname==global.userObj.agape_profile_username){
+							run='false';
+						}
+					}
+
+				}else{
+					fl=[];
+				}
+
+
+
+
+				fl.push(ini);
+				var friendList=JSON.stringify(fl);
+
+				mfdl.updateStr="agape_friendList='"+friendList+"'";
+				var mon=function(dataj){
+
+					
+				}
+
+				if(run=="go"){
+
+					ajaxCallPost(mfdl,mon)
+				}
+				
+			}
+
+			
+
+			
+	})
+	
+
+})
+	
+	
+	/*function agefinder(dateStrg){
+		var ageHolder=dateStrg;
+		ageHolder=ageHolder.split(" ");
+		ageHolder1=ageHolder[0];
+		ageHolder1=ageHolder1.split("-");
+		var today= new Date();
+		var age = parseInt(today.getFullYear())-parseInt(ageHolder1[0]);
+		if(parseInt(today.getMonth())+1 > parseInt(ageHolder1[1])){
+			age=age-1;
+		}
+		return age;
+	}*/
+
+	
+
+
+
+	$(".messsageReqClss").on("click",function(){
+		//openLightCreateMessage(this,3,global.module)
+		$("#picDiv").slideUp(3);
+		$("#messDiv").slideDown(300);
+		var tre=$.parseJSON(_userObj.returnObj[0].agape_profile_default_img);
+		var cntr=1;
+		$("#messDiv").empty();
+		var tAreaSubKit="<div><div style='float:left;'><div><input id='titlemessDiv' type='textbox' style='width:250px' placeholder='Title' /></div>"
+		tAreaSubKit=tAreaSubKit+"<textarea id='tmessDiv' style='width:250px;height:80px;' placeholder='Message'></textarea></div>"
+		tAreaSubKit=tAreaSubKit+"<div style='float:left;margin-left:10px;'><div id='sendMess' style='color:#71aad5;cursor:pointer;font-size:16px;font-family:arial;letter-spacing:1px;'>Send</div>"
+		tAreaSubKit=tAreaSubKit+"<div id='closeDoorMess' style='color:#eee;margin-top:15px;cursor:pointer;font-size:16px;font-family:arial;letter-spacing:1px;'>Close</div></div>"
+		tAreaSubKit=tAreaSubKit+"<div style='clear:both;'></div></div>"
+
+		$("#messDiv").append(tAreaSubKit);
+		
+		//$("#messDiv").append("<div id='closeDoorMess' style='float:left;color:#eee;margin-top:15px;cursor:pointer;'>close</div>")
+		$("#messDiv").append("<div style='clear:both'></div>");
+
+		$("#closeDoorMess").unbind("click").on("click",function(){
+			$("#messDiv").slideUp(300);
+			$("#messDiv").empty();
+		})
+
+
+		$("#sendMess").unbind("click").on("click",function(){
+			var sendObj2={}
+			var tImage=$.parseJSON(global.userObj.agape_profile_default_img);
+
+			var title=$("#titlemessDiv").val();
+			var mess1=$("#tmessDiv").val();
+
+			if(title!="" && mess1!=""){
+
+
+				sendObj2.job="quickInsertAtomic";
+				sendObj2.dbase="agape_messages";
+				sendObj2.obj={}
+				sendObj2.obj.agape_message=globalTools.stringClear(mess1)
+				sendObj2.obj.agape_message_sender_ID=global.userObj.agape_profile_memberID;
+				sendObj2.obj.agape_message_sender_username=global.userObj.agape_profile_username;
+				sendObj2.obj.agape_message_receiver_username=_userObj.returnObj[0].agape_profile_username;
+				var d=$.parseJSON(_userObj.returnObj[0].agape_profile_default_img)
+				sendObj2.obj.agape_message_receiver_url=d.defaultPic;
+				sendObj2.obj.agape_message_receiver_ID=_userObj.returnObj[0].agape_profile_memberID;
+				sendObj2.obj.agape_message_send_date=convertNowToPhP();
+				sendObj2.obj.agape_message_update=sendObj2.obj.agape_message_send_date;
+				sendObj2.obj.agape_message_title=globalTools.stringClear(title)
+				sendObj2.obj.agape_message_active="true"
+				sendObj2.obj.agape_message_opened="Sealed"
+				var t=$.parseJSON(global.userObj.agape_profile_default_img)
+				sendObj2.obj.agape_sender_url=t.defaultPic;
+				sendObj2.obj.agape_message_responses="none"
+				sendObj2.obj.agape_message_type="simple";
+				sendObj2.key="jank";
+
+				console.log(333)
+				console.log(_userObj.returnObj[0].agape_profile_default_img)
+				console.log(333)
+
+				var y=function(datam){
+					$("#messDiv").empty().append("<div style='font-family:arial;font-size:16px;color:#eee;width:212px;margin:auto;'>Your message has been sent</sent>")
+					TweenMax.to($("#messDiv")[0],2,{css:{display:"block"},onComplete:function(){
+						
+						TweenMax.to($("#messDiv")[0],.5,{css:{height:"0px"}})
+						$("#messDiv").empty();
+					}})
+				}
+
+				ajaxCallPost(sendObj2,y);
+			}
+			
+
+		}).on("mouseover",function(){
+			$(this).css("color","orange")
+		}).on("mouseout",function(){
+			$(this).css("color","#71aad5")
+		})
+
+	})
+	
+
+
+	var sendObj1={};
+	sendObj1.job='atomic_selectAll';
+	sendObj1.dbase="agape_profile";
+	
+	sendObj1.uID=global.userObj.agape_profile_memberID;
+
+
+
+		switch(global.module){
+
+
+
+		case 'candidate':
+			sendObj1.ob =" where agape_profile_memberID='"+global.friendsRequestObj[ingniteLightBox.temp.param].requestorID+"'";
+		break;
+
+		case 'friend':
+			sendObj1.value=global.candidate.id;
+
+			sendObj1.ob=" where agape_profile_username='"+global.candidate.id+"'";
+		break;
+
+		case 'messages':
+			sendObj1.ob=" where agape_profile_username='"+global.candidate.id+"'";
+		break;
+
+		case 'messages_sent':
+			sendObj1.ob=" where agape_profile_username='"+global.candidate.id+"'";
+		break;
+
+		case 'searchCandidates':
+			//sendObj1.value=global.candidate.id;
+
+			sendObj1.ob=" where agape_profile_username='"+global.candidate.id+"'";
+	
+		break;
+
+		
+
+		default:
+			sendObj1.value=global.candidate.id;
+		break;
+
+	}
+
+	
+	var func1=function(data){
+
+
+		var uOb=$.trim(data);
+		uObj=uOb.split("**");
+
+		if(uObj[0]=="true"){
+			var tr=$.parseJSON(uObj[1])
+			_userObj=globalTools.verify(data);
+
+			var testr="true";
+
+			$(".otherPhots").unbind("click").on("click",function(){
+				$("#messDiv").slideUp(3);
+				$("#picDiv").slideDown(300);
+				var tre=$.parseJSON(_userObj.returnObj[0].agape_profile_default_img);
+				var cntr=1;
+				$("#picDiv").empty();
+				for(var key in tre){
+					if(tre[key]!='none' && tre[key]!="Untitled" && tre[key]!='My Pics'){
+					 	$("#picDiv").append("<div style='float:left;margin-right:15px;'><img src='"+global.baseUrl+"/"+tre[key]+"' height='85' width='80' /></div>");
+					 	cntr=cntr+1;
+					}
+
+				}
+				$("#picDiv").append("<div id='closeDoor' style='float:left;color:#eee;margin-top:15px;cursor:pointer;font-size:16px;font-family:arial;letter-spacing:1px;'>Close</div>")
+				$("#picDiv").append("<div style='clear:both'></div>");
+
+				$("#closeDoor").unbind("click").on("click",function(){
+					$("#picDiv").slideUp(300);
+				})
+			})
+
+
+
+			
+			var userO=$.parseJSON(_userObj.returnObj[0].agape_profile_friends);
+			var userLeng=userO.length;
+			for(c=0;c<userLeng;c++){
+				if(userO[c]==tr.returnObj[0].agape_profile_memberID){
+					testr="false";
+				}
+			}
+			
+
+			if(testr=="true"){
+				var chkMod={};
+				chkMod.job="atomic_selectAll";
+				chkMod.dbase="agape_friendrequest";
+				chkMod.uID=global.userObj.agape_profile_memberID;
+				chkMod.ob="where requestedID = "+_userObj.returnObj[0].agape_profile_memberID+" and requestorID='"+global.userObj.agape_profile_memberID+"'"
+
+				var func5=function(data){
+
+					
+					testr="true";
+					var nchk=globalTools.verify(data);
+					if(parseInt(nchk.countR)>0){
+						testr="false";
+					
+					}else{
+						
+					}
+
+					if(global.module=="friend"){
+						$(".friendReqClss").hide();
+					}
+					
+					if(testr=="true"){
+						$(".friendReqClss").unbind("click").on("click",function(){
+							var con = confirm("Send this person a friend request?")
+							if(con==true){
+								var model={};
+								model.dbase="agape_friendrequest"
+								model.key="false";
+								model.job="quickInsertAtomic";
+								model.obj={}
+								model.obj.requestorID=global.userObj.agape_profile_memberID;
+								model.obj.requestorUsername=global.userObj.agape_profile_username;
+								model.obj.requestedID=_userObj.returnObj[0].agape_profile_memberID
+								model.obj.requestedUsername=_userObj.returnObj[0].agape_profile_username
+								model.obj.requestSent=convertNowToPhP();
+								model.obj.requestResponse=convertNowToPhP();
+								model.obj.requestStatus="Sent"
+								model.obj.requestMessage="You have received a Friendship request from "+global.userObj.agape_profile_username;
+								var img=$.parseJSON(global.userObj.agape_profile_default_img)
+								model.obj.requestorImgUrl=img.defaultPic;
+								var func4=function(data){
+									$(".friendReqClss").hide()
+									$("#visitMess").html("Friend request sent").fadeIn(300).delay(3000).fadeOut(300)
+
+								}
+								ajaxCallPost(model,func4)
+								
+
+
+							}else{
+								alert("not sent")
+							}
+							
+						});
+					}else{
+						$(".friendReqClss").hide()
+					}
+				}
+				ajaxCallPost(chkMod,func5);
+			}
+
+
+
+
+
+
+
+
+			
+
+		
+			var picdef=$.parseJSON(_userObj.returnObj[0].agape_profile_default_img)
+			$("#hostImg").attr("src",global.baseUrl+"/"+picdef.defaultPic)
+			for(var key in _userObj.returnObj[0]){
+		
+				if(document.getElementById(key)!='undefined'){
+					if($("#"+key).hasClass("fields_pr")==true){
+						switch(key){ 
+
+							case 'agape_profile_recreation':
+								var freed=$.parseJSON(_userObj.returnObj[0][key]);
+								var medlng=freed.length;
+								var et="none"
+								for(var d=0;d<medlng;d++){
+
+									if(et=="none"){
+										et=freed[d];
+										$("#"+key).append(et);
+									}else{
+										et=", "+freed[d];
+										$("#"+key).append(et);
+									}
+									
+								}
+								
+							break;
+
+
+							case 'agape_profile_opts':
+								var freed=$.parseJSON(_userObj.returnObj[0][key]);
+								var medlng=freed.length;
+								var et="none"
+								for(var d=0;d<medlng;d++){
+
+									if(et=="none"){
+										et=freed[d];
+										$("#"+key).append(et);
+									}else{
+										et=", "+freed[d];
+										$("#"+key).append(et);
+									}
+									
+								}
+
+							break;
+
+
+							case 'agape_partner_opts':
+								var freed=$.parseJSON(_userObj.returnObj[0][key]);
+								var medlng=freed.length;
+								var et="none"
+								for(var d=0;d<medlng;d++){
+
+									if(et=="none"){
+										et=freed[d];
+										$("#"+key).append(et);
+									}else{
+										et=", "+freed[d];
+										$("#"+key).append(et);
+									}
+									
+								}
+
+							break;
+
+							default :
+								$("#"+key).html(_userObj.returnObj[0][key]);
+							break;
+
+
+						}
+						
+					}
+
+					if(_userObj.returnObj[0].agape_partner_opts!="none"){
+						var opt1=$.parseJSON(_userObj.returnObj[0].agape_partner_opts)
+						var optiLength=opt1.length;
+						$("#agape_partner_opts_div :input").each(function(){
+							for(var t=0;t<optiLength;t++){
+								$(this).attr("readonly",true)
+								if($(this).val()==opt1[t]){
+									$(this).attr("checked","checked");
+								}
+							}
+						})
+					}else{
+						$("#agape_partner_opts").val("[]");
+					}
+
+					if(_userObj.returnObj[0].agape_profile_opts!="none"){
+						var opt1=$.parseJSON(_userObj.returnObj[0].agape_profile_opts)
+						var optiLength=opt1.length;
+						$("#agape_profile_opts_div :input").each(function(){
+							for(var t=0;t<optiLength;t++){
+								$(this).attr("readonly",true)
+								if($(this).val()==opt1[t]){
+									$(this).attr("checked","checked")
+								}
+							}
+						})
+
+					}else{
+						$("#agape_profile_opts").val("[]")
+					
+					}
+		
+				}
+			}
+
+			document.getElementById('flagPost').src=global.baseUrl+"/images/Flags/"+global.userObj.agape_profile_nation+".jpg";
+
+
+					
+		}else{
+	
+		}
+
+	}
+
+	ajaxCallPost(sendObj1,func1);
+	
+
+	
+</script>

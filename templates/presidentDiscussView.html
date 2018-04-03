@@ -1,0 +1,211 @@
+<div class="topTab"><div class='communitySectionsTemp' class='newNav2'  ><img style='border-radius:7px;border:solid 1px #eee;' src="images/news.gif"/></div></div>
+
+	<div id='headerHolder' style="height:240px;overflow:auto;width:700px;margin:auto;overflow-x:hidden;">
+	
+
+	<div style='clear:both'></div>
+
+	<div class='newsElems' style='background-color:#fff;'>
+		<div style='float:left;margin-right:10px;' ><img width="160" src="" id='newsImge'/></div>
+		<div style='float:left'>
+			<div id="agape_media_title" class="newElemHeader"  ></div>
+			<div  class="newElemHeader_sub" style='color:#000;' >By: <i id='agape_media_author'></i></div>
+			<div  style='color:#000;' class="newElemHeader_sub">Created: <span id="agape_media_createDate"></span></div>
+
+			<div  style='color:#000;' class="newElemHeader_sub">Comments: <span id='agape_media_comments_count' style='color:blue'></span></div>
+			<div   style='color:red;'  class="newElemHeader_sub">Last comment date: <span style='color:blue;' id="agape_media_lastComment_date"></span></div>
+			<div  style='color:red;'  class="newElemHeader_sub">Last comment by: <span style='color:blue;' id="agape_media_updatedBy"></span></div>
+		</div>
+		<div style='clear:both'></div>
+		<div id='agape_media_content' style="color:#000;padding:8px;overflow:auto;"></div>
+		
+	</div>
+
+		
+</div>
+<div id='formQuestions'></div>
+
+	<script type="text/javascript">
+
+	function updatethumbsUpDB_func(){
+
+		
+	}
+
+
+		$(document).ready(function(){
+
+			global.lastNav='newsHomeView.html';
+			globalTools.save();
+		
+
+		//$.isArray(a)
+
+		if(global.navFunc){
+			var tObj;
+
+			if(global.navFunc=="LoggedIn"){
+				$(".updatethumbsUpDB").unbind("click");
+				$(".updatethumbsDownDB").unbind("click");
+
+				$(".updatethumbsDownDB").on('click',function(){
+					updatethumbsUpDB_func('agape_media_thumbsDown');
+					$("#agape_media_thumbsUp").removeClass("articleControls_green").addClass("articleControls_gray");
+					$("#agape_media_thumbsDown").removeClass("articleControls_red").addClass("articleControls_gray");
+					$(this).unbind('click');
+					$(".updatethumbsUpDB").unbind('click');
+					var inc = parseInt($("#agape_media_thumbsDown").html())+1
+					$("#agape_media_thumbsDown").html(inc)
+					
+				})
+
+
+				$(".updatethumbsUpDB").on('click',function(){
+					updatethumbsUpDB_func('agape_media_thumbsUp');
+					$("#agape_media_thumbsUp").removeClass("articleControls_green").addClass("articleControls_gray");
+					$("#agape_media_thumbsDown").removeClass("articleControls_red").addClass("articleControls_gray");
+					$(this).unbind('click');
+					$(".updatethumbsDownDB").unbind('click');
+					var inc = parseInt($("#agape_media_thumbsUp").html())+1
+					$("#agape_media_thumbsUp").html(inc)
+				})
+				if(global.userObj.agape_vote_recordThumbs=="Not Answered"){
+					
+				}else{
+					tObj=$.parseJSON(global.userObj.agape_vote_recordThumbs);
+					thumbChk="true";
+					var gog=tObj.length;
+
+
+					for(q=0;q<gog;q++){
+					if(tObj[q].votetype=='media_thumbs'){
+
+						if(tObj[q].commentID==global.newsObjView.agape_media_ID){
+							thumbChk="false";
+						}else{
+
+							
+						}
+
+					}
+					}
+					if(thumbChk=="false"){
+						$("#agape_media_thumbsUp").removeClass("articleControls_green").addClass("articleControls_gray");
+						$("#agape_media_thumbsDown").removeClass("articleControls_red").addClass("articleControls_gray");
+						$(".updatethumbsUpDB").unbind("click");
+						$(".updatethumbsDownDB").unbind("click");
+					}
+
+					if(thumbChk=="true"){
+						$("#agape_media_thumbsUp").removeClass("articleControls_gray").addClass("articleControls_green");
+						$("#agape_media_thumbsDown").removeClass("articleControls_gray").addClass("articleControls_red");
+
+					}
+				}
+			}
+
+			if(global.navFunc=="LoggedOut"){
+				$(".updatethumbsUpDB").unbind("click");
+				$(".updatethumbsDownDB").unbind("click");
+				$(".updatethumbsDownDB").on('click',function(){
+					alert("you must login or register.")
+					$("#username").focus();
+					
+				})
+
+
+				$(".updatethumbsUpDB").on('click',function(){
+					alert("you must login or register.");
+					$("#username").focus();
+				})
+			}
+
+		}else{
+			//alert("not logged in")
+		}
+
+		for(var key in global.newsObjView){
+			switch(key){
+				case 'agape_media_createDate':
+					var timeDateVal=getTime(global.newsObjView[key],'true')
+					$("#"+key).html(timeDateVal)
+				
+				break;
+
+				case 'agape_media_lastComment_date':
+					var timeDateVal=getTime(global.newsObjView[key],'true')
+					$("#"+key).html(timeDateVal)
+				break;
+
+
+				case 'agape_media_images':
+
+					imo=$.parseJSON(global.newsObjView[key]);
+					$("#newsImge").attr("src",imo.defaultPic)
+
+				break;
+
+
+				default:
+					$("#"+key).html(global.newsObjView[key])
+				break;
+			}
+		}
+	})
+
+	$("#more").bind("click",function(){
+		opn();
+	})
+		
+		function opn(){
+			var thopen=document.getElementById('agape_article_content');
+			TweenMax.to(thopen,.3,{css:{display:"block",height:"250px"}})
+			$("#more").unbind("click").bind("click",function(){
+				cln();
+			})
+		}
+
+		function cln(){
+			var thopen=document.getElementById('agape_article_content');
+			TweenMax.to(thopen,.3,{css:{display:"block",height:"97px"}});
+			$("#more").unbind("click").bind("click",function(){
+				opn();
+			})
+		}
+
+		$("#commentOpener").on("click",function(){
+			id="commentOpener";
+			var div1=document.getElementById("_lboxBackground");
+			var div2=document.getElementById("_lBoxMainDiv");
+			var template={};
+			template.page="createComment.html";
+			template.job="visitprofile";
+			global.candidate.id=id;
+			template.param=id;
+			ingniteLightBox = new LightBox(div1,div2,template,id)
+			ingniteLightBox.lightBoxOn()
+		})
+
+		$("#viewComments").on("click",function(){
+			id="viewComments";
+			var div1=document.getElementById("_lboxBackground");
+			var div2=document.getElementById("_lBoxMainDiv");
+			var template={};
+			template.page="viewComment.html";
+			template.job="visitprofile";
+			global.candidate.id=id;
+			template.param=id;
+			ingniteLightBox = new LightBox(div1,div2,template,id)
+			ingniteLightBox.lightBoxOn()
+		})
+		
+		$("#returnButt").on("click",function(){
+			
+			loadTemplate('mainLBHolder','newsHome.html');
+
+		})
+
+
+
+		
+	</script>

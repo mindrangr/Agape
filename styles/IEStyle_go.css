@@ -1,0 +1,499 @@
+		.topPanel
+			{
+			height:285px;float:left;
+			
+			}
+			.bodyPanel
+			{
+				height:357px;float:left;margin-top:2px;
+			}
+			
+			.navPanel
+			{
+				color:#c9d5d6;
+				font-family:tahoma;
+				margin-left:10px;
+				font-size:12px;width:85%;
+				width:85px;
+				text-align:left;
+			
+				padding:3px;
+				border-radius:3px;
+				border:solid 1px transparent;
+				
+				
+			}
+			
+			.profileTBox
+			{
+				width:200px;
+				font-family:tahoma;
+				margin-top:10px;	
+				background-color:#a8b7bc;
+				border-radius:4px;
+				border:solid 1px #000000;
+				padding-left:4px;						
+			}
+			
+			.profileTBox_sel
+			{
+				width:205px;
+				font-family:tahoma;
+				margin-top:10px;	
+				background-color:#a8b7bc;
+				border-radius:4px;
+				border:solid 1px #000000;				
+			}
+			
+			.profileTboxStyles1
+			{
+				float:left;
+				width:200px;
+				z-index:4;
+				position:relative;
+				text-align:left;
+				font-family:tahoma;
+			}
+			
+			.profileTboxStyles1_color
+			{
+				float:left;
+				width:200px;
+				z-index:4;
+				position:relative;
+				text-align:left;
+				font-family:tahoma;
+				font-weight:bold;
+			}
+			
+			.profileTboxStyles1label
+			{
+				float:left;
+				width:140px;
+				font-family:tahoma;
+				font-size:12px;
+			}
+			
+			
+			.profileLabelStyles1
+			{
+				width:270px;
+				float:left;
+				font-size:13px;
+				
+				margin-right:10px;
+				margin-top:16px;
+				color:#c9d5d6;
+				font-family:tahoma;
+				border-bottom:dashed 1px #12353a;
+			}
+			
+			.clearBoth
+			{
+				clear:both;
+			}
+			
+			.profileDivStyles1
+			{
+				width:550px;
+				text-align:left;
+				padding:3px;
+			}
+			
+			.profileTboxStyles11
+			{
+				float:left;
+				width:40px;
+
+			}
+			
+			.label_pr
+			{
+				font-family:tahoma;
+				color:#ffffff;
+				font-size:13px;
+			}
+			.fields_pr
+			{
+				color:#c9d5d6;
+				font-family:tahoma;
+				width:105px;
+				font-size:13px;
+			}
+			
+				.profile_descripBoxes
+				{
+					height:200px;
+					width:630px;
+					border:solid 1px lime;
+					margin-left:25px;
+					padding:5px;
+					background-color:#373636;
+					color:#939090;
+					font-family:arial;
+				}
+				
+				@font-face
+				{
+					font-family:EdwardianScript;
+					src: url('../fonts/EdwardianScript.ttf'), url('../fonts/EdwardianScript.eot');
+					
+				}
+				
+				.EdwardianScript1 { 
+					font-family: EdwardianScript;
+					font-size:32px;
+					font-weight:bold;
+					color:#ffffff;
+					margin-left:10px;
+				}
+				
+				.messageImageholder
+				{
+					vertical-align:top;
+					float:right;			
+				}
+				
+				
+				.messageX
+				{
+					color:red;
+					font-weight:bold;
+					float:left;
+					width:10px;
+					text-align:right;
+					cursor:pointer;
+					font-size:13px;
+					margin-right:2px;
+					padding:2px;
+					border:solid 1px #000000;
+					background-color:#00006e;
+					font-family:tahoma;
+				}
+				
+				
+				
+				.messageDiv
+				{
+					font-family:arial;
+					font-size:13px;
+					padding:3px;
+					font-weight:normal;
+					width:500px;
+					text-align:left;	
+									
+				}
+				
+				.messageSendButtonContainer
+				{
+					font-family:arial;
+					font-size:13px;
+					font-weight:bold;
+					padding:3px;					
+				}
+				
+				
+				
+			    .messagesName
+				{
+					font-family:arial;
+					font-size:13px;
+					font-weight:bold;
+					padding:3px;
+					width:220px;
+					float:left;
+					text-align:left;
+				}
+				
+				.messageDate
+				{
+					width:230px;
+					float:right;
+					margin-left:10px;
+					text-align:right;
+					margin-right:8px;					
+					font-family:helvetica;
+					font-size:12px;
+					font-weight:bold;
+					color:#dedede;
+					padding-top:4px;
+				}
+				
+				.messageContainer1
+				{
+					border:solid 1px #000000;
+					padding:6px;
+					background-color:#e5d0be;
+					text-align:left;
+					min-height:120px;						
+				}
+				
+				
+				.messageContainer2
+				{
+					border:solid 1px #000000;
+					padding:6px;
+					background-color:#e4ae80;
+					text-align:left;
+					min-height:120px;	
+				}
+				
+				.messageContainer1a
+				{
+					border:solid 1px #000000;
+					padding:6px;
+					background-color:#e5d0be;
+					text-align:left;	
+					min-height:40px;					
+				}
+				
+				
+				.messageContainer2a
+				{
+					border:solid 1px #000000;
+					padding:6px;
+					background-color:#e5d0be;
+					text-align:left;
+					min-height:40px;						
+				}
+				
+				
+				.searchPicClass
+				{
+					height:60px;
+					width:55px;
+					border:solid 1px #000000;
+				}
+				
+				.searchPanelLabel
+				{
+					float:left;					
+					text-align:left;					
+					margin-left:15px;
+					color:#ffffff;
+					font-family:tahoma;
+					width:80px;
+					font-size:13px;					
+				}
+				
+				
+				.searchPanelData
+				{
+					float:left;	
+					width:100px;				
+					color:#c9d5d6;
+					font-family:tahoma;
+					font-size:13px;
+					text-align:left;					
+				}
+				
+				.searchPaneldrpDwn
+				{
+					background-color:#a8b7bc;
+					border-radius:4px;
+					border:solid 1px #000000;
+					width:100px;
+				
+				}
+				
+				.sliderButtonStyle1
+				{
+					float:left;
+					margin-left:10px;
+					font-family:tahoma;
+					font-size:12px;
+					border:outset 1px #000000;
+					border-radius:6px;
+					padding:2px;
+					background-color:green;
+					box-shadow:#092428 0px 2px 3px 0px;
+					font-weight:bold;
+					width:40px;
+					cursor:pointer;
+					/* 0b8d0b */
+				}
+				
+				.updatePhoto
+				{
+					float:left;
+					margin:auto;
+					width:85px;		
+					color:#dedede;
+					font-family:tahoma;
+					font-size:12px;
+				}
+				
+				.updatePhoto_border
+				{
+					border:solid 2px #000000;
+					margin-right:2px;
+					height:85px;
+				
+				}
+				
+				
+				.frontPage
+				{					
+					color:#dedede;
+					text-align:left;
+					padding-left:100px;
+				}
+				.frontPage_lesspadding
+				{
+					padding-left:15px;
+				}
+				
+				.loginLab
+				{
+					float:left;
+					color:green;
+					width:65px;
+				}
+				
+				.loginDiv
+				{
+					float:left;
+				}
+				
+				.loginField
+				{
+					background-color:#a8b7bc;
+					border-radius:4px;
+					border:solid 1px #000000;
+				}
+				
+				.messageSpan
+				{
+					color:red;
+					display:none;
+				}
+				
+				.over{			
+					background-color:green;	
+					color:#ffffff;	
+					border:solid 1px #000000;
+					cursor:pointer;				
+				}
+				
+				.dashClass{
+				
+					border:dashed #27636a; 
+					border-width:1px 0 0; height:0
+				}
+				
+				
+				.clickClass{			
+					background-color:#092428;	
+					border:solid 1px #000000;
+					color:#ffffff;
+					cursor:pointer;					
+				}
+				
+				.viewGo{
+				
+					width:713px;
+					margin:auto;
+					background-color:#2e2e2e;
+					border-radius:6px;
+					border:solid 2px #246970;
+					height:317px;
+					overflow:auto;
+					overflow-x:hidden;			
+				}
+				
+				
+				.replies{
+				display:inline-block;
+				position:relative;top:-10px;
+				font-family:tahoma;
+				font-size:10px;
+				font-weight:bold;
+				color:blue;				
+				}
+				
+				.lastReply{
+					color:#ffffff;
+					display:inline-block;
+					float:left;font-size:10px;
+					ont-family:tahoma;
+					margin-left:110px;
+				}
+				
+				.blogScrollerHeaders{
+					background-color:#ffffff;
+					text-align:left;
+					height:55px;
+					border-radius:0px 4px 0px 0px;"
+				}
+				
+				.blogScrollerHolder{
+					margin-top:10px;
+					width:90%;
+					margin-left:10px;
+					background-color:#092428;
+					border-radius:0px 4px 0px 0px;
+					border:solid 1px red;
+				}
+				
+				.blogScrollerMessage{
+					text-align:left;
+					color:#dedede
+					;font-family:tahoma;
+					font-size:10px;
+				}
+				
+				
+				.blogTitle{
+				
+					float:left;color:#000000;
+					text-decoration:underline;
+					font-weight:bold;
+					font-size:16px;
+					cursor:pointer;
+				
+				}
+				
+				.blogScorllerLabel{
+					width:220px;
+				
+					
+					
+					font-family:tahoma;
+					font-size:12px;
+					font-weight:bold;
+					text-decoration:underline;
+				}
+				
+				
+				.blogContentPadding{
+					width:100%;
+					padding:6px;
+				}
+				
+				.blogScrollerreplies{
+					display:inline-block;
+					position:relative;
+					top:-10px;
+					font-family:tahoma;
+					font-size:10px;
+					font-weight:bold;
+				}
+				
+				.blogSentDate{
+					color:#ffffff;
+					display:inline-block;
+					float:left;font-size:10px;
+					font-family:tahoma;
+					text-decoration:
+					underline;
+					color:lime;
+				}
+				
+				.blogScrollerUsername{
+					color:#d505f9;
+					display:inline-block;
+					float:left;font-size:10px;
+					font-family:tahoma;
+					text-decoration:underline;
+				}
+				

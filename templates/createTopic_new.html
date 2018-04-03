@@ -1,0 +1,146 @@
+<div class="topTab">Discuss topic</div>
+	<div >
+
+		<div style='float:left;width:100%'>
+			<div style="width:400px;margin:auto;">
+			</div>
+		</div>
+	
+	<div style="clear:both"></div>
+
+	<hr  style="width:80%;margin:auto;margin-top:20px;margin-bottom:20px;" />
+
+	
+
+
+
+
+	<div id='formQuestions'>
+	<div style='float:left;width:450px'>
+		<div class="newQuestionHolder" style="width:450px;">
+			<div style="width:450px;margin:auto;">
+				<div class='newQuestionbLabels' style="width:180px">Topic Title:</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input type='textbox' class="inputboxnew" id='agape_media_title' />
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		
+		</div>
+
+
+		<div class="newQuestionHolder" style="width:450px;">
+			<div style="width:450px;margin:auto;">
+				<div class='newQuestionbLabels' style="width:180px">Content:</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<textarea class="inputboxnew" id='agape_media_content' rows="9"></textarea>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		
+		</div>
+
+		<div class="newQuestionHolder" style="width:450px;">
+			<div style="width:450px;margin:auto;">
+				<div class='newQuestionbLabels' style="width:180px">Group:</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id='agape_media_group'>
+						<option value="Male">Politics</option>
+						<option value="Female">Romance</option>
+						<option value="Female">Conspiracy</option>
+						<option value="Female">Other</option>
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+		
+
+		<div class="newQuestionHolder" style="width:450px;">
+			<div style="width:450px;margin:auto;">
+				<div class='newQuestionbLabels' style="width:180px">State:</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<select class="dropDownNew" id='agape_media_state'>
+						<option>Select one</option>
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+
+		<div class="newQuestionHolder" style="width:450px;">
+			<div style="width:450px;margin:auto;">
+				<div class='newQuestionbLabels' style="width:180px">City:</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<select class="dropDownNew" id='agape_media_city'>
+						<option>Select one</option>
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+	
+		
+		
+	</div>
+
+<div style='float:left;width:400px' >
+	
+
+	<div style='width:400px;margin-top:10px;margin-left:15px;'>
+		<div style="width:200px;"><img src="images\Male-icon.png" height="160"/></div>
+		<div style='width:250px;margin:auto;margin-top:60px;'>
+			<div style='float:left;'>
+				<div id="updateButton" class='optButtons1' >Create topic</div>
+			</div>
+			<div style='float:left;width:180px;text-align:center;padding-top:4px;color:#eee;display:none;' id='updateIndicator' >Record updated</div>
+			<div style="clear:both"></div>
+			
+		</div>
+	</div>
+</div>
+
+</div>
+
+
+<div style='clear:both;'></div>
+
+
+
+
+	</div>
+
+	<script type="text/javascript">
+	
+		global.lastNav="createTopic.html";
+
+		
+			
+		try{
+			if(typeof Returnval!=undefined){
+				global.topics=Returnval
+				globalTools.save();
+			}else{
+				
+			}
+
+		}catch(err){
+			
+		}
+
+	
+		$(document).ready(function(){
+		
+			for(var t in global.topics.obj){
+				$("#"+t).val(global.topics.obj[t])
+			}
+		})
+		
+	
+		
+
+
+	</script>

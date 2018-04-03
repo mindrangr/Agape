@@ -1,0 +1,1158 @@
+<script type='text/javascript'>
+	
+
+	
+
+
+</script>
+<style>
+.uploadLink{
+	width:90px;
+	text-align:center;
+	color:#eee;
+	font-size:11px;
+	cursor:pointer;
+}
+
+
+
+
+
+
+</style>
+
+
+
+  <div class="topTab">Your Romantic Profile</div>
+<div style='visibility:hidden;'><input type="file" name="fileToUpload" id="fileToUpload"></div>
+  	<div class="newQuestionHolder" style="width:750px;font-family: arial;margin:auto;">
+		<div style="width:300px;margin:auto;float:left;">
+			<div>
+				<img id="profileImage" border='1'  height="240" width="210">
+			</div>
+			<div style="color:#eee;width:240px;text-align:center;">Default</div>
+			<div style="clear:both"></div>
+		</div>
+
+		<div style="width:400px;margin:auto;float:left;margin-top:45px">
+			<div style="float:left;margin-right:3px;">
+				<img id="profileImage1" border='1' style="border-color:#eee;"  height="95" width="95">
+				<div id="upload1" class="uploadLink">Upload</div>
+				<div id="makeDefault1" class="uploadLink">Make Default</div>
+			</div>
+			<div style="float:left;margin-right:3px;">
+				<img id="profileImage2" border='1' style="border-color:#eee;"  height="95" width="95">
+				<div id="upload2" class="uploadLink">Upload</div>
+				<div id="makeDefault2" class="uploadLink">Make Default</div>
+			</div>
+			<div style="float:left;margin-right:3px;">
+				<img id="profileImage3" border='1' style="border-color:#eee;"   height="95" width="95">
+				<div id="upload3" class="uploadLink">Upload</div>
+				<div id="makeDefault3" class="uploadLink">Make Default</div>
+			</div>
+			<div style="float:left;margin-right:3px;">
+				<img id="profileImage4" border='1' style="border-color:#eee;"    height="95" width="95">
+				<div id="upload4" class="uploadLink">Upload</div>
+				<div id="makeDefault4" class="uploadLink">Make Default</div>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div style="clear:both"></div>		
+	</div>
+	
+	<div style="width:100%">
+		<hr style="margin-top:10px;margin-bottom:10px;width:70%"  />
+	</div>
+
+
+
+	<div id='formQuestions' style="margin:auto;width:800px">
+		<input type="hidden" id='agape_profile_memberID' />
+
+	<div class="newQuestionHolder" style="font-family: arial;width:770px;">
+		<div style="width:670px;margin:auto;" id='birthdateBox'>
+			<div class='newQuestionbLabels'>What is your date of birth?</div>
+			<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;width:100px;margin-right:6px;'>
+				<select class="dropDownNew skip" id='agape_profile_dateOfBirth_month' style='width:100px;'>
+					<option ='none'>Select one</option>
+				</select>
+			</div>
+			<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;width:50px;margin-right:6px;'>
+				<select class="dropDownNew  skip" id='agape_profile_dateOfBirth_day' style='width:48px;'>
+					
+				</select>
+			</div>
+			<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;width:55px;'>
+				<select class="dropDownNew  skip" id='agape_profile_dateOfBirth_date' style='width:55px;'>
+				
+				</select>
+			</div>
+			<input id='agape_profile_dateOfBirth' type='hidden' />
+			<div style="clear:both"></div>
+		</div>
+		
+		
+		<!--<div style='float:left;color:#dedede;font-size:36px;width:220px;'>Last name</div>
+			<div style='float:left;'><textarea rows="3" styles="border: solid 1px #000;border-radius:5px"></textarea></div>
+			<div style="clear:both"></div>-->
+	</div>
+
+	<div class="newQuestionHolder">
+		<div style="width:570px;margin:auto;font-family: arial">
+			<div class='newQuestionbLabels'>What is your gender?</div>
+			<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+				
+				<select class="dropDownNew" id="agape_profile_gender">
+				
+				</select>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+	</div>
+	
+	<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial">
+				<div class='newQuestionbLabels'>What is the gender of the contact you are seeking?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id="agape_partner_gender">
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+		
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial">
+				<div class='newQuestionbLabels'>How would you classify your race?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id='agape_profile_race'>
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+			
+			
+			<!--<div style='float:left;color:#dedede;font-size:36px;width:220px;'>Last name</div>
+			<div style='float:left;'><textarea rows="3" styles="border: solid 1px #000;border-radius:5px"></textarea></div>
+			<div style="clear:both"></div>-->
+		</div>
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial">
+				<div class='newQuestionbLabels'>What is your height?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id="agape_profile_height">
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+						
+			
+			<!--<div style='float:left;color:#dedede;font-size:36px;width:220px;'>Last name</div>
+			<div style='float:left;'><textarea rows="3" styles="border: solid 1px #000;border-radius:5px"></textarea></div>
+			<div style="clear:both"></div>-->
+		</div>
+				<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial;">
+				<div class='newQuestionbLabels'>How would you describe your body type?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<select class="dropDownNew" id="agape_profile_bodyType">
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		
+		</div>
+
+		
+
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial;">
+				<div class='newQuestionbLabels'>What is your level of education?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<select class="dropDownNew" id='agape_profile_education'>
+					
+					</select>
+
+				</div>
+				<div style="clear:both"></div>
+			</div>
+			
+		
+		</div>
+		<div style='width:100%;padding-top:20px;text-align:center;font-size:20px;color:#79a1b8;font-family: arial'>Relationship Questions</div>
+	<div style='width:100%;padding-bottom:10px;'><hr style='width:70%;margin:auto;'/></div>
+	<div class="newQuestionHolder">
+		<div style="width:570px;margin:auto;font-family: arial">
+			<div class='newQuestionbLabels'>What positive things do you expect to bring to a relationship?</div>
+			<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+				
+				<div class="dropDownNew radio" id="agape_profile_opts_div">
+				
+				</div>
+			</div>
+			<div style="clear:both"></div>
+			<input type='hidden' id='agape_profile_opts'/>
+		</div>
+					
+		
+		<!--<div style='float:left;color:#dedede;font-size:36px;width:220px;'>Last name</div>
+		<div style='float:left;'><textarea rows="3" styles="border: solid 1px #000;border-radius:5px"></textarea></div>
+		<div style="clear:both"></div>-->
+	</div>
+
+		
+	<div class="newQuestionHolder">
+		<div style="width:570px;margin:auto;font-family: arial;">
+			<div class='newQuestionbLabels'>Are you open to a long distance relationship?</div>
+			<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+				
+				<select class="dropDownNew" id='agape_profile_relationship_dist'>
+				
+				</select>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		
+		
+		<!--<div style='float:left;color:#dedede;font-size:36px;width:220px;'>Last name</div>
+		<div style='float:left;'><textarea rows="3" styles="border: solid 1px #000;border-radius:5px"></textarea></div>
+		<div style="clear:both"></div>-->
+	</div>	
+
+		
+	<div class="newQuestionHolder">
+		<div style="width:570px;margin:auto;font-family: arial;">
+			<div class='newQuestionbLabels'>Please select your religion</div>
+			<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+				
+				<select class="dropDownNew" id='agape_profile_religion'>
+				
+				</select>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		
+		
+		<!--<div style='float:left;color:#dedede;font-size:36px;width:220px;'>Last name</div>
+		<div style='float:left;'><textarea rows="3" styles="border: solid 1px #000;border-radius:5px"></textarea></div>
+		<div style="clear:both"></div>-->
+	</div>
+		
+		
+		
+	<div class="newQuestionHolder">
+		<div style="width:570px;margin:auto;font-family: arial;">
+			<div class='newQuestionbLabels'>Please select your politics</div>
+			<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+				
+				<select class="dropDownNew" id='agape_profile_political'>
+				
+				</select>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		
+		
+		<!--<div style='float:left;color:#dedede;font-size:36px;width:220px;'>Last name</div>
+		<div style='float:left;'><textarea rows="3" styles="border: solid 1px #000;border-radius:5px"></textarea></div>
+		<div style="clear:both"></div>-->
+	</div>
+
+
+
+		
+
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial;">
+				<div class='newQuestionbLabels'>Do you have children?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<select class="dropDownNew" id='agape_profile_children'>
+					
+					</select>
+
+				</div>
+				<div style="clear:both"></div>
+			</div>
+						
+						
+			<!--<div style='float:left;color:#dedede;font-size:36px;width:220px;'>Last name</div>
+			<div style='float:left;'><textarea rows="3" styles="border: solid 1px #000;border-radius:5px"></textarea></div>
+			<div style="clear:both"></div>-->
+		</div>
+		
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial;">
+				<div class='newQuestionbLabels'>Would you like to have children in the future?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<select class="dropDownNew" id='agape_profile_children_future'>
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+		
+
+
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial">
+				<div class='newQuestionbLabels'>Please select your salary range</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id='agape_profile_salary'>
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+
+					
+
+
+					
+
+
+
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial">
+				<div class='newQuestionbLabels'>Do you use alcohol?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id='agape_profile_alcohol'>
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+			
+			
+			<!--<div style='float:left;color:#dedede;font-size:36px;width:220px;'>Last name</div>
+			<div style='float:left;'><textarea rows="3" styles="border: solid 1px #000;border-radius:5px"></textarea></div>
+			<div style="clear:both"></div>-->
+		</div>
+					<div class="newQuestionHolder">
+						<div style="width:570px;margin:auto;font-family: arial">
+							<div class='newQuestionbLabels'>Do you use drugs?</div>
+							<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+								
+								<select class="dropDownNew" id='agape_profile_drugs'>
+								
+								</select>
+							</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+					
+					
+
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial">
+				<div class='newQuestionbLabels'>In 400 words or less how would you describe yourself?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<textarea class="inputboxnew" id='agape_profile_description' style='height:65px;' ></textarea>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+			
+		</div>
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial">
+				<div class='newQuestionbLabels'>In 400 words or less describe an ideal introductory date?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<textarea class="inputboxnew" id='agape_profile_firstDate' style='height:65px;' ></textarea>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+		<div class="newQuestionHolder">
+		<div style="width:700px;margin:auto;font-family: arial">
+			<div class='newQuestionbLabels'>What are some things that you enjoy doing?</div>
+			<div style="clear:both"></div>
+			<div style='padding:4px;background-color:#dedede;border-radius:5px;margin-top: 10px;'>
+				<div class="radio"  id="agape_profile_recreation_div">
+				</div>
+			</div>
+			<input type='hidden' id='agape_profile_recreation'/>
+			
+		</div>
+					
+		
+		<!--<div style='float:left;color:#dedede;font-size:36px;width:220px;'>Last name</div>
+		<div style='float:left;'><textarea rows="3" styles="border: solid 1px #000;border-radius:5px"></textarea></div>
+		<div style="clear:both"></div>-->
+	</div>
+		
+		
+	<div style='width:100%;padding-top:20px;text-align:center;font-size:20px;color:#79a1b8'>Candidate Questions</div>
+	<div style='width:100%;padding-bottom:10px;'><hr style='width:70%;margin:auto;'/></div>
+	<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial">
+				<div class='newQuestionbLabels'>What positive things do you expect the ideal partner to bring to a relationship?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<div class="dropDownNew radio" id="agape_partner_opts_div">
+					
+					</div>
+				</div>
+				<div style="clear:both"></div>
+				<input type='hidden' id='agape_partner_opts'/>
+			</div>
+		</div>
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial">
+				<div class='newQuestionbLabels'>In 400 words or less how would you describe your ideal partner?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+
+					<textarea class="inputboxnew" id='agape_profile_partner_description' style='height:65px;' ></textarea>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+
+
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial">
+				<div class='newQuestionbLabels'>What is the age range of your ideal partner?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id='agape_partner_age_range'>
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+			
+		</div>
+
+
+
+
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial">
+				<div class='newQuestionbLabels'>What is the salary range of your ideal partner?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id='agape_partner_salary'>
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial">
+				<div class='newQuestionbLabels'>What is your ideal partners religion?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id='agape_partner_religion'>
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial">
+				<div class='newQuestionbLabels'>Filter ideal partner education?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id='agape_partner_education'>
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial">
+				<div class='newQuestionbLabels'>Filter ideal partner alcohol use?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id='agape_partner_alcohol'>
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+
+		<div class="newQuestionHolder">
+			<div style="width:570px;margin:auto;font-family: arial">
+				<div class='newQuestionbLabels'>Filter ideal partner drug use?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id='agape_partner_drugs'>
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+			
+			
+			<!--<div style='float:left;color:#dedede;font-size:36px;width:220px;'>Last name</div>
+			<div style='float:left;'><textarea rows="3" styles="border: solid 1px #000;border-radius:5px"></textarea></div>
+			<div style="clear:both"></div>-->
+		</div>
+
+
+
+
+
+					<div class="newQuestionHolder">
+						<div style="width:570px;margin:auto;font-family: arial">
+							<div class='newQuestionbLabels'>Filter ideal partner by children?</div>
+							<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+								
+								<select class="dropDownNew" id='agape_partner_children'>
+								
+								</select>
+							</div>
+							<div style="clear:both"></div>
+						</div>
+						
+						
+						<!--<div style='float:left;color:#dedede;font-size:36px;width:220px;'>Last name</div>
+						<div style='float:left;'><textarea rows="3" styles="border: solid 1px #000;border-radius:5px"></textarea></div>
+						<div style="clear:both"></div>-->
+					</div>
+
+
+
+
+					<div class="newQuestionHolder">
+						<div style="width:570px;margin:auto;font-family: arial">
+							<div class='newQuestionbLabels'>Filter ideal partner by body type?</div>
+							<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+								
+								<select class="dropDownNew" id='agape_partner_bodyType'>
+								
+								</select>
+							</div>
+							<div style="clear:both"></div>
+						</div>
+						
+						
+						<!--<div style='float:left;color:#dedede;font-size:36px;width:220px;'>Last name</div>
+						<div style='float:left;'><textarea rows="3" styles="border: solid 1px #000;border-radius:5px"></textarea></div>
+						<div style="clear:both"></div>-->
+					</div>
+
+
+
+	
+
+
+
+
+
+					<div class="newQuestionHolder">
+						<div style="width:570px;margin:auto;font-family: arial">
+							<div class='newQuestionbLabels'>What is the race of your ideal partner?</div>
+							<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+								
+								<select class="dropDownNew" id='agape_partner_race'>
+								
+								</select>
+							</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+
+
+					<div class="newQuestionHolder">
+						<div style="width:570px;margin:auto;font-family: arial">
+							<div class='newQuestionbLabels'>What is the height of your ideal partner?</div>
+							<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+								
+								<select class="dropDownNew" id='agape_partner_height'>
+								
+								</select>
+							</div>
+							<div style="clear:both"></div>
+						</div>
+		
+					</div>
+
+
+
+					
+
+					<div class="newQuestionHolder">
+						<div style="width:550px;margin:auto;display:none;font-family: arial">
+							<div class='newQuestionbLabels'>How much capital are you looking to invest?</div>
+							<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+								<div class="hasDatepicker">
+									<input type='textbox' class="inputboxnew" id='agape_profile_amt2Invest' />
+								</div>
+							</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+
+					<div class="newQuestionHolder">
+						<div style="width:550px;margin:auto;font-family: arial">
+							<div id="updateButton" class='optButtons1' style='float:left;' >Update</div>
+							<div id="recordU"  style='float:left;color:orange;;margin-left:15px;opacity:0;' >Record updated.</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+
+				</div>
+					<script type='text/javascript'>
+
+						checkGuid()
+						var profileopts=[];
+						var partneropts=[];	
+						function verifyDates(){
+							var updateVal='true';
+							$("#birthdateBox :input").each(function(){
+								if($(this).hasClass("skip")==true){
+									if($(this).val()=="Select one"){
+										updateVal="false"
+									}
+								}
+							})
+
+							if(updateVal=='true'){
+								var mon,day,year
+								mon=$("#agape_profile_dateOfBirth_month option:selected").index();
+								year=$("#agape_profile_dateOfBirth_date").val();
+								day=$("#agape_profile_dateOfBirth_day").val();
+
+								if(parseInt(day)<10){
+									day="0"+day;
+								}
+
+								if(parseInt(mon)<10){
+									mon="0"+mon;
+								}
+								
+								$("#agape_profile_dateOfBirth").val(year+"-"+mon+"-"+day+" 00:00:00")
+								
+							}
+
+							// minutes 00:00:00
+
+						}
+
+
+						
+
+					
+						var user1=sessionStorage.getItem("user");
+						user=$.parseJSON(user1)
+						
+					
+						//loadFields();
+
+
+				
+						imageObj=$.parseJSON(global.userObj.agape_profile_default_img);	
+						addMouseOver1();
+						for(i=0;i<timeObj['fullMonthsName'].length;i++){
+							$("#agape_profile_dateOfBirth_month").append("<option value='"+timeObj['fullMonthsName'][i]+"'>"+timeObj['fullMonthsName'][i]+"</option>")
+						}
+
+						
+
+						$("#agape_profile_dateOfBirth_month").on('change',function(){
+							var changeDex='true';
+							for(var i=0;i<timeObj['fullMonthsName'].length;i++){
+								if(timeObj['fullMonthsName'][i]==$(this).val()){
+									changeDex=i;
+								}
+
+							}
+
+							if(changeDex!='true'){
+								var leng=timeObj['fullDay'][changeDex];
+								$("#agape_profile_dateOfBirth_day").empty()
+								$("#agape_profile_dateOfBirth_day").append("<option value='Select one'>Select one</option>")
+								for(var i=1;i<leng+1;i++){
+									$("#agape_profile_dateOfBirth_day").append("<option value='"+i+"'>"+i+"</option>")
+								}
+								verifyDates()
+
+							}
+						})
+							
+
+
+						
+							
+						$("#agape_profile_dateOfBirth_date").append("<option>Select one</option>")
+						for(i=1997;i>1928;i--){
+							$("#agape_profile_dateOfBirth_date").append("<option>"+i+"</option>")
+						}
+						$("#agape_profile_dateOfBirth_date").on("change",function(){
+							verifyDates()
+						})
+
+						$("#agape_profile_dateOfBirth_day").on("change",function(){
+							verifyDates()
+						})
+						
+/*
+						{"defaultPic":"profileImages/female11_w.jpg","defaultPicTitle":"My Pics","Pic1":"profileImages/female11_w.jpg","Pic1Title":"Untitled","Pic2":"Untitled","Pic2Title":"Untitled","Pic3":"Untitled","Pic3Title":"Untitled","Pic4":"Untitled","Pic4Title":"Untitled","Pic5":"Untitled","Pic5Title":"Untitled","Pic6":"Untitled","Pic6Title":"Untitled","Pic7":"Untitled","Pic7Title":"Untitled"}
+
+						*/
+						$("#profileImage").attr("src",imageObj.defaultPic)
+
+						
+						addImages()
+						// code for changing option obj
+
+						/*$(".opts").each(function(){
+							$(this).on("change",function(){
+								var optsIndex=$(this).attr("id");
+								var tre;
+								optsIndex=optsIndex.substr(1);
+								
+								if($(this).attr("checked")=="checked"){
+
+									switch(optsIndex){
+
+										case 'agape_profile_opts':
+											var lObj=$.parseJSON($("#agape_profile_opts").val())
+											profileopts=lObj;
+											leng=profileopts.length;
+											profileopts.unshift($(this).val());
+											tre=JSON.stringify(profileopts)
+
+											
+										break;
+
+
+										case 'agape_partner_opts':
+											var lObj=$.parseJSON($("#agape_partner_opts").val())
+											partneropts=lObj;
+											leng=partneropts.length;
+											partneropts.unshift($(this).val());
+											tre=JSON.stringify(partneropts)
+											
+										break;
+
+									}
+									$("#"+optsIndex).val(tre)
+								
+								}else{
+
+
+									switch(optsIndex){
+										case 'agape_profile_opts':
+										
+											var minus=0;
+											for(var i=0;i<leng;i++){
+												if(profileopts[i]==$(this).val()){
+													minus=i;
+												}
+											}
+											var bar = profileopts.slice(0,(minus))
+											var bars = profileopts.slice(minus+1,(profileopts.length))
+											comby=bar.concat(bars);
+											profileopts=comby;
+											tre=JSON.stringify(profileopts)
+
+											
+										break;
+
+
+										case 'agape_partner_opts':
+											partneropts1=$("#agape_profile_opts").val();
+											var minus=0;
+											for(var i=0;i<leng;i++){
+												if(partneropts[i]==$(this).val()){
+													minus=i;
+												}
+											}
+											var bar = partneropts.slice(0,(minus))
+											var bars = partneropts.slice(minus+1,(partneropts.length))
+											comby=bar.concat(bars);
+											partneropts=comby;
+											tre=JSON.stringify(partneropts)
+										break;
+										
+										case 'agape_profile_recreation':
+											var lObj=$.parseJSON($("#agape_profile_recreation").val())
+											var minus=0;
+											for(var i=0;i<lObj.length;i++){
+												if(lObj[i]==$(this).val()){
+													minus=i;
+												}
+											}
+											var bar = lObj.slice(0,(minus))
+											var bars = lObj.slice(minus+1,(lObj.length))
+											comby=bar.concat(bars);
+											lObj=comby;
+											tre=JSON.stringify(lObj)
+										
+										break;
+									}
+									$("#"+optsIndex).val(tre);
+								}
+								
+						
+							})
+						})*/
+					
+						var userObj_profile1=sessionStorage.getItem('user')
+						userObj_profile=$.parseJSON(userObj_profile1);
+						
+						
+						
+						for(var key in global.userObj){
+							
+							if(document.getElementById(key)!='undefined'){
+								$("#"+key).val(global.userObj[key]);
+								
+							}
+
+						}
+
+
+						if(global.userObj.agape_profile_dateOfBirth!="Not Answered"){
+							var bday=global.userObj.agape_profile_dateOfBirth;
+							var bdate=bday.split(" ")
+							var bdateSpilt=bdate[0];
+							bdateSpilt=bdateSpilt.split("-");
+							var days1=timeObj.fullMonthsName[parseInt(bdateSpilt[1])-1];
+							
+
+
+
+							$("#agape_profile_dateOfBirth_month").val(days1)
+							$("#agape_profile_dateOfBirth_month").change();
+							$("#agape_profile_dateOfBirth_day").val(parseInt(bdateSpilt[2]))
+							$("#agape_profile_dateOfBirth_date").val(parseInt(bdateSpilt[0]))
+						}
+
+
+						if(global.userObj.agape_partner_opts!="none"){
+							var opt1=$.parseJSON(global.userObj.agape_partner_opts)
+							var optiLength=opt1.length;
+							$("#agape_partner_opts_div :input").each(function(){
+								for(var t=0;t<optiLength;t++){
+									if($(this).val()==opt1[t]){
+										$(this).attr("checked","checked")
+									}
+								}
+							})
+
+						}else{
+							$("#agape_partner_opts").val("[]")
+							
+						}
+	
+
+						if(global.userObj.agape_profile_recreation){
+
+							var opt1=$.parseJSON(global.userObj.agape_profile_recreation)
+							var optiLength=opt1.length;
+							$("#agape_profile_recreation_div :input").each(function(){
+								for(var t=0;t<optiLength;t++){
+									if($(this).val()==opt1[t]){
+										$(this).attr("checked","checked")
+									}
+								}
+							})
+							
+						
+							$("#agape_additional_recreation_div :input").each(function(){
+							
+								for(var t=0;t<optiLength;t++){
+									if($(this).val()==opt1[t]){
+										$(this).attr("checked","checked")
+									}
+								}
+							})
+						
+						
+						}
+						
+						if(global.userObj.agape_profile_opts!="none"){
+
+
+							var opt1=$.parseJSON(global.userObj.agape_profile_opts)
+							var optiLength=opt1.length;
+							$("#agape_profile_opts_div :input").each(function(){
+								for(var t=0;t<optiLength;t++){
+									if($(this).val()==opt1[t]){
+										$(this).attr("checked","checked")
+									}
+								}
+							})
+
+						}
+
+
+
+						//update button functionality
+						$("#updateButton").on("click",function(){
+						
+							var activities=[]
+							var profileActivities=[];
+							var partnerActivities=[];
+							
+							
+							
+							var sendObj={};
+							sendObj.obj1={};
+							$("#formQuestions :input").each(function(){
+								if($(this).hasClass("skip")==false && $(this).val()!="Not Answered"){
+									sendObj.obj1[$(this).attr("id")]=$(this).val();
+								}
+								
+							})
+
+							$(".optsActvts").each(function(){
+								if($(this).is(':checked')){
+									activities.push($(this).val());
+								}
+							})
+
+
+							$(".profileOpts").each(function(){
+								if($(this).is(':checked')){
+									profileActivities.push($(this).val());
+									
+								}
+							})
+
+
+							$(".partnerOpts").each(function(){
+								if($(this).is(':checked')){
+									partnerActivities.push($(this).val());
+									
+								}
+							})
+
+							sendObj.obj1.agape_partner_opts=JSON.stringify(partnerActivities);
+							sendObj.obj1.agape_profile_recreation=JSON.stringify(activities);
+							sendObj.obj1.agape_profile_opts=JSON.stringify(profileActivities);
+							sendObj.job='updatePro'
+							sendObj.obj=sendObj.obj1;
+
+							func=function(data){
+								globalTools.getNewUserObj(global.userObj.agape_profile_memberID);
+								fademessg($("#recordU")[0],"Updated");
+							}
+							
+							ajaxCallPost(sendObj,func)	
+
+						})
+						
+
+
+
+						var oldf1={};	
+						$(document).ready(function(){
+							
+
+							$("div[id^='upload']").each(function(){
+								$(this).on("click",function(){
+									var chIx=$(this).attr("id");
+									chIx=chIx.substr(6);
+									imageObj1=$.parseJSON(global.userObj.agape_profile_default_img);
+									oldf1.url=$("#profileImage"+chIx).attr("src");
+									oldf1.chIx=chIx;
+									$("#fileToUpload").click();
+								})
+							})
+
+
+							
+							
+
+							$("div[id^='makeDefault']").each(function(){
+								$(this).on("click",function(){
+									var chIx=$(this).attr("id");
+									chIx=chIx.substr(11);
+									imageObj1=$.parseJSON(global.userObj.agape_profile_default_img);
+									var newf=$("#profileImage"+chIx).attr("src");
+									var oldf=$("#profileImage").attr("src");
+									$("#profileImage").attr("src",newf)
+									$("#profileImage"+chIx).attr("src",oldf);
+									imageObj1.defaultPic=$.trim(newf);
+									imageObj1["Pic"+chIx]=$.trim(oldf);
+									global.userObj.agape_profile_default_img=JSON.stringify(imageObj1);
+									globalTools.save();
+									newModel2={};
+									newModel2.job="update_atomic";
+									newModel2.param="agape_profile_memberID";
+									newModel2.dbase="agape_profile";
+									newModel2.vals=global.userObj.agape_profile_memberID;
+									newModel2.obj={}
+									newModel2.obj.agape_profile_default_img=global.userObj.agape_profile_default_img;
+								console.log(33443434)
+								console.log(global.userObj.agape_profile_default_img)
+								console.log(33443434)
+									func5=function(data){
+										
+										
+									}
+									//ajaxCallPost(newModel2,func5);
+									
+								})
+							})
+
+						})
+
+
+
+
+
+						$("#fileToUpload").on("change",function(){
+							var file = this.files[0];
+							var create="true";
+							var oldUrl="none";
+							var phots=$.parseJSON(global.userObj.agape_profile_default_img)
+							var removestrg=oldf1.url+"";
+							var removeProfile=removestrg.search(/workImages/i)
+						           		
+				           	if(oldf1.url!="Images/Male-icon.png" && oldf1.url !="Images/Female-icon.png" && removeProfile!=-1){
+				           		create="false";
+				           		oldUrl=oldf1.url;
+
+				           		console.log(8878787)
+				           		console.log(oldf1.url)
+				           		console.log(8878787)
+
+				           	}else{
+				           		
+				           	}
+
+						 	var url = 'upload_profilePics.php';
+							var xhr = new XMLHttpRequest();
+							var fd = new FormData();
+						    fd.append("par", global.userObj.agape_profile_username);
+						    fd.append("create", create);
+						    fd.append("oldUrl", oldUrl);
+						    xhr.open("POST", url, true);
+							    
+
+						    xhr.onreadystatechange = function() {
+						        if (xhr.readyState == 4 && xhr.status == 200) {
+						            // Every thing ok, file uploaded
+						           //var phots = $.parseJSON(global.presidentialObj.acct[0].peopleCandidate_photos);
+				
+									
+						          	var changeTime = new Date();
+									var year=changeTime.getFullYear();
+									var month=changeTime.getMonth();
+									var day =changeTime.getDay();
+									var hour =changeTime.getHours();
+									var minutes =changeTime.getMinutes();
+									var seconds =changeTime.getSeconds()
+									var d = Date.UTC(year,month,day,hour,minutes,seconds);
+								
+
+									var resp=$.trim(xhr.responseText)+"?val="+d;
+									console.log(11111)
+									console.log(resp)
+									console.log(11111)
+
+
+							         $("#profileImage"+oldf1.chIx).attr("src",resp);
+							         var phots1=$.parseJSON(global.userObj.agape_profile_default_img);
+							         var phtsStrg="Pic"+oldf1.chIx;
+							         console.log(3333)
+									console.log(phtsStrg)
+									console.log(3333)
+							         phots1[phtsStrg]=$.trim(xhr.responseText);
+							         console.log(22222)
+							         console.log(phots1)
+							         console.log(22222)
+							         global.userObj.agape_profile_default_img=JSON.stringify(phots1);
+							         globalTools.save();
+
+
+						          	var func35=function(data){
+						          		alert("smell so good")
+						          		console.log("data")
+						          		console.log(data)
+						          		console.log("data")
+						          	}
+
+							       	sendo_peopleCandidate = {}
+									sendo_peopleCandidate.job="update_atomic";
+									sendo_peopleCandidate.dbase="agape_profile";
+									sendo_peopleCandidate.obj={};
+									sendo_peopleCandidate.vals=global.userObj.agape_profile_memberID;
+									sendo_peopleCandidate.param="agape_profile_memberID";
+									sendo_peopleCandidate.obj.agape_profile_default_img=global.userObj.agape_profile_default_img;
+									ajaxCallPost(sendo_peopleCandidate,func35);
+
+						        }
+
+						    };
+
+						    fd.append("upload_file", file);
+						    xhr.send(fd);
+
+						});
+
+
+
+
+
+
+
+
+
+						$("#opacback").css("height","3435px");
+						$("#footerPush").css("height","3491px")
+						var t5=$(window).width();
+						var e1=parseInt((t5-(t5*.80))/2)	
+						$("#transBack").removeClass().show().css("left",e1+"px").addClass("transBack_profile");
+
+
+
+
+
+
+
+
+
+
+
+						/*
+						{"defaultPic":"profileImages/female11_w.jpg","defaultPicTitle":"My Pics","Pic1":"profileImages/female11_w.jpg","Pic1Title":"Untitled","Pic2":"Untitled","Pic2Title":"Untitled","Pic3":"Untitled","Pic3Title":"Untitled","Pic4":"Untitled","Pic4Title":"Untitled","Pic5":"Untitled","Pic5Title":"Untitled","Pic6":"Untitled","Pic6Title":"Untitled","Pic7":"Untitled","Pic7Title":"Untitled"}
+
+						*/
+
+
+						function addImages(){
+							
+							imageObj=$.parseJSON(global.userObj.agape_profile_default_img);	
+							$("#profileImage").attr("src",imageObj.defaultPic)
+							for(o=1;o<5;o++){
+								var ur="Pic"+o
+								var ur1=imageObj[ur];
+								if(ur1=="Untitled"){
+									ur1="Images/Male-Icon.png"
+								}
+								$("#profileImage"+o).attr("src",ur1)
+							}
+						}
+						
+					</script>
+
+

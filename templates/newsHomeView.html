@@ -1,0 +1,634 @@
+<div class="topTab"><div class='communitySectionsTemp' class='newNav2'  ><img style='border-radius:7px;border:solid 1px #eee;' src="images/news.gif"/></div></div>
+<div style="width:920px;margin:auto;">
+	<div id='articles' class="presNavs presNavsSelected" >Article</div>
+	<div id='comments' class="presNavs" >Comments (<span id="agape_media_comments_count" style="color:blue;"></span>)</div>
+	<div id="returnButt" style='padding:0px;margin-top:5px;padding-left:9px;font-family: arial' class="newElemHeader_sub articleControls">Back</div>
+	<div id="viewComments" style='padding:0px;margin-top:5px;display:none;padding-left:9px;font-family: arial' class="newElemHeader_sub articleControls">Add comment</div>
+</div>
+<div style='clear:both'></div>
+<div>
+	<div id="articlesDiv" class="navDivs">
+		<div id='headerHolder' style="height:550px;overflow:auto;margin:auto;overflow-x:hidden;overflow-y:hidden;width: 920px;">
+		<!--<div style='clear:both'></div>-->
+			<div class='newsElems' style='background-color:#fff;width:910px;height:520px;margin:auto;border-radius: 0px 0px 8px 8px;'>
+				<div style='float:left;margin-right:10px;' ><img width="160" height="133" src="" id='newsImge'/></div>
+				<div style='float:left;width:510px;'>
+					<div id="agape_media_title" class="newElemHeader"  ></div>
+					<div  class="newElemHeader_sub" style='color:#000;' >By: <i id='agape_media_author'></i></div>
+					<div  style='color:#000;' class="newElemHeader_sub">Created: <span id="agape_media_createDate"></span></div>
+
+					
+					<div   style='color:red;'  class="newElemHeader_sub">Last comment date: <span style='color:blue;' id="agape_media_lastComment_date"></span></div>
+					<div  style='color:red;'  class="newElemHeader_sub">Last comment by: <span style='color:blue;' id="agape_media_updatedBy"></span></div>
+				</div>
+				<div style='clear:both'></div>
+				<div id='agape_media_content' style="color:#000;padding:8px;height:340px;overflow:auto;"></div>
+			</div>
+		</div>
+
+	</div>
+	<div id="commentsDiv" class="navDivs" style="display:none;">
+		
+		<div id="commentsSet" style="height:500px;overflow:auto;border:solid 1px #000;width:920px;margin:auto;background-color:gray;border-radius:0px 0px 5px 5px;"></div>
+	</div>
+</div>
+
+
+
+
+
+
+<div id='formQuestions'></div>
+
+	<script type="text/javascript">
+	var t1=$(document).width();
+			//var t5=$(window).width();
+			var e1=(t1-920)/2	
+			
+			$("#transBack").removeClass().show().css("left",e1).addClass("transBack_news");
+	 //$("#LbBack").css({"height":"630px"})
+		//$(".newFormfieledHolderStyles").css({"height":"880px","background-color":"#033c4c"});
+		//$("#footertab").css("top","960px");
+
+		$("#opacback").css("height","1041px");
+		$("#footerPush").css("height","881px");
+
+
+	//Add submit event for view comment 
+	$("#viewComments").unbind("click").on("click",function(){
+		var chowder=0;
+		global.comments.index1=chowder;
+		switch(global.candidate.id){
+			case 'viewArticles':
+				global.comments.type="newsArticles"
+			break;
+
+
+			case 'viewCaptions':
+				global.comments.type="viewCaptions"
+			break;
+		}
+
+		
+		
+		id="commentOpener";
+		var div1=document.getElementById("_lboxBackground");
+		var div2=document.getElementById("_lBoxMainDiv");
+		var template={};
+		template.page="commentPage.html";
+		template.job="newsArticles";
+		template.heading="Comment on: "
+		global.comments.type="viewCaptions"
+		//global.candidate.id=id;
+		template.param=global.newsCaption.returnObj[global.newsCaptionIndex]
+		ingniteLightBox = new LightBox(div1,div2,template,id)
+		ingniteLightBox.lightBoxOn()
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+		//TweenMax.to($("#footertab")[0],.9,{css:{top:"970",ease:Bounce.easeIn}});
+		//TweenMax.to($(".newFormfieledHolderStyles")[0],.6,{css:{height:"880px",backgroundcolor:"#033c4c"}}, -6);
+
+		function updatethumbsUpDB_func(param){
+
+			var commentCount = {}
+			commentCount.job="update_atomic"
+			commentCount.param=param;
+			commentCount.dbase="agape_topics";
+
+			if(param=="thumbsDown"){
+				commentCount.field="agape_media_thumbsDown";
+			}else{
+				commentCount.field="agape_media_thumbsUp";
+			}
+			commentCount.obj={};
+			commentCount.obj.value="none";
+			commentCount.vals=global.newsObjView.agape_media_ID;
+			updatethumbsUpDB(commentCount)
+		}
+
+		$("#statsBarNews").css("width","270px");
+		$(document).ready(function(){
+
+			global.lastNav='newsHomeView.html';
+			globalTools.save();
+
+
+
+			$("#commentsSet").empty().append("<div style='font-size:30px;color:#eee;margin:auto;width:320px;font-family:arial;text-align:center;padding:12px;'>Be the first to comment</div>");
+
+			$(".presNavs").each(function(){
+				$(this).on("click",function(){
+					//alert($(this).attr("id"))
+
+					$(".presNavs").each(function(){
+						$(this).removeClass("presNavsSelected");
+					})
+					$(this).addClass("presNavsSelected");
+					$(".navDivs").each(function(){
+						$(this).hide();
+					})
+					var b=$(this).attr("id")+"Div";
+					$("#"+ b ).show();
+
+					if($(this).attr("id")=="comments"){
+						$("#viewComments").show();
+						$("#statsBarNews").css("width","380px");
+					}else{
+						$("#viewComments").hide();
+						$("#statsBarNews").css("width","270px");
+					}
+				})
+			})
+			
+
+			if(global.navFunc){
+				var tObj;
+
+				if(global.navFunc=="LoggedIn"){
+					$(".updatethumbsUpDB").unbind("click");
+					$(".updatethumbsDownDB").unbind("click");
+
+					$(".updatethumbsDownDB").on('click',function(){
+						updatethumbsUpDB_func('thumbsDown');
+						$("#agape_media_thumbsUp").removeClass("articleControls_green").addClass("articleControls_gray");
+						$("#agape_media_thumbsDown").removeClass("articleControls_red").addClass("articleControls_gray");
+						$(this).unbind('click');
+						$(".updatethumbsUpDB").unbind('click');
+						var inc = parseInt($("#agape_media_thumbsDown").html())+1
+						$("#agape_media_thumbsDown").html(inc)
+						
+					})
+
+
+					$(".updatethumbsUpDB").on('click',function(){
+						updatethumbsUpDB_func('thumbsUp');
+						$("#agape_media_thumbsUp").removeClass("articleControls_green").addClass("articleControls_gray");
+						$("#agape_media_thumbsDown").removeClass("articleControls_red").addClass("articleControls_gray");
+						$(this).unbind('click');
+						$(".updatethumbsDownDB").unbind('click');
+						var inc = parseInt($("#agape_media_thumbsUp").html())+1
+						$("#agape_media_thumbsUp").html(inc)
+					})
+				
+					if(global.userObj.agape_vote_recordThumbs=="Not Answered"){
+						
+					}else{
+						tObj=$.parseJSON(global.userObj.agape_vote_recordThumbs);
+						thumbChk="true";
+						var gog=tObj.length;
+						
+						for(q=0;q<gog;q++){
+							if(tObj[q].votetype=='media_thumbs'){
+
+								switch(global.candidate.id){
+
+									case 'viewArticles':
+										if(tObj[q].commentID==global.newsObjView.agape_media_ID){
+											thumbChk="false";
+										}else{
+
+										}
+									break;
+
+
+									case 'viewCaptions':
+
+									
+									
+
+
+										if(tObj[q].commentID==global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_ID){
+											thumbChk="false";
+										}else{
+
+										}
+									break;
+
+								}
+								
+
+							}
+						}
+
+						
+						if(thumbChk=="false"){
+							$("#agape_media_thumbsUp").removeClass("articleControls_green").addClass("articleControls_gray");
+							$("#agape_media_thumbsDown").removeClass("articleControls_red").addClass("articleControls_gray");
+							$(".updatethumbsUpDB").unbind("click");
+							$(".updatethumbsDownDB").unbind("click");
+						}
+
+						if(thumbChk=="true"){
+							$("#agape_media_thumbsUp").removeClass("articleControls_gray").addClass("articleControls_green");
+							$("#agape_media_thumbsDown").removeClass("articleControls_gray").addClass("articleControls_red");
+
+						}
+					}
+				}
+
+				if(global.navFunc=="LoggedOut"){
+					$(".updatethumbsUpDB").unbind("click");
+					$(".updatethumbsDownDB").unbind("click");
+					$(".updatethumbsDownDB").on('click',function(){
+						alert("you must login or register.")
+						$("#username").focus();
+					})
+
+
+					$(".updatethumbsUpDB").on('click',function(){
+						alert("you must login or register.");
+						$("#username").focus();
+					})
+				}
+
+			}else{
+			//alert("not logged in")
+			}
+
+			switch(global.candidate.id){
+
+
+				case 'viewCaptions':
+					
+					$("#newsImge").css({"width":"160px","height":"133px"});
+
+					for(var key in global.newsCaption.returnObj[global.newsCaptionIndex]){
+						switch(key){
+							case 'agape_media_createDate':
+								var timeDateVal=getTime(global.newsCaption.returnObj[global.newsCaptionIndex][key],'true')
+								$("#"+key).html(timeDateVal)
+							
+							break;
+
+							case 'agape_media_lastComment_date':
+								var timeDateVal=getTime(global.newsCaption.returnObj[global.newsCaptionIndex][key],'true')
+								$("#"+key).html(timeDateVal)
+							break;
+
+
+							case 'agape_media_images':
+
+								var imo;
+
+								switch(global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_type){
+									case 'Blog':
+										simo=$.parseJSON(global.newsCaption.returnObj[global.newsCaptionIndex][key]);
+										imo=simo.defaultPic;
+										$("#newsImge").attr("src",imo);
+
+									break;
+
+									case 'Article':
+
+										imo=global.newsCaption.returnObj[global.newsCaptionIndex][key];
+										$("#newsImge").attr("src",imo);
+									break;
+
+									case 'uTubeVid':
+										
+										var j=global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_link;
+										var lDiv="<div style='margin-right:10px;font-family:arial;'><div><iframe class='utubeVids0' width='500' height='330' src='"+j+"' frameborder='0' allowfullscreen=''></iframe></div><div id='vid0'></div></div>";
+
+										var sStrg="<div style='width:500px;margin:auto;'><div style='font-weight:bold;margin-bottom:15px;'>"+global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_title+"</div><div>"+lDiv+"</div></div>"
+											$(".newsElems").empty().html(sStrg)
+
+									break;
+
+
+									case 'Poll':
+
+										$("#newsImge").attr("src","advertiseImages/blogImages/pollsImage.jpg");
+
+									break;
+
+
+									
+
+
+
+								}
+
+							break;
+
+							case 'agape_media_content':
+
+							switch(global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_type){
+								case 'Poll':
+									var tVal=globalTools.stringClearBack(global.newsCaption.returnObj[global.newsCaptionIndex][key]);
+									var pollStrg="<div style='width:400px;color:#ccc;margin:auto;'>"
+									pollStrg=pollStrg+"<div id='polltitle"+global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_link+"' class='rowHolderHeaders_search' style='width:100%;margin-top:15px;padding-top:9px;height:56px;padding-left:6px;padding-right:6px;padding-bottom:15px;'></div>"
+									pollStrg=pollStrg+"<input type='hidden' id='poll_ID"+global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_link+"' />"
+									pollStrg=pollStrg+"<div id='pollHolder"+global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_link+"' style='padding-left:20px;border-bottom:solid 1px #eee;border-left:solid 1px #eee;padding-top:15px;border-right:solid 1px #eee;width:385px;margin-bottom:20px;padding-right:6px;background-color:#000;'>"
+				
+									pollStrg=pollStrg+"</div></div>";
+
+
+									
+
+									$("#"+key).empty().append(pollStrg);
+
+										var qb 
+										var quesObj={};
+										quesObj.job="atomic_selectAll";
+										quesObj.value=global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_link;
+										quesObj.dbase="agape_pollQuestions";
+										quesObj.ob="where question_ID="+global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_link;
+										func21=function(data){
+											var data1=globalTools.verify(data);
+											qb = new questionBuilder({
+												"background-color":"gray",
+												"color":"#000",
+												"chartSlider":{
+													"background-color":"purple",
+													"color":"#fff"
+												},
+												"innerStyle":{
+														"tColor":"#eee"
+												}
+											});
+
+											var pTitle="polltitle"+global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_link;
+
+											var pHold="pollHolder"+global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_link;
+											var sendIndx=global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_link
+											var pID="poll_ID"+global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_link;
+
+
+											qb.createPoll(data1,pTitle,pHold,pID,sendIndx);
+											qb.pollVerify(quesObj.value,qb);
+										}
+										ajaxCallMedia(quesObj,func21);
+
+								break;
+
+								default:
+
+									var tVal=globalTools.stringClearBack(global.newsCaption.returnObj[global.newsCaptionIndex][key])
+								$("#"+key).html(tVal)
+								break;
+							}
+
+
+							break;
+
+
+							case 'agape_media_comments_count':
+								var cms=formatNumber (global.newsCaption.returnObj[global.newsCaptionIndex][key])
+								$("#agape_media_comments_count").html(cms);
+							break;
+
+							default:
+							var tVal=globalTools.stringClearBack(global.newsCaption.returnObj[global.newsCaptionIndex][key])
+								$("#"+key).html(tVal)
+							break;
+						}
+					}
+
+
+
+					loadComs(global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_SourceID);
+
+
+
+					
+				break;
+
+
+				case 'viewArticles':
+
+					
+					for(var key in global.newsObjView){
+						switch(key){
+							case 'agape_media_createDate':
+								var timeDateVal=getTime(global.newsObjView[key],'true')
+								$("#"+key).html(timeDateVal)
+							
+							break;
+
+							case 'agape_media_lastComment_date':
+								var timeDateVal=getTime(global.newsObjView[key],'true')
+								$("#"+key).html(timeDateVal)
+							break;
+
+
+							case 'agape_media_images':
+							if(global.newsObjView.agape_media_type!="Article"){
+								imo=$.parseJSON(global.newsObjView[key]);
+								if(imo.Presidential){
+									$("#newsImge").attr("src",imo.Presidential);
+								}else{
+									$("#newsImge").attr("src",imo.defaultPic);
+								}
+							}else{
+								$("#newsImge").attr("src",global.newsObjView[key]);
+							}
+
+								
+							break;
+
+
+							default:
+								$("#"+key).html(global.newsObjView[key])
+							break;
+						}
+					}
+					loadComs(global.newsObjView.agape_media_SourceID)
+				break;
+
+				default:
+					for(var key in global.newsObjView){
+						switch(key){
+							case 'agape_media_createDate':
+								var timeDateVal=getTime(global.newsObjView[key],'true')
+								$("#"+key).html(timeDateVal)
+							
+							break;
+
+							case 'agape_media_lastComment_date':
+								var timeDateVal=getTime(global.newsObjView[key],'true')
+								$("#"+key).html(timeDateVal)
+							break;
+
+
+							case 'agape_media_images':
+								imo=$.parseJSON(global.newsObjView[key]);
+								$("#newsImge").attr("src",imo.defaultPic);
+							break;
+
+
+							default:
+								$("#"+key).html(global.newsObjView[key])
+							break;
+						}
+					}
+
+					loadComs(global.newsObjView.agape_media_ID)
+				break;
+
+			}
+
+			$("#commentTitle").html(global.newsObj.agape_media_title);
+
+			
+		
+			
+		})
+
+
+
+
+
+
+
+	$("#more").bind("click",function(){
+		opn();
+	})
+		
+	function opn(){
+		var thopen=document.getElementById('agape_article_content');
+		TweenMax.to(thopen,.3,{css:{display:"block",height:"250px"}})
+		$("#more").unbind("click").bind("click",function(){
+			cln();
+		})
+	}
+ 
+	function cln(){
+		var thopen=document.getElementById('agape_article_content');
+		TweenMax.to(thopen,.3,{css:{display:"block",height:"97px"}});
+		$("#more").unbind("click").bind("click",function(){
+			opn();
+		})
+	}
+
+	
+
+	
+	$("#returnButt").on("click",function(){
+		loadTemplate('mainLBHolder','newsHome.html');
+	})
+
+
+	function loadComs(val){
+
+	
+		var sendo={};
+		sendo.job='quickSelect_atomic';
+		sendo.dbase='agape_comments';
+		sendo.param='agape_commentsSource';
+		sendo.value=val;
+		sendo.start=0;
+		$("#commentsSet").empty();
+		func=function(data){
+			//data=globalTools.stringClearBack(data);
+	
+			var nowObj=globalTools.verify(data);
+			var lengo;
+			var comdat;
+			if(nowObj.returnObj=="set empty" || nowObj.returnObj.length==0){
+				$("#commentsSet").append("<div style='font-size:30px;color:#eee;margin:auto;width:320px;font-family:arial;text-align:center;padding:12px;'>Be the first to comment</div>");
+			}else{
+				initLoadComments(nowObj)
+			}
+			$(".commentAddComment").on("click",function(){
+				
+				var chowder=0;
+				global.comments.index1=chowder;
+				//global.comments.type="newsArticles";
+				globalTools.save();
+				$("#closeButton").click();
+				id="commentOpener";
+				var div1=document.getElementById("_lboxBackground");
+				var div2=document.getElementById("_lBoxMainDiv");
+				var template={};
+				template.page="commentPage.html";
+				template.job="newsArticles";
+				template.heading="Comment on: "
+				global.candidate.id=id;
+				template.param=id;
+				ingniteLightBox = new LightBox(div1,div2,template,id)
+				ingniteLightBox.lightBoxOn();
+
+			})
+
+		}
+		ajaxCallMedia(sendo,func);
+	}
+
+
+
+
+	function loadCommentsM(obj1,indx){
+		
+
+		var actClass="";
+		var strg2="";
+		var timeDateVal=getTime(obj1.agape_commentsLastComment,'true');
+		var timeDateVal1=getTime(obj1.agape_comment_createdate,'true');
+		strg2=strg2+"<div id='commentReply"+indx+"' class='commentDiv "+actClass+"'>"
+		strg2=strg2+"<div style='float:left;margin-right:10px;font-weight:bold;margin-top:10px;margin-left:15px;'><div><img src='"+obj1.agape_comments_image+"' height='100' width='90' border=1/></div><div >"+obj1.agape_commentCreator_Username+"</div></div>"
+		strg2=strg2+"<div style='float:right;color:blue;margin-right:8px;font-size:13px;'>Comment created:"+timeDateVal1+"</div><br/>"
+		strg2=strg2+"<div style='float:right;color:blue;margin-right:8px;font-size:13px;'>Last comment:<span id='TdateVal"+indx+"'>"+timeDateVal+"</span></div>"
+		strg2=strg2+"<div style='clear:both'></div>"
+		strg2=strg2+"<div style='margin:auto;margin-top:20px;color:#000;width:700px;font-family:arial'><span style='font-weight:bold;'>Comment: </span><span id='commentData"+indx+"'>"+obj1.agape_comments_Comment+"</span></div>"
+		
+		if(obj1.agape_commentsCommentDataResponse){
+
+			if(obj1.agape_commentsCommentDataResponse!="none"){
+
+
+		
+
+			var v = gener8Responses(obj1.agape_commentsCommentDataResponse,indx);
+
+
+			//var v="comments"
+			strg2=strg2+"<div style='margin:auto;margin-top:20px;color:#000;width:700px;font-family:new times'><div style='font-weight:bold;font-family:arial;margin-bottom:10px;'>Responses: </div><div id='comRep"+indx+"'>"+v+"</div></div>"
+		}else{
+			strg2=strg2+"<div style='margin:auto;margin-top:20px;color:#000;width:700px;font-family:new times;display:none'><div style='font-weight:bold;font-family:arial;margin-bottom:10px;'>Responses: </div><div id='comRep"+indx+"'></div></div>"
+		}
+
+
+		}
+
+
+
+		strg2=strg2+"<div id='commReply_"+indx+"_"+obj1.agape_commentsID+"' style='cursor:pointer;'>reply</div>"
+		strg2=strg2+"</div>";
+		$("#commentsSet").append(strg2);
+
+
+	}
+
+
+
+	function gotoPresProf(obj){
+	
+	}
+
+
+		
+
+
+
+		function comRepEvents(){
+			$("div['id^=comRep']").each(function(){
+				$(this).on("click",function(){
+				
+				})
+			})
+		}
+</script>

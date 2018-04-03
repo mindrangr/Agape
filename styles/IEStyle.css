@@ -1,0 +1,438 @@
+.navStyles1
+{
+	font-family:arial;
+	font-size:13px;
+	font-weight:bold;
+	cursor:pointer;	
+}
+
+.navStyles1a
+{
+	font-family:arial;
+	font-size:13px;
+	font-weight:bold;
+	cursor:pointer;
+	padding:3px;
+	text-decoration:underline;
+	color:#d400ff;
+	font-family:arial;
+	float:left;
+	margin-top:3px;
+	
+}
+
+.navStyles1_alt
+{
+	color:#34ff0d;
+	text-decoration:true;
+}
+
+
+.profileTBox
+{
+	width:197px;
+}
+
+.profileTBox_float
+{
+	width:97px;
+	float:left;
+}
+
+.profileStyle1
+{
+	margin:auto;
+	width:900px;
+	height:850px;
+	border:solid 5px #34ff0d;
+	background-image:url('../images/auxpage4.jpg');
+	background-repeat:no-repeat;	
+	background-color:#ffffff;
+}
+
+.profileStyle1Class
+{
+	margin:auto;
+	width:900px;
+	height:1050px;
+	border:solid 5px #34ff0d;
+	background-image:url('../images/auxpage4.jpg');
+	background-repeat:no-repeat;	
+	background-color:#ffffff;
+}
+
+
+.profileStyle1ClassFaq
+{
+	margin:auto;
+	width:900px;
+	height:2680px;
+	border:solid 5px #34ff0d;
+	background-image:url('../images/auxpage4.jpg');
+	background-repeat:no-repeat;	
+	background-color:#ffffff;
+}
+
+
+
+.profileStyle1_test
+{
+	margin:auto;
+	width:900px;
+	height:1850px;
+	border:solid 5px #34ff0d;
+	background-image:url('../images/auxpagepro.jpg');
+	background-repeat:no-repeat;	
+	background-color:#ffffff;
+}
+
+
+.profileLabelStyles1
+{
+	width:230px;
+	float:left;
+	font-size:14px;
+	font-weight:bold;
+	margin-right:15px;
+}
+
+.profileTboxStyles1
+{
+	float:left;
+	width:200px;
+	z-index:4;
+	position:relative;
+}
+
+.profileTboxStyles11
+{
+	float:left;
+	width:40px;
+
+}
+.profileTboxStyles1label
+{
+	float:left;
+	width:140px;
+	font-family:arial;
+
+	font-size:12px;
+	font-weight:bold;
+	
+}
+
+.profileDivStyles1
+{
+	width:550px;
+	text-align:left;
+	padding:3px;
+}
+
+.profileDivStylesCal
+{
+	width:150px;
+	height:150px;
+	text-align:left;
+	padding:3px;
+	background-color:blue;
+	display:inline-block;
+	z-index:11;
+	position:relative;
+}
+	
+.profileStyle1pro
+{
+	margin:auto;
+	width:950px;
+	height:900px;
+	border:solid 5px #34ff0d;
+	background-image:url('../images/auxpagepro.jpg') ;
+	background-repeat:no-repeat;	
+	background-color:#ffffff;
+	}
+	
+	.profileStyle1pro_test
+{
+	margin:auto;
+	width:900px;
+	height:2060px;
+	border:solid 5px #34ff0d;
+	background-image:url('../images/auxpagepro_slim.jpg') ;
+	background-repeat:no-repeat;	
+	background-color:#ffffff;
+	}
+	
+	
+.profileStyle1a
+{
+	margin:auto;
+	width:950px;
+	height:850px;
+	border:solid 5px #34ff0d;
+	background-image:url('../images/auxpage2.jpg');
+	background-repeat:no-repeat;
+	padding-top:220px;
+	background-color:#ffffff;
+}
+
+
+.profileStyle1aIndex
+{
+	margin:auto;
+	width:900px;
+	height:720px;
+	border:solid 5px #34ff0d;
+	background-image:url('../images/auxpage2.jpg');
+	background-repeat:no-repeat;
+	padding-top:160px;
+	background-color:#ffffff;
+}
+
+.profileSearchDivsStyle1
+{
+	height:45px;border-bottom:solid 1px #000000;
+	background-color:#696969;
+	cursor:pointer;
+}
+
+.profileSearchDivsStyle2
+{
+	height:45px;
+	border-bottom:solid 1px #000000;
+	background-color:#8a8a8a;
+	cursor:pointer;
+}
+
+.searchDataStyle1
+{
+	font-size:10px;
+	float:left;
+	color:#ffffff;
+	font-family:arial;
+}
+
+.searchLabelStyle1
+{
+	font-size:10px;
+	float:left;
+	width:70px;
+	font-family:arial;
+}
+
+
+.loginPanel
+{
+	height:200px;
+	width:940px;
+	padding-top:50px;
+	font-size:13px;
+}
+
+
+
+.divDash1
+{
+	float:left;
+	padding:5px;					
+	font-family:arial;
+	font-size:24px;
+	font-weight:bold;
+	border:solid 2px #ffffff;
+	font-family:arial;
+
+}
+
+.divDash2
+{
+	float:left;
+	padding:5px;
+	padding-bottom:5px;	
+	font-family:arial;
+	font-size:24px;
+	font-weight:bold;
+	border:solid 2px #ffffff;
+	font-family:arial;
+
+}
+
+
+				
+				.divDash
+				{
+					float:left;
+					padding:5px;
+					border:solid 2px #696969;
+					
+					font-family:arial;
+					font-size:24px;
+					font-weight:bold;
+					cursor:pointer;										
+				}
+				
+
+				
+				.divDash_inv
+				{
+					visibility:hidden;
+				
+				}
+				.divDash_inv1
+				{
+					display:none;
+				
+				}
+				
+div.datepicker{ 
+ font-size:10px; 
+}
+
+.searchBrdCrumb
+{
+	display:inline-block;
+	width:50px;
+	font-size:10px;
+	color:lime;
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+
+				.messagesName
+				{
+					font-family:arial;
+					font-size:13px;
+					font-weight:bold;
+					padding:3px;
+					width:220px;
+					float:left;
+				}
+				
+				.messageDate
+				{
+					width:230px;
+					float:right;
+					margin-left:10px;
+					text-align:right;
+					margin-right:8px;					
+					font-family:arial;
+					font-size:13px;
+					font-weight:normal;
+				}
+				
+				.messageX
+				{
+					color:red;
+					font-weight:bold;
+					float:right;
+					width:10px;
+					text-align:right;
+					cursor:pointer;
+					font-size:13px;
+					margin-right:2px;
+				}
+				
+				.messageDiv
+				{
+					font-family:arial;
+					font-size:13px;
+					padding:3px;
+					font-weight:normal;
+					width:360px;				
+				}
+				
+				.messageContainer1
+				{
+					border:solid 1px #000000;
+					padding:6px;
+					background-color:#e5d0be;				
+				}
+				
+				.messageContainer2
+				{
+					border:solid 1px #000000;
+					padding:6px;
+					background-color:#e4ae80;				
+				}
+				
+				.messageSendButtonContainer
+				{
+					font-family:arial;
+					font-size:13px;
+					font-weight:bold;
+					padding:3px;					
+				}
+				
+				.messageImageholder
+				{
+					vertical-align:top;
+					float:left;			
+				}
+				
+				.label_pr
+				{
+					font-family:arial;
+					color:#ffffff;
+				}
+				
+				.fields_pr
+				{
+					color:lime;
+					font-family:arial;
+					width:105px;
+				}
+				
+				.profile_descripBoxes
+				{
+					height:200px;
+					width:630px;
+					border:solid 1px lime;
+					margin-left:25px;
+					padding:5px;
+					background-color:#373636;
+					color:#939090;
+					font-family:arial;
+				}
+				
+				.headFAQ
+				{
+				font-weight:bold;
+				}
+
+				
+				.navDiamonds
+				{
+					font-family:wingdings;
+					float:left;
+					font-size:10px;
+					margin-top:9px;
+					color:blue;					
+				}
+				
+				@font-face
+				{
+					font-family:EdwardianScript;
+					src: url('../fonts/EdwardianScript.ttf'), url('../fonts/EdwardianScript.eot');
+					
+				}
+				
+				span.EdwardianScript1 { 
+					font-family: EdwardianScript;
+					font-size:32px;
+					font-weight:bold;
+					color:#ffffff;
+					margin-left:10px;
+				}
+				
+				.clearBoth
+				{
+					clear:both;
+				}
+				
+				.searchPanelLabel
+				{
+					float:left;
+					width:100px;
+					text-align:left;
+					color:red;
+				
+				}

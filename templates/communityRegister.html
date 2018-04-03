@@ -1,0 +1,213 @@
+<div style='font-family:arial;'>
+	<div class="topTab">Answer a few questions and lets get started</div>
+		<div id='formQuestions' style="width:700px;margin:auto;">
+						<div class="newQuestionHolder">
+							<div style="width:550px;margin:auto;">
+								<div class='newQuestionbLabels'>First name</div>
+								<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+									<input type='textbox' class="inputboxnew" id='agape_profile_firstname' />
+								</div>
+								<div style="clear:both"></div>
+							</div>
+						
+						</div>
+
+						<div class="newQuestionHolder">
+							<div style="width:550px;margin:auto;">
+								<div class='newQuestionbLabels'>Last name</div>
+								<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+									<input type='textbox' class="inputboxnew" id='agape_profile_lastname' />
+								</div>
+								<div style="clear:both"></div>
+							</div>
+						
+						</div>
+
+
+						<div class="newQuestionHolder">
+							<div style="width:550px;margin:auto;">
+								<div class='newQuestionbLabels'>State</div>
+								<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+									
+									<select class="dropDownNew" id='agape_profile_state'>
+										<option>Select one</option>
+									
+									</select>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+						</div>
+
+						<div class="newQuestionHolder">
+							<div style="width:550px;margin:auto;">
+								<div class='newQuestionbLabels'>City</div>
+								<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+
+									<select class="dropDownNew" id='agape_profile_city'>
+										<option>Select state</option>
+									
+									</select>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+					</div>
+					<div class="newQuestionHolder">
+						<div style="width:550px;margin:auto;">
+							<div class='newQuestionbLabels'>Username</div>
+							<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+								<input type='textbox' class="inputboxnew" id='agape_profile_username' />
+							</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+					<div class="newQuestionHolder">
+						<div style="width:550px;margin:auto;">
+							<div class='newQuestionbLabels'>Password</div>
+							<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+								<input type='textbox' class="inputboxnew" id='agape_profile_password' />
+							</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+					
+
+					<div class="newQuestionHolder">
+						<div style="width:550px;margin:auto;">
+							<div class='newQuestionbLabels'>Email address</div>
+							<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+								<input id='agape_profile_email' type='textbox' class="inputboxnew"/>
+							</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+
+					<div class="newQuestionHolder">
+							<div style="width:550px;margin:auto;">
+								<div class='newQuestionbLabels'>Race</div>
+								<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+									
+									<select class="dropDownNew" id='agape_profile_race'>
+									
+									</select>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+						</div>
+					
+					<div style='width:700px;margin-top:10px;'>
+						<div style='margin-left:80px;'>
+							<div id="cProfile" class='optButtons1 '>Get started!</div>
+							
+							
+							<div style='clear:both;'></div>
+						</div>
+					</div>
+				</div>
+				</div>
+
+					<script type="text/javascript">
+						$(document).ready(function(){
+
+							var stateObj = new stateElem('states',"agape_profile_state","agape_profile_city","true","true","param");
+							var fieldIndx=formObj.fields[10].quesParams.length;
+							$("#agape_profile_race").append("<option value='Select'>- Select -</option>");
+							for(v=0;v<fieldIndx;v++){
+								if(formObj.fields[10].quesParams[v]!="Not important"  && formObj.fields[10].quesParams[v]!="Not Answered"){
+									$("#agape_profile_race").append("<option>"+formObj.fields[10].quesParams[v]+"</option>");
+								}
+							}
+							
+
+
+							// Add events to form fields
+							$("#formQuestions :input").each(function(){
+								if($(this).prop("type")=="text"){
+									$(this).on("keydown",function(){
+										$(this).css("background","#dedede")
+										$(this).parent().css("background","#dedede")
+									})
+								}
+
+
+								if($(this).prop("type")=="select-one"){
+									$(this).on("change",function(){
+										$(this).css("background","#dedede")
+										$(this).parent().css("background","#dedede")
+									})
+								}
+
+							})
+
+							$("#footerPush").css({"height":"700px"})
+
+
+							// Click event for submit button
+
+							$("#cProfile").unbind("click").on("click",function(){
+								var submit="true";
+								var val1=$("#agape_profile_password").val();
+								sendObj={};
+								sendObj.job="quickInsertAtomic";
+								sendObj.key="quickSelect";
+								sendObj.kdbase="agape_profile";
+								sendObj.dbase="agape_profile";
+								sendObj.kob="where agape_profile_username='"+val1+"'";
+								sendObj.obj={}
+								$("#formQuestions :input").each(function(){
+									if($(this).val()=="" || $(this).val()=="Select"){
+										submit="false"
+										$(this).css("background","gray")
+										$(this).parent().css("background","gray")
+									}else{
+										sendObj.obj[$(this).attr("id")]=$(this).val();
+									}
+									
+								})
+								if(submit=="true"){
+									var funct=function(datal1){
+										var h=globalTools.verify(datal1);
+										global.userObj=h.returnObj[0];
+										global.navFunc="LoggedIn";
+										globalTools.save();
+										turnOnNav();
+									}
+									sendObj.obj.agape_profile_romanceAccount="InActive";
+									sendObj.obj.agape_profile_presidentAccount="InActive";
+									sendObj.obj.agape_vote_recordPolls="Not Answered"
+									ajaxCallPost(sendObj,funct)
+
+								}
+							})
+							
+						})
+
+						console.log(66666666)
+						console.log(formObj.fields[10])
+						console.log(66666666)
+
+						function chkField(){
+
+							
+						}
+
+						/*$(function(){
+							$('#agape_profile_state').on("change",function(){
+								var leng=global.stateObj.returnObj.length;
+								var cities;
+								for(var i=0;i<leng;i++){
+									if($(this).val()==global.stateObj.returnObj[i].state_name){
+										cities=global.stateObj.returnObj[i].state_cities;
+									}
+								}
+								cities=cities.split("$$");
+								$("#agape_profile_city").empty().append("<option>Select one</option>")
+								for(var i=0;i<cities.length;i++){
+									$("#agape_profile_city").append("<option>"+cities[i]+"</option>")
+				
+								}
+							})
+
+						})*/
+
+
+					</script>

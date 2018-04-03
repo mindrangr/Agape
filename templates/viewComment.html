@@ -1,0 +1,172 @@
+<script type="text/javascript">
+</script>
+
+	<style>
+		.newQuestionbLabels{
+			width:150px;
+		}
+
+		.actClass{
+			background-color:#ccc;
+		}
+
+		.grad2{
+			/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0f0f0f+0,5dbef3+28,303030+62,7db9e8+100 */
+background: #0f0f0f; /* Old browsers */
+background: -moz-linear-gradient(top,  #0f0f0f 0%, #5dbef3 28%, #303030 62%, #7db9e8 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #0f0f0f 0%,#5dbef3 28%,#303030 62%,#7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #0f0f0f 0%,#5dbef3 28%,#303030 62%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f0f0f', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+
+		}
+	</style>
+	<div >
+		<div  id="proView" style="float:left;width:100%;height:500px;padding:4px;">	
+			<!-- Begin View panel-->
+			<div id="view" style="z-index:15;width:900px;margin:auto;">
+				<br/>
+				
+				<div id='comment' style='height:490px;overflow:auto;background-image:url(images/blogImg.gif);background-color:red;'>
+					<div style='padding:8px;border-radius:6px;margin:auto;height:460px;border:solid 1px #000;' class="grad2">
+						<div id="commentTitle" style='color:#eee;padding:4px;font-family:arial;padding-bottom:8px;text-align:left'></div>
+						<div >
+							<div style='margin-top:15px;height:370px;overflow:auto;' id="comments">
+							</div>
+						</div>
+						<div class="commentAddComment" style='margin-top:10px;'>Add Comment</div>
+						<div style='clear:both'></div>
+					</div>
+				</div>
+				
+				<div style='clear:both'></div>	
+			</div>							
+			<!-- End View panel-->
+		</div>		
+	</div>
+</html>
+<script type="text/javascript" >
+
+$("#comments").empty().append("<div style='font-size:30px;color:#eee;margin:auto;width:320px;font-family:arial;text-align:center;'>Be the first to comment</div>");
+function loadComs(val){
+	var sendo={};
+	sendo.job='quickSelect_atomic';
+	sendo.dbase='agape_comments';
+	sendo.param='agape_commentsSource';
+	sendo.value=val;
+	sendo.start=0;
+	func=function(data){
+		//data=globalTools.stringClearBack(data);
+		console.log(data)
+		var nowObj=globalTools.verify(data);
+
+		var lengo
+		var comdat
+
+		if(nowObj.returnObj=="set empty"){
+			alert("empty set")
+		}else{
+			lengo=nowObj.returnObj.length;
+			global.comments.comdat=nowObj.returnObj;
+			globalTools.save();
+			if(lengo>0){
+				$("#comments").empty();
+			}
+			for(d2=0;d2<lengo;d2++){
+				loadCommentsM(nowObj.returnObj[d2],d2);
+			}
+
+
+		$(".commentReply").each(function(){
+			$(this).on('click',function(){
+				var bang=$(this).parent().attr("id");
+
+				if(bang==undefined){
+
+					bang=$(this).parent().parent().attr("id");
+				}
+				var dato=$(this).prev().prev().prev().html();
+				var namo=$(this).prev().prev().prev().prev().html();
+				var ind=bang.substr("12");
+				
+				global.comments.type="commentsNewsReply";
+				global.comments.index1=parseInt(ind);
+				id="commentOpener";
+			var div1=document.getElementById("_lboxBackground");
+			var div2=document.getElementById("_lBoxMainDiv");
+			var template={};
+			template.page="createComment.html";
+			template.job="visitprofile";
+			global.candidate.id=id;
+			template.param=id;
+			ingniteLightBox = new LightBox(div1,div2,template,id)
+			ingniteLightBox.lightBoxOn()
+			})
+		})
+		$("#returnButt").on("click",function(){
+			$("#closeButton").click();
+			loadTemplate('mainLBHolder','newsHome.html');
+		})
+		
+		}
+
+		$(".commentAddComment").on("click",function(){
+			var chowder=0;
+			global.comments.index1=chowder;
+			global.comments.type="newComment"
+			$("#closeButton").click();
+			id="commentOpener";
+			var div1=document.getElementById("_lboxBackground");
+			var div2=document.getElementById("_lBoxMainDiv");
+			var template={};
+			template.page="createComment.html";
+			template.job="visitprofile";
+			global.candidate.id=id;
+			template.param=id;
+			ingniteLightBox = new LightBox(div1,div2,template,id)
+			ingniteLightBox.lightBoxOn()
+		})
+		
+
+
+	}
+	ajaxCallMedia(sendo,func);
+}
+
+function loadCommentsM(obj1,indx){
+	//alert("insiede")
+	var actClass="";
+	var strg2="";
+		var timeDateVal=getTime(obj1.agape_commentsLastComment,'true');
+		strg2=strg2+"<div id='commentReply"+indx+"' class='commentDiv "+actClass+"'>"
+		strg2=strg2+"<div style='float:left;margin-right:10px;font-weight:bold;margin-top:10px;margin-left:15px;'><div><img src='"+obj1.agape_comments_image+"' height='100' width='90' border=1/></div><div >"+obj1.agape_commentCreator_Username+"</div></div>"
+		strg2=strg2+"<div style='float:right;color:blue;margin-right:8px;font-size:13px;'>"+timeDateVal+"</div>"
+		strg2=strg2+"<div style='clear:both'></div>"
+		strg2=strg2+"<div style='margin:auto;margin-top:20px;color:#000;width:700px;font-family:arial'><span style='font-weight:bold;'>Comment: </span>"+obj1.agape_commentsCommentData+"</div>"
+		
+
+		if(obj1.agape_commentsCommentDataResponse!="none"){
+
+			var v = gener8Responses(obj1.agape_commentsCommentDataResponse)
+
+			strg2=strg2+"<div style='margin:auto;margin-top:20px;color:#000;width:700px;font-family:new times'><div style='font-weight:bold;font-family:arial;margin-bottom:10px;'>Responses: </div><div>"+v+"</div></div>"
+		}else{
+			
+		}
+		strg2=strg2+"<div class='commentReply'>reply</div>"
+		strg2=strg2+"</div>";
+	
+	$("#comments").append(strg2);
+}
+
+
+
+
+
+
+$(document).ready(function(){
+	$("#commentTitle").html(global.newsObj.agape_media_title);
+	loadComs(global.newsObjView.agape_media_ID)
+})
+
+
+</script>

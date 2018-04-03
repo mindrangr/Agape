@@ -1,0 +1,1320 @@
+<style>
+.grid_over{
+	
+	border-top:solid 1px gray;
+	background-color:#79a1b8;
+	font-size:11px;
+}
+
+	.grid_over1{
+		
+		border-top:solid 1px gray;
+		background-color:#798cb8;
+		font-size:11px;
+	}
+
+
+
+	.grid_overAccountAdmin{
+	
+		border:solid 1px #dedede;
+		border-top:none;
+		
+		font-size:11px;
+		background-color: #769384;
+		color:rgb(21, 43, 27);
+		font-weight:bold;
+	}
+
+	.grid_overAccountAdmin1{
+
+		border:solid 1px #dedede;
+		border-top:none;
+		
+		font-size:11px;
+		background-color: #617e70;
+		color:rgb(21, 43, 27);
+		font-weight:bold;
+		min-height:20px;
+	}
+
+	
+</style>
+
+
+
+<script>
+
+
+
+var t=convertNowToPhP();
+
+function getCommAccnts(obj,indx,returnFunk){
+
+	var jObj={};
+	jObj.job="atomic_selectAll";
+	jObj.dbase="agape_commercial";
+	jObj.uID=global.userObj.agape_profile_memberID;
+	jObj.ob="where agape_commercial_profile_Id="+global.userObj.agape_profile_memberID;
+	var retF=function(data){
+
+console.log(77777777)
+
+
+
+		var b2=globalTools.verify(data);
+
+		if(b2.returnObj=="set empty"){
+			var de=data.split("**")
+			if(de[2]=="No session"){
+				logout();
+			}
+		}
+
+		
+
+	
+console.log(b2)
+console.log(77777777)
+		global.userObj.agape_commercial=b2.returnObj;
+		$("#commAcct").html(global.userObj.agape_commercial[indx].agape_commercial_Company)
+		var modl={};
+		addCommercialAccount()
+		modl.job="atomic_selectAll";
+		modl.dbase="agape_advertisements";
+		modl.uID=global.userObj.agape_profile_memberID;
+		modl.ob="where agape_advertisement_Commercial_ID="+global.userObj.agape_commercial[indx].agape_commercial_Id;
+		var newFunc=function(data1){
+			global.userObj.agape_Advertisements=globalTools.verify(data1);
+
+			if(global.userObj.agape_Advertisements.countR>0){
+				$("#AdEditTab").show();
+			}else{
+				$("#AdEditTab").hide();
+			}
+
+			addElems()
+			if(returnFunk){
+				returnFunk()
+				returnFunk=null;
+			}
+			
+		}
+		ajaxCallMedia(modl,newFunc);
+	}
+	ajaxCallPost(jObj,retF)
+
+}
+
+
+
+
+
+function addCommercialAccount(){
+
+
+
+	var commIndx=global.userObj.agape_commercial.length;
+	var f="";
+	var ht=23
+
+	var classs="grid_overAccountAdmin";
+	var cntr=0
+	for(b=0;b<commIndx;b++){
+		if(global.userObj.agape_commercial[b].agape_commercial_Industry.length>18){
+			ht=45
+		}
+		cntr=b+1;
+		f=f+"<div class='"+classs+"' style='height:"+ht+"px;' ><div style='float:left;width:210px;'><span style='display:inline-block;margin-left:3px;'>"+cntr+".</span><span style='cursor:pointer;padding:4px;display:inline-block' class='edlinkAdmin' id='edlink"+b+"'>"+global.userObj.agape_commercial[b].agape_commercial_Company+"</span></div><div style='float:left;width:140px;margin:auto;border-right:solid 1px #dedede;border-left:solid 1px #dedede;text-align:center;'><span style='cursor:pointer;padding:4px;display:inline-block'>"+global.userObj.agape_commercial[b].agape_commercial_Industry+"</span></div><div style='float:left;width:150px;text-align:center;border-right:solid 1px #dedede;height:100%'><span style='cursor:pointer;padding:4px;display:inline-block'>"+global.userObj.agape_commercial[b].agape_commercial_Rep_Firstname+" "+global.userObj.agape_commercial[b].agape_commercial_Rep_Lastname+"</span></div><div style='float:left;text-align:center;width:80px;border-right:solid 1px #dedede;height:100%'><span style='cursor:pointer;padding:4px;display:inline-block'>$"+global.userObj.agape_commercial[b].agape_commercial_AddCost+"</span></div><div style='float:left;text-align:left;width:150px;border-right:solid 1px #dedede;height:100%'><span style='display:inline-block;padding:4px;'>653-568-3267</span></div><div style='clear:both'></div></div></div>";
+			if(classs=="grid_overAccountAdmin1"){
+
+				classs="grid_overAccountAdmin"
+
+			}else{
+				classs="grid_overAccountAdmin1"
+			}
+
+
+	}
+
+	$("#innerEditAdmin").empty().append(f)
+	$("#commercialTotal").html()
+
+	var o2={"text-decoration":"true","mouseover":"true"};
+	var w2 = new addMouseOver("edlinkAdmin","lime",o2,"none");
+
+
+	$(".edlinkAdmin").each(function(){
+		$(this).on("click",function(){
+			//alert($(this).attr("id"))
+			$("#innerEditAdmin").hide()
+			$("#innerEditAdminForm").show()
+
+			var r=$(this).attr("id")+"";
+			var r1= r.substr("6");
+			global.agape_advertisements_index=r1;
+			for(var k in global.userObj.agape_commercial[r1]){
+				if("#"+k){
+					$("#"+k).val(global.userObj.agape_commercial[r1][k])
+				
+					//$("#agape_commercial_Industry").val()
+				}
+			}
+			stateObj = new stateElem('statesFull',"agape_commercial_Rep_State","agape_commercial_Rep_City","true","true",global.userObj.agape_commercial[r1].agape_commercial_Rep_State,global.userObj.agape_commercial[r1].agape_commercial_Rep_City);
+
+			getCommAccnts(global.userObj.agape_commercial[r1].agape_commercial_Id,r1)
+			$("#commAcct").html(global.userObj.agape_commercial[r1].agape_commercial_Company)
+			
+
+		})
+	})
+	
+
+
+}
+
+
+
+function addElems(){
+
+			
+			globalTools.save();
+
+
+			if(global.userObj.agape_Advertisements.countR>0){
+				$("#AdEditTab").show();
+				$("#innerEdit").empty();
+				var c = global.userObj.agape_Advertisements.countR;
+				var c1=global.userObj.agape_Advertisements.returnObj;
+				var classs="grid_over"
+				var toCos=0;
+				for(q=0;q<c;q++){
+					var c2=c1[q].agape_advertisement_Image;
+					if(c2=="none"){
+						c2="advertiseImages/AgapeAd.png"
+					}
+					var q1=q+1;
+					var q3=getTime(c1[q].agape_advertisement_expire,"true","native")
+
+					$("#innerEdit").append("<div class='"+classs+"'><div style='float:left;width:240px;border-right:solid 1px gray'><span style='display:inline-block;margin-left:3px;'>"+q1+".</span><span style='cursor:pointer;padding:4px;display:inline-block'class='edlink' id='edlink"+q+"'>"+c1[q].agape_advertisement_State+", "+c1[q].agape_advertisement_City+"</span></div><div style='float:left;width:40px;margin:auto;border-right:solid 1px gray;text-align:center;'><span style='cursor:pointer;padding:4px;display:inline-block'>"+c1[q].agape_advertisement_Type+"</span></div><div style='float:left;width:150px;text-align:center;border-right:solid 1px gray;'><span style='cursor:pointer;padding:4px;display:inline-block'>Section: "+c1[q].agape_advertisement_Section+"</span></div><div style='float:left;text-align:center;width:120px;border-right:solid 1px gray'><span style='cursor:pointer;padding:4px;display:inline-block'>Price: $"+c1[q].agape_advertisement_Price+"</span></div><div style='float:left;text-align:left;width:210px;border-right:solid 1px gray'><span style='display:inline-block;padding:4px;'>Expires: "+q3+"</span></div><div style='clear:both'></div></div>")
+
+
+					toCos=toCos+parseFloat(c1[q].agape_advertisement_Price)
+
+					if(classs=="grid_over1"){
+
+						
+						classs="grid_over"
+
+					}else{
+						classs="grid_over1"
+					}
+
+
+				
+				}
+
+				$("#AdCost").html(toCos.toFixed(2))
+
+				$(".edlink").each(function(){
+					$(this).unbind("click").on("click",function(){
+						var indexr=$(this).attr("id")+"";
+						var index=indexr.substr(6);
+				
+						var div1=document.getElementById("_lboxBackground");
+							var div2=document.getElementById("_lBoxMainDiv");
+							var template={};
+							id=index;
+							template.id=index;
+							template.page="EditAd.html";
+							template.job="visitprofile";
+							global.returnFunction_close="none"
+							global.candidate.id=id;
+							template.param=global.userObj.agape_Advertisements.returnObj[index]
+							ingniteLightBox = new LightBox(div1,div2,template,id)
+							ingniteLightBox.lightBoxOn()
+					})
+				})
+				
+			}
+
+			var o2={"text-decoration":"true","mouseover":"true"};
+			var w2 = new addMouseOver("edlink","orange",o2,"none")
+}
+
+
+</script>
+
+<style>
+
+.filterSelect{
+	width:140px;
+	margin-left:4px;
+	border-color:#fff;
+	font-weight:bold;
+}
+
+</style>
+
+
+<div  style="color:#eee;width:850px;margin:auto;font-family:arial;border:solid 1px #eee;border-radius:10px;padding:10px;background-color: #000;height:540px;">
+	<div id='AdFormTab' class='advertiseTab advertiseTab_on'>Advertise Form</div>
+	<div id='AdAcctTab' class='advertiseTab'>Account</div>
+	<div id='AdEditTab' class='advertiseTab' style='display:none'>Edit ad</div>
+	<div id="AddCommAct" style='float:left;color:#eee;font-size:12px;margin-top:6px;text-decoration: underline;margin-left:10px;cursor:pointer;display:none;'>Add commercial account</div>
+	<div id='Ad_buyTab' class='advertiseTab' style='display:none'>Purchase Ads</div>
+	<div id="adCostDiv" style='float:left;margin-left:20px;padding-top:4px;display: none;'>Total cost: $<span id="AdCost"></span></div>
+	<div style='clear:both;'></div>
+	<br/>
+	<div id='AdForm' class='addDisplayDiv' >
+	<div id='AdForm1'></div>
+		
+		<br/>
+		<span>Total:</span>
+		<span id="totalCost"></span>
+		<div>
+			<div style='float:left' id='adSpace'></div>
+			<div style='float:left;margin-left:15px;'>
+				
+			</div>
+			
+			<div style='clear:both;'></div>
+		</div>
+		<br/>
+
+		<div class="optButtons1" style="margin:auto;background:#4a7892;color:#30617c;float:left;border-radius:5px;margin-top:8px;width:80px;border:solid 1px #79a1b8;" id="submitAdButt">Next</div>
+		<div class="optButtons1" style="margin:auto;background:#4a7892;color:#fff;float:left;border-radius:5px;margin-top:8px;margin-left:8px;border:solid 1px #79a1b8;" id="backButton">Back</div>
+		
+		<div class="optButtons1" style="margin:auto;background:#4a7892;color:#fff;float:left;border-radius:5px;margin-top:8px;margin-left:8px;border:solid 1px #79a1b8;display:none;" id="addBanner">Add Banner</div>
+		<div class="optButtons1" style="margin:auto;background:#4a7892;color:#fff;float:left;border-radius:5px;margin-top:8px;margin-left:8px;border:solid 1px #79a1b8;" id="clearForm">Clear form</div>
+		<div style='clear:both;'></div>
+		
+		<!--<div style="width:600px;">
+			<div style="color:#c9d5d6">Place classified ad in the following sections: <span id='adState' style='display: inline-block;margin-right:10px;color:orange'></span><span id="AddWS" style='color:lime;text-decoration:underline;font-size:11px;display:none;'>Add whole state</span> </div>
+			<div id='adCity'></div>
+
+			<div>
+				<div style='float:left;padding-top: 5px;width:120px;'>Total: $<span id='total'>0</span></div>
+				<div style='float:left;'></div>
+				<div style='clear:both;'></div>
+			</div>
+		</div>-->
+	</div>
+
+	<div id='AdEdit' class='addDisplayDiv' style='display:none;height:500px;overflow:auto;'>
+			<div style="margin-left:20px;" id="commAcct"></div>
+	<div id="innerEdit">
+		<div><div style="float:left"></div><div style="float:left"></div><div style="clear:both;"></div></div>
+	</div>
+	</div>
+
+	<div id='Ad_buy' class='addDisplayDiv' style='display:none;'>pay</div>
+
+	<div id='AdAcct' class='addDisplayDiv' style='display:none;'>
+		<div >Total costs: $<span id='commercialTotal'>0</span></div>
+	
+		<div id="innerEditAdminForm" style="display:none;">
+			<div id='returnToAdmin' style="color:lime;font-size: 11px;cursor:pointer;margin-left:10px;">< - return</div>
+
+			<div>
+				
+				<div class="newQuestionHolder">
+					<div style="width:680px;margin:auto;">
+						<div class='newQuestionbLabels1'>Business name</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<input id='agape_commercial_Company' type='textbox' class="inputboxnew"/>
+						</div>
+						
+						<div style="clear:both"></div>
+					</div>
+				</div>
+				<div class="newQuestionHolder">
+					<div style="width:680px;margin:auto;">
+						<div class='newQuestionbLabels1'>Rep First name</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<input type='textbox' class="inputboxnew" id='agape_commercial_Rep_Firstname' />
+						</div>
+						<div style="clear:both"></div>
+					</div>
+				
+				</div>
+
+				<div class="newQuestionHolder">
+					<div style="width:680px;margin:auto;">
+						<div class='newQuestionbLabels1'>Rep Last name</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<input type='textbox' class="inputboxnew" id='agape_commercial_Rep_Lastname' />
+						</div>
+						<div style="clear:both"></div>
+					</div>
+				
+				</div>
+
+
+				<div class="newQuestionHolder">
+					<div style="width:680px;margin:auto;">
+						<div class='newQuestionbLabels1'>Business Industry</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<select type='textbox' class="inputboxnew" id='agape_commercial_Industry'></select>
+						</div>
+						
+						<div style="clear:both"></div>
+					</div>
+				</div>
+
+				<div class="newQuestionHolder">
+					<div style="width:680px;margin:auto;">
+						<div class='newQuestionbLabels1'>Business Address</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<input id='agape_commercial_Address' type='textbox' class="inputboxnew"/>
+						</div>
+				
+						<div style="clear:both"></div>
+					</div>
+				</div>
+					
+
+				<div class="newQuestionHolder">
+					<div style="width:680px;margin:auto;">
+						<div class='newQuestionbLabels1'>Email address</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<input id='agape_commercial_Email' type='textbox' class="inputboxnew"/>
+						</div>
+						<div class='teet doNotDisplay' id="agape_profile_email_err" style='float:left;color:red;font-size:12px;font-weight:bold;padding-top:5px;padding-left:8px;'>Email taken</div>
+						<div style="clear:both"></div>
+					</div>
+				</div>
+			
+
+				<div class="newQuestionHolder">
+					<div style="width:680px;margin:auto;">
+						<div class='newQuestionbLabels1'>Business state</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<select class="dropDownNew" id='agape_commercial_Rep_State'>
+							</select>
+						</div>
+						
+						<div style="clear:both"></div>
+					</div>
+				</div>
+
+				<div class="newQuestionHolder">
+					<div style="width:680px;margin:auto;">
+						<div class='newQuestionbLabels1'>Business city</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<select type='textbox' class="inputboxnew" id='agape_commercial_Rep_City'></select>
+						</div>
+						
+						<div style="clear:both"></div>
+					</div>
+				</div>
+
+				<div class="newQuestionHolder">
+					<div style="width:680px;margin:auto;">
+						<div class='newQuestionbLabels1'>Business zip code</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<input type='textbox' class="inputboxnew" id='agape_commercial_zipCode' />
+						</div>
+						
+						<div style="clear:both"></div>
+					</div>
+				</div>
+
+
+				<div class="newQuestionHolder">
+					<div style="width:680px;margin:auto;">
+						<div class='newQuestionbLabels1'>Business phone number</div>
+						<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+							<input type='textbox' class="inputboxnew" id='agape_commercial_RepPhoneNumber' />
+						</div>
+						
+						<div style="clear:both"></div>
+					</div>
+				</div>
+
+					
+				<div style='width:600px;'>
+					<div style='width:170px;margin:auto;'>
+						<div id="gStartedButtonCommercial" class='optButtons1' >Update</div>
+						
+						<div style='clear:both;'></div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+		<div id="innerEditAdmin" style="border-top:solid 1px #dedede;" ></div>
+	</div>
+		
+</div>
+
+</div>
+
+
+
+
+<script>
+	var AO
+	var ty=function(){
+			AO = new advertiseObj();
+	}
+	getCommAccnts(global.userObj.agape_profile_memberID,0,ty);
+
+
+	$("#AddCommAct").unbind("click").bind("click",function(){
+		
+		loadTemplate("mainLBHolder","CommercialForm.html");
+		$("#body").addClass("bodyStyles_defaultGradient");
+	})
+
+	
+
+	$("#clearForm").unbind("click").on("click",function(){
+		
+		$("input[name='type']").each(function(){
+			$(this).prop("checked",false).prop("disabled",false)
+		})
+
+		$("input[name='p1ackage']").each(function(){
+			$(this).prop("checked",false).prop("disabled",false)
+		})
+		$("#adSpace").empty();
+		$("#total").val(0)
+		AO.currentOrder.locations=[];
+
+
+		if($("#state").val()!==undefined){
+			$("#state").val("Select").prop("disabled",false);
+		}
+
+
+		if($("#city").val()!==undefined){
+			$("#city").empty().append("<option>- Select -</option>");
+			$("#cityDiv").show();
+		}
+
+		
+		$("#submitAdButt").unbind("click").css("color","#30617c");
+		$("#total").html("0");
+
+	})
+
+
+	var fIndx=formObj.fields[43].quesParams.length;
+	for(var b=0;b<fIndx;b++){
+		$("#agape_commercial_Industry").append("<option value='"+formObj.fields[43].quesParams[b]+"'>"+formObj.fields[43].quesParams[b]+"</option>");
+
+	}
+
+	$(".advertiseTab").each(function(){
+		$(this).on("click",function(){
+			$(".addDisplayDiv").each(function(){
+				$(this).hide();
+			})
+			var b=$(this).attr("id")+"";
+			var c=b.substr(0,6);
+			$("#"+c).show();
+			$(".advertiseTab").each(function(){
+				$(this).removeClass("advertiseTab_on");
+			})
+			$("#AddCommAct").hide();
+			$(this).addClass("advertiseTab_on");
+
+			switch(b){
+
+				case 'AdFormTab':
+					$("#opacback").css("height","0px");
+					$("#footerPush").css("height","801px");
+					$("#adCostDiv").hide();
+				break;
+
+
+				case 'AdEditTab':
+
+					$("#opacback").css("height","0px");
+					$("#footerPush").css("height","801px");
+					$("#adCostDiv").show();
+
+				break;
+
+
+				case 'AdAcctTab':
+
+					$("#opacback").css("height","0px");
+					$("#footerPush").css("height","801px");
+					$("#AddCommAct").show();
+				break;
+
+			}
+
+		})
+
+	})
+
+
+
+
+	class advertiseObj{
+		constructor(){
+			this.pageIndex=0;
+			this.locationList=[];
+			this.section=[];
+			this.addBanners=[
+				{"type":"2x2","priceCity":"5.99","priceState":"22","priceNational":"119"},
+				{"type":"1x8","priceCity":"8.99","priceState":"31","priceNational":"139"}
+			];
+			this.code=[
+				"__$Race_#", //race  # = (1-8)
+				"__$State_GA", //state
+				"__$Gender_M", // # = (M,F,A)
+				"__$Religion_#", // # = (1-8)
+				"__$Politics_#", // # = (1-5)
+			];
+			this.order=[
+				{"type":"none","price":"0","locations":[],"section":"none","demographics":[]}
+			];
+
+			this.formPage=[
+				"<div style='margin-bottom:10px;'><div style='margin-bottom:8px;'><span style='display:inline-block;margin-right:10px;'>Commercial Account</span><span><select id='commercialIndex'></select></span></div><span style='color:orange'>1.</span> What type of ad would you like to place?</div><div style='margin-left:15px;''><input id='type' type='radio' name='type' value='1x8' />Top banner  1 x 8</div><br/><div style='margin-left:15px;'><img id='adDiv' class='adDivClass' src='/agape/advertiseImages/autoAd.png' style='padding-top:10px;'' ></div><div style='margin-left:15px;''><input type='radio' id='type' name='type' value='2x2' />Side banner 2 x 2</div><br/><div style='margin-left:15px;'><img src='advertiseImages/xfinity.png' width='145' style='margin-bottom:5px;'></div><br/>",
+
+				"<div ><span style='color:orange'>2.</span> What section would you like to place your ad?</div><div id='section'><ul><input type='radio' name='p1ackage' id='Politics' /> Politics<br/><input type='radio' name='p1ackage' id='News' /> News<br/><input type='radio' name='p1ackage' id='Trump' /> Trump watch<br/><input type='radio' name='p1ackage' id='Romance' /> Agape Romance</ul></div>",
+
+				"<div style='padding-bottom: 4px;'><span style='display:inline-block;width:210px;margin-bottom:10px;'><span style='color:orange'>3.</span> What state would you like to place your ad in? </span></div><div><select id='state' style='width:150px'><option>- Select -</option></select></div><div id='cityDiv'><div  style='margin-top:20px;margin-bottom:10px;'><span style='display:inline-block;width:210px;'><span style='color:orange'>4.</span> What city would you like to place your ad in? </span></div><div><select id='city' style='width:150px' multiple><option>- Select -</option></select></div></div>",
+
+
+
+				"<div>5. <span style='color:orange'> Demographic filter</span> <div style='padding:4px;' ><input type='radio' name='filter' class='filter2' value='Gender'/><span style='display:inline-block;width:90px;'>Gender:</span><span style='display:inline-block;border-radius:2px;background-color:#fff;width:150px;height:24px;'><select id='agape_profile_gender' class='filterSelect' ></select></span></div><div style='padding:4px;' ><input type='radio' name='filter' class='filter2' value='Race'/><span style='display:inline-block;width:90px;'>Race:</span><span style='display:inline-block;border-radius:2px;background-color:#fff;width:150px;height:24px;'><select id='agape_profile_race' class='filterSelect'></select></span></div><div style='padding:4px;' ><input type='radio' name='filter' class='filter2' value='Religion'/><span style='display:inline-block;width:90px;'>Religion:</span><span style='display:inline-block;border-radius:2px;background-color:#fff;width:150px;height:24px;'><select id='agape_profile_religion' class='filterSelect'></select></span></div><div style='padding:4px;' ><input type='radio' name='filter' class='filter2' value='Politics'/><span style='display:inline-block;width:90px;'>Politics:</span><span style='display:inline-block;border-radius:2px;background-color:#fff;width:150px;height:24px;'><select id='agape_profile_political' class='filterSelect'></select></span></div><div style='padding:4px;' ><input type='radio' name='filter' class='filter2' value='Education'/><span style='display:inline-block;width:90px;'>Education:</span><span style='display:inline-block;border-radius:2px;background-color:#fff;width:150px;height:24px;'><select id='agape_profile_education' class='filterSelect'></select></span></div><div style='padding:4px;' ><input type='radio' name='filter' class='filter2' value='No filter'/><span style='display:inline-block;width:90px;'>No filter:</span></div></div>",
+
+
+					"<form action='https://www.paypal.com/cgi-bin/webscr' method='post' target='_top'><input type='hidden' name='cmd' value='_s-xclick'><input type='hidden' name='hosted_button_id' value='GUG3ZGB7RYNG6'><table><tr><td><input type='hidden' name='on0' value='Pay This amount'>Pay This amount</td></tr><tr><td><input type='text' name='amount' maxlength='200' value=323.13 ></td></tr></table><input type='image' src='https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'><img alt='' border='0' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1'></form>"
+			]
+
+			this.currentOrder={"type":"none","price":"0","locations":[],"section":"none","demographics":"none","state":"none"}
+			this.total=0;
+			var _self=this;
+			this.executeForm();
+
+		}
+
+		executeForm(){
+			
+			if(this.pageIndex>1  && this.pageIndex<3){
+				$("#backButton").show();
+			}else{
+				$("#backButton").hide();
+			}
+			$("#AdForm1").empty().append(this.formPage[this.pageIndex]);
+
+			switch(this.pageIndex){
+				case 0:
+					$("input[name='type']").each(function(){
+						$(this).unbind("click").on("click",function(){
+							AO.AddBanner()
+						})
+					})
+
+
+
+
+					var dLeng=global.userObj.agape_commercial.length;
+
+					for(var fe=0;fe<dLeng;fe++){
+						$("#commercialIndex").append("<option value="+fe+">"+global.userObj.agape_commercial[fe].agape_commercial_Company+"</option>")
+					}
+				
+					$("#addBanner").hide();
+					break;
+
+
+
+				case 1:
+						$("#addBanner").hide();
+						$("input[name='p1ackage']").each(function(){
+							$(this).unbind("click").on("click",function(){
+								AO.AddSection()
+							})
+						})
+						
+					break;
+
+
+				case 2:
+						$("#addBanner").show().unbind("click").on("click",function (){
+							AO.pageIndex=1;
+							AO.movePage("down")
+							//AO.executeForm();
+						});
+						var stateObj = new stateElem('states',"state","city","true","true","param","param","prepend","<option value='All' >All</option>",f10,f20);
+						//
+						
+					break;
+
+
+				case 3:
+					var filterSet="none";
+					$("#addBanner").hide();
+						var g=formObj.fields.length;
+						for(var f=0;f<g;f++){
+							var y="#"+formObj.fields[f].col;
+							if($(y)){
+								var g1=formObj.fields[f].quesParams.length;
+								for(var f1=0;f1<g1;f1++){
+									if(formObj.fields[f].quesParams[f1]!="Not Answered" && formObj.fields[f].quesParams[f1]!="Other" && formObj.fields[f].quesParams[f1]!="Not Important" && formObj.fields[f].quesParams[f1]!="Either"){
+										$(y).append("<option>"+formObj.fields[f].quesParams[f1]+"</option>");
+									}
+								}
+							}
+						}
+
+						$(".filter2").each(function(){
+
+							$(this).unbind("click").on("click",function(){
+								$('.filterSelect').each(function(){
+									$(this).prop("disabled",true);
+								})
+								$(this).next().next().children().eq(0).prop("disabled",false)
+								var gMo=$(this).val();
+								var gMo1=$(this).next().next().children().eq(0).val()
+								$("#submitAdButt").css("color","lime").html("Add filter").unbind("click").on("click",function(){
+		
+
+									var model={}
+
+									model.job="quickInsertAtomic_group"
+									model.obj=AO.currentOrder.locations;
+									model.uID=global.userObj.agape_profile_memberID;
+									model.dbase='agape_advertisements';
+									model.selFunc="selectFunc";
+									model.kob="where agape_advertisement_Commercial_ID="+global.userObj.agape_commercial[AO.currentOrder.commercialIndex].agape_commercial_Id;
+									
+									var gruff=function(lata){
+						
+							
+										var green=globalTools.verify(lata)
+
+										if(green.returnObj=="set empty"){
+											logout();
+										}
+
+						
+										global.userObj.agape_Advertisements=green
+										//AO.currentOrder.locations=global.userObj.agape_Advertisements.returnObj;
+										
+										$("#innerEdit").empty();
+										addElems();
+										var feu=global.userObj.agape_Advertisements.returnObj.length;
+										var added=0;
+										
+										for(var ty=0;ty<feu;ty++)
+										{
+											added=added+parseFloat(global.userObj.agape_Advertisements.returnObj[ty].	agape_advertisement_Price);
+										}
+
+
+
+										var mod1={};
+										mod1.uID=global.userObj.agape_profile_memberID;
+										mod1.job="atomic_selectAll";
+										mod1.dbase="agape_commercial"
+										mod1.ob=" where agape_commercial_profile_Id="+global.userObj.agape_profile_memberID
+
+										
+										var gruff1=function(funk2){
+
+										
+											var freedom=globalTools.verify(funk2);
+											global.userObj.agape_commercial=freedom.returnObj
+
+											globalTools.save();
+											AO.resetAdvertForm();
+											AO.pageIndex=0;
+											$("#AdForm1").empty().append(AO.formPage[AO.pageIndex]);
+											var dLeng=global.userObj.agape_commercial.length;
+											for(var fe=0;fe<dLeng;fe++){
+											$("#commercialIndex").append("<option value="+fe+">"+global.userObj.agape_commercial[fe].agape_commercial_Company+"</option>")
+											
+											}
+											//global.userObj.agape_Advertisements
+											$("#submitAdButt").css("color","#30617c").html("Next")
+											$("input[name='type']").each(function(){
+												
+												$(this).unbind("click").on("click",function(){
+													AO.AddBanner()
+												})
+											})
+											$("#AdEditTab").click();
+
+										}
+										ajaxCallMedia(mod1,gruff1)
+										
+									}
+									ajaxCallMedia(model,gruff)
+									
+
+								})
+
+					
+								switch(gMo){
+
+									case 'Gender':
+										AO.currentOrder.demographics=gMo1+"_Any_Any_Any_Any";
+										//$(this).next().next().prop("disabled",false)
+									break;
+
+									case 'Race':
+										AO.currentOrder.demographics="Any_"+gMo1+"_Any_Any_Any"
+									break;
+
+									case 'Religion':
+										AO.currentOrder.demographics="Any_Any_"+gMo1+"_Any_Any"
+									break;
+
+									case 'Politics':
+										AO.currentOrder.demographics="Any_Any_Any_"+gMo1+"_Any";
+									break;
+
+									case 'Education':
+										AO.currentOrder.demographics="Any_Any_Any_Any_"+gMo1;
+									break;
+
+									default:
+										AO.currentOrder.demographics="Any_Any_Any_Any_Any"
+									break;
+
+
+								}
+
+								
+
+								var v=AO.currentOrder.locations.length;
+								for(var v1=0;v1<v;v1++){
+									var f=convertNowToPhP();
+									//var d=AO.currentOrder.demographics
+									//d=AO.currentOrder.locations[v1].state+"_"+AO.currentOrder.demographics
+									var baseTime = new Date(f);
+									var converTime = new Date();
+									converTime=converTime.setDate(baseTime.getDate()+30);
+									var tesla=convertNowToPhP(converTime)
+								
+									var use1=global.userObj.agape_commercial[AO.currentOrder.commercialIndex];
+								
+									AO.currentOrder.locations[v1].demographics=use1.agape_commercial_Industry+"_advertiseImages/AgapeAd.png_none_"+AO.currentOrder.locations[v1].price+"_"+f+"_"+use1.agape_commercial_Rep_Firstname+" "+use1.agape_commercial_Rep_Lastname+"_"+AO.currentOrder.locations[v1].type+"_"+AO.currentOrder.locations[v1].sections+"_"+use1.agape_commercial_Company+"_"+use1.agape_commercial_Id+"_"+use1.agape_commercial_RepPhoneNumber+"_"+use1.agape_commercial_Address+"_"+use1.agape_commercial_zipCode+"_"+AO.currentOrder.locations[v1].state+"_"+AO.currentOrder.locations[v1].city+"_"+AO.currentOrder.demographics+"_"+tesla+"_"+f+"_"+f
+								}
+
+
+							})
+						})
+						
+					break;
+
+
+					case 4:
+						//$we=$gender."_".$raceCard."_".$rel."_".$newTon."_".$agapepolitical."_".$edu;
+						alert("chowder")
+						
+
+					break;
+
+			}
+			
+		}
+
+		movePage(direction){
+			switch(direction){
+
+				case 'up':
+					this.pageIndex+=1;
+				break;
+
+				case 'down':
+					this.pageIndex-=1;
+				break;
+
+			}
+			if(this.pageIndex>1 && this.pageIndex<3){
+				$("#backButton").show();
+			}else{
+				$("#backButton").hide();
+			}
+			this.executeForm();
+			if(this.pageIndex==2){
+				$("#backButton").html("Add Section");
+
+
+			}else{
+				$("#backButton").html("Add Section")
+			}
+		}
+
+		createOrder(obj){
+
+			var $section=$('input[name=p1ackage]:checked').prop("id");
+			var $banner=$('input[name=type]:checked');
+
+			if($section===undefined || $banner.val()===undefined){
+				
+			}else{
+			
+
+				var tOIdx=this.currentOrder.locations.length;
+
+				var createObj="true";
+				for(var t=0;t<tOIdx;t++){
+					if(this.currentOrder.locations[t].state=="All" ){
+						createObj="false";
+					}
+
+				}
+
+				if(createObj=="true"){
+					var AsateObj={};
+					AsateObj.state="All";
+					AsateObj.city="All";
+					
+					var total1=0;
+					var $bnr=$('input[name=type]:checked');
+					if($bnr.val()=="2x2"){
+						total1=119.99;
+					}
+
+					if($bnr.val()=="1x8"){
+						total1=139.00;
+					}
+					AsateObj.price=total1;
+					this.currentOrder.locations.push(AsateObj);
+
+				}
+
+			}
+
+		}
+
+
+
+
+		calcTotal(){
+	
+			var total=0;
+			var currOrdIndx=this.currentOrder.locations.length;
+			if(currOrdIndx>0){
+				for(var i=0;i<currOrdIndx;i++){
+
+					if(this.currentOrder.locations[i].price==0){
+						total=total+this.currentOrder.price;
+					}else{
+						total=total+this.currentOrder.locations[i].price;
+					}
+					
+				}
+				$("#totalCost").html("$"+total.toFixed(2))
+			}else{
+				$("#totalCost").html(this.currentOrder.price)
+			}
+			this.displayOrder()
+
+		}
+		AddBanner(){
+			var $bnr=$('input[name=type]:checked');
+			this.currentOrder.type=$bnr.val();
+			if($bnr.val()=="1x8"){
+				this.currentOrder.price=139.00;
+			}
+
+			if($bnr.val()=="2x2"){
+				this.currentOrder.price=127.99;
+			}
+			this.currentOrder.commercialIndex=$("#commercialIndex").val();
+
+			$("#submitAdButt").css("color","lime")
+			$("#submitAdButt").unbind("click").on('click',function(){
+				AO.movePage("up")
+				$("#submitAdButt").unbind("click").css("color","#30617c")
+			})
+
+			$("#backButton").css("color","lime")
+
+
+			$("#backButton").unbind("click").on('click',function(){
+				AO.pageIndex=0
+				//$("#backButton").unbind("click").css("color","#30617c");
+				$("#submitAdButt").unbind("click").css("color","#30617c")
+			})
+
+			
+		}
+
+
+		AddSection(){
+			var $bcr=$('input[name=p1ackage]:checked');
+			this.currentOrder.section=$bcr.prop("id");
+		
+
+		
+			$("#submitAdButt").css("color","lime")
+			$("#submitAdButt").unbind("click").on('click',function(){
+				AO.movePage("up")
+				$("#submitAdButt").unbind("click").css("color","#30617c")
+			})
+			$("#backButton").css("color","lime")
+			$("#backButton").unbind("click").on('click',function(){
+				AO.movePage("down")
+				//$("#backButton").unbind("click").css("color","#30617c");
+				$("#submitAdButt").unbind("click").css("color","#30617c")
+			})
+		}
+
+		AddState(){
+
+			var $bcr=$("#state").val();
+			var total1=0;
+
+			if($bcr!="Select"){
+	
+				this.currentOrder.state=$bcr;
+				if(this.currentOrder.type=="2x2"){
+					if($bcr=="All"){
+						total1=127.99;
+					}else{
+						total1=27.00;
+					}
+					
+				}
+
+				if(this.currentOrder.type=="1x8"){
+					if($bcr=="All"){
+						total1=139.00;
+					}else{
+						total1=39.00;
+					}
+					
+				}
+				
+				this.currentOrder.price=total1;
+				var AsateObj={};
+				AsateObj.state=$bcr;
+				AsateObj.city="All";
+				AsateObj.price=this.currentOrder.price
+				AsateObj.sections=this.currentOrder.section
+				AsateObj.type=this.currentOrder.type;
+
+				var gleng=this.currentOrder.locations.length;
+
+
+				if($bcr=="All" ){
+
+					var tCheck=this.currentOrder.locations.length;
+					for(var v=0;v<tCheck;v++){
+						if(this.currentOrder.locations[v].type==this.currentOrder.type && this.currentOrder.locations[v].sections==this.currentOrder.section){
+
+							this.currentOrder.locations=globalTools.arrayTool(this.currentOrder.locations,"removeIndex",v,"none");
+							tCheck=tCheck-1;
+							v=-1;
+							
+						}
+					}
+				
+					AsateObj.state="National";
+					$("#adSpace").empty();
+				}else{
+					AsateObj.state=$bcr;
+				}
+
+
+				var gleng1=this.currentOrder.locations.length;
+
+
+
+				for(var f=0;f<gleng1;f++){
+					if($bcr==this.currentOrder.locations[f].state && this.currentOrder.locations[f].type==this.currentOrder.type && this.currentOrder.locations[f].sections==this.currentOrder.section){
+							this.currentOrder.locations=globalTools.arrayTool(this.currentOrder.locations,"removeIndex",f,"none");
+							gleng1=gleng1-1;
+							f=-1;
+					}
+				}
+				
+
+
+
+
+
+				$("#submitAdButt").css("color","lime")
+				$("#submitAdButt").unbind("click").on('click',function(){
+					AO.movePage("up")
+					$("#submitAdButt").unbind("click").css("color","#30617c")
+				})
+
+
+
+				
+				this.currentOrder.locations.push(AsateObj);
+			
+				this.calcTotal();
+				this.displayOrder();
+		
+
+			}	/*
+			
+
+				if($bnr.val()===undefined){
+					AsateObj.type="none";
+				}else{
+					AsateObj.type=$bnr.val();
+					if($bnr.val()=="2x2"){
+						if($bcr=="All"){
+							total1=127;
+						}else{
+							total1=27;
+						}
+						
+					}
+
+					if($bnr.val()=="1x8"){
+						if($bcr=="All"){
+							total1=139;
+						}else{
+							total1=39;
+						}
+						
+					}
+				}
+
+
+				if($bcr1.val()===undefined){
+					AsateObj.sections="none";
+				}else{
+					AsateObj.sections=$bcr1.prop("id");
+				}
+
+
+
+				
+				AsateObj.price=total1;
+
+	
+
+				if($bcr=="All"){
+					this.currentOrder.locations=[];
+					AsateObj.state="National";
+					this.currentOrder.locations.push(AsateObj);
+
+				}else{
+					var f1=this.currentOrder.locations.length;
+					var q="none"
+					for(var f=0;f<f1;f++){
+						if(this.currentOrder.locations[f].state=="National"){
+							q=f;
+						}
+
+					}
+					if(q!="none"){
+						this.currentOrder.locations=globalTools.arrayTool(this.currentOrder.locations,"removeIndex",q,"none");
+					}
+					
+					this.currentOrder.locations.push(AsateObj);
+				}
+
+				this.checkNextButton();
+
+				
+			}*/
+			this.calcTotal();
+		}
+
+		AddCity(){
+			var state=$("#state").val();
+			var city=$("#city").val();
+			var currOrdIndx=this.currentOrder.locations.length;
+
+			var removeAll="no";
+			if(city[0]!="Select"){
+				var g=city.length;
+				for(var i=0;i<g;i++){
+					var eFred="go";
+					for(var i1=0;i1<currOrdIndx;i1++){
+						if(this.currentOrder.locations[i1].city!=city[i] || this.currentOrder.locations[i1].state!=state){
+							
+
+						}else{
+							 eFred="stop"
+						}
+
+
+						if(this.currentOrder.locations[i1].state==state && this.currentOrder.locations[i1].city=="All"){
+							removeAll=i1;
+						}
+
+					}
+
+
+					if(removeAll!="no"){
+						this.currentOrder.locations=globalTools.arrayTool(this.currentOrder.locations,"removeIndex",removeAll,"val")
+					}
+					if( eFred=="go"){
+						var AsateObj={};
+						AsateObj.state=state;
+						AsateObj.city=city[i];
+						var total1=0;
+						
+						if(this.currentOrder.type=="2x2"){
+							total1=5.99;
+						}
+
+						if(this.currentOrder.type=="1x8"){
+							total1=9.75;
+						}
+						AsateObj.price=total1;
+						
+						AsateObj.sections=this.currentOrder.section
+						AsateObj.type=this.currentOrder.type;
+						this.currentOrder.locations.push(AsateObj);
+					}
+				}
+			}
+			this.calcTotal();
+		}
+
+		displayOrder(){
+			var currOrdIndx=this.currentOrder.locations.length;
+
+
+			$("#adSpace").empty();
+			for(var t=0;t<currOrdIndx;t++){
+
+				if(this.currentOrder.section!="" && this.currentOrder.locations[t].sections=="" || this.currentOrder.locations[t].sections=="none"){
+					this.currentOrder.locations[t].sections=this.currentOrder.section;
+				}
+
+
+				if(this.currentOrder.price!="" && this.currentOrder.locations[t].price=="" || this.currentOrder.locations[t].price==0){
+					this.currentOrder.locations[t].price=this.currentOrder.price;
+				}
+				var fixedval=parseFloat(this.currentOrder.locations[t].price);
+				fixedval=fixedval.toFixed(2)
+				$("#adSpace").append("<div ><div id='adobj3' style='float:left;width:180px;'>"+this.currentOrder.locations[t].state+", <span style='color:lime;'>"+this.currentOrder.locations[t].city+"</span></div><div style='float:left;width:100px;'>Type: "+this.currentOrder.locations[t].type+"</div><div style='float:left;width:170px;'>Section: "+this.currentOrder.locations[t].sections+"</div><div style='float:left;'>$"+fixedval+"</div><div id='removeX"+t+"' style='float:left;color:red;font-size:10px;cursor:pointer;margin-left:1px;'>x</div><div style='clear:both;'></div></div>");
+			}
+
+			$("div[id^='removeX']").each(function(){
+				$(this).unbind("click").on("click",function(){
+					var h=$(this).prop("id")+"";
+					h=h.substr(7)
+					var confirm1=confirm("Remove entry?")
+					if(confirm1==true){
+						AO.currentOrder.locations=globalTools.arrayTool(AO.currentOrder.locations,"removeIndex",h,"val")
+						AO.calcTotal();
+					}else{
+
+					}
+				})
+			})
+		}
+
+		checkNextButton(){
+			var $bnr=$('input[name=type]:checked');
+			var $bcr=$('input[name=p1ackage]:checked');
+			var state=$("#state").val();
+			if($bnr.val()!==undefined && $bcr.val()!==undefined && state!="Select"){
+				$("#submitAdButt").css("color","lime")
+				$("#submitAdButt").unbind("click").on('click',function(){
+					//AO.submitAd();
+					$("#AdEditTab").click();
+				})
+				var $bcr=$('input[name=p1ackage]:checked');
+				var $bnr=$('input[name=type]:checked');
+
+				this.displayOrder();
+			}else{
+				$("#submitAdButt").css("color","#30617c")
+				$("#submitAdButt").unbind("click")
+				
+			}
+
+		}
+
+
+		resetAdvertForm(){
+
+
+			$("#adSpace").empty();
+			_this.locationList=[];
+			$("#totalCost").html("0.00");
+			this.currentOrder.locations=[];
+
+		}
+
+	}
+
+
+
+$(document).ready(function(){
+	$("#gStartedButtonCommercial").on("click",function(){
+		var model={}
+		$("#innerEditAdminForm :input").each(function(){
+			model[$(this).attr("id")]=$(this).val();
+		})
+		var sendObj={}
+		sendObj.job="quickJamUpdate_full";
+		sendObj.obj=model;
+		sendObj.dbase="agape_commercial";
+		sendObj.param="agape_commercial_Id";
+		sendObj.vals=global.userObj.agape_commercial[global.agape_advertisements_index].agape_commercial_Id;
+		sendObj.selFunc="selectFunc";
+		sendObj.kob="where agape_commercial_profile_Id="+global.userObj.agape_commercial[global.agape_advertisements_index].agape_commercial_profile_Id;
+		
+		var retFunc=function(data){
+			var retObj=globalTools.verify(data)
+			global.userObj.agape_commercial=retObj.returnObj;
+		}
+		ajaxCallPost(sendObj,retFunc)
+	})
+
+
+
+
+	
+	
+	
+	//AO.executeForm();
+
+
+	
+
+
+
+
+})
+
+
+
+	
+
+
+
+	//alert(22)
+	
+
+	var f10=function(){
+		AO.AddState();
+	}
+
+	var cntr=0;
+	var sections=[]
+	var f20=function(){
+		var city=$("#city").val();
+		var state=$("#state").val();
+		AO.AddCity();
+	}
+
+
+
+	$("#returnToAdmin").on("click",function(){
+		$("#innerEditAdminForm").hide();
+		$("#innerEditAdmin").show();
+	})
+
+
+	$("#opacback").css("height","0px");
+	$("#footerPush").css("height","803px");
+
+</script>

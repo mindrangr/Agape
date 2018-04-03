@@ -1,0 +1,52 @@
+				<script>
+
+					checkGuid();
+
+				</script>
+					<!-- Begin message panel-->	
+				<div class="topTab">Your messages</div>
+
+				<div id="message" class="panelLead_new" style='margin-top:15px;width:70%;margin:auto;height:500px'>
+					<div  style="width:100%;">
+						<div style='width:100%;margin:auto;'>
+						<div style="float:left;">
+							<ul style='margin:0px;padding:0px;list-style:none;' id="tabHolder">
+								<li style="float:left;"><div class="messHeader  onMess" id="messTab" onclick="nextTab(this,'getMessages')">Received</div></li>
+								<li  style="float:left;"><div class="messHeader" id="sentTab" onclick="nextTab(this,'getMessages_sent')">Sent</div></li>
+								<li  style="float:left;"><div id="newMessages" class="messHeader" onclick="nextTab(this,'createMessage')">Create Message</div></li>
+							</ul>
+						</div>
+						<div  id="paginHolder" style="text-align:left;float:left;">
+						<div>
+							<ul style="display:inline-block;padding:0px;margin:0px;width:100%;">
+								<li style="width:70%;display:inline;">
+									<ul id="mainPagination" style="display:inline;margin:10px;">
+									</ul>
+								</li>
+								<li class='liStyles' id='nextLog' style="float:right;padding-right:20px;">Next--></li>
+							</ul>
+						</div>
+					</div>
+						<div style='clear:both'></div>
+					</div>
+					<div style='clear:both;'></div>
+					<div style="margin:auto;height:490px;overflow: auto;">
+						<div  id="messContainer" style='padding:0px;width:100%;' >
+							<div style='width:300px;margin:auto;text-align:center;'><img src="images/loading37.gif" height='185'/></div>						
+						</div>
+					</div>		
+					<!--Pagination for Messages-->
+					
+				</div>
+
+				</div>								
+				<!-- End message panel-->
+
+				<script type='text/javascript'>
+					global.lastNav='messages.html';
+					control='getMessages'
+					global.parser="received"
+					$("#footerPush").css("height","685px");
+					MessageCaller(0,"received")
+
+				</script>

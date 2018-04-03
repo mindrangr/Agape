@@ -1,0 +1,168 @@
+
+				
+	<head>
+
+		<script type="text/javascript">
+
+
+		
+		
+		</script>
+	</head>
+	<body bgcolor="#000000" >
+	<style>
+		.label_pr{
+			font-size:16px;
+			width:165px !important;
+		}
+		
+		.fields_pr{
+			font-size:16px;
+			width:125px;
+			text-shadow:0px 0px 1px #000;
+		}
+	
+		.buttonViewPro{ 
+			color:#71aad5;
+			height:20px;
+			padding-top:5px;
+			box-shadow:#061e21 0px 2px 3px 0px;
+			text-align:center;
+		}
+
+
+		.sqgty{
+
+			/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fffcfc+0,d3d3d3+100 */
+			background: #fffcfc; /* Old browsers */
+			background: -moz-radial-gradient(center, ellipse cover, #fffcfc 0%, #d3d3d3 100%); /* FF3.6-15 */
+			background: -webkit-radial-gradient(center, ellipse cover, #fffcfc 0%,#d3d3d3 100%); /* Chrome10-25,Safari5.1-6 */
+			background: radial-gradient(ellipse at center, #fffcfc 0%,#d3d3d3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffcfc', endColorstr='#d3d3d3',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+			border:solid 1px #000;
+			padding-bottom:5px;
+
+		}
+
+
+
+
+		.comClas{
+			background-color: #fff;
+			color:#000;
+			letter-spacing: 1px;
+			font-size:14px;
+			font-family:arial;
+		}
+
+		.comClas_alt{
+			background-color: #e5eae8;
+			letter-spacing: 1px;
+			font-size:14px;
+			font-family:arial;
+		}
+
+
+
+
+	</style>
+
+	<div  id="proView" style="width:100%;height:1060px;padding:4px;" >	
+		<!-- Begin View panel-->
+		<div id='MainView'  >
+			<div style="width:900px;margin:auto;height:500px" class="sqgty">
+				
+				<div id='vidDiv' style="width:900px;background-color:#000;float:left;" >
+
+					<div style="width:500px;margin:auto;">
+						<div style="margin-right:10px;font-family:arial;">
+							<div><iframe class="utubeVids" width="500" height="390" src="" frameborder="0" allowfullscreen=""></iframe></div>
+							<div id="vid0">
+								<div id="utubeTitle" style="text-align:center;font-size:18px;width:492px;color:#eee;padding:4px;background-color:orange;height:35px;text-shadow: 1px 1px 1px #000;">How to radiate like an Alpha male. Hollywood style</div>
+								<div style='padding:6px;'>
+									<div style="float:left;">
+										<div style="font-size:12px;width:120px;color:lime;text-align:left;"><img id="spice" class="vidThumbs up" src="/agape/images/thumbsUp.gif" height="20"> <span id="utube_thumbsUp_Disp" style="color:#eee;"></span></div>
+										<div style="font-size:12px;width:120px;color:red;text-align:left;"><img id="spice" class="vidThumbs down" src="/agape/images/thumbsDown.gif" height="20"> <span id="utube_thumbsDown_Disp" style="color:#eee"></span></div>
+
+									</div>
+
+									<div style="float:left;color:#eee;">
+										<div>comments:<span id="utube_comm_Disp"></span></div>
+										<div style='color:orange;text-decoration: underline;cursor:pointer;'><span id="openNewComm">Add comment</span></div>
+									</div>
+									
+									<div style='clear:both;'></div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		
+			<div style='clear:both;'></div>
+
+			<div style="color:blue;padding-left:10px;font-family:arial;">1 2 3 4</div>
+			<div id="newCommDiv" style="height:0px;width:900px;margin:auto;overflow: auto;">
+				<div style="float:left;padding:5px;"><textarea id="inputboxnew" style='width:300px;height:85px;'></textarea></div>
+				<div style="float:left;padding:5px;"><input id="searchPostmess" type="button" value="post" /></div>
+				<div style="clear:both;"></div>
+			</div>
+
+			<div id='commentDiv_MainComment' style="height:400px;overflow: auto;margin-top:10px;font-family: arial;overflow-x: hidden;">
+
+
+
+
+
+			</div>
+	
+	
+
+
+		</div>
+
+	</div>
+							
+<!-- End View panel-->
+
+</body>
+
+</html>
+<script type="text/javascript" >
+	
+
+	$(document).ready(function(){
+
+		$(".utubeVids").attr("src",global.dataHolder.auxVal.returnObj[ingniteLightBox.temp.param]['agape_media_link']);
+		$("#utubeTitle").html(global.dataHolder.auxVal.returnObj[ingniteLightBox.temp.param]['agape_media_title'])
+		$("#utube_thumbsUp_Disp").html(global.dataHolder.auxVal.returnObj[ingniteLightBox.temp.param]['agape_media_thumbsUp']);
+		$("#utube_thumbsDown_Disp").html(global.dataHolder.auxVal.returnObj[ingniteLightBox.temp.param]['agape_media_thumbsDown']);
+		$("#utube_comm_Disp").html(global.dataHolder.auxVal.returnObj[ingniteLightBox.temp.param]['agape_media_comments_count']);
+
+
+		$("#openNewComm").on("click",function(){
+			if($("#newCommDiv").hasClass("opened")){
+				TweenMax.to($("#newCommDiv")[0],.3,{css:{height:"0px"}});
+				$("#newCommDiv").removeClass("opened")
+			}else{
+				TweenMax.to($("#newCommDiv")[0],.5,{css:{height:"100px"}})
+				$("#newCommDiv").addClass("opened")
+			}
+		})
+
+	})
+
+
+	$("#newMessSub").on('click',function(){
+		alert("gatherer")
+	})
+
+		//comentDiv
+		CommentBoss.setViewIndex(ingniteLightBox.temp.param);
+		CommentBoss.setDivName("_uTube");
+		CommentBoss.getComments(global.dataHolder.auxVal.returnObj[ingniteLightBox.temp.param]['agape_media_comments'],'commentDiv_MainComment')			
+
+</script>

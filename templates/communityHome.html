@@ -1,0 +1,199 @@
+<div class="topTab"><div class='communitySectionsTemp' class='newNav2' ><img style='border-radius:8px;' src="images/romanceBanner.gif"/></div></div>
+	<div id='formQuestions'>
+	<img src="images/blue_equalizer.gif" height="25"/>
+		<div class="newQuestionHolder">
+			<div style="width:550px;margin:auto;">
+				<div class='newQuestionbLabels'>First name:</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input type='textbox' class="inputboxnew" id='agape_profile_firstname' />
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		
+		</div>
+
+
+		<div class="newQuestionHolder">
+			<div style="width:550px;margin:auto;">
+				<div class='newQuestionbLabels'>Last name:</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input type='textbox' class="inputboxnew" id='agape_profile_lastname' />
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		
+		</div>
+
+		<div class="newQuestionHolder">
+			<div style="width:550px;margin:auto;">
+				<div class='newQuestionbLabels'>Account type:</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id='agape_profile_accountType'>
+						<option>Free Member</option>
+						<option>Basic Romance</option>
+						<option>Premium Romance</option>
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+		<div class="newQuestionHolder">
+			<div style="width:550px;margin:auto;">
+				<div class='newQuestionbLabels'>Username:</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input type='textbox' class="inputboxnew" id='agape_profile_username' />
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+		<div class="newQuestionHolder">
+			<div style="width:550px;margin:auto;">
+				<div class='newQuestionbLabels'>Password</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input type='textbox' class="inputboxnew" id='agape_profile_password' />
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+		<div class="newQuestionHolder">
+			<div style="width:550px;margin:auto;">
+				<div class='newQuestionbLabels'>Intentions</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id='agape_profile_intentions'>
+						<option>Select one</option>
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+		<div class="newQuestionHolder">
+			<div style="width:550px;margin:auto;">
+				<div class='newQuestionbLabels'>What state do you want to search in?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id='agape_profile_state'>
+						<option>Select one</option>
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+
+		<div class="newQuestionHolder">
+			<div style="width:550px;margin:auto;">
+				<div class='newQuestionbLabels'>What city do you want to search in?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<select class="dropDownNew" id='agape_profile_city'>
+						<option>Select one</option>
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+		<div class="newQuestionHolder">
+			<div style="width:550px;margin:auto;">
+				<div class='newQuestionbLabels'>Email address</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input id='agape_profile_email' type='textbox' class="inputboxnew"/>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+		
+		<div style='width:700px;margin-top:60px;'>
+			<div style='width:350px;margin:auto;'>
+				<div style='float:left;'>
+					<div id="updateButton" class='optButtons1' >Update</div>
+				</div>
+				<div style='float:left;width:180px;text-align:center;padding-top:4px;color:#eee;display:none;' id='updateIndicator' >Record updated</div>
+				<div style="clear:both"></div>
+				
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	
+		var func=function(){
+			var uObj=$.parseJSON(sessionStorage.getItem("user"));
+			
+			require(['modules/getstateObj_new'],function(getstateObj1){
+				getstateObj1.changeCities("agape_profile_state","agape_profile_city");
+				
+			})
+			
+			require(['modules/getstateObj_new'],function(getstateObj2){
+				getstateObj2.loadCities("agape_profile_city",uObj.agape_profile_state);
+				
+			})
+			
+			_.each(uObj,function(index,key){
+			
+				if($("#"+key)){
+					$("#"+key).val(index);
+				}
+			})
+			
+			
+		
+		}
+	
+	
+		$(document).ready(function(){
+
+			require(['modules/getstateObj_new'],function(state)
+			{
+				func1=function(){}
+				state.getstateObj('agape_profile_state',func1);	
+				
+
+			});	
+
+			loadFields();
+			func()
+		})
+	
+		$("#updateButton").on("click",function(){
+			var formObj = {}
+			formObj.job="updatePro"
+			formObj.obj={};
+			var send='false';
+			$("#formQuestions :input").each(function(){
+				
+				if($(this).val()!=""){
+					formObj.obj[$(this).attr("id")]=$(this).val();
+					send='true'
+				}
+			})
+			var uObj1=$.parseJSON(sessionStorage.getItem("user"));
+			formObj.obj.agape_profile_memberID=uObj1.agape_profile_memberID;
+			
+			if(send=='true'){
+				var func=function(data1){
+					var dataObj;
+					var dataHolder1=$.trim(data1.responseText);
+					var dataHolder2=dataHolder1.split("**");
+					if(dataHolder2[0]=='true'){
+						dataObj=$.parseJSON(dataHolder2[1]);
+						sessionStorage.setItem("user",dataHolder2[1]);
+						$("#updateIndicator").css("display","block");
+					}
+					
+					
+				}
+				formObj.obj=JSON.stringify(formObj.obj)
+				ajaxCall3(formObj,func)
+			}
+			
+		})
+		
+		
+	</script>

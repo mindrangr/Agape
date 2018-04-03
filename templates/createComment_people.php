@@ -1,0 +1,135 @@
+<html>					
+	<head>
+		<script type="text/javascript">
+		</script>
+
+		<style>
+			.newQuestionbLabels{
+				width:150px;
+			}
+		</style>
+	
+	</head>
+	<body bgcolor="#000000" >
+		<div  id="proView" style="float:left;width:100%;height:500px;padding:4px;">	
+			<!-- Begin View panel-->
+			<div id="view" style="position:absolute;z-index:15;width:100%;">
+				<br/>
+				<span style='font-weight:bold;font-size:28px;font-family:arial;'>Comments:</span>
+				<br/>
+				<div id='comment' style='height:190px;'>
+			
+				<div style='background-color:#0f0f0f;width:570px;padding:8px;border-radius:6px;margin:auto;'>
+					<div id="commentTitle" style='color:#eee;padding:4px;font-family:arial;padding-bottom:8px;text-align:left'></div>
+					<div style='float:left;margin-left:20px;'><textarea id="inputboxnew" class='inputboxnew' style='width:420px;border-radius:5px;height:90px;'></textarea></div>
+					<div class='sliderButtonStyle1 messagebuttonStyle post'>Post</div>
+					<br><br/>
+					<div class='sliderButtonStyle1 messagebuttonStyle cancel'>Cancel</div>
+					<div style='clear:both'></div>
+				</div>
+			
+				
+			</div>	
+			</div>							
+			<!-- End View panel-->
+		</div>		
+	</body>
+</html>
+<script type="text/javascript" >
+
+var dtype="news"
+function addReply(){
+	switch(global.comments.type){
+		case 'commentsNewsReply':
+			dtype="news"
+		break;
+	
+	}
+}
+
+
+$(document).ready(function(){
+	$("#commentTitle").html(global.newsObj.agape_media_title);
+	$(".post").on("click",function(){
+		sendfunc=function(){
+			//first sendo object sent
+
+			sendo={}
+			sendo.job="update_atomic"
+			sendo.dbase="president_comments";
+			timo="";
+			sendo.param="updatePresidentComment";
+			sendo.param1="president_commentsID"; 
+			var ter = global.candidate.id
+			sendo.selectField="president_commentsCommentDataResponse";
+			sendo.selectParam="president_commentsID"
+			sendo.issuesID=global.presObj.presidential_candidates[global.presObj.index].commentList[global.candidate.id].president_commentsID
+
+			sendo.obj={};
+
+			sendo.vals=global.presObj.presidential_candidates[global.presObj.index].commentList[global.candidate.id].president_commentsID;
+			if($("#inputboxnew").val()!=""){
+				
+				sendo.obj.president_commentCreator_Username=global.userObj.agape_profile_username;
+				sendo.obj.president_commentCreator_ID=sendo.vals;
+				sendo.obj.vals=sendo.vals;
+				var currentDate = new Date();
+
+				vad = getTime(currentDate,'true','native')
+				sendo.date=vad;
+
+				var vtom = globalTools.stringClear($("#inputboxnew").val());
+				var tom="";
+				inedxr=global.comments.index1;
+				tom = globalTools.stringClear(tom);
+				
+				sendo.replyClass="false";
+				sendo.dato=convertNowToPhP();
+
+			
+				hours = currentDate.getHours()
+   				minutes = currentDate.getMinutes()
+   				mon = currentDate.getMonth()
+  				day = currentDate.getDate()
+  				FullYear = currentDate.getFullYear();
+  				seconds = currentDate.getSeconds();
+				encodestrg=global.userObj.agape_profile_username+FullYear+mon+day+hours+minutes+seconds;
+
+				enco=Base64.encode(encodestrg);
+				
+				enco=enco.replace("=","");
+
+				var comm={"commentCreator":global.userObj.agape_profile_username,"comment":vtom,"commentDate":vad,"commentId":enco};
+				sendo.objR=JSON.stringify(comm)
+				func = function (data){
+					//sendo1 is second update directed at updating the comments date
+					sendo1={};
+					$(".closeButton").click();
+					var newArr=globalTools.verify(data);
+					global.presObj.presidential_candidates[global.presObj.index].commentList[global.candidate.id].president_commentsCommentDataResponse=JSON.stringify(newArr)
+					globalTools.save();
+					var treyMond=function(){
+						$("#comms").click();
+					}
+					loadTemplate('mainLBHolder','presidentView.php',treyMond);
+
+				}
+
+			
+				sendo.obj.president_commentsLastComment=convertNowToPhP1()
+				sendo.dato=sendo.obj.president_commentsLastComment;
+				
+				ajaxCall3(sendo,func);
+				
+			}
+		}
+		loginChkers(sendfunc)
+	})
+	addReply();
+	$(".cancel").on("click",function(){
+		$("#closeButton").click();
+	})
+})
+
+
+</script>

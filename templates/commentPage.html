@@ -1,0 +1,772 @@
+<html>					
+	<head>
+		<script type="text/javascript">
+		</script>
+
+		<style>
+			.newQuestionbLabels{
+				width:150px;
+			}
+		</style>
+	
+	</head>
+	<body bgcolor="#000000"  >
+	<a href="#" name="id3"></a>
+		<div  id="proView" style="float:left;width:100%;height:490px;padding:4px;">	
+			<!-- Begin View panel-->
+			<div id="view"  style="position:relative;z-index:15;width:100%;">
+				<div  style="font-size:20px;font-family:arial;color:#eee;text-shadow:0px 1px 1px #000;width:940px;margin:auto;margin-bottom: 15px;"><span id="commLabel">Comment:</span> <span id="commentTitle" style='color:#7ab6e4;padding:4px;font-family:arial;padding-bottom:8px;text-align:left;text-decoration:underline;font-size:18px;text-shadow:0px 1px #000;'></span></div>
+
+
+
+				<div id='comment' style='height:390px;'>
+			
+				<div style='background-color:#2e2e2e;width:890px;padding:8px;border-radius:6px;margin:auto;height:400px;border:solid 2px #246970;'>
+					
+					<div style='float:left;margin-left:20px;'>
+						<textarea id="inputboxnew" class='inputboxnew' style='width:500px;border-radius:5px;height:220px;background-color:#373636;color:#eee;font-size:16px;'></textarea></div>
+					<div class='sliderButtonStyle1 messagebuttonStyle post'>Post</div>
+					<br><br/>
+					<!--<div class='sliderButtonStyle1 messagebuttonStyle cancel'>Cancel</div>-->
+					<div style='clear:both'></div>
+				</div>
+			
+				
+			</div>	
+			</div>							
+			<!-- End View panel-->
+		</div>		
+	</body>
+</html>
+<script type="text/javascript" >
+
+
+
+$(document).ready(function(){
+
+	$("#body").scrollTop("0px");
+
+
+	$(".lBoxMainDiv").addClass("bodyStyles_defaultGradient");
+	
+	switch(global.comments.type){
+		case 'viewCaptions':
+
+			switch(global.candidate.id){
+
+				case 'viewCaptions':
+					$("#commentTitle").html(ingniteLightBox.temp.param.agape_media_title);
+				break;
+
+				case 'viewArticles':
+					//$("#commentTitle").html(ingniteLightBox.temp.param.agape_media_title);
+
+					
+					$("#commentTitle").html(global.newsObjView.agape_media_title)
+				
+				break;
+					
+
+			}
+
+			
+		break;
+
+
+		case  'mainArticleReplyToComment':
+			//$("#commentTitle").html(ingniteLightBox.temp.param.agape_media_title);
+
+
+
+
+			var nowTime=getTime(ingniteLightBox.temp.param.selReply.agape_comment_createdate,'true','native')
+			var j="replying to "+ingniteLightBox.temp.param.selReply.agape_commentCreator_Username+" comment from "+nowTime;
+			$("#commentTitle").html(j);
+		
+		break;
+
+
+		case 'mainArticleComment':
+			$("#commentTitle").html(ingniteLightBox.temp.param.agape_media_title);
+
+		
+		break;
+
+
+		case 'viewCaptions_reply':
+			var nowTime=getTime(ingniteLightBox.temp.param.comms[ingniteLightBox.temp.param.commID].agape_comment_createdate,'true','native')
+			var j="replying to "+ingniteLightBox.temp.param.comms[ingniteLightBox.temp.param.commID].agape_commentCreator_Username+" <span style='color:#eee;'>comment made on</span> "+nowTime;
+			$("#commentTitle").html(j);
+		break;
+
+		case 'newsArticles_replyTo':
+
+
+
+			var j=ingniteLightBox.temp.param.comms;
+			var newsob=j.agape_commentsCommentDataResponse;	
+			var reply=$.parseJSON(newsob);
+
+			var nowTime=getTime(reply.replyObj.replys[ingniteLightBox.temp.param.replyidx].agape_reply_createdate,'true','native');
+
+			var j="replying to "+reply.replyObj.replys[ingniteLightBox.temp.param.replyidx].agape_commentsLastReply_username+" <span style='color:#eee;'>comment made on</span> "+nowTime;
+
+
+			$("#commentTitle").html(j);
+		break;
+
+		case 'mainArticleReplyToReply':
+
+			var nowTime=getTime(ingniteLightBox.temp.param.selReply.agape_commentsLastComment,'true','native')
+			var j="replying to "+ingniteLightBox.temp.param.selReply.agape_commentsLastComment_username+" comment from "+nowTime;
+			$("#commentTitle").html(j);
+
+
+
+		break;
+
+	
+
+	}
+	
+
+
+	//Add click ability to post button
+
+	$(".post").on("click",function(){
+		if(global.navFunc!="LoggedOut"){
+			if($("#inputboxnew").val()!=""){
+
+				switch(global.comments.type){
+					case 'viewCaptions':
+
+						var sendo={};
+						sendo.job='quickInsertAtomic';
+						sendo.dbase='agape_comments';
+						sendo.obj={};
+						sendo.uID=global.userObj.agape_profile_memberID;
+						sendo.obj.agape_comments_Comment=globalTools.stringClear($("#inputboxnew").val())
+						sendo.obj.agape_commentsCommentDataResponse="none"
+						sendo.obj.agape_commentsSource=global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_SourceID;
+						var h=[];
+						h[0]=global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_SourceID;
+
+						sendo.kob="where agape_commentsSource='"+global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_SourceID+"' order by agape_commentsLastComment desc";
+						if(global.candidate.id=="viewArticles"){
+							sendo.obj.agape_commentsSource=global.newsObjView.agape_media_SourceID;
+							h[0]=global.newsObjView.agape_media_SourceID;
+							sendo.kob="where agape_commentsSource='"+global.newsObjView.agape_media_SourceID+"' order by agape_commentsLastComment desc";
+						}
+						sendo.obj.agape_commentsLastComment_username=global.userObj.agape_profile_username;
+						sendo.obj.agape_commentsLastComment=convertNowToPhP();
+						sendo.obj.agape_comment_createdate=sendo.obj.agape_commentsLastComment
+						sendo.obj.agape_commentCreator_ID=global.userObj.agape_profile_memberID;
+						sendo.obj.agape_commentCreator_Username=global.userObj.agape_profile_username;
+						var tImage=$.parseJSON(global.userObj.agape_profile_default_img);
+						sendo.obj.agape_comments_image=tImage.defaultPic;
+						
+						sendo.obj.agape_commentsPagination=JSON.stringify(h)
+						sendo.key="quickSelect";
+						sendo.kdbase='agape_comments';
+
+						
+						$("#commentsSet").empty();
+						func=function(data){
+
+							var nObj=globalTools.verify(data);
+
+							if(nObj.returnObj!="set empty"){
+								//reload comment holder
+								global.comments.comdat=nObj.returnObj;
+								globalTools.save();
+								initLoadComments(nObj);
+								$("#closeButton").click();
+								var model={}
+								var passtime=sendo.obj.agape_comment_createdate;
+								model.job="quickJamUpdate";
+								model.dbase='agape_topics';
+								model.param="agape_media_ID"
+								model.updateStr="agape_media_comments_count=agape_media_comments_count+1, agape_media_lastComment_date='"+passtime+"', agape_media_updatedBy='"+global.userObj.agape_profile_username+"'";
+								model.vals=global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_ID;
+
+								if(global.candidate.id=="viewArticles"){
+									model.vals=global.newsObjView.agape_media_ID;
+								}
+								model.selFunc="selectFunc"
+								model.kob="where agape_media_ID="+model.vals;
+								funcModel=function(datam){
+									var returnO=globalTools.verify(datam)
+									var t=datam.split("**");
+									//$("#agape_media_comments_count").html(t[1]);
+									//var v=returnO.returnObj[0].agape_media_lastComment_date
+
+									var nowTime=getTime(passtime,'true','native')
+									$("#agape_media_lastComment_date").html(nowTime);
+									$("#agape_media_updatedBy").html(returnO.returnObj[0].agape_media_updatedBy);
+									$("#agape_media_thumbsDown").html(returnO.returnObj[0].agape_media_thumbsDown);
+									$("#agape_media_thumbsUp").html(returnO.returnObj[0].agape_media_thumbsUp);
+									$("#agape_media_comments_count").html(returnO.returnObj[0].agape_media_comments_count);
+								}
+								ajaxCallMedia(model,funcModel);
+							}
+						}
+		
+						ajaxCallMedia(sendo,func);
+
+
+					break;
+ 
+
+					case 'viewCaptions_reply':
+						var commIndx=ingniteLightBox.temp.param.commID
+						var VCapObj={}
+						VCapObj.job="quotesAddCom"
+						VCapObj.lusername=global.userObj.agape_profile_username
+						VCapObj.dbase="agape_comments";
+						VCapObj.param=ingniteLightBox.temp.param.comms[commIndx].agape_commentsID
+						VCapObj.lComment=convertNowToPhP();
+
+						VCapObj.addType="AddNew";
+
+						var nowTime=getTime(VCapObj.lComment,'true','native');
+						var res = "<img src=images/replyarrow.png height=15 /> <span style=font-weight:bold;> reply to comment by </span><span style=color:blue;font-weight:bold>"+ingniteLightBox.temp.param.comms[commIndx].agape_commentsLastComment_username+"</span> <span style=font-weight:bold;> made on "+nowTime+"</span><br/><br/>"
+						var comm1=globalTools.stringClear($("#inputboxnew").val());
+						var tImage=$.parseJSON(global.userObj.agape_profile_default_img);
+						var enco=getCodedDate();
+						var val={}
+						val.replyImg=tImage.defaultPic;
+						val.agape_commentsLastReply_username=global.userObj.agape_profile_username
+						val.agape_reply_createdate=nowTime
+						val.agape_comments_Comment=comm1
+						val.agape_replyID=ingniteLightBox.temp.param.comms[commIndx].agape_commentsID+"_"+enco;
+						VCapObj.val=val;
+						VCapObj.selFunc="selectFunc";
+						VCapObj.kob="where agape_commentsSource='"+ingniteLightBox.temp.param.comms[commIndx].agape_commentsSource+"' order by agape_commentsLastComment desc";
+
+						var func=function(data){
+							var t=globalTools.verify(data);
+							initLoadComments(t);
+							var eLeng=t.countR;
+							var superIdx;
+							for(b=0;b<eLeng;b++){
+								if(t.returnObj[b].agape_commentsID==VCapObj.param){
+									superIdx=b;
+								}
+							}
+							
+							var model={}
+							var passtime=VCapObj.lComment;
+							model.job="quickJamUpdate";
+							model.dbase='agape_topics';
+							model.param="agape_media_ID"
+							model.updateStr="agape_media_comments_count=agape_media_comments_count+1, agape_media_lastComment_date='"+passtime+"', agape_media_updatedBy='"+global.userObj.agape_profile_username+"'";
+							model.vals=global.newsCaption.returnObj[global.newsCaptionIndex].agape_media_ID;
+							if(global.candidate.id=="viewArticles"){
+									model.vals=global.newsObjView.agape_media_ID;
+								}
+							model.selFunc="selectFunc"
+							model.kob="where agape_media_ID="+model.vals;
+							funcModel=function(datam){
+								var returnO=globalTools.verify(datam)
+								var t=datam.split("**");
+								var nowTime=getTime(passtime,'true','native')
+								$("#agape_media_lastComment_date").html(nowTime);
+								$("#agape_media_updatedBy").html(returnO.returnObj[0].agape_media_updatedBy);
+								$("#agape_media_thumbsDown").html(returnO.returnObj[0].agape_media_thumbsDown);
+								$("#agape_media_thumbsUp").html(returnO.returnObj[0].agape_media_thumbsUp);
+								$("#agape_media_comments_count").html(returnO.returnObj[0].agape_media_comments_count);
+								$("#closeButton").click();
+							}
+							ajaxCallMedia(model,funcModel);
+
+						}
+
+						ajaxCallMedia(VCapObj,func);	
+
+
+
+
+
+					break;
+
+
+					case 'newsArticles_replyTo':
+						var sendo1={};
+						sendo1.job="quotesAddCom"
+						sendo1.dbase="agape_comments"
+						sendo1.lusername=global.userObj.agape_profile_username;
+						sendo1.lComment=convertNowToPhP();
+						sendo1.param=ingniteLightBox.temp.param.comms.agape_commentsID;
+						var coded=getCodedDate();
+						var qt=ingniteLightBox.temp.param.commIdx;
+						var RI=ingniteLightBox.temp.param.replyidx;
+
+						var cmnts=$.parseJSON(ingniteLightBox.temp.param.comms.agape_commentsCommentDataResponse);
+						newOb={}
+						var img=global.userObj.agape_profile_default_img;
+						var img2=$.parseJSON(img);
+						newOb.replyImg=img2.defaultPic;
+						newOb.agape_commentsLastReply_username=global.userObj.agape_profile_username;
+						newOb.agape_reply_createdate=formattedPresent();
+
+						var nowTime=getTime(ingniteLightBox.temp.param.comms.agape_comment_createdate,'true','native')
+						var res = "<img src=images/replyarrow.png height=15 /> <span style=font-weight:bold;> reply to comment by </span><span style=color:blue;font-weight:bold>"+cmnts.replyObj.replys[RI].agape_commentsLastReply_username+"</span> <span style=font-weight:bold;> made on "+cmnts.replyObj.replys[RI].agape_reply_createdate+"</span><br/><br/>"
+						var comm1=res+" "+globalTools.stringClear($("#inputboxnew").val());
+						var tComm=sendo1.lComment
+						newOb.agape_comments_Comment=comm1;
+						newOb.agape_replyID=ingniteLightBox.temp.param.comms.agape_commentsID+"_"+coded;
+						newOb.ReplyClass="inside2";
+						
+						sendo1.val=newOb;
+						sendo1.selFunc="selectFunc"
+						sendo1.kdbase="agape_comments";
+
+						sendo1.kob="where agape_commentsID="+ingniteLightBox.temp.param.comms.agape_commentsID;
+						sendo1.addType="AddAfter";
+						if(ingniteLightBox.temp.param.comms.agape_commentsCommentDataResponse=='none'){
+							model1.addType="AddNew";
+						}else{
+							sendo1.chkId=cmnts.replyObj.replys[RI].agape_replyID;
+						}
+
+						var func2=function(data){
+							var f=globalTools.verify(data);
+							var v = gener8Responses(f.returnObj[0].agape_commentsCommentDataResponse,ingniteLightBox.temp.param.commIdx);
+							var hLength=global.comments.comdat.length;
+
+							for(j=0;j<hLength;j++){
+								if(global.comments.comdat[j].agape_commentsID==ingniteLightBox.temp.param.comms.agape_commentsID){
+									global.comments.comdat[j].agape_commentsCommentDataResponse=f.returnObj[0].agape_commentsCommentDataResponse;
+									
+								}
+							}
+
+							//global.comments.comdat=f.returnObj;
+							globalTools.save();
+							$("#comRep"+ingniteLightBox.temp.param.commIdx).parent().show();
+							$("#comRep"+ingniteLightBox.temp.param.commIdx).empty().append(v);
+
+							var sent1={}
+							sent1.job="quickJamUpdate";
+							var editStrg="agape_media_lastComment_date='"+sendo1.lComment+"', agape_media_comments_count=agape_media_comments_count+1, agape_media_updatedBy_ID="+global.userObj.agape_profile_memberID+", agape_media_updatedBy='"+global.userObj.agape_profile_username+"'";
+							
+							sent1.updateStr=globalTools.stringClear(editStrg);
+							sent1.dbase="agape_topics"
+							if(global.candidate.id=="viewCaptions"){
+								sent1.dbase="agape_topics"
+							}
+							sent1.param="agape_media_SourceID"
+							sent1.vals="'"+ingniteLightBox.temp.param.comms.agape_commentsSource+"'"
+
+							var tFunk=function(data1){
+								$("#closeButton").click();
+							}
+							artRepEvents();
+							ajaxCallMedia(sent1,tFunk);
+							
+							
+						}
+
+						ajaxCallMedia(sendo1,func2);
+
+					break;
+
+
+
+
+					case 'mainArticleComment':
+
+
+						var sendo={};
+						sendo.job='quickInsertAtomic';
+						sendo.dbase='agape_comments';
+						sendo.uID=global.userObj.agape_profile_memberID;
+						sendo.obj={};
+						sendo.obj.agape_comments_Comment=globalTools.stringClear($("#inputboxnew").val())
+						sendo.obj.agape_commentsCommentDataResponse="none"
+						sendo.obj.agape_commentsSource=ingniteLightBox.temp.param.agape_media_SourceID
+						sendo.obj.agape_commentsLastComment_username=global.userObj.agape_profile_username;
+						sendo.obj.agape_commentsLastComment=convertNowToPhP();
+						sendo.obj.agape_comment_createdate=sendo.obj.agape_commentsLastComment
+						sendo.obj.agape_commentCreator_ID=global.userObj.agape_profile_memberID;
+						sendo.obj.agape_commentCreator_Username=global.userObj.agape_profile_username;
+						var tImage=$.parseJSON(global.userObj.agape_profile_default_img);
+						sendo.obj.agape_comments_image=tImage.defaultPic;
+						sendo.obj.agape_commentsPagination="[\""+ingniteLightBox.temp.param.agape_media_ID+"\"]"
+						sendo.key="quickSelect"
+						sendo.keyField="agape_commentsID";
+						sendo.kdbase=sendo.dbase;
+						sendo.keyColumn="agape_commentsLastComment_username";
+						sendo.kob="where agape_commentsSource='"+ingniteLightBox.temp.param.agape_media_SourceID+"' order by agape_commentsLastComment desc";
+						var newtIme=sendo.obj.agape_commentsLastComment;
+						$("#commentsSet").empty();
+						func=function(data){
+							var yu=globalTools.verify(data);
+							console.log(99999999)
+							console.log(data)
+							console.log(yu)
+							console.log(99999999)
+							var f= yu.returnObj
+							mainCs=f;
+							loadMainpresComms(yu.returnObj);
+							var y=data.split("**");
+							var model={}
+							model.job="quickJamUpdate";
+							model.dbase="agape_topics";
+							model.param="agape_media_ID";
+							model.selFunc="selectFunc";
+							model.kdbase="agape_topics";
+							model.kob="where agape_media_ID="+ingniteLightBox.temp.param.agape_media_ID;
+							model.vals=ingniteLightBox.temp.param.agape_media_ID;
+							var sttr="agape_media_lastComment_date='"+newtIme+"', agape_media_updatedBy='"+global.userObj.agape_profile_username+"', agape_media_comments_count=agape_media_comments_count+1";
+							model.updateStr=sttr;
+							var func1=function(data1){
+								var gdata1=globalTools.verify(data1);
+								$("#mainCommentCount").html(gdata1.returnObj[0].agape_media_comments_count);
+								$("#mainThumbsUp").html(gdata1.returnObj[0].agape_media_thumbsUp);
+								$("#mainThumbsDown").html(gdata1.returnObj[0].agape_media_thumbsDown);
+								$("#closeButton").click();
+								var mainselectObj={}
+								mainselectObj.job="atomic_selectAll";
+	
+
+							}
+							ajaxCallMedia(model,func1);
+						}
+						ajaxCallMedia(sendo,func);
+
+					
+					break;
+
+
+
+					case 'mainArticleReplyToComment':
+						
+						var sendObj={}
+						sendObj.job="quotesAddCom";
+						sendObj.dbase="agape_comments";
+						sendObj.param=ingniteLightBox.temp.param.selReply.agape_commentsID;
+						sendObj.lusername=global.userObj.agape_profile_username;
+						sendObj.lComment=convertNowToPhP();
+						sendObj.addType="AddNew";
+						var res,createTime;
+
+						createTime=getTime(ingniteLightBox.temp.param.selReply.agape_comment_createdate,'true','native')
+							res = "<img src=images/replyarrow.png height=15 /> <span style=font-weight:bold;> reply to comment by </span><span style=color:blue;font-weight:bold>"+ingniteLightBox.temp.param.selReply.agape_commentCreator_Username+"</span> <span style=font-weight:bold;> made on "+createTime+"</span><br/><br/>"
+						var nowTime=getTime(sendObj.lComment,'true','native')
+						
+						sendObj.selFunc="selectFunc";
+						sendObj.kob="where agape_commentsSource='"+ingniteLightBox.temp.param.selReply.agape_commentsSource+"' order by agape_commentsLastComment desc";
+						var tImage=$.parseJSON(global.userObj.agape_profile_default_img);
+						
+						var replyO={};
+						replyO.replyImg=tImage.defaultPic;
+						replyO.agape_commentsLastReply_username=global.userObj.agape_profile_username;
+						replyO.agape_reply_createdate=nowTime;
+						comm1=globalTools.stringClear($("#inputboxnew").val());
+						replyO.agape_comments_Comment=comm1;
+						var t=getCodedDate()
+						replyO.agape_replyID=ingniteLightBox.temp.param.selReply.agape_commentsID+"_"+t;
+						sendObj.val=replyO;
+
+						//{"replyImg":"profileImages/male39_b.jpg","agape_commentsLastReply_username":"uname679","agape_reply_createdate":"November 22, 2016 9:40 AM","agape_comments_Comment":"Hollah if you hear me!!","agape_replyID":"803_dW5hbWU2NzkyMDE2MTAyMjk0MDY"}
+						
+						var passtime=sendObj.lComment;
+						var confunc =function(datam1){
+							var ty=globalTools.verify(datam1);
+							var f= ty.returnObj
+						
+							mainCs=f;
+							var indxVal;
+							loadMainpresComms(ty.returnObj);;
+							var model={}
+							model.job="quickJamUpdate";
+							model.dbase="agape_topics";
+							model.param="agape_media_ID"
+							model.vals=ingniteLightBox.temp.param.messObj.returnObj[0].agape_media_ID
+							model.updateStr="agape_media_lastComment_date='"+passtime+"', agape_media_updatedBy='"+global.userObj.agape_profile_username+"',agape_media_comments_count=agape_media_comments_count+1, agape_media_updatedBy_ID="+global.userObj.agape_profile_memberID;
+							model.selFunc="selectFunc";
+							model.kdbase="agape_topics";
+							model.kob="where agape_media_SourceID='"+ingniteLightBox.temp.param.selReply.agape_commentsSource+"'";
+							var confunc1=function(datam2){
+								$("#closeButton").click();
+							}
+							ajaxCallMedia(model,confunc1);
+						}
+						ajaxCallMedia(sendObj,confunc);
+					
+					break;
+
+
+
+
+
+					case 'mainArticleReplyToReply':
+
+
+						var sendObj={}
+						sendObj.job="quotesAddCom";
+						sendObj.dbase="agape_comments";
+						sendObj.param=ingniteLightBox.temp.param.selReply.agape_commentsID;
+						sendObj.lusername=global.userObj.agape_profile_username;
+						sendObj.lComment=convertNowToPhP();
+						sendObj.addType="AddNew";
+						var res,createTime;
+						if(ingniteLightBox.temp.param.selReply.agape_commentsCommentDataResponse!="none"){
+							sendObj.addType="AddAfter";
+							var j=$.parseJSON(ingniteLightBox.temp.param.selReply.agape_commentsCommentDataResponse);
+							var t2=ingniteLightBox.temp.param.messIndx+"";
+							t2=t2.split("_");
+							console.log("jjjjj")
+							console.log(j.replyObj.replys)
+							console.log(t2)
+							console.log("jjjjj")
+							sendObj.chkId=j.replyObj.replys[t2[1]].agape_replyID;
+							res = "<img src=images/replyarrow.png height=15 /> <span style=font-weight:bold;> reply to comment by </span><span style=color:blue;font-weight:bold>"+j.replyObj.replys[t2[1]].agape_commentsLastReply_username+"</span> <span style=font-weight:bold;> made on "+j.replyObj.replys[t2[1]].agape_reply_createdate+"</span><br/><br/>"
+						}else{
+							createTime=getTime(ingniteLightBox.temp.param.selReply.agape_comment_createdate,'true','native')
+							res = "<img src=images/replyarrow.png height=15 /> <span style=font-weight:bold;> reply to comment by </span><span style=color:blue;font-weight:bold>"+ingniteLightBox.temp.param.selReply.agape_commentCreator_Username+"</span> <span style=font-weight:bold;> made on "+createTime+"</span><br/><br/>"
+
+
+
+						}
+						var nowTime=getTime(sendObj.lComment,'true','native')
+						
+						sendObj.selFunc="selectFunc";
+						sendObj.kob="where agape_commentsID='"+ingniteLightBox.temp.param.selReply.agape_commentsID+"' order by agape_commentsLastComment desc";
+						
+						var tImage=$.parseJSON(global.userObj.agape_profile_default_img);
+						
+						var replyO={};
+						replyO.replyImg=tImage.defaultPic;
+						replyO.agape_commentsLastReply_username=global.userObj.agape_profile_username;
+						replyO.agape_reply_createdate=nowTime;
+
+						
+						comm1=res+" "+globalTools.stringClear($("#inputboxnew").val());
+
+
+						replyO.agape_comments_Comment=comm1;
+						var t=getCodedDate()
+						replyO.agape_replyID=ingniteLightBox.temp.param.selReply.agape_commentsID+"_"+t;
+						sendObj.val=replyO;
+
+
+						//{"replyImg":"profileImages/male39_b.jpg","agape_commentsLastReply_username":"uname679","agape_reply_createdate":"November 22, 2016 9:40 AM","agape_comments_Comment":"Hollah if you hear me!!","agape_replyID":"803_dW5hbWU2NzkyMDE2MTAyMjk0MDY"}
+
+//resp
+						
+						var passtime=sendObj.lComment;
+						
+							
+						var confunc =function(datam1){
+							
+
+							
+							console.log(882222)
+							console.log(datam1)
+							var ty=globalTools.verify(datam1)
+							console.log(ty)
+							console.log("???????")
+							console.log(mainCs)
+							//console.log("???????")
+							console.log("???????")
+							var f= ty.returnObj
+							//mainCs=f;
+
+							var ty2
+							var pLeng=mainCs.length;
+
+
+							for(p=0;p<pLeng;p++){
+								if(mainCs[p].agape_commentsID==ty.returnObj[0].agape_commentsID){
+									mainCs[p]=ty.returnObj[0];
+									var nTime=getTime(mainCs[p].agape_commentsLastComment,'true','native')
+									$("#repsdate"+p).html(nTime)
+									ty2=p;
+								}
+
+							}
+
+
+
+							var tyLeng=ty.length;
+
+
+
+							console.log(ingniteLightBox.temp.param)
+							
+							
+							var ty1=ingniteLightBox.temp.param.messIndx+"";
+							//ty2=ty1.split("_");
+							var ty3=ty.returnObj[0]
+
+							var ty4=$.parseJSON(ty3.agape_commentsCommentDataResponse)
+
+							console.log(ty4)
+							console.log(882222)
+
+							var burn=loadMainreplys(ty4.replyObj.replys,ty2);
+							
+							$("#resp"+ty2).empty().append(burn);
+
+
+							$("div[id^='mainRep']").each(function(){
+								$(this).on("click",function(){
+								
+									var obIdx=$(this).attr("id")+"";
+									obIdx=obIdx.substr(7);
+									var gt=obIdx.split("_")
+									var send={}
+									send.selReply=mainCs[gt[0]];
+									send.messObj=commOb;
+									send.messIndx=obIdx;
+									global.comments.type="mainArticleReplyToReply"
+									var div1=document.getElementById("_lboxBackground");
+									var div2=document.getElementById("_lBoxMainDiv");
+									var template={};
+									template.page="commentPage.html";
+									id="office";
+									template.param=send;
+									
+									ingniteLightBox = new LightBox(div1,div2,template,id)
+									ingniteLightBox.lightBoxOn();
+
+								})
+							})
+
+
+
+							
+		
+
+							var model={}
+							model.job="quickJamUpdate";
+							model.dbase="agape_topics";
+							model.param="agape_media_ID"
+							model.vals=ingniteLightBox.temp.param.messObj.returnObj[0].agape_media_ID
+							model.updateStr="agape_media_lastComment_date='"+passtime+"', agape_media_updatedBy='"+global.userObj.agape_profile_username+"',agape_media_comments_count=agape_media_comments_count+1, agape_media_updatedBy_ID="+global.userObj.agape_profile_memberID;
+							model.selFunc="selectFunc";
+							model.kdbase="agape_topics";
+							model.kob="where agape_media_SourceID='"+ingniteLightBox.temp.param.selReply.agape_commentsSource+"'";
+							
+							var confunc1=function(datam2){
+							
+								//agape_media_comments_count
+								var b1=globalTools.verify(datam2);
+							
+
+								$("#mainCommentCount").html(b1.returnObj[0].agape_media_comments_count)
+								$("#mainThumbsUp").html(b1.returnObj[0].agape_media_thumbsUp)
+								$("#mainThumbsDown").html(b1.returnObj[0].agape_media_thumbsDownt)
+
+								$("#closeButton").click();
+					
+							}
+
+							ajaxCallMedia(model,confunc1);
+
+
+
+
+							var indxVal
+							
+
+							
+			
+							
+							
+							
+
+							
+
+							
+						}
+
+						console.log("yyyyyyyyy");
+						console.log(sendObj);
+						console.log("yyyyyyyyy")
+
+						ajaxCallMedia(sendObj,confunc);
+
+
+
+
+
+					break;
+					
+
+				}
+
+			}
+
+
+		}else{
+			alert("You must login to post.")
+
+		}
+
+	})
+
+
+	//Add click ability to cancel button
+	$(".cancel").on("click",function(){
+
+	})
+
+
+})
+
+
+
+
+
+function appendReply(){
+
+
+	var aR={"replyObj":{"replys":[],"ReplyCount":"","LastReply":"","LastCommentor":""}};
+	//aR.replyObj.replys.push(aObj);
+
+	return aR
+
+}
+
+
+
+
+
+function artRepEvents(){
+
+	$("div[id^='artRep']").each(function (){
+		$(this).unbind("click").on("click",function(){
+			var bang=$(this).attr("id");
+			var ind=bang.substr("6");
+			var ino=ind.split("_");
+			
+			var div1=document.getElementById("_lboxBackground");
+			var div2=document.getElementById("_lBoxMainDiv");
+			var template={};
+			template.page="commentPage.html";
+			template.heading="Reply to: "
+			var dato={}
+			dato.comms=global.comments.comdat[ino[0]];
+			dato.commIdx=ino[0];
+
+			dato.replyidx=ino[1];
+
+
+			global.comments.type="newsArticles_replyTo";
+			id="commentOpener";
+			//global.candidate.id=ind;
+			template.param=dato;
+
+
+
+			ingniteLightBox = new LightBox(div1,div2,template,id)
+			ingniteLightBox.lightBoxOn()
+		})
+	})
+
+}
+
+</script>

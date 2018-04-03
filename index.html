@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<script src="scripts\jquery-1.11.3.min.js"></script>
+<style>
+	.vidHold1{
+		float:left;
+		height:210px;
+		width:180px;
+		border:solid 1px red;
+	}
+</style>
+<div style='width:100%'>
+	<div style="width:258px;font-weight:bold;font-size:55px;text-align:center;margin:auto;margin-bottom:20px;" id='monthly'>
+	</div>
+
+	<div id='calendar' style="width:900px;margin:auto;">
+
+
+	</div>
+<div>
+<style>
+
+	.calendarDays{
+		float:left;
+		width:120px;
+		height:100px;
+		border:solid 1px #000;
+		text-align:center;
+		cursor:pointer;
+		
+		
+	}
+	
+	.calendarDaysHeader{
+		background-color:brown;
+		color:#fff;
+		font-weight:bold;
+		cursor:default;
+		font-family:arial;
+		height:60px;
+		padding-top:8px;
+	}
+	
+	
+	.calendarDays_past{
+		float:left;
+		width:120px;
+		height:100px;
+		border:solid 1px #000;
+		text-align:center;
+		background-color:gray;
+	
+	}
+	
+	.grayClass{
+		background-color:#ddd;
+	}
+	
+	.scheduledDay{
+		background-color:#81BEF7;
+	}
+</style>
+
+<script>
+var timeObj={};
+
+var recording={};
+	recording.calendar={};
+	recording.calendar.event=[
+		{"month":"8","day":"3","timeStart":"11:45","endTime":"13:45","notes":"none","catering_plan":"none","rental_plan":"none","clientID":"none"},
+		{"month":"7","day":"8","timeStart":"9:45","endTime":"12:45","notes":"none","catering_plan":"none","rental_plan":"none","clientID":"none"},
+		{"month":"9","day":"13","timeStart":"11:45","endTime":"13:45","notes":"none","catering_plan":"none","rental_plan":"none","clientID":"none"},
+		{"month":"6","day":"21","timeStart":"14:15","endTime":"17:45","notes":"none","catering_plan":"none","rental_plan":"none","clientID":"none"},
+		{"month":"8","day":"9","timeStart":"15:00","endTime":"18:30","notes":"none","catering_plan":"none","rental_plan":"none","clientID":"none"},
+		{"month":"9","day":"11","timeStart":"15:45","endTime":"18:00","notes":"none","catering_plan":"none","rental_plan":"none","clientID":"none"},
+	
+	];
+
+
+function ActivateCalendar(datam,element){
+
+	timeObj.days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+	timeObj.months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+	timeObj.monthsDays=['31','28','31','30','31','30','31','31','30','31','30','31'];
+	
+	dayo=datam.getUTCDay();
+	mayo=datam.getUTCDate();
+	month=datam.getUTCMonth()
+	
+	
+	timeObj.addrecords=function(records,month1){
+	
+		alert(records.calendar.event[2].month);
+		console.log(records)
+		
+		for(var t=0;t<recording.calendar.event.length;t++){
+			if(recording.calendar.event[t].month==month1){
+				console.log("willgive ity toyou")
+			}
+		}
+	}
+	
+	
+	
+	
+	for(i=0;i<timeObj.days.length;i++){
+		$("#calendar").append("<div class='calendarDays calendarDaysHeader' >"+timeObj.days[i]+"</div>")
+	}
+	$("#"+element).append("<div style='clear:both'></div>");
+	
+
+	$("#monthly").html(timeObj.months[month])
+	t=0;
+	for(b=0;b<month;b++){
+		t=t+parseInt(timeObj.monthsDays[b]);
+	}
+	var startday=mayo%7
+	var startday1=t%7
+	
+	var adder=startday1+4;
+	firstplace=0;
+	if(adder>7){
+		firstplace=7-startday1;
+	}else{
+		firstplace=startday1+4
+	}
+	var first = dayo-startday;
+	var clearindx=0;
+	var idex=parseInt(timeObj.monthsDays[month])+1;
+	var innerCntr=1;
+	
+	var previMon=month-1;
+	var previ=parseInt(timeObj.monthsDays[previMon])-(firstplace-1);
+	
+		for(i=1;i<43;i++){
+		
+			if(i>firstplace && innerCntr<idex){
+				$("#"+element).append("<div id='clickCalendar"+innerCntr+"' class='calendarDays clickCalendar'>"+innerCntr+"</div>");
+				innerCntr=innerCntr+1;
+				
+			}else{
+			
+				if(innerCntr<idex){
+					$("#"+element).append("<div class='calendarDays_past'>"+previ+"</div>");
+					previ=previ+1
+				}
+			}
+			
+			clearindx=clearindx+1
+			
+			if(clearindx==7){
+				$("#"+element).append("<div style='clear:both'></div>");
+				clearindx=0;
+			}
+			
+		}
+		
+		
+		$(".clickCalendar").on("mouseover",function(){
+			$(this).addClass("grayClass");
+		})
+		
+		$(".clickCalendar").on("mouseout",function(){
+			$(this).removeClass("grayClass");
+		})
+		timeObj.addrecords(recording,month);
+	}
+	
+	
+	var dateo = new Date();
+	ActivateCalendar(dateo,"calendar");
+	
+	
+</script>

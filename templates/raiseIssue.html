@@ -1,0 +1,202 @@
+<html>					
+	<head>
+		<script type="text/javascript">
+		</script>
+
+		<style>
+			.newQuestionbLabels{
+				width:150px;
+			}
+		</style>
+	
+	</head>
+	<body bgcolor="#000000" >
+		<div  id="proView" style="float:left;width:100%;height:500px;padding:4px;">	
+			<!-- Begin View panel-->
+			<div id="view" style="position:absolute;z-index:15;width:100%;">
+				<br/>
+			
+				
+				<div style='height:430px;background-color:#0f0f0f;opacity:.87;padding:8px;width:700px;margin:auto;font-family:arial;border-radius:10px;'>
+				<div id='issueTitle' style='text-align:center;color:#eee;margin-bottom:15px;'>Issues</div>
+				<div style='width:550px;padding:8px;border-radius:6px;margin:auto;height:320px;color:#eee;'>
+					<div id='issueListHolder' style='border:solid 1px #222;padding:4px;'>
+						<div id='issueList' style='border:solid 1px #222;padding:4px;overflow: auto;height:300px;'>
+						
+						</div>
+						
+					</div>
+
+					<div id='issueCommentaryHolder' style='border:solid 1px #222;padding:4px;display:none;'>
+						<div id='issueCommentary' style='border:solid 1px #222;padding:4px;height:220px;overflow:auto;'>
+							
+						</div>
+						<div id='return2List' style='text-align:center;color:lime;cursor:pointer;'>< Return</div>
+					</div>
+				</div>
+			
+				
+			
+			</div>	
+			</div>							
+			<!-- End View panel   presDebate.jpg-->
+		</div>		
+	</body>
+</html>
+<script type="text/javascript" >
+	$(document).ready(function(){
+		$("#_lBoxMainDiv").addClass("bodyStyles_IssuesComms");
+
+		$("#return2List").on("click",function(){
+			$("#issueCommentaryHolder").css("display","none");
+			$("#issueListHolder").css("display","block");
+			$("#issueTitle").html("Issues");
+		})
+
+		var presObj={};
+		presObj.job="quickSelect_atomic_issuesJoin"
+		presObj.dbase="issue_list";
+
+		func=function(data){
+			var issue_list = globalTools.verify(data);
+			global.issue_list=issue_list.returnObj;
+			globalTools.save();
+
+			var leng=global.issue_list.length;
+			$("#issueList").empty();
+			var color="background-color:blue;"
+			for(i=0;i<leng;i++){
+				$("#issueList").append("<div style='padding:9px;"+color+"'><div id='issueTable"+i+"' class='issueTable' style='cursor:pointer;width:300px;'>"+global.issue_list[i].issue_Name+"</div><div style='float:left;color:#eee;padding-right:10px;'>Commentaries: <span style='color:red;font-weight:bold;'>"+global.issue_list[i].presidential_issueGroup_Comments+"</span></div><div style='clear:both;'></div></div>");
+					if(color=="background-color:blue;"){
+						color="background-color:#232338;border-top:solid 1px #000;border-bottom;solid 1px #000;"
+					}else{
+						color="background-color:blue;"
+					}
+			}
+
+			$(".issueTable").on("mouseover",function(){
+				$(this).css("color","#bbb")
+			}).on("mouseout",function(){
+				$(this).css("color","#eee")
+			})
+			
+
+			$(".issueTable").each(function(){
+			$(this).on("click",function(){
+				var tee=$(this).attr("id");
+				tee=tee.substr(10);
+				var issueObj={};
+				//alert("set")
+				
+				var val=global.issue_list[tee].issue_Group
+				issueObj.job='quickSelect_atomic'
+				issueObj.dbase="president_issues";
+				issueObj.param="president_issues_group";
+				issueObj.start=0;
+				issueObj.value=val;
+				$("#issueTitle").html(val);
+				func2=function(data){
+
+					var datum = globalTools.verify(data);
+					$("#issueListHolder").css("display","none");
+					$("#issueCommentaryHolder").css("display","block");
+					$("#issueCommentary").empty();
+					var lengo=datum.returnObj.length;
+
+					if(lengo>0){
+						for(w=0;w<lengo;w++){
+
+							$("#issueCommentary").append("<div style='padding:9px; border-left:solid 1px #222;border-bottom:solid 1px #222;padding-bottom:15px;'><div id='issueTable"+i+"' class='issueTable'style='width:100%;'><div style='float:left;font-family:Great Vibes;font-size:24px;color:lime;width:170px;'>"+datum.returnObj[w].president_issuesCreator_Username+"</div><div class='discuss' id='discuss"+w+"' style='float:right;margin-left:15px;font-size;12px;cursor:pointer;text-decoration:underline;'>Discuss</div><div style='clear:both;'><div style='width:220px;text-shadow:1px 2px 2px #BBAFAF;font-size:19px;'>"+datum.returnObj[w].president_issuesTitle+"</div></div></div><div style='clear:both;'></div><br/><div>"+datum.returnObj[w].president_issuesCommentData+"</div></div>")
+						}
+
+						$('[class^="discuss"]').each(function(){
+							$(this).on("click",function(){
+								global.returnFunction_go="true"
+								var teelo=$(this).attr("id")+"";
+								teelo=teelo.substr(7);
+
+								var tleng=global.presObj.presidential_candidates.length;
+								var ligo=0;
+								for(k=0;k<tleng;k++){
+									var name = global.presObj.presidential_candidates[k].president_Firstname+" "+global.presObj.presidential_candidates[k].president_Lastname
+
+									if(name == datum.returnObj[teelo].president_issuesCreator_Username){
+										ligo=k;
+									}
+								}
+								global.presObj.index=ligo;
+
+								var selObj={};
+								selObj.job="quickSelect_atomic";
+								selObj.dbase="president_issues";
+								selObj.param="president_issuesSource";
+								selObj.value=global.presObj.presidential_candidates[ligo].president_ID;
+								selObj.start=0;
+								var func36=function(data){
+									
+									var cheese=globalTools.verify(data)
+									global.presObj.presidential_candidates[global.presObj.index].president_issues=cheese.returnObj
+									globalTools.save();
+									var logo=global.presObj.presidential_candidates[ligo].president_issues.length;
+
+									for(p=0;p<logo;p++){
+										if(global.presObj.presidential_candidates[ligo].president_issues[p].president_issuesTitle==datum.returnObj[teelo].president_issuesTitle){
+											global.candidate.id=p;
+										}else{
+											//alert(global.presObj.presidential_candidates[ligo].president_issues[p].president_issuesTitle+"=="+datum.returnObj[teelo].president_issuesTitle)
+										}
+									}
+									global.returnFunction_close=function(){
+
+										var div1=document.getElementById("_lboxBackground");
+										var div2=document.getElementById("_lBoxMainDiv");
+										var template={};
+										template.page="raiseIssue.html";
+										template.job="visitprofile";
+										id=2;
+										template.param=id;
+										ingniteLightBox = new LightBox(div1,div2,template,id)
+										ingniteLightBox.lightBoxOn();
+										ingniteLightBox.lightBoxOff(div1,div2);
+									}
+
+									//datum.returnObj[ligo].president_issuesTitle
+									var div1=document.getElementById("_lboxBackground");
+									var div2=document.getElementById("_lBoxMainDiv");
+									var template={};
+									template.page="viewIssue_open.html";
+									template.job="visitprofile";
+									id=2;
+									template.param=id;
+									ingniteLightBox = new LightBox(div1,div2,template,id)
+									ingniteLightBox.lightBoxOn();
+									ingniteLightBox.lightBoxOff(div1,div2);
+
+								}
+								ajaxCall3(selObj,func36);
+								
+							})
+
+						})
+
+						
+					}else{
+						$("#issueCommentary").append("<div style='text-align:center;'>No commentary on this issue</div>")
+					}
+					
+				}
+				ajaxCall3(issueObj,func2);
+				//alert(tee)
+			})
+
+		})
+			
+		}
+		ajaxCall3(presObj,func);
+
+
+
+	});	
+
+
+</script>

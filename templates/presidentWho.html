@@ -1,0 +1,1062 @@
+<style>
+
+	.mainRowHolders{
+		float:left;
+		width:300px;
+		border:1px solid #000;
+		height:280px;
+		border-radius:4px 4px 0px 0px;
+	}
+	
+	.rowHolderHeaders{
+		width:100%;height:30px;
+		text-align:center;
+		color:#fff;
+		background-color:brown;
+		padding-top:10px;
+		border-radius:4px 4px 0px 0px;
+	}
+	
+
+	
+	
+	
+	.evenGrid{
+		border:solid 1px #000;
+		height:40px;
+		background-color:#eee;
+		cursor:pointer;
+	}
+	
+	.oddGrid{
+		border:solid 1px #000;
+		height:40px;
+		background-color:#fff;
+		cursor:pointer;
+	}
+	
+	
+	
+	.newsElems{
+		width:99%;
+	}
+
+	
+	.candidatemainDisplay{
+		position:absolute;
+		border:solid 1px #000;
+		left:45px;
+		box-shadow:1px 0px 2px #000;
+		top:175px;
+		background-color:brown;
+		border-radius:4px;
+		width:200px;padding:5px;
+		opacity: 0.75;
+		filter: alpha(opacity=75);
+	}
+	
+	
+	.voteDisplay{
+		float:left;
+		padding-top:3px;
+		margin-left:15px;
+		color:green;
+		font-weight:bold;
+	}
+	
+	.issueClass{
+		float:left;
+		font-size:12px;
+		width:105px;
+	}
+	
+	
+
+	
+	.selectedNav{
+		font-weight:bold;
+		text-decoration:underline;
+		color:#fff;
+	}
+
+	.pollwidthA{
+		float:left;
+		width:150px;
+	}
+	
+	.voteButton{
+		border:solid 1px #000;
+		background-color:red;
+		text-align:center;
+		color:#fff;
+		font-weight:bold;
+		border-radius:5px;
+		cursor:pointer;
+	}
+	
+	.presMainComStyles{
+		padding-bottom:10px;
+		padding-top:10px;
+		width:100%;
+		background-color:#d8d8d8 !important;
+
+	}
+
+
+	.presMainComStyles_alt{
+		padding-bottom:10px;
+		padding-top:10px;
+		width:100%;
+	}
+
+	.mainCommsDateSpan{
+		font-weight:bold;
+		display:inline-block;
+		padding-left:8px;
+
+	}
+
+
+	.mainCommsReply{
+		text-align:center;
+		font-size:12px;
+		text-decoration:underline;
+		cursor:pointer;
+	}
+
+	.comClas{
+		background-color: #848481;
+		color:#eee;
+		letter-spacing: 1px;
+		font-size:14px;
+	}
+
+	.comClas_alt{
+		background-color: #9c9ea2;
+		letter-spacing: 1px;
+		font-size:14px;
+	}
+
+
+
+
+</style>
+
+<script>
+
+if (typeof(Worker) !== "undefined") {
+    // Yes! Web worker support!
+    // Some code.....
+   // alert("yes de work")
+} else {
+    // Sorry! No Web Worker support..
+  //  alert("no de don't work")
+}
+
+
+
+	function displayCandidate(elem){
+		var str=global.baseUrl+"/"
+		var img=$.parseJSON(elem.peopleCandidate_photos)
+		$("#displayMainImg").attr("src",str+img.Presidential);
+		$("#displayMainName").html(elem.peopleCandidate_Firstname+" "+elem.peopleCandidate_Lastname)
+		$("#displayMainParty").html(elem.peopleCandidate_Party)
+		$("#voteU").html(elem.peopleCandidate_upVotes);
+		$("#voteD").html(elem.peopleCandidate_downVotes)
+		$("#flag").empty()
+		
+		switch(elem.peopleCandidate_Party){
+
+			case 'Democratic Party':
+				str=str+"images/president/democracy.donkey.jpg";
+				$("#flag").append("<img src="+str+" height='40' />")
+			break;
+
+			case 'Republican Party':
+				str=str+"images/president/republican.elephant.jpg";
+				$("#flag").append("<img src="+str+" height='40' />")
+			break;
+
+			case 'Green Party':
+				str=str+"images/president/greenparty.png";
+				$("#flag").append("<img src="+str+" height='40' />")
+			break;
+
+			case 'Libetarian Party':
+				str=str+"images/president/libertarian.jpg";
+				$("#flag").append("<img src="+str+" height='40' />")
+			break;
+
+			case 'Constitution Party':
+				str=str+"images/president/constitution.jpg";
+				$("#flag").append("<img src="+str+" height='40' />")
+			break;
+
+			case 'Independent Party':
+				str=str+"images/president/independent.jpg";
+				$("#flag").append("<img src="+str+" height='40' />")
+			break;
+
+
+
+
+			
+
+
+		}
+
+		//$("#flag").empty().append("<img src="++" height='30' />")
+	}
+	
+
+</script>
+<div style='width:100%;font-family:arial;'>
+<div id='nav1' style="padding-left:20px;">
+		
+			<!--<div id='raiseIssue' class="presNavigation selectedNav">Checkout the Issues</div>-->
+			<!--<div class="presNavigation selectedNav">Form a Party</div>-->
+			
+			<div style="clear:both;"></div>
+		</div>
+<div class="topTab">Welcome to Agape Politics</div>
+<div id="slider1_container" style="position: relative; width: 85%; height: 70px;margin:auto;margin-top:6px;background-color:#fff;border-radius:10px 10px 0px 0px;">
+	  
+		<br/>
+		<div style='width:385px;font-weight:bold;font-size:28px;margin:auto;color:brown;'>What's going on in Politics?</div>
+		</div>
+		<br/>
+		<div id="mainStory" style="width:85%;margin:auto;color:red;height:580px;letter-spacing:1px;" >
+			
+			</div>
+			
+		</div>
+		<div style="width:85%;margin:auto;margin-bottom:15px;">
+			<div style="width:360px;margin:auto;">
+				<div style="float:left;margin-right:15px;color:#b9b6b6;padding-top:2px;"><span style="cursor:pointer;" id="commentButt">View comments</span>: <span id="mainCommentCount" style='color:orange'>201,315</span></div>
+				<div style="float:left;margin-right:15px;color:gray;"><img src="images/thumbsUp.gif" height="16" id='politicMAThumbsUp' /> <span id="mainThumbsUp" class='articleControls_green'>5243</span></div>
+				<div style="float:left;margin-right:15px;color:gray;"><img src="images/thumbsDown.gif" height="16" id='politicMAThumbsDown' /> <span id="mainThumbsDown" class='articleControls_red'>234</span></div>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+		<div id="mainCommentBox" style="width:85%;margin:auto;height:0px;overflow:auto;overflow-x:hidden;overflow-y:hidden;">
+		<div style="width:100%;font-weight:bold;font-size:28px;color:brown;background-color:#fff;height:50px;text-align:center;padding-top:17px;border-radius:10px 10px 0px 0px;">
+			<div>Comments</div>
+			<div id="addComButt" style='padding-top:0px;font-size:13px;color:#000;cursor:pointer;'>add comment</div>
+		</div>
+		<div style="width:99.8%;border:solid 1px lime;height:310px;margin-bottom:3px;">
+			<div id="comms" style="width:100%;height:310px;overflow:auto;overflow-x:hidden;">
+				$("#comms").html("<div style='width:210px;margin:auto;font-size:20px;color:orange;margin-top:25px;'>Be the first to comment</div>")
+			</div>
+		</div>
+		<div>
+			<div style="color:lime;">1 2 3 4 5</div>
+
+		</div>
+		</div>
+		</br>
+		<div style='width:85%;font-weight:bold;font-size:28px;color:brown;background-color:#fff;height:50px;text-align:center;padding-top:14px;font-family:arial;margin:auto;'>
+	Who wants to be president?
+
+
+	<div id="invitePres" style="color:orange;font-size:12px;">
+		Register and upload a video telling the world why you should be the next great leader of the universe. <span id="run4Pres" style="color:lime;text-decoration:underline;cursor:pointer;">Run for president</span>
+	</div>
+</div>
+
+
+
+
+
+		<hr style="width:80%;margin:auto;"/>
+		</br>
+		<div style="width:85%;margin:auto;color:#eee;font-family:arial;" >
+			
+			<img id="topImg" src="" height="150" align="left" border="1" hspace="12" /><span style="display:inline-block;width:320px;margin:auto;color:brown;text-align:center;font-size:22px;font-weight:bold;padding-left:200px;"><i>Goat or Woat?</i></span><br/>The motto was suggested in 1776 by Pierre Eugene du Simitiere to the committee responsible for developing the seal. At the time of the American Revolution, the exact phrase appeared prominently on the title page of every issue of a popular periodical, The Gentleman's Magazine,[7][8] which collected articles from many sources into one "magazine". This in turn can be traced back to the London-based Huguenot Peter Anthony Motteux, who used the adage for his The Gentleman's Journal, or the Monthly Miscellany (1692-1694). The phrase is similar to a Latin translation of a variation of Heraclitus's 10th fragment, "The one is made up of all things, and all things issue from the one." A variant of the phrase was used in Moretum, a poem attributed to Virgil but with the actual author unknown, describing (on the surface at least) the making of moretum, a kind of herb and cheese spread related to modern pesto. In the poem text, color est e pluribus unus describes
+
+		</div>
+
+
+		<br/>
+	<div id="slider1_container" style="position: relative; width: 85%; height: 70px;margin:auto;margin-top:6px;background-color:#fff;">
+	<br/>
+		<div style='width:348px;font-weight:bold;font-size:28px;margin:auto;color:brown;'>The Presidential hopefuls</div>
+	</div> 
+		
+		<div style="width:85%;border:solid 1px #000;margin:auto;padding:5px;">
+			<div  style="width:100%;overflow:auto;overflow-y:hidden;border:solid 1px #000;padding-bottom:5px;">
+				<div id='newsContent' style="width:100%;overflow:auto;overflow-x:hidden;height:350px;">
+				
+				</div>
+			</div>
+			
+
+<br/>
+
+
+<div style='width:100%;font-weight:bold;font-size:28px;color:brown;background-color:#fff;height:50px;text-align:center;padding-top:17px;border-radius:10px 10px 0px 0px;'>Who wants to be president?</div>
+		<div id="invitePres" style="color:#eee;">
+			Register and upload a video telling the world why you should be the next great leader of the universe. <span id="run4Pres" style="color:lime;text-decoration:underline;cursor:pointer;">Run for president</span>
+		</div>
+		<br/>
+		
+<div style="width:100%;overflow:auto;overflow-y:hidden;" >
+<div style="width:1200px;">
+		<div class="mainRowHolders" style="margin-right:20px;width:400px;">
+			<div class="rowHolderHeaders">Grassroots Candidates</div>
+			<div id='cands' style="width:100%;height:275px;overflow:auto;overflow-x:hidden;">
+				<div style='width:385px;margin:auto;'><img src='/agape/profileImages/kingFerrell.jpg' width='385'></div>
+			</div>
+			
+		</div>
+		<div class="mainRowHolders" style="height:288px;width:270px;margin-right:20px;">
+			<div class="rowHolderHeaders">The Incumbent</div>
+			<div style="position:relative;background-color:#fff;height:275px;border-radius:4px 4px 0px 0px;">
+				<div><img id="displayMainImg" src="" height="275" width="268"/></div>
+				<div class="candidatemainDisplay" style='font-size:12px;'>
+					<div style='margin-bottom:5px;color:#fff;'>Name: <span id="displayMainName" style='font-weight:bold;'>President Obama</span></div>
+					<div style='color:#fff;margin-bottom:5px;'>Party: <span id="displayMainParty" style='font-weight:bold;'>Democratic</span></div>
+					<div style='color:#fff;margin-bottom:5px;'>Out of: <span id="displayMainParty" style='font-weight:bold;'>Chicago, Illinois</span></div>
+				</div>
+			</div>
+		</div>
+		<div class="mainRowHolders" style='width:320px;height:288px;background-color:#fff;border-radius:5px 5px 0px 0px;'>
+			<div class="rowHolderHeaders" style='width:100%;'>The Facts</div>
+			<div id="flag" style='float:left;width:90px;margin-top:10px;'></div>
+
+			<div id="canMain" style='display:none'>
+
+
+			<div style='float:left;'>
+
+				
+				<div style="color:brown;margin-bottom:10px;padding-left:8px;">
+					<div>
+						<div style='float:left;'>
+							<img id="tUpImg" src="" height='20' />
+						</div>
+						<div id='voteD' class='voteDisplay' style='color:red;font-size:12px;'>345</div>
+						<div style="clear:both;"></div>
+					</div>
+				</div>
+				<div style="color:brown;margin-bottom:5px;padding-left:8px;">
+					<div style='float:left;'><img id="tDownImg" src="" height='20' /></div>&nbsp;<div id='voteU' class='voteDisplay' style='color:green;font-size:12px;'>363463</div>
+					<div style="clear:both;"></div>
+				</div>
+
+			</div>
+
+			<div style='clear:both;'></div>
+
+
+			<div style="color:#000;margin-bottom:1px;width:160px;padding-left:8px;font-weight:bold;">My Issues:</div>
+			<div id="issueDiv" style='height:85px;overflow:auto;overflow-x:hidden;'>
+				<ul style='color:#000;font-size:12px;'>
+					<li>Immigration</li>
+					<li>Foreign Policy - China</li>
+					<li>Healthcare</li>
+					<li>Law and administration</li>
+				
+				</ul>
+
+			</div>
+			<div id="visitPeople" style="padding:7px;text-decoration:underline;cursor:pointer;font-size:12px;color:red;">Visit page</div>
+
+
+
+			</div>
+			<div id="presMain" style="width:310px;float:left;">
+				<div style="font-weight:bold;font-size:14px;text-align:center;width:300px;">Barrack Hussein Obama </div>
+				<div style="margin-top:10px;">
+					<div style="padding:10px;">2 term democratic president.</div>
+					
+					<div style="padding:10px;">Highlights:</div>
+					<div>
+					<ul>
+						<li>added 13.7 million new jobs over a 69-month streak of job growth</li>
+						<li>The rate of the uninsured in America dropped below 10 percent for the first time ever</li>
+					</ul>
+
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+	
+	
+		</div>
+		<div style="clear:both;"></div>
+
+<div>
+
+
+
+
+</div>
+
+		<br/>
+
+
+
+			<!--  poll section -->
+			
+			<div style="width:100%;color:#ccc;float:left;margin:auto">
+				<div style="width:100%;background-color:#fff;height:33px;color:brown;text-align:center;margin-top:15px;border-radius:4px 4px 0px 0px;font-weight:bold;font-size:18px;padding-top:8px;">Polls of the day</div>
+				<div style='padding:4px;'>How often have you seen CNN or NBC or some other news network make reference to a poll and thought to yourself who are these people being polled? Well here is your chance to not only vote but also give your opinion on a topic as well. Please take a dip in our polls. And remember November 8th is showtime!!</div>
+
+
+
+				<!--poll 1 -->
+				<div style="width:310px;color:#ccc;float:left;">
+					<div id="polltitle" class="rowHolderHeaders" style="width:100%;margin-top:15px;padding-top:9px;height:56px;padding-left:6px;padding-right:6px;padding-bottom:15px;"></div>
+					<input type="hidden" id="poll_ID" />
+					<div id="pollHolder" style='padding-left:20px;border-bottom:solid 1px #eee;border-left:solid 1px #eee;padding-top:15px;border-right:solid 1px #eee;width:293px;margin-bottom:20px;padding-right:6px;'>
+						
+					</div>
+
+				</div>
+
+
+
+				<!-- Poll -->
+				<div style="width:310px;color:#ccc;float:left;margin-left:23px;">
+				<div id="polltitle1" class="rowHolderHeaders" style="width:304px;margin-top:15px;padding-top:9px;height:56px;padding-left:6px;padding-right:6px;padding-bottom:15px;"></div>
+				<input type="hidden" id="poll_ID1" />
+				<div id="pollHolder1" style='padding-left:20px;border-bottom:solid 1px #eee;border-left:solid 1px #eee;padding-top:15px;border-right:solid 1px #eee;width:293px;margin-bottom:20px;'>
+					</div>
+					<div style="clear:both;"></div>
+				</div>
+
+
+				<!-- Poll -->
+				<div style="width:280px;color:#ccc;float:left;margin-left:23px;">
+				<div id="polltitle2" class="rowHolderHeaders" style="width:280px;margin-top:15px;padding-top:9px;height:56px;padding-left:6px;padding-right:6px;padding-bottom:15px;"></div>
+				<input type="hidden" id="poll_ID2" />
+				<div id="pollHolder2" style='padding-left:20px;border-bottom:solid 1px #eee;border-left:solid 1px #eee;padding-top:15px;border-right:solid 1px #eee;width:270px;margin-bottom:20px;'>
+					</div>
+					<div style="clear:both;"></div>
+				</div>
+
+				
+			</div>
+			<div style="clear:both;"></div>
+			
+		
+
+
+
+
+</div>
+
+</div>
+<script>
+	strg="";
+
+	global=globalTools.create();
+	global.lastNav='presidentWho.html';
+	globalTools.save();
+	var classt="oddGrid";
+	
+
+var proseed=globalTools.checkLogin();
+
+
+function setThumbs(){
+
+
+	if(proseed=="true"){
+		var thsArr = $.parseJSON(global.userObj.agape_vote_recordThumbs)
+	    var thsArrChk = "true";
+	    var thsArrLeng = thsArr.length;
+
+	    for (var w1 = 0; w1 < thsArrLeng; w1++) {
+	        if (thsArr[w1].votetype == "mainPoliThumbs") {
+
+	            if (thsArr[w1].mainId == global.PresidentPage.topicObj.agape_media_ID) {
+	                $("#mainThumbsUp").addClass("articleControls_grayPresComm");
+	                $("#mainThumbsDown").addClass("articleControls_grayPresComm");
+	                $("#politicMAThumbsUp").prev().unbind("click");
+					$("#politicMAThumbsDown").prev().unbind("click");
+	                thsArrChk = "false"
+	            }
+
+	        }
+	    }
+	 	if( thsArrChk == "true"){
+	 		$("img[id^='politicMAThumbs']").each(function(){
+				$(this).unbind("click").on("click",function(){
+					var modl={}
+					modl.job="quickJamUpdate";
+					modl.dbase="agape_topics";
+
+					switch($(this).attr("id")){
+						case 'politicMAThumbsUp':
+							modl.updateStr="agape_media_thumbsUp=agape_media_thumbsUp+1";
+						break;
+
+						case 'politicMAThumbsDown':
+							modl.updateStr="agape_media_thumbsDown=agape_media_thumbsDown+1";
+						break;
+					}
+
+					modl.param="agape_media_ID";
+					modl.vals=global.PresidentPage.topicObj.agape_media_ID;
+					modl.selFunc="selectFunc";
+					modl.kob=" where agape_media_ID="+global.PresidentPage.topicObj.agape_media_ID;
+
+					var grnk=function(data){
+						var t=globalTools.verify(data);
+						global.PresidentPage.topicObj=t.returnObj[0];
+						$("#mainThumbsUp").addClass("articleControls_grayPresComm").html(global.PresidentPage.topicObj.agape_media_thumbsUp);
+		                $("#mainThumbsDown").addClass("articleControls_grayPresComm").html(global.PresidentPage.topicObj.agape_media_thumbsDown);
+		                $("#politicMAThumbsUp").unbind("click");
+						$("#politicMAThumbsDown").unbind("click");
+
+						var gg=$.parseJSON(global.userObj.agape_vote_recordThumbs)
+						var gg1={}
+						gg1.votetype="mainPoliThumbs"
+						gg1.mainId=global.PresidentPage.topicObj.agape_media_ID;
+						gg.push(gg1);
+						var gg2=JSON.stringify(gg)
+						var modl1={}
+						modl1.job="quickJamUpdate"
+						modl1.dbase="agape_profile";
+						modl1.updateStr=" agape_vote_recordThumbs='"+gg2+"'";
+						modl1.param="agape_profile_memberID";
+						modl1.vals=global.userObj.agape_profile_memberID
+
+						modl1.selFunc="selectFunc";
+						modl1.kob=" where agape_profile_memberID="+global.userObj.agape_profile_memberID;
+
+						var crunk=function(dtat){
+							var gg=globalTools.verify(dtat)
+							global.userObj=gg.returnObj[0];
+							globalTools.save();
+
+						}
+						ajaxCallMedia(modl1,crunk)
+					}
+
+					ajaxCallMedia(modl,grnk)
+
+					//global.PresidentPage
+				})
+			})
+	 	}
+		
+		}
+}
+
+
+
+
+function gTopics(){
+	var sendo={}
+	sendo.job="atomic_selectAll";
+	sendo.dbase="agape_topics";
+	sendo.ob="where agape_media_sourceID='841_topic0'";
+	var commOb="";
+	var mainCs;
+	var func=function(data){
+		
+		var t=globalTools.verify(data);
+		commOb=t;
+		global.PresidentPage={}
+		global.PresidentPage.topicObj=t.returnObj[0];
+
+		$.get(global.baseUrl+"/"+t.returnObj[0].agape_media_reply,function(data){
+			$("#mainStory").empty().append(data);
+			$("#articleAuthor").html(t.returnObj[0].agape_media_author);
+			var b=getTime(t.returnObj[0].agape_media_createDate,"true")
+			$("#articleCreated").html(b);
+			$("#completeList").on("click",function(){
+				if($("#cListDiv").hasClass("openMain")){
+					var le=$(".newFormfieledHolderStyles").height();
+					le=le-900;
+					TweenMax.to($("#mainStory")[0],.3,{css:{height:"580",ease:Bounce.easeIn}});
+					TweenMax.to($("#cListDiv")[0],.4,{css:{height:"0",ease:Bounce.easeIn}});
+					TweenMax.to($(".transBack_mainArt")[0],.4,{css:{height:"650",ease:Bounce.easeIn},onComplete:function(){
+						$("#cListDiv").removeClass("openMain");
+					}});
+					TweenMax.to($(".newFormfieledHolderStyles")[0],.9,{css:{height:le,ease:Bounce.easeIn}});
+				}else{
+					$("#cListDiv").show();
+					var le=$(".newFormfieledHolderStyles").height();
+					le=le+900
+				
+					TweenMax.to($("#mainStory")[0],.6,{css:{height:"1520",ease:Bounce.easeIn}});
+					TweenMax.to($(".newFormfieledHolderStyles")[0],.6,{css:{height:le,ease:Bounce.easeIn}});
+					TweenMax.to($(".transBack_mainArt")[0],.6,{css:{height:"1589",ease:Bounce.easeIn}});
+					TweenMax.to($("#cListDiv")[0],.6,{css:{height:"900",ease:Bounce.easeIn}});
+					$("#cListDiv").addClass("openMain")
+				}
+
+			})
+		})
+		$("#mainCommentCount").html(t.returnObj[0].agape_media_comments_count);
+		$("#mainThumbsUp").html(t.returnObj[0].agape_media_thumbsUp);
+		$("#mainThumbsDown").html(t.returnObj[0].agape_media_thumbsDown);
+
+
+		if(	t.returnObj[0].agape_media_comments=="none" || t.returnObj[0].agape_media_comments=="" ){
+			$("#comms").html("<div style='width:210px;margin:auto;font-size:20px;color:orange;margin-top:25px;'>Be the first to comment</div>")
+		}else{
+		
+			var send1 = {};
+			send1.job="atomic_selectAll";
+			send1.ob="where agape_commentsSource ='"+t.returnObj[0].agape_media_SourceID+"' order by agape_commentsLastComment desc";
+			send1.dbase="agape_comments"
+
+			func1=function(datar){
+
+				var b=globalTools.verify(datar);
+				var f= b.returnObj
+				mainCs=f;
+				setThumbs();
+				//loadMainpresComms(f)
+			}
+
+			ajaxCallMedia(send1,func1);
+		}
+		//agape_media_comments
+	}
+
+	ajaxCallMedia(sendo,func); 
+}
+
+
+
+
+	$(document).ready(function(){
+	
+		$("#topImg").attr("src",global.baseUrl+"/images/president/incumbent.jpg");
+		$("#topImg1").attr("src",global.baseUrl+"/images/president/donald1.jpg")
+		$("#displayMainImg").attr("src",global.baseUrl+"/images/president/Obama.jpg");
+		$("#tUpImg").attr("src",global.baseUrl+"/images/thumbsUp.gif");
+		$("#tDownImg").attr("src",global.baseUrl+"/images/thumbsDown.gif");
+		//$("#LbBack").css("height","1830px")
+		$(".newFormfieledHolderStyles").css("height","2570px");
+
+		gTopics();
+
+		var o1={"text-decoration":"true","mouseover":"true"};
+		var w1 = new addMouseOver("completeList","orange",o1,"none")
+		//$("#footertab").css("top","2790px")
+
+		var t1=$(document).width();
+		var t5=$(window).width();
+		var e1=parseInt((t5-(t5*.85))/2)	
+
+		$("#transBack").removeClass().show().css("left",e1).addClass("transBack_mainArt_politics");
+		var func1="none";
+		if(global.userObj.agape_profile_presidentAccount!==undefined){
+			if(global.userObj.agape_profile_presidentAccount   !="none" && global.userObj.agape_profile_presidentAccount!="InActive"){
+				$("#office").html("Presidential Account").css({"color":"lime","text-decoration":"underline"}).show();
+				createPresOb(func1);
+				$("#invitePres").hide();
+			}else{
+				$("#invitePres").show();
+			}
+
+		}else{
+			$("#invitePres").show();
+		}
+
+
+
+
+
+		
+		
+
+		
+		
+/*
+
+		//Begin load presidential candidates
+		var presObj={};
+		presObj.job="atomic_selectAll"
+		presObj.dbase="presidential_candidates";
+		presObj.start=0;
+		presObj.ob=" order by president_Candidacy_Active asc"
+		//presObj.param="president_Candidacy_Active"
+		//presObj.value="Active";
+	
+		func2=function(data){
+			//global=globalTools.create();
+
+			var hello=globalTools.verify(data);
+			var strg1="";
+			var imgI="none";
+			var cntr1;
+
+			global=globalTools.create();
+			global.presObj.presidential_candidates=hello.returnObj;
+
+			globalTools.save();
+			for(g=0;g<hello.returnObj.length;g++){
+				cntr1=g+1;
+				
+				var e=JSON.stringify(hello.returnObj[g].president_photos)
+				var tImg=$.parseJSON(hello.returnObj[g].president_photos);
+				
+
+
+				switch(hello.returnObj[g].president_Party){
+					case 'Republican':
+						imgI=global.baseUrl+"/images/president/republican.elephant.jpg"
+					break;
+
+					case 'Democratic':
+						imgI=global.baseUrl+"/images/president/democracy.donkey.jpg";
+					break;
+
+					case 'Libertarian':
+
+						imgI=global.baseUrl+"/images/president/libertarian.jpg";
+					break;
+
+					case 'Constitution':
+						imgI=global.baseUrl+"/images/president/constitution.jpg";
+					break;
+
+					case 'Workers World':
+						imgI=global.baseUrl+"/images/president/WWP.jpg";
+						break;
+
+				}
+
+				strg1=strg1+"<div class='truCandsDiv' style='background-color:#eee;border-radius:5px;border:solid 2px #A52A2A;margin-right:6px;width:250px;'>"
+					strg1=strg1+"<div style='float:left;border-radius:5px 0px 0px 0px;'>"
+					strg1=strg1+"<div class='truCandsImgDiv' style='position:relative;border-radius:5px 0px 0px 0px;' >"
+				if(hello.returnObj[g].president_Candidacy_Active=="InActive"){
+						strg1=strg1+"<div style='position:absolute;z-index:4;font-family:Impact;top:40px;left:15px;font-size:15px;color:orange;text-shadow:1px 0px 0px #000;'>Dropped out</div>"
+					}
+
+						strg1=strg1+"<div style='position:relative;z-index:3;border-radius:5px 0px 0px 0px;'><div class='commonRankCount'>"+cntr1+"</div><div class='commonVoteCount' style='border-radius:5px 0px 0px 0px;color:lime;text-shadow:0px 1px 1px #000;'><img src='"+global.baseUrl+"/images/thumbsUp.gif' height='14' />"+hello.returnObj[g].president_upVotes+"</div><img style='border-radius:5px 0px 0px 0px;' src='"+global.baseUrl+"/"+tImg.images[0].defaultImage+"' height='110' width='120'/></div>"
+						strg1=strg1+"<div id='pres"+g+"' class='presidentLabel'>"+hello.returnObj[g].president_workingState+"</div>"
+					strg1=strg1+"</div>"
+					strg1=strg1+"</div>"
+						strg1=strg1+"<div style='float:left;width:100px;'>"
+							strg1=strg1+"<div style='text-decoration:underline;font-weight:bold;'>"+hello.returnObj[g].president_Firstname+" "+hello.returnObj[g].president_Lastname+"</div>"
+								strg1=strg1+"<div style='width:120px;'>"+hello.returnObj[g].president_Party+"</div>"
+								strg1=strg1+"<img src='"+imgI+"' height='20'/>"
+								strg1=strg1+"<div >Currently:</div><div style='width:120px;font-size:11px;'>"+hello.returnObj[g].president_CurrentPosition+"</div>"
+								strg1=strg1+"</div>"
+										
+								strg1=strg1+"</div>"
+			}
+		wid=hello.returnObj.length*260;
+		$("#truecands").css("width",wid+"px").append(strg1);
+
+
+		$(".presidentLabel").on("click",function(){
+			var t=$(this).attr("id")+"";
+			t=t.substr(4);
+			global.presObj.index=t;
+			globalTools.save();
+			loadTemplate('mainLBHolder','presidentView.php');
+		})
+	}
+
+
+	//ajaxCall3(presObj,func2);	
+	//End load presidential candidates
+
+
+
+
+
+
+	/* President Poll  begin*/
+	var qb 
+	var quesObj={};
+	quesObj.job="quickSelect_atomic"
+	quesObj.dbase="agape_pollQuestions";
+	quesObj.param="question_ID";
+	quesObj.start=0;
+	quesObj.value=1
+	func21=function(data){
+		var data1=globalTools.verify(data);
+		qb = new questionBuilder({
+			"background-color":"gray",
+			"color":"#000",
+			"chartSlider":{
+				"background-color":"purple",
+				"color":"#fff"
+			}
+		});
+		qb.createPoll(data1,"polltitle",'pollHolder','poll_ID',1);
+		qb.pollVerify(quesObj.value,qb);
+	}
+	ajaxCallMedia(quesObj,func21);
+	/* President Poll  Ends*/
+
+
+	/* Random Poll  begin*/
+	var qb1
+	var quesObj1={};
+	quesObj1.job="quickSelect_atomic"
+	quesObj1.dbase="agape_pollQuestions";
+	quesObj1.param="question_ID";
+	quesObj1.start=0;
+	quesObj1.value=13;
+	func22=function(data){
+		var data1=globalTools.verify(data);
+		qb1 = new questionBuilder({
+			"chartSlider":{
+				"color":"#fff"
+			}
+		});
+		qb1.createPoll(data1,"polltitle1",'pollHolder1','poll_ID1',13);
+		qb1.pollVerify(quesObj1.value,qb1);
+	}
+	ajaxCallMedia(quesObj1,func22);
+	/* Random Poll  Ends*/
+
+
+
+		/* Random Poll  begin*/
+	var qb2
+	var quesObj2={};
+	quesObj2.job="quickSelect_atomic"
+	quesObj2.dbase="agape_pollQuestions";
+	quesObj2.param="question_ID";
+	quesObj2.start=0;
+	quesObj2.value=37;
+	func22=function(data){
+		var data1=globalTools.verify(data);
+		qb2 = new questionBuilder({
+			
+			"chartSlider":{
+				
+				"color":"#fff"
+			}
+		});
+		qb2.createPoll(data1,"polltitle2",'pollHolder2','poll_ID2',37);
+		qb2.pollVerify(quesObj2.value,qb2);
+	}
+	ajaxCallMedia(quesObj2,func22);
+	/* Random Poll  Ends*/
+
+
+	
+	
+	
+	
+	$(".voteButton").each(function(){
+		$(this).on("click",function(){
+			alert("vote")
+		})
+	})
+		
+		//var tiko = new polldaddy()
+		//tiko.send();
+
+
+	$(".presNavigation").unbind("click").on("click",function(){
+		//alert($(this).attr("id"))
+		$(".presNavigation").removeClass("selectedNav");
+		$(this).addClass("selectedNav")
+		var teeg=$(this).attr("id");
+		switch(teeg){
+			case 'raiseIssue':
+				var div1=document.getElementById("_lboxBackground");
+				var div2=document.getElementById("_lBoxMainDiv");
+				var template={};
+				template.page="raiseIssue.html";
+				id="raiseIssue";
+				template.param=id;
+				ingniteLightBox = new LightBox(div1,div2,template,id)
+				ingniteLightBox.lightBoxOn();
+				ingniteLightBox.lightBoxOff(div1,div2);
+			break;
+
+			case 'office':
+				var div1=document.getElementById("_lboxBackground");
+				var div2=document.getElementById("_lBoxMainDiv");
+				var template={};
+				template.page="run4office.html";
+				id="office";
+				template.param=id;
+				ingniteLightBox = new LightBox(div1,div2,template,id)
+				ingniteLightBox.lightBoxOn();
+				ingniteLightBox.lightBoxOff(div1,div2);
+			break;
+
+
+			
+		}
+	})
+
+
+	//Load people candidates
+	var peoplepresObj={};
+	peoplepresObj.job="atomic_selectAll"
+	peoplepresObj.dbase="people_candidates";
+	peoplepresObj.start=0;
+	peoplepresObj.param="peopleCandidate_Active"
+	peoplepresObj.value="Active";
+	peoplepresObj.ob=" where peopleCandidate_Active='Active' order by peopleCandidate_AccountUpdated desc"
+
+	
+	func2=function(data){
+	
+ 		global.people_candidates=globalTools.verify(data);
+ 		globalTools.save();
+ 		var ling=global.people_candidates.returnObj.length;
+ 		strg1=0;
+
+ 		if(ling>0){
+
+	 		$("#cands").empty();
+	 		for(i=0;i<ling;i++){
+				var tImg=$.parseJSON(global.people_candidates.returnObj[i].peopleCandidate_photos);
+				strg="";
+
+	 			cntr1=i+1;
+				if(global.people_candidates.returnObj[i].president_Party=="Republican"){
+					imgI=global.baseUrl+"/images/president/republican.elephant.jpg"
+
+				}else{
+					imgI=global.baseUrl+"/images/president/democracy.donkey.jpg"
+				}
+
+				finalImg=global.baseUrl+"/"+tImg.Presidential;
+
+				var rank=1+i;
+				strg=strg+"<div class='"+classt+"'>"
+					strg=strg+"<div class='rankingDiv'>"+rank+"</div>"
+					strg=strg+"<div class='rankingImageDiv'><img src='"+finalImg+"' width='36' height='40'/></div>"
+					strg=strg+"<div id='candidateClick"+i+"' class='candidateClick' style='float:left;width:300px;'>"
+						strg=strg+"<div style='padding-left:4px;width:95%'>"
+							strg=strg+"<div style='float:left;'>"+global.people_candidates.returnObj[i].peopleCandidate_Firstname+" "+global.people_candidates.returnObj[i].peopleCandidate_Lastname+ "</div>"
+							strg=strg+"<div style='float:right;font-size:11px;font-weight:bold;padding-top:2px;'>cash raised: $0</div>"
+							strg=strg+"<div style='clear:both;'></div>"
+						strg=strg+"</div>"
+						strg=strg+"<div class='rankingnameDivParty' style='width:95%'>"
+							strg=strg+"<div style='float:left;'>"+global.people_candidates.returnObj[i].peopleCandidate_Party+", <span style='text-decoration:underline;color:red;'>"+global.people_candidates.returnObj[i].peopleCandidate_workingState+"</span></div>"
+							strg=strg+"<div style='float:right;'>"
+							
+							strg=strg+"<div style='float:left;font-size:11px;font-weight:bold;'><img src='"+global.baseUrl+"/images/thumbsUp.gif' width='12' /><div style='float:right;padding-top:2px;'>:"+global.people_candidates.returnObj[i].peopleCandidate_upVotes+"&nbsp;</div></div>"
+							
+							strg=strg+"<div style='float:left;'><img src='"+global.baseUrl+"/images/thumbsDown.gif' width='12' /></div><div style='float:right;padding-top:2px;'>:"+global.people_candidates.returnObj[i].peopleCandidate_downVotes+"</div></div>"
+							strg=strg+"<div style='clear:both;'></div>"
+						strg=strg+"</div>"
+					strg=strg+"</div>"
+
+				strg=strg+"</div>"
+				strg=strg+"<div style='clear:both;'></div>"
+				if(classt=="oddGrid"){
+					classt="evenGrid"
+				}else{
+					classt="oddGrid"
+				}
+
+				$("#cands").append(strg);
+			}
+
+			$("[class*=candidateClick]").each(function(){
+			$(this).on("click",function(){
+
+				$("#presMain").hide();
+				$("#canMain").show();
+
+				var indx=$(this).attr("id")+"";
+				indx=indx.substr(14);
+				displayCandidate(global.people_candidates.returnObj[indx]);
+				global.peopleObj.index=indx;
+				globalTools.save();
+
+			})
+
+		})
+
+	}else{
+
+		//$("#cands").empty().append("<div style='color:#eee;'>Be the first to submit a video for president</div>");
+	}
+
+
+}
+
+ajaxCall3(peoplepresObj,func2);
+
+
+})
+
+$("#visitPeople").on("click",function(){
+	loadTemplate('mainLBHolder','peopleView.php');
+})
+
+
+$("#run4Pres").on("click",function(){
+	var div1=document.getElementById("_lboxBackground");
+	var div2=document.getElementById("_lBoxMainDiv");
+	var template={};
+	template.page="run4office.html";
+	id="office";
+	template.param=id;
+	ingniteLightBox = new LightBox(div1,div2,template,id)
+	ingniteLightBox.lightBoxOn();
+	ingniteLightBox.lightBoxOff(div1,div2);
+
+	
+})
+	
+
+
+
+$("#commentButt").on("mouseover",function(){
+	//#b9b6b6
+	$(this).css({"color":"gray","text-decoration":"underline"})
+}).on("mouseout",function(){
+	//#b9b6b6
+	$(this).css({"color":"#b9b6b6","text-decoration":"none"})
+}).on("click",function(){
+	if($("#mainCommentBox").hasClass("openMain")){
+		var le=$(".newFormfieledHolderStyles").height();
+			le=le-400;
+			
+		TweenMax.to($("#mainCommentBox")[0],.9,{css:{height:"0",ease:Bounce.easeIn}});
+		TweenMax.to($(".newFormfieledHolderStyles")[0],.9,{css:{height:le,ease:Bounce.easeIn}});
+		$("#mainCommentBox").removeClass("openMain");
+	}else{
+		var le=$(".newFormfieledHolderStyles").height();
+			le=le+400;
+			
+			TweenMax.to($("#mainCommentBox")[0],.4,{css:{height:"400",ease:Bounce.easeIn}});
+			TweenMax.to($(".newFormfieledHolderStyles")[0],.4,{css:{height:le,ease:Bounce.easeIn}});
+		$("#mainCommentBox").addClass("openMain");
+	}
+})
+
+
+
+
+
+$("#addComButt").on("click",function(){
+	if(global.navFunc=="LoggedIn"){
+		var id=global.vidMovrIndex;
+		global.comments.type="mainArticleComment"
+		var div1=document.getElementById("_lboxBackground");
+		var div2=document.getElementById("_lBoxMainDiv");
+		var template={};
+		template.page="commentPage.html";
+		template.job="videoComms";
+		template.heading="Comment on: "
+		
+		template.param=commOb.returnObj[0];
+		global.candidate.id=id;
+		//template.param=id;
+		ingniteLightBox = new LightBox(div1,div2,template,id)
+		ingniteLightBox.lightBoxOn();
+
+	}else{
+		alert("you must login")
+	}
+})
+
+
+var b = new CommentBoss('Politics','newsContent');
+
+
+</script>

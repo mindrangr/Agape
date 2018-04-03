@@ -1,0 +1,285 @@
+<h2>pres page</h2>
+<div style="width:100%;font-weight:bold;font-size:28px;color:brown;background-color:#fff;height:50px;text-align:center;padding-top:17px;border-radius:10px 10px 0px 0px;">Presidential hopefuls</div>
+<div style="color:#eee;padding:8px;font-height:15px;width:420px;margin:auto;">
+	<div class="sliderButtonStyle1 messagebuttonStyle" style="background-color: green;">search:</div>
+	<div style="float:left;margin-left:6px;padding-top:5px;"><input type="text"/></div>
+	<div style="float:left;color:#eee;text-decoration :underline;margin-left:6px;cursor:pointer;padding-top:5px;" onclick="goback()">Agape Politics Home</div>
+	<div style="clear:both;"></div></div>
+<div style="width:1100px;border:solid 1px #eee;margin:auto;height:500px;overflow:auto;overflow-x:hidden;">
+	<div id="truecands" style="width:1090px;margin:auto;"></div>
+</div>
+
+<script>
+
+
+$(".newFormfieledHolderStyles").css("height","880px");
+$("#LbBack").css("height","1020px");
+			$("#footertab").css("top","970px");
+//Begin load presidential candidates
+		var presObj={};
+		presObj.job="atomic_selectAll"
+		presObj.dbase="presidential_candidates";
+		presObj.start=0;
+		presObj.ob=" order by president_Candidacy_Active asc"
+		//presObj.param="president_Candidacy_Active"
+		//presObj.value="Active";
+		
+		func2=function(data){
+			//global=globalTools.create();
+
+			var hello=globalTools.verify(data);
+			var strg1="";
+			var imgI="none";
+			var cntr1;
+
+			global=globalTools.create();
+			global.presObj.presidential_candidates=hello.returnObj;
+			global.lastNav='presidentListPage.html';
+			globalTools.save();
+			for(g=0;g<hello.returnObj.length;g++){
+				cntr1=g+1;
+				
+				var e=JSON.stringify(hello.returnObj[g].president_photos)
+				var tImg=$.parseJSON(hello.returnObj[g].president_photos);
+				
+
+
+				switch(hello.returnObj[g].president_Party){
+					case 'Republican':
+						imgI=global.baseUrl+"/images/president/republican.elephant.jpg"
+					break;
+
+					case 'Democratic':
+						imgI=global.baseUrl+"/images/president/democracy.donkey.jpg";
+					break;
+
+					case 'Libertarian':
+
+						imgI=global.baseUrl+"/images/president/libertarian.jpg";
+					break;
+
+					case 'Constitution':
+						imgI=global.baseUrl+"/images/president/constitution.jpg";
+					break;
+
+					case 'Workers World':
+						imgI=global.baseUrl+"/images/president/WWP.jpg";
+						break;
+
+					case 'Green Party':
+						imgI=global.baseUrl+"/images/president/greenparty.png";
+					break;
+
+				}
+
+				strg1=strg1+"<div class='truCandsDiv' style='background-color:#eee;border-radius:5px;border:solid 2px #A52A2A;margin:auto:6px;width:250px;margin-right:12px;margin-left:6px;margin-top:15px;'>"
+					strg1=strg1+"<div style='float:left;border-radius:5px 0px 0px 0px;'>"
+					strg1=strg1+"<div class='truCandsImgDiv' style='position:relative;border-radius:5px 0px 0px 0px;' >"
+				if(hello.returnObj[g].president_Candidacy_Active=="InActive"){
+						strg1=strg1+"<div style='position:absolute;z-index:4;font-family:Impact;top:40px;left:15px;font-size:15px;color:orange;text-shadow:1px 0px 0px #000;'>Dropped out</div>"
+					}
+
+						strg1=strg1+"<div style='position:relative;z-index:3;border-radius:5px 0px 0px 0px;'><div class='commonRankCount'>"+cntr1+"</div><div class='commonVoteCount' style='border-radius:5px 0px 0px 0px;color:lime;text-shadow:0px 1px 1px #000;'><img src='"+global.baseUrl+"/images/thumbsUp.gif' height='14' />"+hello.returnObj[g].president_upVotes+"</div><img style='border-radius:5px 0px 0px 0px;' src='"+global.baseUrl+"/"+tImg.images[0].defaultImage+"' height='110' width='120'/></div>"
+						strg1=strg1+"<div id='pres"+g+"' class='presidentLabel'>"+hello.returnObj[g].president_workingState+"</div>"
+					strg1=strg1+"</div>"
+					strg1=strg1+"</div>"
+						strg1=strg1+"<div style='float:left;width:100px;'>"
+							strg1=strg1+"<div style='text-decoration:underline;font-weight:bold;'>"+hello.returnObj[g].president_Firstname+" "+hello.returnObj[g].president_Lastname+"</div>"
+								strg1=strg1+"<div style='width:120px;'>"+hello.returnObj[g].president_Party+"</div>"
+								strg1=strg1+"<img src='"+imgI+"' height='20'/>"
+								strg1=strg1+"<div >Currently:</div><div style='width:120px;font-size:11px;'>"+hello.returnObj[g].president_CurrentPosition+"</div>"
+								strg1=strg1+"</div>"
+										
+								strg1=strg1+"</div>"
+			}
+		wid=hello.returnObj.length*260;
+		$("#truecands").append(strg1);
+
+
+		$(".presidentLabel").each(function(){
+			$(this).unbind("click").on("click",function(){
+				var t=$(this).attr("id")+"";
+				t=t.substr(4);
+				global.presObj.index=t;
+				globalTools.save();
+				loadTemplate('mainLBHolder','presidentView.php');
+			})
+		})
+	
+
+
+	
+
+		$("#truecands").append("<div style='clear:both;'></div><div style='width:100%;font-weight:bold;font-size:28px;color:brown;background-color:#fff;height:50px;text-align:center;padding-top:17px;border-radius:10px 10px 0px 0px;margin-top:10px;margin-bottom:10px;'>Presidential People</div><div id='peopleCands'></div>")
+	}
+
+
+	ajaxCall3(presObj,func2);	
+
+
+
+
+
+
+
+
+var classt="oddGrid";
+
+
+			//Load people candidates
+ 		var peoplepresObj={};
+		peoplepresObj.job="atomic_selectAll"
+		peoplepresObj.dbase="people_candidates";
+		peoplepresObj.start=0;
+		peoplepresObj.param="peopleCandidate_Active"
+		peoplepresObj.value="Active";
+		peoplepresObj.ob=" where peopleCandidate_Active='Active' order by peopleCandidate_AccountUpdated desc"
+
+		
+		func2=function(data){
+	 		global.people_candidates=globalTools.verify(data);
+	 		globalTools.save();
+	 		var ling=global.people_candidates.returnObj.length;
+	 		strg1=0;
+	 		$("#cands").empty();
+
+
+
+
+
+
+	 		for(i=0;i<ling;i++){
+	 			
+			var tImg=$.parseJSON(global.people_candidates.returnObj[i].peopleCandidate_photos);
+			strg="";
+
+ 			cntr1=i+1;
+			
+		
+
+			finalImg=global.baseUrl+"/"+tImg.Presidential;
+
+			var rank=1+i;
+		
+			var imgI="";
+
+
+
+
+
+
+
+
+			
+				
+				var e=JSON.stringify(global.people_candidates.returnObj[i].peopleCandidate_photos)
+				var tImg=$.parseJSON(global.people_candidates.returnObj[i].peopleCandidate_photos);
+
+
+
+				switch(global.people_candidates.returnObj[i].peopleCandidate_Party){
+					case 'Republican':
+						imgI=global.baseUrl+"/images/president/republican.elephant.jpg"
+					break;
+
+					case 'Democratic':
+						imgI=global.baseUrl+"/images/president/democracy.donkey.jpg";
+					break;
+
+					case 'Libertarian':
+
+						imgI=global.baseUrl+"/images/president/libertarian.jpg";
+					break;
+
+					case 'Constitution':
+						imgI=global.baseUrl+"/images/president/constitution.jpg";
+					break;
+
+					case 'Workers World':
+						imgI=global.baseUrl+"/images/president/WWP.jpg";
+						break;
+
+
+					case 'Green Party':
+						imgI=global.baseUrl+"/images/president/greenparty.png";
+					break;
+
+						
+
+				}
+								
+				strg1="";
+				strg1=strg1+"<div class='truCandsDiv' style='background-color:#eee;border-radius:5px;border:solid 2px #A52A2A;margin:auto:6px;width:250px;margin-right:12px;margin-left:6px;margin-top:15px;'>"
+					strg1=strg1+"<div style='float:left;border-radius:5px 0px 0px 0px;'>"
+					strg1=strg1+"<div class='truCandsImgDiv' style='position:relative;border-radius:5px 0px 0px 0px;' >"
+				if(global.people_candidates.returnObj[i].peopleCandidate_Active=="InActive"){
+						strg1=strg1+"<div style='position:absolute;z-index:4;font-family:Impact;top:40px;left:15px;font-size:15px;color:orange;text-shadow:1px 0px 0px #000;'>Dropped out</div>"
+					}
+
+						strg1=strg1+"<div style='position:relative;z-index:3;border-radius:5px 0px 0px 0px;'><div class='commonRankCount'>"+cntr1+"</div><div class='commonVoteCount' style='border-radius:5px 0px 0px 0px;color:lime;text-shadow:0px 1px 1px #000;'><img src='"+global.baseUrl+"/images/thumbsUp.gif' height='14' />"+global.people_candidates.returnObj[i].peopleCandidate_upVotes+"</div><img style='border-radius:5px 0px 0px 0px;' src='"+global.baseUrl+"/"+tImg.Presidential+"' height='110' width='120'/></div>"
+						strg1=strg1+"<div id='pres"+i+"' class='peopleLabel'>"+global.people_candidates.returnObj[i].peopleCandidate_workingState+"</div>"
+					strg1=strg1+"</div>"
+					strg1=strg1+"</div>"
+						strg1=strg1+"<div style='float:left;width:100px;'>"
+							strg1=strg1+"<div style='text-decoration:underline;font-weight:bold;'>"+global.people_candidates.returnObj[i].peopleCandidate_Firstname+" "+global.people_candidates.returnObj[i].peopleCandidate_Lastname+"</div>"
+								strg1=strg1+"<div style='width:120px;'>"+global.people_candidates.returnObj[i].peopleCandidate_Party+"</div>"
+								strg1=strg1+"<img src='"+imgI+"' height='20'/>"
+								strg1=strg1+"<div >Currently:</div><div style='width:120px;font-size:11px;'>"+global.people_candidates.returnObj[i].peopleCandidate_CurrentPosition+"</div>"
+								strg1=strg1+"</div>"
+										
+								strg1=strg1+"</div>"
+
+
+
+
+
+		$("#peopleCands").append(strg1);
+
+
+		$(".peopleLabel").each(function(){
+			$(this).unbind("click").on("click",function(){
+				var t=$(this).attr("id")+"";
+				t=t.substr(4);
+				global.peopleObj.index=t;
+				globalTools.save();
+				loadTemplate('mainLBHolder','peopleView.php');
+			})
+
+		})
+		
+
+
+	
+	}
+
+			$("[class*=candidateClick]").each(function(){
+			$(this).on("click",function(){
+
+				$("#presMain").hide();
+				$("#canMain").show();
+
+				var indx=$(this).attr("id")+"";
+				indx=indx.substr(14);
+				displayCandidate(global.people_candidates.returnObj[indx]);
+				global.peopleObj.index=indx;
+				globalTools.save();
+
+			})
+		})
+
+		}
+
+	ajaxCall3(peoplepresObj,func2);
+
+
+	function goback(){
+		global.lastNav="presidentWho.html";
+		globalTools.save()
+		location.href="politics"
+//loadTemplate('mainLBHolder','presidentWho.html');
+
+
+	}
+
+</script>
+

@@ -1,0 +1,171 @@
+<div class="topTab" style='margin-top:15px;color:#2f629b;'>Contact us</div>
+	<div id='formQuestions' style="width:850px;margin:auto;font-family: arial;">
+
+					<div class="newQuestionHolder">
+						<div style="width:560px;margin:auto;">
+							<div class='newQuestionbLabels'>Reason for contact:</div>
+							<div class='radioBoxDiv'>
+								<select style="background-color: #520303;border-color: #520303;border-style: none;color:#eee;height:28px;width:190px" id='agape_correspondence_type' ><option value="Customer service">Customer service</option><option value="Report a bug">Report a bug</option><option value="Sales">Sales</option><option value="Sponsorship inquiry">Sponsorship inquiry</option><option value="Make a suggestion">Make a suggestion</option><option value="General inquiries">General inquiries</option></select>
+							</div>
+
+							<div style="clear:both"></div>
+						</div>
+					</div>
+
+
+					
+					<div class="newQuestionHolder">
+						<div style="width:560px;margin:auto;">
+							<div class='newQuestionbLabels'>First name:</div>
+							<div class='radioBoxDiv'>
+								<input type='textbox'   id='agape_correspondence_Firstname' style="background-color: #520303;border-color: #520303;border-style: none;color:#eee;height:25px;width:190px;" />
+							</div>
+							<div id='agape_correspondence_Firstname_err' style='float:left;color:#fff;font-size: 14px;margin-left:6px;display:none;'>*</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+
+					<div class="newQuestionHolder">
+						<div style="width:560px;margin:auto;">
+							<div class='newQuestionbLabels'>Last name:</div>
+							<div class='radioBoxDiv'>
+								<input type='textbox'  id='agape_correspondence_Lastname' style="background-color: #520303;border-color: #520303;border-style: none;color:#eee;height:25px;width:190px;" />
+							</div>
+							<div id='agape_correspondence_Lastname_err' style='float:left;color:#fff;font-size: 14px;margin-left:6px;display:none;'>*</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+
+					<div class="newQuestionHolder">
+						<div style="width:560px;margin:auto;">
+							<div class='newQuestionbLabels'>Reply Email Address:</div>
+							<div class='radioBoxDiv'>
+								<input type='textbox'  id='agape_correspondence_Email' style="background-color: #520303;border-color: #520303;border-style: none;color:#eee;height:25px;width:190px;" />
+							</div>
+							<div id='agape_correspondence_Email_err' style='float:left;color:#fff;font-size: 14px;margin-left:6px;display:none;'>*</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+					<div class="newQuestionHolder">
+						<div style="width:560px;margin:auto;">
+							<div class='newQuestionbLabels'>Phone:</div>
+							<div class='radioBoxDiv'>
+								<input type='textbox'  id='agape_correspondence_Phonenumber' style="background-color: #520303;border-color: #520303;border-style: none;color:#eee;height:25px;width:190px;" />
+							</div>
+							<div id='agape_correspondence_Phonenumber_err' style='float:left;color:#fff;font-size: 14px;margin-left:6px;display:none;'>*</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+					
+					<div class="newQuestionHolder">
+						<div style="width:560px;margin:auto;">
+							<div class='newQuestionbLabels'>Comment:</div>
+							<div class='radioBoxDiv'>
+								<textarea class="inputboxnew" id='agape_correspondence_comment' style='background-color:#520303;color:#eee;width:300px;height:25px;width:190px;' ></textarea>
+							</div>
+							<div id='agape_correspondence_comment_err' style='float:left;color:#fff;font-size: 14px;margin-left:6px;display:none;'>*</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+					
+
+					<div class="newQuestionHolder">
+						<div style="width:560px;margin:auto;">
+							<div class='newQuestionbLabels'>How do you want to be contacted:</div>
+							<div class='radioBoxDiv'>
+								<select type='textbox' style="background-color: #520303;border-color: #520303;border-style: none;color:#eee;height:28px;width:190px" id='agape_correspondence_ContactType' ><option>Phone</option><option>Email</option></select>
+							</div>
+
+							<div style="clear:both"></div>
+						</div>
+					</div>
+
+
+				
+					
+					<div style='width:700px;margin-top:60px;'>
+						<div style='width:350px;margin:auto;'>
+							
+							<div id="gStartedButton" class='optButtons1 ' style='float:right;color:#2f629b;' >Submit inquiry</div>
+							
+							<div style='clear:both;'></div>
+						</div>
+					</div>
+				</div>
+
+					<script type="text/javascript">
+						$(document).ready(function(){
+						
+							$("#agape_inquiryComment").on("keyup",function(){
+								chkFields1();
+							})
+
+							$("input[name=agape_inquiryType]").each(function(){
+								$(this).on("click",function(){
+									chkFields1()
+								})
+							})
+						})
+
+
+						function chkFields1(){
+							var inquiry=$("input[name=agape_inquiryType]:checked").val();
+							if(inquiry===undefined){
+								$("#gStartedButton").addClass("optButtonOff")
+							}else{
+								if($("#agape_inquiryComment").val()!=""){
+									$("#gStartedButton").removeClass("optButtonOff")
+								}else{
+									$("#gStartedButton").addClass("optButtonOff")
+								}
+							}
+
+						}
+
+						$("input[type=textbox], textarea").each(function(){
+							$(this).on("keydown",function(){
+								$("#"+ $(this).attr("id")+"_err").hide();
+							})
+						})
+
+						$("#gStartedButton").bind("click",function(){
+							sendo={};
+							sendo.job="quickInsertAtomic";
+							sendo.dbase="agape_correspondence";
+							sendo.key="false";
+							var sQuery={};
+							var sendChk="true"
+							$("#formQuestions :input").each(function(){
+								if($(this).val()!=""){
+									sQuery[$(this).attr('id')]=$(this).val();
+								}else{
+									sendChk="false";
+									$("#"+ $(this).attr("id")+"_err").show();
+
+								}
+
+							})
+							
+
+							sQuery.agape_correspondence_created=convertNowToPhP();
+							sendo.obj=sQuery;
+							var func=function(obj){
+								var mb={}
+								mb.message="Someone will respond to your message within 48 hours."
+								global.messageBox=mb;
+								loadTemplate('mainLBHolder','messageBox.html');
+							}
+							
+							if(sendChk=="true"){
+								ajaxCallPost(sendo,func);
+							}else{
+								//alert("not good")
+							}
+							
+							
+						})
+						$("#opacback").css("height","780px");
+						$("#footerPush").css("height","620px")
+
+//
+					</script>

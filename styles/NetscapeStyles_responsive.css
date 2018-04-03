@@ -1,0 +1,925 @@
+
+/* desktop size   */
+@media only screen and (max-width: 1800px) {
+    .tag {
+        /*background-color: lime;*/
+    }
+
+
+
+   .communityPageMainImage{
+   		border-radius:7px;
+   		border:solid 1px #eee;
+   		width:684px;
+   }
+
+	  
+    
+
+    .newNav2_on_community{
+
+        background-color:#034e76;
+        color:#35b7fe;
+        box-shadow:0px 1px 1px #000;
+        border:solid 1px lime;
+
+    }
+
+
+
+
+
+
+	.adDivClass{
+		width:730px;
+	}
+
+	.navigation{
+		width:initial;
+		float:right;
+		font-size:13px;
+		margin-top:15px;
+		margin-right:20px;
+		display:block;
+	}
+
+	.clear{
+		display:none;
+	}
+
+
+
+	.listUsersOnline{
+	    width:220px;
+	    height:230px;
+	    margin:auto;
+	    background-color: #eee;
+	    margin-top:10px;
+	    overflow: auto;
+	    overflow-y: hidden;
+	    position:relative;
+	}
+
+
+
+
+	.usersOnline
+	{
+	    margin:auto;
+	    height:25px;
+	    width:250px;
+	    background-color: #fff;
+	    border:solid 1px #000;
+	    border-radius: 5px 5px 5px 5px;
+	    box-shadow:0px 2px 8px #000;
+	    display:none;
+	    overflow: auto;
+	    overflow-y: hidden;
+	}
+
+
+
+	.adDivHolderClass{
+        width:50%;
+        margin:auto;
+        height:108px;
+        
+        top:88px;
+
+    }
+
+
+    .newNav2_community{
+        float:left;
+        width:90px;
+        color:yellow;
+        padding:4px;
+        background-color:red;
+        border:solid 1px #2f629b;
+        border-radius:5px 5px 0px 0px;
+        font-family:arial;
+        text-align:center;
+        margin-left:4px;
+        margin-right:4px;
+        cursor:pointer;
+        box-shadow:0px 3px 3px #000;
+    }
+
+
+    .sponsorDiv{
+
+    	width:100%;
+    	margin-right:5px;
+
+
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#dddddd+0,d1d1d1+44,cccccc+100 */
+	/*background: #dddddd; /* Old browsers */
+	/*background: -moz-linear-gradient(top, #dddddd 0%, #d1d1d1 44%, #cccccc 100%); /* FF3.6-15 */
+	/*background: -webkit-linear-gradient(top, #dddddd 0%,#d1d1d1 44%,#cccccc 100%); /* Chrome10-25,Safari5.1-6 */
+	/*background: linear-gradient(to bottom, #dddddd 0%,#d1d1d1 44%,#cccccc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+
+    
+
+    }
+
+
+    .bodyStyles_community{
+
+		background-color:#4c4d42;
+		background-image:url('../images/blog1.jpg');
+	    background-position:0px -170px;margin:0px;
+	}
+
+
+
+	.footerPush{
+
+		position:relative;
+		z-index:10;
+		height:38px;
+	}
+
+	 .newQuestionbLabels1{
+        float:left;
+        color:#fff;
+        font-size:22px;
+        width:380px;
+        margin-right:10px;
+    }
+
+
+    .searchBox{
+    	width:780px;
+    	height:200px;
+    	overflow:auto;
+    	margin:auto;
+    }
+
+
+    .searchPagination{
+
+    	width:100%;
+    	text-align:center;
+    	margin-bottom:3px;
+
+    }
+
+     .imageDiv{
+        float:left;
+        border-radius:5px;
+        padding:5px;
+        background-color:#ededed;
+        font-family:arial;
+        width:240px;
+        margin-left:20px
+
+    }
+
+
+    .quesForm{
+    	float:left;
+    	width:370px;
+    	margin-top:15px;
+    }
+
+
+    .newQuestionbLabels_search{
+               
+	    width:120px;
+	    font-size:18px;
+	    font-family:arial;
+	}
+
+
+
+	.quesFormDiv{
+		width:700px;
+		margin:auto;
+
+
+	}
+
+
+	.AdvertiseRow1{
+
+
+		width:150px;
+		float:left
+	}
+
+
+
+	.searchUtubes{
+		height:400px;
+		overflow:auto;
+	}
+
+
+
+	.respAdverDiv{
+		width:1100px;
+		margin:auto;
+	}
+
+
+
+	.responseArtSearch{
+
+		width:85%;
+		margin:auto;
+	}
+
+
+
+	.slideResp{
+		width:600px
+	}
+
+
+
+	.textSearchDiv{
+		width:590px;
+		font-weight:bold;
+		font-size:28px;
+		margin:auto;
+		color:#524a92;
+		text-shadow: -1px -1px 6px #79a1b8;
+	}
+
+
+
+	.optHolder1{
+        width:340px;
+        margin-top:8px;
+        margin-bottom:8px;
+        
+        
+    }
+
+
+    .searchListResp{
+
+    	float:left;
+    	width:780px;
+    	margin-left:10px;
+    	margin-right:10px;
+
+    }
+
+
+    .logBoard{
+						
+		width:730px;
+		margin:auto;
+        margin-bottom:10px;
+	}
+
+
+
+	.logBoard_Div{
+        text-align:left;
+        margin-right:12px;
+        padding-top:7px;
+        font-family:arial;
+        padding-left:18px;
+        color:#eee;
+    }			
+
+
+    .pollStyle{
+    	width:30%;
+    	color:#ccc;
+    	float:left;
+    }
+
+
+
+
+    .pStyleDiv{
+    	width:94%;
+    	margin:auto;
+    	font-family:arial;
+    }
+
+
+    .pollHolder{
+    	padding-left:20px;
+    	border-bottom:solid 1px #eee;
+    	border-left:solid 1px #eee;
+    	padding-top:15px;
+    	border-right:solid 1px #eee;
+    	width:94%;
+    	margin-bottom:20px;
+    	padding-right:6px;
+    }
+
+
+    .searchPolls{
+
+    	width:90%;
+    	margin:auto;
+
+    }
+
+    .mainAd{
+    	width:100%;
+    	margin:auto;
+    	background-color: #c96cbd;
+    	padding-bottom:4px;
+    }
+
+   
+    	.mLabel{
+		    font-size:28px;
+		    font-family:'Great Vibes';
+		    width:300px;
+		    margin:auto;
+		    color:#fff;
+		    margin-top:10px;
+		        text-shadow: 0px 4px 6px #000;
+
+		}
+
+
+
+		.adverImage{
+
+			width:100%;
+
+		}
+
+
+		.adverImageDiv{
+			width:700px;
+			margin:auto;
+			padding-top:4px;
+		}
+
+
+
+		.newNavStyle{
+
+			color:#eee;
+			float:left;
+			padding:3px;
+			margin-right: 10px;
+
+		}
+
+
+		.newstoryHomeText{
+			text-shadow: 1px 1px #000;
+			font-size:18px;
+		}
+
+
+
+				a.nFooter:visited {
+			color:#c96cbd;
+
+		}
+
+		a.nFooter:link  {
+			color:#c96cbd;
+
+		}
+
+		a.nFooter:active  {
+			color:#c96cbd;
+
+		}
+
+		a.nFooter:hover {
+			color:lime;
+
+		}
+
+	   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Application size   */
+
+@media only screen and (max-width: 700px) {
+    .tag {
+        /*background-color: #4a5692;*/
+    }
+
+
+
+
+     .communityPageMainImage{
+   		border-radius:7px;
+   		border:solid 1px #eee;
+   		width:100%;
+   }
+
+
+   .newNav2_community{
+	    margin:auto;
+	    width:99%;
+	    color:#000;
+	    background-color:transparent;
+	    border:solid 1px #000;
+	    border-radius:8px 8px 8px 8px;
+	    font-family:arial;
+	    text-align:center;
+	    font-size:14px;
+	    height:60px;
+	  	position:relative;
+	    cursor:pointer;
+	    box-shadow:0px 3px 3px #000;
+	    padding:0px;
+	    float:none;
+
+
+
+
+	}
+
+
+	.cellButt{
+		position:absolute;
+		top:1px;
+		width:100%;
+		
+		border:solid 1px #000;
+		
+
+			/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4d4787+0,ffffff+100&1+0,0+100 */
+		background: -moz-linear-gradient(top, rgba(77,71,135,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(77,71,135,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(77,71,135,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d4787', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+		}
+
+	.tag_community{
+
+		height:45px;  
+        width:100%;
+        color:#35b7fe;
+        font-size:36px;
+        text-align:left;
+        font-family:'Great Vibes';
+        padding-top:5px;
+        border-bottom:solid 1px  #2f629b;
+
+		background: #28343b; /* Old browsers */
+		background: -moz-linear-gradient(top,  #28343b 0%, #28343b 32%, #524a92 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top,  #28343b 0%,#28343b 32%,#524a92 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom,  #28343b 0%,#28343b 32%,#524a92 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#28343b', endColorstr='#524a92',GradientType=0 ); /* IE6-9 */
+
+	}
+
+
+
+	.panelLead_sub_holder{
+        background-color:#1c4156;
+        border-radius:8px;
+        width:100%;
+        margin:auto;
+        overflow:auto;
+        overflow-x:hidden;
+        border:solid 1px #dedede;
+        color:#000;
+    }
+
+
+	.adDivHolderClass{
+		width:99%;
+		margin:left;
+		height:65px;
+		position:relative;
+		z-index:15;
+		padding-top: 0px;
+		top:57px;
+
+	}
+
+
+	.adDivClass{
+		width:100%;
+		margin:auto;
+		padding-top:0px;
+	}
+
+
+
+	.loginPanel{
+	    display: none;
+	}
+
+
+    .topTab{
+        display: none;
+
+    }
+
+
+	.navigation{
+
+		
+		font-size:13px;
+		font-weight:bold;
+		float:none;
+		margin:auto;
+		
+		position:relative;
+		top:109px;
+		width:100%;
+		margin:auto;
+		z-index:15;
+		display:none;
+	}
+
+	.clear{
+		display:block;
+	}
+
+	.mLabel{
+	    font-size:20px;
+	}
+
+	.mainLabel{
+		 float:right;
+    	width:70%;
+    	margin-right:40px;
+    	color:#fff;
+	}
+
+	 .tag{
+        height:45px;
+      
+       
+        color:#c9d5d6;
+        margin-right:15px;
+        text-align:right;
+        font-family:'Great Vibes';
+        padding-left:25px;
+        padding-top:5px;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#bcc3c6+1,4a7892+100 */
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#bcc3c6+1,7195a9+17,4a7892+39,4a7892+45,4a7892+100 */
+        background: #4a7892;
+	}
+
+
+
+	.panelLead_sub_holder{
+	    /*background-color:#1c4156;
+	    border-radius:8px;*/
+	    width:100%;
+	    margin:auto;
+
+        border:none;
+	    margin-bottom: 0px;
+	   /* height:300px;
+	    overflow:auto;
+	    overflow-x:hidden;*/
+	    color:#000;
+	   
+	}
+
+
+
+
+	.usersOnline
+	{
+		position:relative;
+		height:25px;
+		width:100%;
+		background-color: #fff;
+		border:none;
+		border-radius: 0px 0px 0px 0px;
+		box-shadow:0px 0px 0px #fff;
+		display:none;
+		overflow: auto;
+		overflow-y: hidden;
+
+	}
+
+
+	.listUsersOnline{
+	    width:100%;
+	    height:230px;
+	    margin:auto;
+	    background-color: #eee;
+	    margin-top:10px;
+	    overflow: auto;
+	    overflow-y: hidden;
+	    position:relative;
+	}
+
+        .lboxMobileBackground{
+            position:absolute;
+            z-index:18;
+            height:100%;
+            width:100%;
+            background-color:#eee;
+            display:none;
+opacity:.9;
+          
+            top:0px;
+        }
+
+
+
+       .sponsorDiv{
+
+    	width:100%;
+    	margin-right:5px;
+    	background-color: #eee;
+    }
+
+
+    .bodyStyles_community{
+
+		background-color:#4c4d42;
+		background-image:url('../images/blog1.jpg');
+	    background-attachment:fixed;margin:0px;
+	}
+
+
+	.footerPush{
+
+		position:relative;
+		z-index:10;
+		height:10px;
+	}
+
+
+
+
+	.newQuestionHolder{
+
+		margin-top:10px;
+		width:100%
+	}
+
+
+	 .newQuestionbLabels1{
+        float:left;
+        color:#fff;
+        font-size:22px;
+        width:60%;
+        margin-right:10px;
+    }
+
+
+
+     .searchBox{
+    	width:200px;
+    	height:900px;
+    	overflow:auto;
+    	margin-left:0px;
+    }
+
+
+    .searchPagination{
+
+    	width:100%;
+    	text-align:left;
+    	margin-bottom:3px;
+
+    }
+
+
+     .imageDiv{
+        float:none;
+        border-radius:5px;
+        padding:5px;
+        background-color:#ededed;
+        font-family:arial;
+        width:240px;
+        margin-left:0px
+
+    }
+
+
+    .quesForm{
+    	float:none;
+    	width:370px;
+    	margin-top:15px;
+    }
+
+
+    .AdvertiseRow1{
+
+
+    	display:none;
+    }
+
+
+     .newQuestionbLabels_search{
+               
+        display:none;
+    }
+
+
+    .quesFormDiv{
+		width:200px;
+		margin:0px;
+
+
+	}
+
+
+	.searchUtubes{
+		height:0px;
+		overflow:auto;
+	}
+
+
+	.respAdverDiv{
+		width:370px;
+		margin:auto;
+	}
+
+
+	.responseArtSearch{
+
+		width:348px;
+		margin:0px 0px 0px 0px;
+	}
+
+	.slideResp{
+
+
+		width:340px
+	}
+
+
+	.textSearchDiv{
+		width:300px;
+		font-weight:bold;
+		font-family: arial;
+		font-size:25px;
+		color:#524a92;
+		text-align:center;
+		text-shadow: -1px -1px 6px #79a1b8;
+	}
+
+
+
+	.optHolder1{
+        width:200px;
+        margin-top:8px;
+        margin-bottom:8px;
+        
+        
+    }
+
+    .searchListResp{
+
+    	float:left;
+    	width:200px;
+    	margin-left:10px;
+    	margin-right:10px;
+
+    }
+
+
+    .logBoard{
+						
+		width:220px;
+		margin:auto;
+        margin-bottom:10px;
+        color:#000;
+	}
+
+
+.logBoard_Div{
+        text-align:left;
+        margin-right:12px;
+        padding-top:7px;
+        font-family:arial;
+        padding-left:18px;
+        color:#000;
+    }	
+
+
+
+
+    .pollStyle{
+    	width:100%;
+    	color:#ccc;
+    	float:none;
+    	margin-left:0px;
+    }
+
+    .pStyleDiv{
+    	width:85%;
+    	margin:none;
+    	font-family:arial
+
+
+    }
+
+
+        .pollHolder{
+    	padding-left:20px;
+    	border-bottom:solid 1px #eee;
+    	border-left:none;
+    	padding-top:15px;
+    	border-right:solid 1px #eee;
+    	width:97%;
+    	margin-bottom:20px;
+    	padding-right:0px;
+    	background-color:#191970;
+
+
+    }
+
+
+    .searchPolls{
+
+    	width:90%;
+    	margin:0px;
+
+    }
+
+
+    .mainAd{
+    	width:100%;
+    	margin:auto;
+
+    }
+
+    .mLabel{
+	    font-size:28px;
+	    font-family:'Great Vibes';
+	    width:300px;
+	    margin:auto;
+	    color:#fff;
+	    margin-top:10px;
+	        text-shadow: 0px 4px 6px #000;
+
+
+	}
+
+	.newNavStyle{
+
+			color:#eee;
+			float:none;
+			padding:3px;
+			margin-right: 10px;
+
+		}
+
+
+
+
+		a.nFooter:visited {
+			color:#c96cbd;
+
+		}
+
+		a.nFooter:link  {
+			color:#c96cbd;
+
+		}
+
+		a.nFooter:active  {
+			color:#c96cbd;
+
+		}
+
+		
+
+
+
+}
+
+
+@font-face {
+    font-family:Great Vibes;
+    src: url('../fonts/Great Vibes.ttf'), url('../fonts/Great Vibes.eot');
+}
+
+
+
+@media only screen and (max-width: 500px) {
+
+	.adverImage{
+		width:100%;
+	}
+
+
+	.adverImageDiv{
+		width:100%;
+		margin:auto;
+	}
+
+}

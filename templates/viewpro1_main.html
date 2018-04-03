@@ -1,0 +1,581 @@
+
+				
+
+	<body bgcolor="#000000" >
+	<style>
+		.label_pr{
+			font-size:16px;
+			width:165px !important;
+		}
+		
+		.fields_pr{
+			font-size:16px;
+			width:125px;
+			text-shadow:0px 0px 1px #000;
+		}
+	
+		.buttonViewPro{
+			color:#71aad5;
+			height:20px;
+			padding-top:5px;
+			box-shadow:#061e21 0px 2px 3px 0px;
+			text-align:center;
+		}
+	</style>
+
+	<div  id="proView" style="float:left;width:100%;height:700px;padding:4px;">	
+		<!-- Begin View panel-->
+		<div id="view" style="z-index:15;width:100%;">
+			<br/>
+			<div class="backgroundViewprofileHolder" style="height:586px;">
+				<div style="width:770px;margin:auto;">
+					<table cellpadding="7" style="text-align:left;">
+						<tr >
+							<td width="150" valign="top">
+								<IMG src="" height="175" width="135"  style="border:solid 1px #dedede;border-radius:7px;" id="hostImg" />
+							</td>
+							<td valign="top" style="width:500px" >													
+								<div class="viewStyleInnerBorder">
+									<table valign="top">
+										<tr>
+											<td class="label_pr" style="width:125px !important;" >Name:</td>
+											<td >
+												<div class="fields_pr" id="name" ></div>
+											</td>
+							
+											
+											
+										
+										</tr>
+																	
+										<tr>
+											<td class="label_pr" style="width:125px !important;" >Position:</td>
+											<td  >
+												<div class="fields_pr" style="color:#4A7892;width:350px" id="position"></div>
+											</td>
+											
+											
+										</tr>
+										
+										<tr>
+										<td class="label_pr" style="width:125px;vertical-align:top;">Formerly:</td>
+											<td><div class="fields_pr" style="width:350px" id="formerPosition"></div></td>
+											
+										</tr>
+														
+										
+						
+										<tr>
+											<td class="label_pr" style="width:125px !important;">Born:</td>
+											<td><div style="width:350px" class="fields_pr" id="born"></div></td>
+											
+										</tr>		
+									</table>
+								</div>
+								
+								
+								<div style="width:360px;margin:auto;font-family:arial;margin-top:10px;">
+									<div style="float:left;margin-right:15px;color:#b9b6b6;padding-top:2px;"><span style="cursor: pointer; color: rgb(185, 182, 182); text-decoration: none;" id="commentButt_main">View comments</span>: <span id="mainCommentCount" style="color:orange">94</span></div>
+									<div style="float:left;margin-right:15px;color:gray;"><img class="mn_openThumbs" src="images/thumbsUp.gif" height="16"> <span id="thumbsUp" class="articleControls_green">82642</span></div>
+									<div style="float:left;margin-right:15px;color:gray;"><img class="mn_openThumbs" src="images/thumbsDown.gif" height="16"> <span id="thumbsDown" class="articleControls_red ">2234</span></div>
+									<div style="clear:both;"></div>
+								</div>											
+									
+									
+									
+									<div style="clear:both;"></div>
+								</div>
+								<div id='visitMess' style="width:160px;color:#eee;font-weight:bold;font-family:arial;margin:auto;margin-top:7px;"></div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div id="picDiv" style='height:100px;display:none;width:500px;margin:auto;'>
+					
+				</div>	
+				<div style='width:740px;margin:auto;'><img src='advertiseImages/flashad1.gif' /></div>		
+
+				<div class="viewStyleInnerBorder" style="height:235px;width:90%;color:#eee;margin:auto;margin-top:10px;font-family:arial;padding:5px;">
+					<div style="color:#4A7892;" >Points:</div>
+					<div style="font-size:12px;">
+						<ul>
+							<li>Rex W. Tillerson, the chief executive of Exxon Mobil, was offered the job of secretary of state by President-elect Donald J. Trump on Tuesday.</li>
+							<li>Mr. Tillerson has spent the past 41 years at Exxon, where he began as a production engineer and went on to strike deals for a company that explores for, buys and sells oil and gas in some of the world’s most troubled corners.</li>
+							<li>Tillerson's close business ties with Russian President Vladimir Putin have generated controversy, particularly in light of the revelations about Putin's business dealings in the Panama Papers. In 2014, Tillerson strongly opposed the sanctions against Russia.</li>
+							<li>Rex W. Tillerson, the chief executive of Exxon Mobil, was offered the job of secretary of state by President-elect Donald J. Trump on Tuesday.</li>
+							<li>Rex W. Tillerson, the chief executive of Exxon Mobil, was offered the job of secretary of state by President-elect Donald J. Trump on Tuesday.</li>
+						</ul>
+
+					</div>
+				</div>						
+			
+				<!-- end ideal partner field -->
+				</div>
+				<br/>
+			</div>
+		</div>							
+		<!-- End View panel-->
+	</div>
+	</body>
+
+</html>
+<script type="text/javascript" >
+	
+
+$(document).ready(function(){
+	//[{"votetype":"mainArt_thumbs","mainId":"840"}]
+	console.log("fffffff")
+	console.log(ingniteLightBox.temp.param)
+	console.log("fffffff")
+	$(".lBoxMainDiv").addClass("mainStyles_defaultGradient")
+
+	for(var key in ingniteLightBox.temp.param){
+	
+		if($("#"+key)){
+			if(key=="img"){
+				$("#hostImg").attr("src",ingniteLightBox.temp.param[key])
+			}else{
+				$("#"+key).html(ingniteLightBox.temp.param[key])
+			}
+		}
+	}
+
+
+
+	var proseed=globalTools.checkLogin();
+		
+
+		if(proseed=="true"){
+			var thsArr = $.parseJSON(global.userObj.agape_vote_recordThumbs)
+		    var thsArrChk = "true";
+		    var thsArrLeng = thsArr.length;
+
+		    for (var w1 = 0; w1 < thsArrLeng; w1++) {
+		        if (thsArr[w1].votetype == "mainArt_thumbs") {
+		            if (thsArr[w1].mainId == ingniteLightBox.temp.param.id) {
+		                $("#thumbsUp").addClass("articleControls_grayPresComm");
+		                $("#thumbsDown").addClass("articleControls_grayPresComm");
+		                $("#thumbsUp").prev().unbind("click");
+						$("#thumbsDown").prev().unbind("click");
+		                thsArrChk = "false"
+		            }
+
+		        }
+		    }
+
+
+		    if(thsArrChk=="true"){
+		    	
+		    	//Add click event to increase votes.
+		    	$(".mn_openThumbs").each(function(){
+		    		$(this).on('click',function(){
+		    			
+		    		    var direction = $(this).next().attr("id")
+		    			var addMainObj={};
+						addMainObj.votetype="mainArt_thumbs";
+						addMainObj.mainId=ingniteLightBox.temp.param.id;
+						thsArr.push(addMainObj);
+						global.userObj.agape_vote_recordThumbs=JSON.stringify(thsArr);
+						var sendObj={}
+
+						sendObj['agape_vote_recordThumbs']=JSON.stringify(thsArr);
+						globalTools.userProfileEdit("agape_profile",sendObj,"agape_profile_memberID",global.userObj.agape_profile_memberID);
+
+						send1 = {};
+						send1.job = "mainArt_staffThumbs";
+						send1.dbase = "agape_topics";
+						send1.param = "agape_media_ID";
+						send1.vals = global.mainArticle.returnObj[0].agape_media_ID;
+						send1.id1=ingniteLightBox.temp.param.id;
+						send1.lastdate=convertNowToPhP();
+						send1.obj = {};
+						send1.selFunc = "selectFunc";
+						send1.kob = "where agape_media_ID=" + global.mainArticle.returnObj[0].agape_media_ID;
+						send1.direction=direction;
+						var qry = "agape_media_thumbsUp=agape_media_thumbsUp+1"
+						
+						switch (direction) {
+						    case 'thumbsUp':
+						  
+						        break;
+
+						    case 'thumbsDown':
+						      
+						        break;
+						}
+
+						send1.updateStr = "agape_media_lastComment_date='" + convertNowToPhP() + "', " + qry;
+
+						var func1 = function (datam) {
+
+						    var topicObj = globalTools.verify(datam);
+						    var topOb=$.parseJSON(topicObj.returnObj[0].agape_media_content);
+						    global.staff=topOb.mainArticle.staff;
+						    globalTools.save();
+						   	$("#thumbsUp").html(topOb.mainArticle.staff[topicObj.index].thumbsUp).addClass("articleControls_grayPresComm")
+						    $("#thumbsUp").prev().unbind("click");
+						    $("#thumbsDown").html(topOb.mainArticle.staff[topicObj.index].thumbsDown).addClass("articleControls_grayPresComm")
+						    $("#thumbsDown").prev().unbind("click");
+
+						}
+						ajaxCallMedia(send1, func1)
+
+
+		    		})
+		    	})
+		    }else{
+		    	$(".mn_openThumbs").each(function(){
+		    		$(this).on('click',function(){
+		    			alert("You've already voted on this individual.")
+		    		})
+		    	})
+		    }
+
+			
+    	}else{
+    		$(".mn_openThumbs").each(function(){
+		    		$(this).on('click',function(){
+		    			alert("You must be logged in to vote.")
+		    		})
+		    	})
+
+
+    	}
+
+
+    //Check thumbs for previous selection
+    
+
+	//$("#picDiv").hide();
+	//$("#visitMess").hide();
+
+//$(".lBoxMainDiv").addClass("bodyStyles_defaultGradient")
+	
+
+})
+	
+	
+
+	
+
+
+/**
+	$(".messsageReqClss").on("click",function(){
+		openLightCreateMessage(this,3,global.module)
+	})
+	
+
+	var sendObj1={};
+	sendObj1.job='quickSelect_atomic';
+	sendObj1.dbase="agape_profile";
+	sendObj1.param="agape_profile_username";
+	sendObj1.start=0;
+	switch(global.module){
+
+		case 'candidate':
+			var hy=$.parseJSON(sessionStorage.getItem("friendRequestObj"))
+			sendObj1.value=hy.returnObj[global.candidate.id].requestorUsername;
+		break;
+
+		case 'friend':
+			sendObj1.value=global.candidate.id;
+
+		
+		break;
+
+		case 'messages':
+		
+			sendObj1.value=global.candidate.id;
+		break;
+
+		case 'searchCandidates':
+			sendObj1.value=global.candidate.id;
+		break;
+
+
+		default:
+			sendObj1.value=global.candidate.id;
+		break;
+
+	}
+
+	
+	func1=function(data){
+		var uOb=$.trim(data);
+		uObj=uOb.split("**");
+		if(uObj[0]=="true"){
+			var tr=$.parseJSON(uObj[1])
+			_userObj=globalTools.verify(data);
+
+			var testr="true";
+
+			$(".otherPhots").unbind("click").on("click",function(){
+				$("#picDiv").slideDown(300);
+				var tre=$.parseJSON(_userObj.returnObj[0].agape_profile_default_img);
+				var cntr=1;
+				$("#picDiv").empty();
+				for(var key in tre){
+					if(tre[key]!='none' && tre[key]!="Untitled" && tre[key]!='My Pics'){
+					 	$("#picDiv").append("<div style='float:left;margin-right:15px;'><img src='"+tre[key]+"' height='85' width='80' /></div>");
+					 	cntr=cntr+1;
+					}
+
+				}
+				$("#picDiv").append("<div id='closeDoor' style='float:left;color:#eee;margin-top:15px;cursor:pointer;'>close</div>")
+				$("#picDiv").append("<div style='clear:both'></div>");
+
+				$("#closeDoor").unbind("click").on("click",function(){
+					$("#picDiv").slideUp(300);
+				})
+			})
+
+			
+			var userO=$.parseJSON(_userObj.returnObj[0].agape_profile_friends);
+			var userLeng=userO.length;
+			for(c=0;c<userLeng;c++){
+			
+
+				if(userO[c]==tr.returnObj[0].agape_profile_memberID){
+					testr="false";
+				}
+		
+			}
+			
+
+			if(testr=="true"){
+				var chkMod={};
+				chkMod.job="atomic_selectAll";
+				chkMod.dbase="agape_friendrequest"
+				chkMod.ob="where requestedID = "+_userObj.returnObj[0].agape_profile_memberID+" and requestorID='"+global.userObj.agape_profile_memberID+"'"
+
+				var func5=function(data){
+					
+					testr="true";
+					var nchk=globalTools.verify(data);
+					if(parseInt(nchk.countR)>0){
+						testr="false";
+					
+					}else{
+						
+					}
+
+					if(global.module=="friend"  || global.module=='candidate'){
+						$(".friendReqClss").hide();
+					}
+
+					if(testr=="true"){
+						$(".friendReqClss").unbind("click").on("click",function(){
+							var con = confirm("Send this person a friend request?")
+							if(con==true){
+								var model={};
+								model.dbase="agape_friendrequest"
+								model.key="false";
+								model.job="quickInsertAtomic";
+								model.obj={}
+								model.obj.requestorID=global.userObj.agape_profile_memberID;
+								model.obj.requestorUsername=global.userObj.agape_profile_username;
+								model.obj.requestedID=_userObj.returnObj[0].agape_profile_memberID
+								model.obj.requestedUsername=_userObj.returnObj[0].agape_profile_username
+								model.obj.requestSent=convertNowToPhP();
+								model.obj.requestResponse=convertNowToPhP();
+								model.obj.requestStatus="Sent"
+								model.obj.requestMessage="You have received a Friendship request from "+global.userObj.agape_profile_username;
+								model.obj.requestorImgUrl=global.userObj.agape_profile_default_img;
+								var func4=function(data){
+									$(".friendReqClss").hide()
+									$("#visitMess").html("Friend request sent").fadeIn(300).delay(3000).fadeOut(300)
+
+								}
+								ajaxCallPost(model,func4)
+								
+
+
+							}else{
+								alert("not sent")
+							}
+							
+						});
+					}else{
+						$(".friendReqClss").hide()
+					}
+					
+					
+
+
+
+				}
+				ajaxCallPost(chkMod,func5)
+
+				
+			}
+
+
+
+
+
+
+
+
+			
+
+		
+			var picdef=$.parseJSON(_userObj.returnObj[0].agape_profile_default_img)
+			$("#hostImg").attr("src",picdef.defaultPic)
+			for(var key in _userObj.returnObj[0]){
+		
+				if(document.getElementById(key)!='undefined'){
+					if($("#"+key).hasClass("fields_pr")==true){
+				
+						$("#"+key).html(_userObj.returnObj[0][key]);
+					}
+
+					if(_userObj.returnObj[0].agape_partner_opts!="none"){
+						var opt1=$.parseJSON(_userObj.returnObj[0].agape_partner_opts)
+						var optiLength=opt1.length;
+						$("#agape_partner_opts_div :input").each(function(){
+							for(var t=0;t<optiLength;t++){
+								$(this).attr("readonly",true)
+								if($(this).val()==opt1[t]){
+									$(this).attr("checked","checked");
+								}
+							}
+						})
+					}else{
+						$("#agape_partner_opts").val("[]");
+					}
+
+					if(_userObj.returnObj[0].agape_profile_opts!="none"){
+						var opt1=$.parseJSON(_userObj.returnObj[0].agape_profile_opts)
+						var optiLength=opt1.length;
+						$("#agape_profile_opts_div :input").each(function(){
+							for(var t=0;t<optiLength;t++){
+								$(this).attr("readonly",true)
+								if($(this).val()==opt1[t]){
+									$(this).attr("checked","checked")
+								}
+							}
+						})
+
+					}else{
+						$("#agape_profile_opts").val("[]")
+					
+					}
+		
+				}
+			}
+					
+		}else{
+	
+		}
+
+
+		
+
+	}
+	ajaxCall(sendObj1,func1);
+	
+
+	function matchVibe(){
+	alert(":fire")
+	for(i=0;i<formObj.fields.length;i++){
+	var leng=formObj.fields[i].quesParams.length;
+		if(formObj.fields[i].col=='agape_profile_opts'){
+			for(var c=0;c<leng;c++){
+				$("#"+formObj.fields[i].col+"_div").append("<div style='float:left;width:120px'>"+formObj.fields[i].quesParams[c]+"</div>");
+				$("#"+formObj.fields[i].col+"_div").append("<div style='float:left;width:40px'><input name='_"+formObj.fields[i].col+"' id='_"+formObj.fields[i].col+"' class='opts skip' type='checkbox' value='"+formObj.fields[i].quesParams[c]+"' id='"+formObj.fields[i].col+"' disabled='disabled'></div>");
+				$("#"+formObj.fields[i].col+"_div").append("<div style='clear:both'></div>");
+			}
+
+		}
+		if(formObj.fields[i].col=='agape_partner_opts'){
+
+			for(var c=0;c<leng;c++){
+				
+				$("#"+formObj.fields[i].col+"_div").append("<div style='float:left;width:120px'>"+formObj.fields[i].quesParams[c]+"</div>");
+				
+				$("#"+formObj.fields[i].col+"_div").append("<div style='float:left;width:40px'><input name='_"+formObj.fields[i].col+"' id='_"+formObj.fields[i].col+"' class='opts skip' type='checkbox' value='"+formObj.fields[i].quesParams[c]+"' id='"+formObj.fields[i].col+"' disabled='disabled' ></div>");
+				
+				$("#"+formObj.fields[i].col+"_div").append("<div style='clear:both'></div>");
+
+			}
+
+		}
+
+	}
+
+	var searchIndx=window.location.search;
+	var sIndex=searchIndx.split("=");
+	var sendObj={};
+		sendObj.job="quickQuery";
+		sendObj.param=sIndex[1];
+		sendObj.table="agape_profile";
+		sendObj.field='agape_profile_memberID';
+		func=function(data){
+			
+			var _userObj=sessionStorage.getItem('user');
+			_userObj=$.parseJSON(data);
+			
+			var picdef=$.parseJSON(_userObj.agape_profile_default_img)
+			$("#hostImg").attr("src",picdef.defaultPic)
+			for(var key in _userObj){
+					
+				if(document.getElementById(key)!='undefined'){
+					if($("#"+key).hasClass("fields_pr")==true){
+				
+						$("#"+key).html(_userObj[key]);
+					}
+
+					if(_userObj.agape_partner_opts!="none"){
+						var opt1=$.parseJSON(_userObj.agape_partner_opts)
+						var optiLength=opt1.length;
+						$("#agape_partner_opts_div :input").each(function(){
+							for(var t=0;t<optiLength;t++){
+								$(this).attr("readonly",true)
+								if($(this).val()==opt1[t]){
+									$(this).attr("checked","checked")
+
+								}
+							}
+						})
+
+					}else{
+						$("#agape_partner_opts").val("[]");
+					}
+
+					if(_userObj.agape_profile_opts!="none"){
+						var opt1=$.parseJSON(_userObj.agape_profile_opts)
+						var optiLength=opt1.length;
+						$("#agape_profile_opts_div :input").each(function(){
+							for(var t=0;t<optiLength;t++){
+								$(this).attr("readonly",true)
+								if($(this).val()==opt1[t]){
+									$(this).attr("checked","checked")
+								}
+							}
+						})
+
+					}else{
+						$("#agape_profile_opts").val("[]")
+						
+					}
+				}
+			}
+						
+			var age=agefinder(_userObj.agape_profile_dateOfBirth);
+			$("#agape_profile_age1").html(age);
+		}
+
+		ajaxCall2(sendObj,func);
+	}*/
+
+
+
+
+
+
+
+
+
+
+	//{"mainArticle":{"videoObj":[{"title":"Lara Trump on &#39; Women for Trump&#39; movement","url":"https://www.youtube.com/embed/AmD4llviViY","upvotes":"444","downvotes":"32","comments":"1125"},{"title":"The Daily Show - Trump Lets the Truth Come Out Post-Election<","url":"https://www.youtube.com/embed/BB38DvTV5kc","upvotes":"34352","downvotes":"225","comments":"7675"},{"title":"Alex Jones: Steve Bannon Is a Fighter Excellent Trump Move","url":"https://www.youtube.com/embed/RCts7VWbPeg","upvotes":"9484","downvotes":"11","comments":"73325"},{"title":"David Packman Show: Trumps ties to Putin too hard to ignore.","url":"https://www.youtube.com/embed/QamraMj1rA8","upvotes":"19386","downvotes":"11","comments":"775"},{"title":"Donald Trump Back-Pedaling After Ukraine Blunder | Andrea Mitchell | MSNBC","url":"https://www.youtube.com/embed/4NaA9YL1SEI","upvotes":"493674","downvotes":"11","comments":"775"},{"title":"Breitbart’s Joel Pollak asks Don Lemon to \"Name One White Nationalist Piece\" from Breitbart","url":"https://www.youtube.com/embed/85YUi0pZAu0","upvotes":"9535","downvotes":"11","comments":"475"}],"staff":[{"name":"Steve Bannon","position":"Chief Strategist","formerPosition":"CEO of Breitbart","born":"Norfolk, VA","thumbsUp":672,"thumbsDown":452,"img":"images/president/images/bannon.jpg","id":"SBannon5353h6663","param":"none"},{"name":"Reince Priebus","position":"Chief of Staff","formerPosition":"RNC Chairman","born":"Dover, NJ","thumbsUp":565,"thumbsDown":4222,"img":"images/president/images/Reince_Priebus.jpg","id":"RPriebus53kj39563","param":"none"},{"name":"Scott Pruitt","position":"Head of the Enviornmental Protection Agency","formerPosition":"Oklahoma Attorney General","born":"Danville, KY","thumbsUp":83216,"thumbsDown":8405,"img":"images/president/images/SCOTTPRUITT.jpg","id":"SPruittww54th599","param":"none"},{"name":"Ryan Zinke","position":"Secretary of Interior","formerPosition":"Former U.S. Representative from Montana","born":"Bozeman, MT","thumbsUp":574,"thumbsDown":723,"img":"images/president/images/RYANZINKE.jpg","id":"RZinke62hhsui44","param":"none"},{"name":"Rex Tillerson","position":"Secretary of State","formerPosition":"Former CEO of Exxon","born":"Wichita Falls, TX","thumbsUp":2240,"thumbsDown":4222,"img":"images/president/images/rexTillerson.jpg","id":"RTillersonKyHD72j","param":"none"},{"name":"Jeff Sessions","position":"Attorney General","formerPosition":"Jr United States Senator from Alabama","born":"Selma, AL","thumbsUp":99665,"thumbsDown":495,"img":"images/president/images/jeffSessions.jpg","id":"JSessionsqQj8834Hyt","param":"none"},{"name":"Steve Mnuchin","position":"Secretary of Treasury","formerPosition":"Goldman Sachs partner and senior manager","born":"New York City, NY","thumbsUp":14345,"thumbsDown":952,"img":"images/president/images/STEVEMNUCHIN.jpg","id":"SMnuchinPmmo678DDqw","param":"none"},{"name":"James Mattis","position":"Secretary of Defense","formerPosition":"Board of directors of General Dynamics","born":"Pullman, WA","thumbsUp":5475,"thumbsDown":30905,"img":"images/president/images/JAMESMATTIS.jpg","id":"JMattislwhT83Swq9kk","param":"none"},{"name":"John Kelly","position":"Secretary of Homeland Security","formerPosition":"Retired Marine general","born":"Boston, MA","thumbsUp":2335,"thumbsDown":3135,"img":"images/president/images/JohnKelly.jpg","id":"JKelly89Httage55f","param":"none"},{"name":"Ben Carson","position":"Secretary of Housing and Urban Development","formerPosition":"Former Chairman of the board for Vaccinogen","born":"Detroit, MI","thumbsUp":113323,"thumbsDown":3045,"img":"images/president/images/ben.jpg","id":"BCarsonKgg5e55f","param":"none"},{"name":"Nikki Haley","position":"United Nations Ambassador","formerPosition":"South Carolina governor","born":"Bamberg, SC","thumbsUp":1147,"thumbsDown":405,"img":"images/president/images/nikkihaley.jpg","id":"NHaley7HJke33hV","param":"none"},{"name":"Mike Pompeo","position":"CIA Director","formerPosition":"Former U.S. Representative from Kansas","born":"Orange, CA","thumbsUp":7845,"thumbsDown":353,"img":"images/president/images/MikePompeo.jpg","id":"MPompeo77Twer82Hvx","param":"none"},{"name":"Mick Mulvaney","position":"Director of the office of Management and Budget","formerPosition":"Former U.S. Rep. from South Carolina","born":"Alexandria, VA","thumbsUp":932,"thumbsDown":52,"img":"images/president/images/MICKMULVANEY.jpg","id":"MMulvaney9Pmn88Gbf","param":"none"},{"name":"David Shulkin","position":"Secretary of Veterans Affairs","formerPosition":"Under-secretary for Veterans Affairs","born":"Bala Cynwyd, PA","thumbsUp":932,"thumbsDown":52,"img":"images/president/images/DavidShulkin.jpg","id":"DShulkin0KMM8faq11We","param":"none"},{"name":"Linda Mcmahon","position":"Head of the SBA","formerPosition":"Former Pro wrestling executive","born":"New Bern, NC","thumbsUp":3124,"thumbsDown":127,"img":"images/president/images/LindaMcmahon.jpg","id":"LMcmahonHhhuN56E9Mbb","param":"none"},{"name":"Wilbur Ross","position":"Secretary of Commerce","formerPosition":"Billionaire Investor","born":"Weehawken, NJ","thumbsUp":41687,"thumbsDown":89904,"img":"images/president/images/WilburRoss.jpg","id":"WRoss8aGGrwn52kkl","param":"none"},{"name":"Tom Price","position":"Director of Health and Human Services","formerPosition":"Orthopedic surgeon and Representative from Georgia","born":"Lansing, MI","thumbsUp":1533,"thumbsDown":93,"img":"images/president/images/TomPrice.jpg","id":"TPricennnMujh932jbd","param":"none"},{"name":"Rick Perry","position":"Secretary of Energy","formerPosition":">Former Governor from Texas","born":"Paint Creek, TX","thumbsUp":52566,"thumbsDown":7994,"img":"images/president/images/RICKPERRY.png","id":"RPerrykisnetg55KQW","param":"none"},{"name":"Andy Puzder","position":"Secretary of Labor","formerPosition":">Executive vice president of CKE","born":"Cleveland, OH","thumbsUp":22173,"thumbsDown":1003,"img":"images/president/images/ANDYPUZDER.jpeg","id":"APuzderMbGH834Td2","param":"none"}]}}
+</script>

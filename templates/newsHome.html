@@ -1,0 +1,473 @@
+<style>
+.paginclass{
+	float:left;
+	padding:4px;
+	color:lime;
+	cursor:pointer;
+	font-size:11px;
+}
+
+
+.paginclass_over{
+	color:orange;
+}
+
+</style>
+
+<div class="topTab">
+<div class="topTab" style="margin:auto;color:#8d95b9">Welcome to Agape Media</div>
+	<div class='communitySectionsTemp' class='newNav2'  >
+		<img id="newsImg" style='border-radius:7px;border:solid 1px #eee;' src="" />
+	</div>
+</div>
+<div style='width:520px;margin:auto;color:#eee;padding:3px'>
+	<div style="float:left;">search: <input type='textbox' class="inputboxnew"  /></div>
+	<div class="searchHeaders" id="Politics" style="float:left;margin-left:5px;font-family:arial;">Politics</div>
+	<div style="float:left;margin-left:5px">|</div>
+	<div class="searchHeaders" id="Sports" style="float:left;margin-left:5px;font-family:arial">Sports</div>
+	<div style="float:left;margin-left:5px">|</div>
+	<div class="searchHeaders" id="Spiritual" style="float:left;margin-left:5px;font-family:arial">Religion</div>
+	<div style="float:left;margin-left:5px">|</div>
+	<div class="searchHeaders" id="Current Events" style="float:left;margin-left:5px;font-family:arial">Current Events</div>
+	<div style="clear:both;"></div>
+</div>
+
+<div id="slideFrame" style="width:920px;overflow:auto;height:330px;overflow-x:hidden;overflow-y:hidden;margin:auto;border-radius: 5px 5px 5px 5px;">
+	<div id="slideHoldDiv" style="width:1840px;position:relative;height:350px;z-index:20;">
+	</div>
+</div>
+<div style='width:160px;margin:auto;' id="paginNews">
+	
+	
+</div>
+<div id='headerHolder' style="height:390px;overflow:auto;width:88%;margin:auto;overflow-x:hidden;margin-top: 15px;">
+	
+	<div id="newsContent" style="width:99%;margin:auto;">
+		<div style='width:300px;margin:auto;text-align:center;'><img src="" id="loadGif" height='185'/></div>
+	</div>
+</div>
+<div id='formQuestions'>
+</div>
+
+	<script type="text/javascript">
+		var SuperSlide;
+		var autopager;
+		function startAutopager() {
+			stopAutopager()
+			SuperSlide.start1();
+		}
+		function stopAutopager() {
+		    SuperSlide.stop();
+		}
+
+		
+	
+		function ESlider(obj){
+			speed=45;
+			var max=obj.length;
+			this.pollhead="none";
+			this.pollIndex=0;
+			this.pollArry=[];
+			var _this=this;
+			
+			this.init=function(){
+				
+				_this.clearInts();
+
+				speed=45;
+				sldrIndex=0;
+				var substr=_this.populate();
+				substr=substr+_this.populate();
+				//sldrIndex=1;
+				$("#slideHoldDiv").empty().append(substr);
+
+				_this.addPollData();
+				
+
+				$("div[class^=readcap]").each(function(){
+					$(this).unbind("click").on("click",function(){
+						var b=$(this).attr("id")+"";
+						c=b.substr(7);
+						global.comments.type="viewCaptions"
+						global.newsCaptionIndex=c;
+						
+						//template.param=global.newsCaption.returnObj[c];
+
+						
+						globalTools.save();
+						SuperSlide.stop();
+						global.candidate.id="viewCaptions";
+						loadTemplate('mainLBHolder',"newsHomeView.html");
+					}).on("mouseover",function(){
+							$(this).css("text-decoration","underline")
+						}).on("mouseout",function(){
+							$(this).css("text-decoration","none")
+						})
+					})
+				}
+			
+
+
+			this.start1=function(){
+
+				
+
+
+				newSlide=this.slide;
+				_this.starter="go";
+				var begin=function(){
+					slideInterval=setInterval(newSlide,50);
+				}
+				holdInterval=setInterval(begin,5000);
+				//sldrIndex=sldrIndex+1;
+				
+			}
+
+
+			this.stop=function(){
+				_this.clearInts();
+				$("#slideHoldDiv").css("left","0px");
+				_this.starter="stop";
+			}
+
+
+			this.holdr=function(){
+				//sldrIndex=sldrIndex+1;
+				if(sldrIndex==max){
+					sldrIndex=0;
+				}
+				newSlide=this.slide;
+				var begin=function(){
+					slideInterval=setInterval(newSlide,50);
+				}
+				holdInterval=setInterval(begin,5000)
+			}
+
+
+			this.slide=function(){
+				slideStart=parseInt(slideStart)-parseInt(speed);
+				$("#slideHoldDiv").css("left",slideStart+"px");
+				if(slideStart<=-920){
+					slideStart=0;
+					$('#slideHoldDiv').find('div').first().remove();
+					$("#slideHoldDiv").css("left","0px");
+					var addString=_this.populate();
+					$('#slideHoldDiv').append(addString);
+					_this.addPollData();
+					$("div[class^=readcap]").each(function(){
+						$(this).unbind("click").on("click",function(){
+							var b=$(this).attr("id")+"";
+							c=b.substr(7);
+							global.comments.type="viewCaptions"
+							global.newsCaptionIndex=c;
+							globalTools.save();
+							SuperSlide.stop();
+							global.candidate.id="viewCaptions";
+
+							loadTemplate('mainLBHolder',"newsHomeView.html");
+						}).on("mouseover",function(){
+							$(this).css("text-decoration","underline")
+						}).on("mouseout",function(){
+							$(this).css("text-decoration","none")
+						})
+					})
+					_this.clearInts();
+					_this.holdr();
+				}
+			}
+
+
+			this.populate=function(){
+
+				if(sldrIndex==max){
+					sldrIndex=0
+				}
+				
+				var ty=globalTools.stringClearBack(obj[sldrIndex].agape_media_content);
+				var gy=ty.split(" ");
+				var tempCont="";
+				for(h=0;h<92;h++){
+					tempCont=tempCont+gy[h]+" ";
+				}
+
+			
+				tempCont=tempCont+"...";
+				comms=obj[sldrIndex].agape_media_comments;
+				var mess;
+				if(comms.length<=0){
+					mess=0;
+				}
+				var newd=getTime(obj[sldrIndex].agape_media_lastComment_date, 'true');
+				var createdStrg;
+				switch(obj[sldrIndex].agape_media_type){
+
+					case 'Article':
+					
+					
+						var createdStrg="<div class='sliderOb' style='width:920px;margin:auto;background-color:#eee;border-radius:5px 5px 0px 0px;float:left;font-family:arial;' ><div style='float:left;width:400px;border-radius:5px 5px 0px 0px;height:330px;border-right:solid 1px #000;'><img src='"+obj[sldrIndex].agape_media_images+"' width='400' height='330' /></div><div style='float:left;height:320px'><div style='width:500px;font-family:Arial;font-size:23px;margin:auto;text-align:center;height:55px;margin-top:10px;letter-spacing: 1px;font-weight:bold;'>"+obj[sldrIndex].agape_media_title+"</div><div style='width:480px;padding:4px;margin:auto;height:175px;overflow:auto;overflow-y:hidden;'>"+tempCont+"</div></br><div style='captionFooter'><div style='padding:6px;float:left;'><div id='readcap"+sldrIndex+"' class='readcap' style='color:red;margin-right:10px;cursor:pointer;font-weight:bold;'>Read more..</div><div style='margin-right:10px;cursor:pointer;'>By: <span style='font-weight:bold;'>"+obj[sldrIndex].agape_media_author+"</span></div></div><div style='float:right;margin-right:10px;'><div style='color:#000;'><div style='font-size:11px;'>Last comment:</div><div style='font-weight:bold;'>"+newd+"</div><div>comments:<span>"+obj[sldrIndex].agape_media_comments_count+"</span></div></div><div style='clear:both;'></div></div></div></div><div style='clear:both;'></div></div></div>";
+						sldrIndex=sldrIndex+1;
+					return createdStrg;
+
+
+
+					case 'Blog':
+						var t2=obj.length;
+						var j=$.parseJSON(obj[sldrIndex].agape_media_images);
+						var createdStrg="<div class='sliderOb' style='width:920px;margin:auto;background-color:#eee;border-radius:5px 5px 0px 0px;float:left;font-family:arial;' ><div style='float:left;width:400px;border-radius:5px 5px 0px 0px;height:330px;border-right:solid 1px #000;'><img src='"+j.blogPic+"' width='400' height='330' /></div><div style='float:left;height:320px'><div style='width:500px;font-family:Arial;font-size:23px;margin:auto;text-align:center;height:55px;margin-top:10px;letter-spacing: 1px;font-weight:bold;'>"+obj[sldrIndex].agape_media_title+"</div><div style='width:480px;padding:4px;margin:auto;height:175px;overflow:auto;overflow-y:hidden;'>"+tempCont+"</div></br><div style='captionFooter'><div style='padding:6px;float:left;'><div id='readcap"+sldrIndex+"' class='readcap' style='color:red;margin-right:10px;cursor:pointer;font-weight:bold;'>Read more..</div><div style='margin-right:10px;cursor:pointer;'>By: <span style='font-weight:bold;'>"+obj[sldrIndex].agape_media_author+"</span></div></div><div style='float:right;margin-right:10px;'><div style='color:#000;'><div style='font-size:11px;'>Last comment:</div><div style='font-weight:bold;'>"+newd+"</div><div>comments:<span>"+obj[sldrIndex].agape_media_comments_count+"</span></div></div><div style='clear:both;'></div></div></div></div><div style='clear:both;'></div></div></div>";
+						sldrIndex=sldrIndex+1;
+						return createdStrg;
+
+
+					break;
+
+
+				
+
+					case 'uTubeVid':
+
+						var j=obj[sldrIndex].agape_media_link;
+						var lDiv="<div style='margin-right:10px;font-family:arial;'><div><iframe class='utubeVids0' width='400' height='280' src='"+j+"' frameborder='0' allowfullscreen=''></iframe></div><div id='vid0'><div id='utubeTitle"+i+"' style='font-size:12px;width:200px;color:#eee;'>"+obj[sldrIndex].agape_media_title+"</div></div></div>"
+
+						var createdStrg="<div class='sliderOb' style='width:920px;margin:auto;background-color:#eee;border-radius:5px 5px 0px 0px;float:left;font-family:arial;' ><div style='float:left;width:400px;border-radius:5px 5px 0px 0px;height:330px;border-right:solid 1px #000;'>"+lDiv+"</div><div style='float:left;height:320px'><div style='width:500px;font-family:Arial;font-size:23px;margin:auto;text-align:center;height:55px;margin-top:10px;letter-spacing: 1px;font-weight:bold;'>"+obj[sldrIndex].agape_media_title+"</div><div style='width:480px;padding:4px;margin:auto;height:175px;overflow:auto;overflow-y:hidden;'>"+tempCont+"</div></br><div style='captionFooter'><div style='padding:6px;float:left;'><div id='readcap"+sldrIndex+"' class='readcap' style='color:red;margin-right:10px;cursor:pointer;font-weight:bold;'>Read more..</div><div style='margin-right:10px;cursor:pointer;'>By: <span style='font-weight:bold;'>"+obj[sldrIndex].agape_media_author+"</span></div></div><div style='float:right;margin-right:10px;'><div style='color:#000;'><div style='font-size:11px;'>Last comment:</div><div style='font-weight:bold;'>"+newd+"</div><div>comments:<span>"+obj[sldrIndex].agape_media_comments_count+"</span></div></div><div style='clear:both;'></div></div></div></div><div style='clear:both;'></div></div></div>";
+						sldrIndex=sldrIndex+1;
+						return createdStrg;
+
+
+					break;
+
+
+					case 'Article_main':
+
+					
+					break;
+
+					case 'Poll':
+						strg="<div style='width:920px;margin:auto;background-color:#eee;border-radius:5px 5px 0px 0px;float:left;font-family:arial;'><div id='poll' style='float:left;width:440px;height:280px;background-color:lime;'><img src='advertiseImages/blogImages/pollsImage.jpg' style='height:330px' /></div><div style='float:left;height:330px;width:440px;background-color:#eee;'><div style='font-weight:bold;width:480px;margin:auto;margin-left:10px;height:250px;'><div id='PTitle"+obj[sldrIndex].agape_media_ID+"' style='margin-top:15px;font-size:15px;'></div><div id='pollAnswers"+obj[sldrIndex].agape_media_ID+"'></div></div><div id='readcap"+sldrIndex+"' class='readcap'  style='color:red;font-size:13px;width:440px;text-align:center;text-decoration:underline;margin-bottom:10px;font-weight:bold;cursor:pointer;'>View poll</div><div style='font-style:italic;font-size:10px;width:440px;text-align:center;'><span id='pollVotes"+obj[sldrIndex].agape_media_ID+"'></span> votes</div></div><div style='clear:both;'></div></div>"
+						this.pollArry.push(obj[sldrIndex]);
+						this.pollhead="true";
+						sldrIndex=sldrIndex+1;
+						return strg;
+					break;
+
+
+				}
+
+			}
+
+
+			this.addPollData=function(){
+
+				//this.pollhead="false";
+				if(_this.pollhead=="true"){
+					_this.pollhead="none";
+					
+					var c=_this.pollArry.length;
+
+					for(p=0;p<c;p++){
+						$("#PTitle"+_this.pollArry[p].agape_media_ID).html(_this.pollArry[p].agape_media_title);
+						var ans=$.parseJSON(_this.pollArry[p].agape_media_content)
+						var ansIndx=ans.answers.length;
+						var aRange="";
+						for(f=0;f<ansIndx;f++){
+							var cntr=f+1;
+							aRange=aRange+"<div style='margin-top:10px;font-size:13px;'  ><span>"+cntr+"</span>. <span style='display:inline-block;width:130px;'>"+ans.answers[f].param1+"</span><input type='radio' name='Radiobutt' /></div>"
+						}
+				
+
+						$("#pollVotes"+_this.pollArry[p].agape_media_ID).html(_this.pollArry[p].agape_media_comments_count);
+						$("#pollAnswers"+_this.pollArry[p].agape_media_ID).html(aRange);
+					}
+
+					
+					_this.pollArry=[];
+					
+				}
+				
+			}
+
+
+
+
+			this.clearInts=function(){
+				clearInterval(slideInterval);
+				clearInterval(holdInterval);
+				_this.starter="stop";
+			}
+
+		}
+
+	
+	
+		var t
+		$("#slipmax").on("click",function(){
+			t=setInterval("incrementSlide(25);",75);
+		})
+	
+		
+			
+		
+		$(document).ready(function(){
+			var srcStrg=global.baseUrl+"/images/news.gif";
+			$("#newsImg").attr("src",srcStrg)
+
+			//TweenMax.to($("#footertab")[0],.6,{css:{top:"1140px", ease:Power1.easeOut}});
+			//TweenMax.to($(".newFormfieledHolderStyles")[0],.6,{css:{height:"1190px",backgroundcolor:"gray"}}, -6);
+			//TweenMax.to($(".lbBack")[0],.6,{css:{height:"60px"}},-2);
+			var t1=$(document).width();
+			//var t5=$(window).width();
+			var e1=(t1-920)/2	
+			
+			$("#transBack").removeClass().show().css("left",e1).addClass("transBack_news")
+
+			$("#loadGif").attr("src",global.baseUrl+"/images/loading37.gif");
+			
+
+			//Article, Blog, uTubeVid, polls
+
+			var sendo={};
+			sendo.job='atomic_selectAll';
+			sendo.dbase='agape_topics';
+			sendo.ob="where agape_media_type in ('Article','Poll','Blog','uTubeVid')  order by agape_media_lastComment_date desc limit 0,25"
+			sendo.param='agape_media_status';
+
+			//agape_media_type
+
+			sendo.value='Active';
+			sendo.start=0;
+			func=function(data){
+				var newsData=$.trim(data);
+				var newsCaption=globalTools.verify(newsData);
+				global.newsCaption=newsCaption;
+				if(newsCaption.countR>0){
+					SuperSlide = new ESlider(newsCaption.returnObj);
+					SuperSlide.init();
+					SuperSlide.start1();
+					window.addEventListener('focus', startAutopager);    
+					window.addEventListener('blur', stopAutopager);
+
+					globalTools.save();
+					}else{
+						$("#newsContent").empty().append("<div style='width:100%;font-weight:bold;color:#eee;text-align:center;margin-top:20px;'>No captions available</div>");
+				}
+			}
+			//threadTool = new ThreadWheel();
+			ajaxCallMedia(sendo,func);
+
+
+
+			$(".searchHeaders").each(function(){
+				$(this).unbind("click").on("click",function(){
+					//alert($(this).attr("id"))
+					var id=$(this).attr("id");
+					var sendo1={};
+					b = new CommentBoss(id,'newsContent');
+			sendo1.job='atomic_selectAll';
+			sendo1.dbase='agape_topics';
+			sendo1.ob="where agape_media_type in ('Article','Poll','Blog','uTubeVid') and 	agape_media_group ='"+id+"' order by agape_media_lastComment_date desc limit 0,25"
+			sendo1.param='agape_media_status';
+
+			//agape_media_type
+
+			sendo1.value='Active';
+			sendo1.start=0;
+			func1=function(data){
+				var newsData=$.trim(data);
+				var newsCaption=globalTools.verify(newsData);
+				global.newsCaption=newsCaption;
+				if(newsCaption.countR>0){
+					SuperSlide = new ESlider(newsCaption.returnObj);
+					SuperSlide.init();
+					SuperSlide.start1();
+					window.addEventListener('focus', startAutopager);    
+					window.addEventListener('blur', stopAutopager);
+
+					globalTools.save();
+					}else{
+						$("#newsContent").empty().append("<div style='width:100%;font-weight:bold;color:#eee;text-align:center;margin-top:20px;'>No captions available</div>");
+				}
+			}
+			//threadTool = new ThreadWheel();
+			ajaxCallMedia(sendo1,func1);
+
+				})
+			})
+		})
+
+		var page1=1;
+		function loadPaginationNews(obj){
+
+			
+			var j=0;
+			
+			var t=obj/25;
+			var r=obj%25;
+			if(r>0){
+				j=parseInt(t)+1;
+			}
+			var space=26
+			var strg="";
+			for(o=0;o<j;o++){
+				var k=o+1;
+				if(page1==k){
+					strg=strg+"<div class='paginclass paginclass_over' id='pclass"+o+"'>"+k+"</div>";
+				}else{
+					strg=strg+"<div class='paginclass' id='pclass"+o+"'>"+k+"</div>";
+				}
+				
+				if(k<10){
+					space=space+16;
+				}else{
+					space=space+26;
+				}
+			}
+			strg=strg+"<div style='clear:both'></div>"
+			$("#paginNews").empty().css("width",space).prepend(strg);
+			$(".paginclass").each(function(){
+				$(this).on("click",function(){
+					$(".paginclass").each(function(){
+						$(this).removeClass("paginclass_over");
+					})
+					$(this).addClass("paginclass_over");
+					var hy=$(this).attr("id");
+					hy=hy.substr(6)
+					hy=parseInt(hy);
+					page1=hy+1;
+
+					var mod={};
+					mod.job='quickSelect_atomic';
+					mod.dbase="agape_topics";
+					mod.param='agape_media_status';
+					mod.value='Active';
+					hy*25;
+					mod.start=hy;
+
+					funct=function(datam){
+						var freed=globalTools.verify(datam);
+						loadPaginationNews(freed.countR);
+						global.newsObj=freed;
+						var newsObject=global.newsObj;
+						global.lastNav='newsHome.html';
+						globalTools.save();
+						generateArticles(newsObject);
+
+					}
+		
+		
+					ajaxCallMedia(mod,funct);
+
+
+
+				}).on("mouseover",function(){
+					$(this).css("text-decoration","underline")
+				}).on("mouseout",function(){
+					$(this).css("text-decoration","none")
+				})
+			})
+
+		}
+
+		var b = new CommentBoss('All','newsContent');
+		$("#opacback").css("height","1201px");
+		$("#footerPush").css("height","1041px");
+		
+	</script>

@@ -1,0 +1,1012 @@
+<style>
+
+	.mainRowHolders{
+		float:left;
+		width:300px;
+		border:1px solid #000;
+		height:280px;
+		border-radius:4px 4px 0px 0px;
+	}
+	
+
+	
+
+	
+	
+	
+	.evenGrid{
+		border:solid 1px #000;
+		height:40px;
+		background-color:#eee;
+		cursor:pointer;
+	}
+	
+	.oddGrid{
+		border:solid 1px #000;
+		height:40px;
+		background-color:#fff;
+		cursor:pointer;
+	}
+	
+	
+	
+	
+
+	
+	.candidatemainDisplay{
+		position:absolute;
+		border:solid 1px #000;
+		left:45px;
+		box-shadow:1px 0px 2px #000;
+		top:175px;
+		background-color:brown;
+		border-radius:4px;
+		width:200px;padding:5px;
+		opacity: 0.75;
+		filter: alpha(opacity=75);
+	}
+	
+	
+	.voteDisplay{
+		float:left;
+		padding-top:3px;
+		margin-left:15px;
+		color:green;
+		font-weight:bold;
+	}
+	
+	.issueClass{
+		float:left;
+		font-size:12px;
+		width:105px;
+	}
+	
+	
+
+	
+	.selectedNav{
+		font-weight:bold;
+		text-decoration:underline;
+		color:#fff;
+	}
+
+	.pollwidthA{
+		float:left;
+		width:150px;
+	}
+	
+	.voteButton{
+		border:solid 1px #000;
+		background-color:red;
+		text-align:center;
+		color:#fff;
+		font-weight:bold;
+		border-radius:5px;
+		cursor:pointer;
+	}
+	
+	.presMainComStyles{
+		padding-bottom:10px;
+		padding-top:10px;
+		width:100%;
+		background-color:#d8d8d8 !important;
+
+	}
+
+
+	.presMainComStyles_alt{
+		padding-bottom:10px;
+		padding-top:10px;
+		width:100%;
+	}
+
+	.mainCommsDateSpan{
+		font-weight:bold;
+		display:inline-block;
+		padding-left:8px;
+
+	}
+
+
+	.mainCommsReply{
+		
+		font-size:12px;
+		text-decoration:underline;
+		cursor:pointer;
+	}
+
+	.comClas{
+		background-color: #848481;
+		color:#eee;
+		letter-spacing: 1px;
+		font-size:14px;
+	}
+
+	.comClas_alt{
+		background-color: #9c9ea2;
+		letter-spacing: 1px;
+		font-size:14px;
+	}
+
+
+
+
+</style>
+
+<script>
+
+if (typeof(Worker) !== "undefined") {
+    // Yes! Web worker support!
+    // Some code.....
+   // alert("yes de work")
+} else {
+    // Sorry! No Web Worker support..
+  //  alert("no de don't work")
+}
+
+
+
+	function displayCandidate(elem){
+		var str=global.baseUrl+"/"
+		var img=$.parseJSON(elem.peopleCandidate_photos)
+		$("#displayMainImg").attr("src",str+img.Presidential);
+		$("#displayMainName").html(elem.peopleCandidate_Firstname+" "+elem.peopleCandidate_Lastname)
+		$("#displayMainParty").html(elem.peopleCandidate_Party)
+		$("#voteU").html(elem.peopleCandidate_upVotes);
+		$("#voteD").html(elem.peopleCandidate_downVotes)
+		$("#flag").empty()
+		
+		switch(elem.peopleCandidate_Party){
+
+			case 'Democratic Party':
+				str=str+"images/president/democracy.donkey.jpg";
+				$("#flag").append("<img src="+str+" height='40' />")
+			break;
+
+			case 'Republican Party':
+				str=str+"images/president/republican.elephant.jpg";
+				$("#flag").append("<img src="+str+" height='40' />")
+			break;
+
+			case 'Green Party':
+				str=str+"images/president/greenparty.png";
+				$("#flag").append("<img src="+str+" height='40' />")
+			break;
+
+			case 'Libetarian Party':
+				str=str+"images/president/libertarian.jpg";
+				$("#flag").append("<img src="+str+" height='40' />")
+			break;
+
+			case 'Constitution Party':
+				str=str+"images/president/constitution.jpg";
+				$("#flag").append("<img src="+str+" height='40' />")
+			break;
+
+			case 'Independent Party':
+				str=str+"images/president/independent.jpg";
+				$("#flag").append("<img src="+str+" height='40' />")
+			break;
+
+
+
+
+			
+
+
+		}
+
+		//$("#flag").empty().append("<img src="++" height='30' />")
+	}
+	
+
+</script>
+<div style='width:100%;font-family:arial;'>
+<div id='nav1' style="padding-left:20px;">
+		
+			<!--<div id='raiseIssue' class="presNavigation selectedNav">Checkout the Issues</div>-->
+			<!--<div class="presNavigation selectedNav">Form a Party</div>-->
+			
+			<div style="clear:both;"></div>
+		</div>
+<div class="topTab">Welcome to Trumps America</div>
+<div id="slider1_container" style="position: relative; width: 85%; height: 70px;margin:auto;margin-top:6px;background-color:#fff;border-radius:10px 10px 0px 0px;">
+	  
+		<br/>
+		<div style='width:603px;font-weight:bold;font-size:28px;margin:auto;color:#507a92;text-shadow: -1px -1px 6px #79a1b8;'>Donald Trump you are officially on the clock!</div>
+		</div>
+		<br/>
+		<div id="mainStory" style="width:85%;margin:auto;color:red;height:580px;letter-spacing:1px;padding-left:15px;" >
+			
+		</div>
+			
+		</div>
+		<div style="width:85%;margin:auto;margin-bottom:15px;font-family:arial">
+			<div style="width:360px;margin:auto;">
+				<div style="float:left;margin-right:15px;color:#b9b6b6;padding-top:2px;"><span style="cursor:pointer;" id="commentButt">View comments</span>: <span id="mainCommentCount" style='color:orange'>201,315</span></div>
+				<div style="float:left;margin-right:15px;color:gray;"><img class='mnThumbs' src="images/thumbsUp.gif" height="16" /> <span id="mainThumbsUp" class='articleControls_green'>5243</span></div>
+				<div style="float:left;margin-right:15px;color:gray;"><img class='mnThumbs' src="images/thumbsDown.gif" height="16" /> <span id="mainThumbsDown" class='articleControls_red'>234</span></div>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+		<div id="mainCommentBox" style="width:85%;margin:auto;height:0px;overflow:auto;overflow-x:hidden;overflow-y:hidden;font-family:arial;">
+		<div style="width:100%;font-weight:bold;font-size:28px;color:brown;background-color:#fff;height:50px;text-align:center;padding-top:17px;border-radius:10px 10px 0px 0px;">
+			<div>Comments</div>
+			<div id="addComButt" style='padding-top:0px;font-size:13px;color:#000;cursor:pointer;'>add comment</div>
+		</div>
+		<div style="width:99.8%;border:solid 1px lime;height:310px;margin-bottom:3px;">
+			<div id="comms" style="width:100%;height:310px;overflow:auto;overflow-x:hidden;">
+				$("#comms").html("<div style='width:210px;margin:auto;font-size:20px;color:orange;margin-top:25px;'>Be the first to comment</div>")
+			</div>
+		</div>
+		<div>
+			<div style="color:lime;">1 2 3 4 5</div>
+
+		</div>
+		</div>
+		</br>
+		<hr style="width:80%;margin:auto;"/>
+		</br>
+		
+
+
+		<br/>
+	<div id="slider1_container" style="position: relative; width: 85%; height: 70px;margin:auto;margin-top:6px;background-color:#fff;">
+	<br/>
+		<div style='width:348px;font-weight:bold;font-size:28px;margin:auto;color:#507a92;font-family:arial;text-shadow: -1px -1px 6px #79a1b8;'>Meet the Presidents Staff</div>
+	</div> 
+		
+		<div style="width:85%;margin:auto;padding:5px;">
+			<div  style="width:100%;overflow:auto;overflow-y:hidden;overflow-x:hidden;">
+				<div id='truecands1' class="trumpGradient" style="height:478px;padding-left:10px;padding-top:10px"></div>
+			</div>
+		</div>
+	
+
+
+
+<div style='width:85%;font-weight:bold;font-size:28px;color:#507a92;background-color:#fff;height:50px;text-align:center;padding-top:14px;font-family:arial;margin:auto;text-shadow: -1px -1px 6px #79a1b8;'>
+	What are they saying about Trump?
+	</div>
+
+<div id="mainVid" style='margin-top:20px;width:85%;margin:auto;'>
+
+</div>
+
+<div style='width:85%;font-weight:bold;font-size:28px;color:brown;background-color:#fff;height:50px;text-align:center;padding-top:14px;font-family:arial;margin:auto;'>
+	What do you think?
+	</div>
+<!--poll 1 -->
+<div style="width:970px;margin:auto;font-family:arial;">
+	<div style="width:310px;color:#ccc;float:left;">
+		<div id="polltitle" class="rowHolderHeaders" style="width:100%;margin-top:15px;padding-top:9px;height:56px;padding-left:6px;padding-right:6px;padding-bottom:15px;"></div>
+		<input type="hidden" id="poll_ID" />
+		<div id="pollHolder" style='padding-left:20px;border-bottom:solid 1px #eee;border-left:solid 1px #eee;padding-top:15px;border-right:solid 1px #eee;width:293px;margin-bottom:20px;padding-right:6px;'>
+			
+		</div>
+
+	</div>
+
+	<div style="width:310px;color:#ccc;float:left;margin-left:20px;">
+		<div id="polltitle1" class="rowHolderHeaders" style="width:100%;margin-top:15px;padding-top:9px;height:56px;padding-left:6px;padding-right:6px;padding-bottom:15px;"></div>
+		<input type="hidden" id="poll_ID1" />
+		<div id="pollHolder1" style='padding-left:20px;border-bottom:solid 1px #eee;border-left:solid 1px #eee;padding-top:15px;border-right:solid 1px #eee;width:293px;margin-bottom:20px;padding-right:6px;'>
+			
+		</div>
+
+	</div>
+
+
+
+	<div style="width:310px;color:#ccc;float:left;margin-left:20px;">
+		<div id="polltitle2" class="rowHolderHeaders" style="width:100%;margin-top:15px;padding-top:9px;height:56px;padding-left:6px;padding-right:6px;padding-bottom:15px;"></div>
+		<input type="hidden" id="poll_ID2" />
+		<div id="pollHolder2" style='padding-left:20px;border-bottom:solid 1px #eee;border-left:solid 1px #eee;padding-top:15px;border-right:solid 1px #eee;width:293px;margin-bottom:20px;padding-right:6px;'>
+			
+		</div>
+
+	</div>
+</div>	
+<br/>
+		
+
+<script>
+	strg="";
+
+	global=globalTools.create();
+	global.lastNav='President_Trump.html';
+	globalTools.save();
+	var classt="oddGrid";
+	
+
+	//Screen slide information
+	//$(".newFormfieledHolderStyles").css("height","2090px");
+	var o1={"text-decoration":"true","mouseover":"true"};
+	var w1 = new addMouseOver("completeList","orange",o1,"none")
+	
+	var t1=$(document).width();
+	var t5=$(window).width();
+	var e1=parseInt((t5-(t5*.85))/2)	
+	$("#transBack").removeClass().show().css("left",e1).addClass("transBack_mainArt");
+	$("#transBack1").removeClass().hide().css("left",e1).addClass("transBack_mainArt1")
+	
+
+
+	$(document).ready(function(){
+		
+		//$("#topImg").attr("src",global.baseUrl+"/images/president/incumbent.jpg");
+		//$("#topImg1").attr("src",global.baseUrl+"/images/president/donald1.jpg")
+		//$("#displayMainImg").attr("src",global.baseUrl+"/images/president/Obama.jpg");
+		//$("#tUpImg").attr("src",global.baseUrl+"/images/thumbsUp.gif");
+		//$("#tDownImg").attr("src",global.baseUrl+"/images/thumbsDown.gif");
+		//$("#LbBack").css("height","1830px")
+
+
+		
+		var func1="none";
+		if(global.userObj.agape_profile_presidentAccount!==undefined){
+			//alert(global.userObj.agape_profile_presidentAccount)
+			if(global.userObj.agape_profile_presidentAccount   !="none" && global.userObj.agape_profile_presidentAccount!="InActive"){
+
+			
+				$("#office").html("Presidential Account").css({"color":"lime","text-decoration":"underline"}).show();
+				createPresOb(func1);
+				$("#invitePres").hide();
+			}else{
+				$("#invitePres").show();
+			}
+
+		}else{
+			$("#invitePres").show();
+		}
+
+		
+		
+		
+
+
+		/*/Begin load presidential candidates
+		var presObj={};
+		presObj.job="atomic_selectAll"
+		presObj.dbase="presidential_candidates";
+		presObj.start=0;
+		presObj.ob=" order by president_Candidacy_Active asc"
+		//presObj.param="president_Candidacy_Active"
+		//presObj.value="Active";
+	
+		func2=function(data){
+			//global=globalTools.create();
+
+			var hello=globalTools.verify(data);
+			var strg1="";
+			var imgI="none";
+			var cntr1;
+
+			global=globalTools.create();
+			global.presObj.presidential_candidates=hello.returnObj;
+
+			globalTools.save();
+			for(g=0;g<hello.returnObj.length;g++){
+				cntr1=g+1;
+				
+				var e=JSON.stringify(hello.returnObj[g].president_photos)
+				var tImg=$.parseJSON(hello.returnObj[g].president_photos);
+				
+
+
+				switch(hello.returnObj[g].president_Party){
+					case 'Republican':
+						imgI=global.baseUrl+"/images/president/republican.elephant.jpg"
+					break;
+
+					case 'Democratic':
+						imgI=global.baseUrl+"/images/president/democracy.donkey.jpg";
+					break;
+
+					case 'Libertarian':
+
+						imgI=global.baseUrl+"/images/president/libertarian.jpg";
+					break;
+
+					case 'Constitution':
+						imgI=global.baseUrl+"/images/president/constitution.jpg";
+					break;
+
+					case 'Workers World':
+						imgI=global.baseUrl+"/images/president/WWP.jpg";
+						break;
+
+				}
+
+				strg1=strg1+"<div class='truCandsDiv' style='background-color:#eee;border-radius:5px;border:solid 2px #A52A2A;margin-right:6px;width:250px;'>"
+					strg1=strg1+"<div style='float:left;border-radius:5px 0px 0px 0px;'>"
+					strg1=strg1+"<div class='truCandsImgDiv' style='position:relative;border-radius:5px 0px 0px 0px;' >"
+				if(hello.returnObj[g].president_Candidacy_Active=="InActive"){
+						strg1=strg1+"<div style='position:absolute;z-index:4;font-family:Impact;top:40px;left:15px;font-size:15px;color:orange;text-shadow:1px 0px 0px #000;'>Dropped out</div>"
+					}
+
+						strg1=strg1+"<div style='position:relative;z-index:3;border-radius:5px 0px 0px 0px;'><div class='commonRankCount'>"+cntr1+"</div><div class='commonVoteCount' style='border-radius:5px 0px 0px 0px;color:lime;text-shadow:0px 1px 1px #000;'><img src='"+global.baseUrl+"/images/thumbsUp.gif' height='14' />"+hello.returnObj[g].president_upVotes+"</div><img style='border-radius:5px 0px 0px 0px;' src='"+global.baseUrl+"/"+tImg.images[0].defaultImage+"' height='110' width='120'/></div>"
+						strg1=strg1+"<div id='pres"+g+"' class='presidentLabel'>"+hello.returnObj[g].president_workingState+"</div>"
+					strg1=strg1+"</div>"
+					strg1=strg1+"</div>"
+						strg1=strg1+"<div style='float:left;width:100px;'>"
+							strg1=strg1+"<div style='text-decoration:underline;font-weight:bold;'>"+hello.returnObj[g].president_Firstname+" "+hello.returnObj[g].president_Lastname+"</div>"
+								strg1=strg1+"<div style='width:120px;'>"+hello.returnObj[g].president_Party+"</div>"
+								strg1=strg1+"<img src='"+imgI+"' height='20'/>"
+								strg1=strg1+"<div >Currently:</div><div style='width:120px;font-size:11px;'>"+hello.returnObj[g].president_CurrentPosition+"</div>"
+								strg1=strg1+"</div>"
+										
+								strg1=strg1+"</div>"
+			}
+		wid=hello.returnObj.length*260;
+		$("#truecands").css("width",wid+"px").append(strg1);
+
+
+		
+	}
+
+
+	ajaxCall3(presObj,func2);	*/
+	//End load presidential candidates
+
+
+
+
+
+
+	/* President Poll  begin*/
+	var qb 
+	var quesObj={};
+	quesObj.job="quickSelect_atomic"
+	quesObj.dbase="agape_pollQuestions";
+	quesObj.param="question_ID";
+	quesObj.start=0;
+	quesObj.value=22
+	func21=function(data){
+		var data1=globalTools.verify(data);
+		qb = new questionBuilder({
+			"background-color":"gray",
+			"color":"#000",
+			"chartSlider":{
+				"background-color":"purple",
+				"color":"#fff"
+			}
+		});
+		qb.createPoll(data1,"polltitle",'pollHolder','poll_ID',22);
+		qb.pollVerify(quesObj.value,qb);
+	}
+	ajaxCallMedia(quesObj,func21);
+	/* President Poll  Ends*/
+
+
+	/* Random Poll  begin*/
+	var qb1
+	var quesObj1={};
+	quesObj1.job="quickSelect_atomic"
+	quesObj1.dbase="agape_pollQuestions";
+	quesObj1.param="question_ID";
+	quesObj1.start=0;
+	quesObj1.value=13;
+	func22=function(data){
+		var data1=globalTools.verify(data);
+		qb1 = new questionBuilder({
+			"chartSlider":{
+				"color":"#fff"
+			}
+		});
+		qb1.createPoll(data1,"polltitle1",'pollHolder1','poll_ID1',13);
+		qb1.pollVerify(quesObj1.value,qb1);
+	}
+	ajaxCallMedia(quesObj1,func22);
+	/* Random Poll  Ends*/
+
+
+
+		/* Random Poll  begin*/
+	var qb2
+	var quesObj2={};
+	quesObj2.job="quickSelect_atomic"
+	quesObj2.dbase="agape_pollQuestions";
+	quesObj2.param="question_ID";
+	quesObj2.start=0;
+	quesObj2.value=47;
+	func22=function(data){
+		var data1=globalTools.verify(data);
+		qb2 = new questionBuilder({
+			
+			"chartSlider":{
+				
+				"color":"#fff"
+			}
+		});
+		qb2.createPoll(data1,"polltitle2",'pollHolder2','poll_ID2',47);
+		qb2.pollVerify(quesObj2.value,qb2);
+	}
+	ajaxCallMedia(quesObj2,func22);
+	/* Random Poll  Ends*/
+
+
+	
+	
+	
+	
+	$(".voteButton").each(function(){
+		$(this).on("click",function(){
+			alert("vote")
+		})
+	})
+		
+		//var tiko = new polldaddy()
+		//tiko.send();
+
+
+		$(".presNavigation").unbind("click").on("click",function(){
+			//alert($(this).attr("id"))
+			$(".presNavigation").removeClass("selectedNav");
+			$(this).addClass("selectedNav")
+			var teeg=$(this).attr("id");
+			switch(teeg){
+				case 'raiseIssue':
+					var div1=document.getElementById("_lboxBackground");
+					var div2=document.getElementById("_lBoxMainDiv");
+					var template={};
+					template.page="raiseIssue.html";
+					id="raiseIssue";
+					template.param=id;
+					ingniteLightBox = new LightBox(div1,div2,template,id)
+					ingniteLightBox.lightBoxOn();
+					ingniteLightBox.lightBoxOff(div1,div2);
+				break;
+
+				case 'office':
+					var div1=document.getElementById("_lboxBackground");
+					var div2=document.getElementById("_lBoxMainDiv");
+					var template={};
+					template.page="run4office.html";
+					id="office";
+					template.param=id;
+					ingniteLightBox = new LightBox(div1,div2,template,id)
+					ingniteLightBox.lightBoxOn();
+					ingniteLightBox.lightBoxOff(div1,div2);
+				break;
+
+
+				
+			}
+		})
+
+
+
+	})
+
+$("#visitPeople").on("click",function(){
+	loadTemplate('mainLBHolder','peopleView.php');
+})
+
+
+$("#run4Pres").on("click",function(){
+	var div1=document.getElementById("_lboxBackground");
+	var div2=document.getElementById("_lBoxMainDiv");
+	var template={};
+	template.page="run4office.html";
+	id="office";
+	template.param=id;
+	ingniteLightBox = new LightBox(div1,div2,template,id)
+	ingniteLightBox.lightBoxOn();
+	ingniteLightBox.lightBoxOff(div1,div2);
+
+	
+})
+	
+
+
+
+
+
+var sendo={}
+sendo.job="atomic_selectAll";
+sendo.dbase="agape_topics";
+sendo.ob="where agape_media_sourceID='840_topic0'";
+var commOb="";
+var mainCs;
+var func=function(data){
+
+	var t=globalTools.verify(data);
+	global.mainArticle=t;
+	commOb=t;
+	
+
+	$.get(global.baseUrl+"/"+t.returnObj[0].agape_media_reply,function(data){
+		$("#mainStory").empty().append(data);
+		$("#completeList").on("click",function(){
+
+			if($("#cListDiv").hasClass("openMain")){
+				var le=$("#opacback").height();
+				le=le-900;
+
+				var be=$("#footerPush").height();
+				be=be-900
+				$("#footerPush").css("height",be+"px");
+				TweenMax.to($("#mainStory")[0],.3,{css:{height:"580",ease:Bounce.easeIn}});
+				TweenMax.to($("#cListDiv")[0],.4,{css:{height:"0",ease:Bounce.easeIn}});
+				TweenMax.to($(".transBack_mainArt")[0],.4,{css:{height:"650",ease:Bounce.easeIn},onComplete:function(){
+					$("#cListDiv").removeClass("openMain");
+					
+				}});
+				TweenMax.to($("#opacback")[0],.9,{css:{height:le,ease:Bounce.easeIn}});
+			}else{
+				$("#cListDiv").show();
+				var le=$("#opacback").height();
+				le=le+900;
+				var be=$("#footerPush").height();
+				be=be+900
+				$("#footerPush").css("height",be+"px");
+				TweenMax.to($("#mainStory")[0],.6,{css:{height:"1520",ease:Bounce.easeIn}});
+				TweenMax.to($("#opacback")[0],.6,{css:{height:le,ease:Bounce.easeIn}});
+				TweenMax.to($(".transBack_mainArt")[0],.6,{css:{height:"1589",ease:Bounce.easeIn}});
+				TweenMax.to($("#cListDiv")[0],.6,{css:{height:"900",ease:Bounce.easeIn}});
+				
+				$("#cListDiv").addClass("openMain");
+			}
+
+			
+		})
+	})
+	$("#mainCommentCount").html(t.returnObj[0].agape_media_comments_count);
+	$("#mainThumbsUp").html(t.returnObj[0].agape_media_thumbsUp)
+	$("#mainThumbsDown").html(t.returnObj[0].agape_media_thumbsDown);
+	
+
+
+	if(	t.returnObj[0].agape_media_comments=="none" || t.returnObj[0].agape_media_comments=="" ){
+		//$("#comms").html("<div style='width:210px;margin:auto;font-size:20px;color:orange;margin-top:25px;'>Be the first to comment</div>")
+	}else{
+	
+		var send1 = {};
+		send1.job="atomic_selectAll";
+		send1.ob="where agape_commentsSource ='"+t.returnObj[0].agape_media_SourceID+"' order by agape_commentsLastComment desc";
+		send1.dbase="agape_comments"
+
+		func1=function(datar){
+
+			var b=globalTools.verify(datar);
+			var f= b.returnObj
+			mainCs=f;
+
+			//loadMainpresComms(f)
+		}
+
+		ajaxCallMedia(send1,func1);
+	}
+	//agape_media_comments
+
+
+	
+	var a=$.parseJSON(commOb.returnObj[0].agape_media_content)
+
+
+	var aleng=a.mainArticle.videoObj.length;
+	console.log(9978)
+	console.log(a.mainArticle.videoObj)
+	console.log(9978)
+
+	var t="";
+
+	for(var i=0;i<aleng;i++){
+		t=t+"<div style='float:left;margin-right:10px;font-family:arial;'>"
+			t=t+"<div>"
+				t=t+"<iframe width='200' height='140' src='"+a.mainArticle.videoObj[i].url+"' frameborder='0' allowfullscreen></iframe>"
+			t=t+"</div>";
+			t=t+"<div id='vid0'>"
+				t=t+"<div style='font-size:12px;width:200px;color:#eee;'>"+a.mainArticle.videoObj[i].title+"</div>"
+			t=t+"<div style='font-size:12px;width:120px;color:lime;text-align:left;'><img id='vth"+i+"' class='vidThumbs up' src='"+global.baseUrl+"/images/thumbsUp.gif' height='20' /> <span id='v_thumbsUp_"+i+"'> "+a.mainArticle.videoObj[i].upvotes+"</span></div>"
+			t=t+"<div style='font-size:12px;width:120px;color:red;text-align:left;'><img id='vth"+i+"' class='vidThumbs down' src='"+global.baseUrl+"/images/thumbsDown.gif' height='20'/> <span id='v_thumbsDown_"+i+"'> "+a.mainArticle.videoObj[i].downvotes+"</span></div>"
+			t=t+"<div style='font-size:12px;width:120px;color:red;text-align:left;color:#eee;'>Comments: "+a.mainArticle.videoObj[i].comments+"</div>";
+			t=t+"</div>";
+		t=t+"</div>";
+
+	}
+	t=t+"<div style='clear:both;'></div>";
+	$("#mainVid").empty().append(t);
+
+	addVidthumbEvt()
+
+
+	global.staff=a.mainArticle.staff;
+	var sleng=a.mainArticle.staff.length;
+	var t="";
+	var brk=1;
+	for(var i=0;i<sleng;i++){
+
+	
+			t=t+"<div class='truCandsDiv' style='background-color:#eee;border-radius:5px;border:solid 2px #A52A2A;margin-right:6px;'>"
+				t=t+"<div style='float:left;border-radius:5px 0px 0px 0px;'>"
+					t=t+"<div class='truCandsImgDiv' style='position:relative;border-radius:5px 0px 0px 0px;'>"
+						t=t+"<div style='position:relative;z-index:3;border-radius:5px 0px 0px 0px;'>"
+							t=t+"<div class='commonVoteCount' style='border-radius:5px 0px 0px 0px;color:lime;text-shadow:0px 1px 1px #000;'>"
+								t=t+"<img src='/agape/images/thumbsUp.gif' height='14'><span id='thbup"+i+"'>"+a.mainArticle.staff[i].thumbsUp+"</span></div>"
+							t=t+"<div class='commonVoteCount' style='border-radius:5px 0px 0px 0px;color:red;text-shadow:0px 1px 1px #000;top:33px;'><img src='/agape/images/thumbsDown.gif' height='14'><span id='thbdown"+i+"'>"+a.mainArticle.staff[i].thumbsDown+"</span></div>"
+							t=t+"<img style='border-radius:5px 0px 0px 0px;' src='/agape/"+a.mainArticle.staff[i].img+"' height='100' width='100'>"
+						t=t+"</div>"
+						t=t+"<div id='pres"+i+"' class='presidentLabel'>"+a.mainArticle.staff[i].born+"</div>"
+					t=t+"</div>"
+				t=t+"</div>"
+				t=t+"<div style='float:left;width:100px;'>"
+					t=t+"<div style='text-decoration:underline;font-weight:bold;'>"+a.mainArticle.staff[i].name+"</div>"
+					t=t+"<div style='width:120px;'>"+a.mainArticle.staff[i].position+"</div>"
+					t=t+"<br/>"
+					t=t+"<div><b>Currently:</b></div>"
+					t=t+"<div style='width:120px;font-size:11px;'>"+a.mainArticle.staff[i].formerPosition+"</div>"
+				t=t+"</div>"
+			t=t+"</div>"
+			brk=brk+1;
+			if(brk==6){
+				t=t+"<div style='clear:both';></div>"
+				brk=1
+			}
+
+
+	}
+
+
+
+	$("#truecands1").append(t)
+
+	$(".presidentLabel").each(function(){
+		$(this).unbind("click").on("click",function(){
+			var der=$(this).attr("id")+"";
+			der=der.substr(4);
+
+
+			var div1=document.getElementById("_lboxBackground");
+			var div2=document.getElementById("_lBoxMainDiv");
+			var template={};
+			template.page="viewpro1_main.html";
+			global.module='searchCandidates'
+			template.job="visitprofile";
+			global.candidate.id=der;
+			
+			
+			template.param=global.staff[der]
+			ingniteLightBox = new LightBox(div1,div2,template,global.candidate.id)
+			ingniteLightBox.lightBoxOn()
+			$("#body").scrollTop("0px");
+			
+			global.candidate.job="mainArticle";
+
+
+
+			
+		})
+	})
+
+
+}
+
+ajaxCallMedia(sendo,func); 
+
+
+
+$("#commentButt").on("mouseover",function(){
+	//#b9b6b6
+	$(this).css({"color":"gray","text-decoration":"underline"})
+}).on("mouseout",function(){
+	//#b9b6b6
+	$(this).css({"color":"#b9b6b6","text-decoration":"none"})
+}).on("click",function(){
+	if($("#mainCommentBox").hasClass("openMain")){
+		var le=$("#opacback").height();
+			le=le-400;
+			var be=$("#footerPush").height();
+			be=be-400
+			$("#footerPush").css("height",be+"px");
+		TweenMax.to($("#mainCommentBox")[0],.9,{css:{height:"0",ease:Bounce.easeIn}});
+		TweenMax.to($("#opacback")[0],.9,{css:{height:le,ease:Bounce.easeIn}});
+		$("#mainCommentBox").removeClass("openMain");
+	}else{
+		var le=$("#opacback").height();
+			le=le+400;
+			var be=$("#footerPush").height();
+			be=be+400
+			$("#footerPush").css("height",be+"px");
+			TweenMax.to($("#mainCommentBox")[0],.4,{css:{height:"400",ease:Bounce.easeIn}});
+			TweenMax.to($("#opacback")[0],.4,{css:{height:le,ease:Bounce.easeIn}});
+		$("#mainCommentBox").addClass("openMain");
+	}
+})
+
+
+
+
+
+$("#addComButt").on("click",function(){
+	if(global.navFunc=="LoggedIn"){
+		var id=global.vidMovrIndex;
+		global.comments.type="mainArticleComment"
+		var div1=document.getElementById("_lboxBackground");
+		var div2=document.getElementById("_lBoxMainDiv");
+		var template={};
+		template.page="commentPage.html";
+		template.job="videoComms";
+		template.heading="Comment on: "
+		
+		template.param=commOb.returnObj[0];
+		global.candidate.id=id;
+		//template.param=id;
+		ingniteLightBox = new LightBox(div1,div2,template,id)
+		ingniteLightBox.lightBoxOn();
+
+	}else{
+		alert("you must login")
+	}
+})
+
+
+
+		if(global.userObj.agape_vote_recordThumbs){
+			    //Check thumbs for previous selection
+		    var thsArr = $.parseJSON(global.userObj.agape_vote_recordThumbs)
+		    var thsArrChk = "true";
+		    var thsArrLeng = thsArr.length;
+
+		    for (var w1 = 0; w1 < thsArrLeng; w1++) {
+		        if (thsArr[w1].votetype == "mainArt_thumbs") {
+		            if (thsArr[w1].mainId == global.mainArticle.returnObj[0].agape_media_ID) {
+		                $("#mainThumbsUp").addClass("articleControls_grayPresComm");
+		                $("#mainThumbsDown").addClass("articleControls_grayPresComm");
+		                $("#mainThumbsUp").prev().unbind("click");
+						$("#mainThumbsDown").prev().unbind("click");
+		                thsArrChk = "false"
+		            }
+
+		        }
+		    }
+
+
+		     if (thsArrChk=="true") {
+
+        		$(".mnThumbs").unbind("click").on("click",function(){
+					$(this).each(function(){
+						var proseed=globalTools.checkLogin();
+						var direction=$(this).next().attr("id")
+
+						if(proseed=="true"){
+
+							var thumbsArr=$.parseJSON(global.userObj.agape_vote_recordThumbs)
+							var thumbsArrChk="true";
+							var thumbsArrLeng=thumbsArr.length;
+
+							for(var w1=0;w1<thumbsArrLeng;w1++){
+								if(thumbsArr[w1].votetype=="mainArt_thumbs"){
+									if(thumbsArr[w1].mainId==global.mainArticle.returnObj[0].agape_media_ID){
+										thumbsArrChk="false";
+				    				}
+
+				    			}
+				    		}
+
+							if(thumbsArrChk=="true"){
+							
+								var addMainObj={};
+								addMainObj.votetype="mainArt_thumbs";
+								addMainObj.mainId=global.mainArticle.returnObj[0].agape_media_ID;
+								thumbsArr.push(addMainObj);
+								global.userObj.agape_vote_recordThumbs=JSON.stringify(thumbsArr);
+								var sendObj={}
+
+								sendObj['agape_vote_recordThumbs']=JSON.stringify(thumbsArr);
+								globalTools.userProfileEdit("agape_profile",sendObj,"agape_profile_memberID",global.userObj.agape_profile_memberID);
+				        //quickJamUpdate_full
+
+
+								send1={};
+								send1.job="quickJamUpdate_Comm";
+								send1.dbase="agape_topics";
+								send1.param="agape_media_ID";
+								send1.vals=global.mainArticle.returnObj[0].agape_media_ID;
+								send1.obj={};
+								send1.selFunc="selectFunc";
+								send1.kob="where agape_media_ID="+global.mainArticle.returnObj[0].agape_media_ID;
+								var qry="agape_media_thumbsUp=agape_media_thumbsUp+1"
+								switch(direction){
+								case 'mainThumbsUp':
+								break;
+
+								case 'mainThumbsDown':
+									qry="agape_media_thumbsDown=agape_media_thumbsDown+1"
+								break;
+			    			}
+				
+							send1.updateStr="agape_media_lastComment_date='"+convertNowToPhP()+"', " +qry;
+							
+							var func1=function(datam){
+
+								var topicObj=globalTools.verify(datam)
+
+								$("#mainThumbsUp").html(topicObj.returnObj[0].agape_media_thumbsUp).addClass("articleControls_grayPresComm")
+								$("#mainThumbsUp").prev().unbind("click");
+								$("#mainThumbsDown").html(topicObj.returnObj[0].agape_media_thumbsDown).addClass("articleControls_grayPresComm")
+								$("#mainThumbsDown").prev().unbind("click");
+								
+			    			}
+							ajaxCallMedia(send1,func1);
+
+		    			}else{
+						alert("already selected")
+		    			}
+        			//{"commentID":"17","votetype":"quote_thumbs"}
+
+				    }else{
+							alert("You must login first.")
+				    }
+
+		
+    			})
+			})
+
+
+    }
+
+}
+
+
+function addVidthumbEvt(){
+	$(".vidThumbs").each(function(){
+		$(this).unbind("click").on("click",function(){
+			var vcnt=$(this).attr("id")+"";
+			vcnt=vcnt.substr(3)
+			var a=$.parseJSON(commOb.returnObj[0].agape_media_content)
+			var aleng=a.mainArticle.videoObj.length;
+			var vals=a.mainArticle.videoObj[vcnt].id+"";
+			vals=vals.split("_");
+			var vOb={}
+			vOb.job="mainArt_vidThumbs";
+			vOb.dbase="agape_topics"
+			vOb.vals=vals[0];
+			vOb.lastdate=convertNowToPhP();
+			vOb.id1=a.mainArticle.videoObj[vcnt].id;
+			vOb.direction="thumbsUp"
+			if($(this).hasClass("down")==true){
+				vOb.direction="thumbsDown";
+			}else{
+				
+			}
+			var func1=function(datam1){
+				var obj5=globalTools.verify(datam1);
+				var obj6=$.parseJSON(obj5.returnObj[0].agape_media_content);
+				var g=obj6.mainArticle.videoObj.length;
+				for(c=0;c<g;c++){
+					if(obj6.mainArticle.videoObj[c].id==vOb.id1){
+						var hy="upvotes";
+						if(vOb.direction="thumbsDown"){
+							hy="downvotes"
+						}
+						$("#v_"+vOb.direction+"_"+vcnt).html(obj6.mainArticle.videoObj[c][hy]);
+
+						$("#vth"+vcnt).each(function(){
+							$(this).unbind("click").on("click",function(){
+								alert("spunky")
+								console.log(vcnt)
+							})
+						})
+
+						//addClass("articleControls_grayPresComm")
+					}
+
+				}
+				
+			}
+
+			ajaxCallMedia(vOb,func1)
+			
+		})
+	})
+
+}
+
+	
+
+
+//[{"title":"Lara Trump on &#39; Women for Trump&#39; movement","url":"https://www.youtube.com/embed/AmD4llviViY","upvotes":"444","downvotes":"32","comments":"1125","id":"840_ksjY539Hfeys"},{"title":"The Daily Show - Trump Lets the Truth Come Out Post-Election<","url":"https://www.youtube.com/embed/BB38DvTV5kc","upvotes":"34352","downvotes":"225","comments":"7675","id":"840_k97GhhTrys"},{"title":"Alex Jones: Steve Bannon Is a Fighter Excellent Trump Move","url":"https://www.youtube.com/embed/RCts7VWbPeg","upvotes":"9484","downvotes":"11","comments":"73325","id":"840_PJ900sgtThd44"},{"title":"David Packman Show: Trumps ties to Putin too hard to ignore.","url":"https://www.youtube.com/embed/QamraMj1rA8","upvotes":"19386","downvotes":"11","comments":"775","id":"840_lkGus6Kj93nMM"},{"title":"Donald Trump Back-Pedaling After Ukraine Blunder | Andrea Mitchell | MSNBC","url":"https://www.youtube.com/embed/4NaA9YL1SEI","upvotes":"493674","downvotes":"11","comments":"775","id":"840_ksjYmH3L9dhdd4"},{"title":"Breitbartu2019s Joel Pollak asks Don Lemon to &quot;Name One White Nationalist Piece&quot; from Breitbart","url":"https://www.youtube.com/embed/85YUi0pZAu0","upvotes":"9535","downvotes":"11","comments":"475","id":"840_ksjku78r5hsvk"}]
+
+</script>

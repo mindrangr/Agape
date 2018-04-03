@@ -1,0 +1,52 @@
+		<!-- Begin friend panel-->
+		<script>
+			checkGuid()
+		</script>
+		<div class="topTab">Your friends</div>
+		<div id="friend" class="panelLead_new" style='margin-top:25px;width:100%;height:400px'>
+			<div class="panelLead_sub" style="width:100%;">
+					
+				<div>
+					<br>
+					<ul style='margin:0px;margin-left:42%;padding:0px;list-style:none;' id="tabHolder">
+					<li  style="float:left;"><div class="messHeader onMess" id="sentTab" onclick="nextTab(this,'friends')">Friends</div></li>
+						<li style="float:left;"><div class="messHeader " onclick="nextTab(this,'friendRequest')">Friendship request</div></li>
+						
+				
+					</ul>
+				</div>
+				<div style='clear:both;'></div>
+					
+					
+				<div style="margin:auto;width:68%">
+					<div class="panelLead_sub_holder" id="friendContainer" style="margin:auto;width:98%;background-color:#fff;font-family:arial;overflow: auto;">
+						<div style='width:100%;text-align:center;'><img src="images/loading37.gif" height='185'/></div>						
+					</div>
+				</div>		
+					
+				
+					<!--Pagination for Messages-->
+					<div  style="padding:3px;">
+						<div style='width:200px;margin:auto;'>
+							<ul style="display:inline;padding:0px;">
+								<li style="width:80%;display:inline;">
+									<ul id="mainFriendPagination" style="display:inline;">
+									</ul>
+								</li>
+								<li class='liStyles'  style="float:right;padding-right:10px;">Next--></li>
+							</ul>
+						</div>
+					</div>
+			</div>
+		</div>
+			<script style="text/javascript">
+				$("#opacback").css("height","0px");
+				$("#footerPush").css("height","665px");
+				require(['modules/getFrRequest'],function(friend){
+					friend.getFriends(0);
+				
+				})
+				global.lastNav="FriendTemplate.html";
+				control="getFriends"
+				globalTools.save()
+			</script>

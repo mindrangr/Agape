@@ -1,0 +1,68 @@
+
+	<div class="topTab" style='margin'>Agape Community</div>
+		<div  class="panelLead_sub" >
+			<!--<div >	
+					<br/>
+
+					<ul style='margin:0px;margin-left:30px;padding:0px;list-style:none;' id="tabHolder">
+
+						<li  style="float:left;"><div class="messHeader  onMess" onclick="nextTab(this,'friendRequest')">Friendship request</div></li>
+
+						<li style="float:left;"><div class="messHeader" onclick="nextTab(this,'friends')">Friends</div></li>
+						
+					</ul>
+				</div>-->
+				
+				<div  class="panelLead_sub_holder" style="background-color: transparent" >
+					<div style="margin:auto;">
+						<div style="border-radius:8px;width:695px;margin:auto;height:274px;" id="friendContainer">
+							<!--<div style='width:700px;text-align:center;'><img src="images/loading37.gif" height='185'/></div>-->
+							<div class='communitySections communitySections_alt' onclick="changeNavNewNav('mainLBHolder','newsHome.html',this)"><img style='border-radius:7px;border:solid 1px #eee;' src="/Sites/agape/images/news.gif"/></div>
+
+
+							<div id="roseDiv" class='communitySections' class='newNav2' onclick="changeNavNewNav('mainLBHolder','splash.html',this)"><img style='border-radius:7px;border:solid 1px #eee;' src="/Sites/agape/images/romanceBanner.gif"/></div>
+
+
+
+							<!--<div class='communitySections' class='newNav2' onclick="changeNavNewNav('mainLBHolder','polldaddyHome.html',this)"><img style='border-radius:7px;border:solid 1px #eee;width:681px;height:83px;' src="images/grandAssembly.gif" /></div>
+
+
+
+
+							
+							
+							<div class='communitySections'><img style='border-radius:7px;border:solid 1px #eee;' src="images/shelley.png"/></div>
+							<div class='communitySections communitySections_alt'><img style='border-radius:7px;border:solid 1px #eee;' src="images/agape_world.gif"/></div>
+							<div class='communitySections communitySections_alt'><img style='border-radius:7px;border:solid 1px #eee;' src="images/power.gif"/></div>-->
+							<div class='communitySections' onclick="changeNavNewNav('mainLBHolder','presidentWho.html',this)"><img style='border-radius:7px;border:solid 1px #eee;' src="/Sites/agape/images/pres.gif"/></div>
+							
+						</div>
+						<br/>
+					</div>				
+				</div>
+				
+				<!--Pagination for Messages-->
+				<div  style="text-align:left;padding:3px;">
+					<div>
+						<ul style="display:inline;padding:0px;">
+							<li style="width:80%;display:inline;">
+								<ul id="mainFriendPagination" style="display:inline;">
+								</ul>
+							</li>
+							<li class='liStyles'  style="float:right;padding-right:10px;">Next--></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<script style="text/javascript">
+				if(global!==null){
+					global.lastNav='communityTemplate.php';
+					globalTools.save();
+				}else{
+					global=globalTools.create();
+					globalTools.save();
+				}
+				
+			</script>
+	
+								

@@ -1,0 +1,186 @@
+1. <div class="task">From friend list friend request still showing in visit profile -done
+2. remove reuest friend option from friend request viit profile - done
+3 navigation tabs always points to profile after refresh - done
+4. check search formula for eithers sex only others that have
+5. remove submit buttons from polls if not logged in - done
+6. provide dynamic update on polls - done
+7. Populate people candidate into UI - done
+8. on account page if partner basics selected remove flag - done
+9. Reply on blog option not working - done
+10. pagination indicator for friend request not moving with click - done
+11. friend request not working from search - done 
+12. make certain notifications are treated as different than messageo way to reply - none
+13. create presidential account not working - done
+14. verify polls uses new php object system - done
+15. poll updats not reflecting - done
+16. aftercreation of presidetial account leave presidential window and com eback. You get "VM1865:813 Uncaught TypeError: Cannot read property 'peopleCandidate_CurrentPosition' of undefined" - cannot replicate
+17. Polls showing period - done
+18. after log out crash when you got to presisdential page. After refresh ok. - done
+19. After creation of presidential account from logged in status change wanna run fo rpresident to presidential account - done
+20. after creation of unlogged in account no flag for creation - done
+21. after creation of unlogged in account Account page is broken - done
+22. cannot take poll directly after creation of not LoggedIn presidential account - done
+23. create view options for people candidates - done
+24. Add replyto option for people comments - done
+25. add ceate discussion to button to issues - ignore
+26. create function that checks poll array and verifies that it holds only 200 records - done
+27. Agape answers puts religion into agape_answers_gender column - done
+28. People candidate not updating cannot change party - done
+29. friend request option still appeasr after sending friend request from search view - done
+30. Set message as notifdication when sent from Agape notifications - done
+31. Sent messages pagination doesn't work, it only spins - done
+32. Set up place to upload pictures presidential - done
+33. Set up place to upload pictues profile - done
+34. modify create president to use new object model for creatig comment - done
+35. When people president candidates and create an issue no username is created in db - done
+36. make sure that 	people_issuesCommentDataResponse and 	people_issuesCommentDataResponse has "[]" as initial value when creating issues - done
+37. Add replyto option for presidential comments - done
+38. verify thumbs and votes work on presidential candidates - thumbs up works candidates, presidential issues thumbs up/down works, comments - done
+39. verify thumbs and votes work on people candidates -thumbs up works candidates, presidential issues thumbs up/down works, issue comments works - done
+40. verify thumbs and votes work in news - done
+41. create bette rlooking message tabs for comments section on issues - done
+42 add discuss button for presidential candidates - done
+43. adding comment doesn't increment comment count on newshomepage - done
+44. accepting message request should create notification as message type - done
+45. fix next button on messaging pagination - done
+46. Fix area to upload videos from you ttube - done
+47. modify create president to not ceate comment if not logged in - done
+48. Verify replyto works for issue comments presidential candidates
+49. Verify replyto works for issue comments people candidates
+50. Fix news comments for object
+51. build infrastructure for clean urls direectly to path - done
+52. creaet commenst for people canidates - done
+53. create add banner
+54. create advertisment price scheme(business account)/paypal for getting cash and timing events
+55. automation advertising dashboard for veiwing demographics, upload ads, create ads
+56. create structure for personalized advertisments
+57. poll daddy at least 100 questions/see results and standard demographics
+58. after create comment in people issue section page reload fails - done
+59. after ceation from app to presidential photos come up blank 
+60. remove about us - done
+61. presidential issue list showing multiple entries when none exist. - done
+62. After adding message paging doesn't refresh to beginning 
+63. make sure that all questID follo wthe pattern quesID_quesPage_hashID
+64. caption replyto option doesn't have data in replyto field in comment popup
+65. caption thumbs tracker not working
+66. create code to control pagination width, keep to 35
+67. news optionview add comment button doesn't disappear when returning to artcile tab
+68. develop search for articles keyword and article, author
+69. fix search selectors on top of news media section (current events tab as well as pagination for specific search volumes)
+70. build frame around article topiosn with slider to add new options(maily search window)
+71. complete comment portion of issues for president
+72. after initial create comment for video cannot add comment
+73. going to presidnrt list page and people csandidaites don't always load
+74. thumb changer doesn't activate after clicking thumb on qoutes comments
+75. video comments hanging out of overflow bx
+76. video comments have php date format
+77. remove cancel button
+78. 
+
+
+hot rod hearts 
+upload videos, images and documents
+
+Images/
+
+insert into probe.dbo.[UserRoles] select 242, 1, getdate(), null, 'estes'
+&#39;
+
+[{"url":"https://www.youtube.com/embed/y04TVy0FxHg","title":"Hillary Clinton FULL Speech On National Security. Trump &#39;temperamentally unfit&#39; for White House","param":"none", "description":"Hillary Clinton denounces Donald Trumps temperament","id":""},{"url":"https://www.youtube.com/embed/8Ok80PNqxDc","title":"Hillary Clinton being interviewed over emails.","param":"none", "description":"Hillary Clinton answers questions about the email scandal"}]
+
+
+https://www.youtube.com/watch?v=NGkoz6Xvwd4
+
+Under what circumstance would you give yourself permission to cheat on a partner?
+1. I wouldn't. Down with cheating.
+2. I always give myself permission to cheat
+3. If they cheated on me first
+4. If they won't listen to me no matter hard I try.
+5. When I am on the way out of the relationship
+6. Depends on who its with
+
+the truman show hidden messages
+
+
+
+
+agape_media_createDate
+agape_media_title
+agape_media_content
+agape_media_author
+agape_media_lastComment_date
+agape_media_comments_count-
+agape_media_reply
+agape_media_thumbsUp-
+agape_media_thumbsDown-
+agape_media_updatedBy
+agape_media_images
+agape_media_author_ID
+agape_media_updatedBy_ID
+agape_media_group
+agape_media_type
+agape_media_city
+agape_media_state
+
+agape_media_comments
+
+
+What is your favorite season?
+1. Spring
+2. Summer
+3. Fall
+4. Winter
+
+
+
+
+
+Should a man pay on the first date?
+1. Yes. A man should pay for the first date.
+2. Nope. We go dutch on teh first date.
+3. Women have money, let them pay.
+
+
+
+Do you believe in Zodiac match making
+1. Yes. I believe zodiac information is pretty close to accurate many times.
+2. No. I think that zodiac information is nonesense.
+3. I don't hate it. Sometimes it fits and sometimes it doesn't.
+
+
+Would you date a man 5'4" or shorter?
+1. Yes. A mans height isn't important
+2. Yes. I am short too so..
+3. No way, thats too short for me.
+4. Depends on the guy
+
+
+
+What holiday(s) do you find yourself spending the most money on?
+1. Birthdays
+2. Christmas
+3. Mothers day/Fathers day
+4. Anniversaries
+5. Other
+
+
+
+Summer@90
+
+uname1331
+uname1362
+uname1887
+uname1918
+uname2378
+
+changed to people_issuesThumbsDown,people_issuesThumbsUp in people issues table
+added question to question table
+
+
+people issues changed  to people_issuesCommentDataResponse
+
+
+http://stackoverflow.com/jobs/113917/technical-user-experience-and-api-developer-maplarge?med=clc&ref=large-sidebar-blue-looking
+		
+
+“There is a principle which is a bar against all information, which is proof against all argument, and which cannot fail to keep a man in everlasting ignorance. This principle is, contempt prior to examination.”

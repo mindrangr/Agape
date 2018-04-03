@@ -1,0 +1,363 @@
+CREATE VIEW Nebraska AS
+SELECT *
+FROM agape_profile
+WHERE agape_profile_state="Nebraska"
+
+agape1422
+agape1422$&frg!
+
+agape_profile
+
+DROP TABLE IF EXISTS `agape_profile`;
+
+
+CREATE TABLE IF NOT EXISTS `agape_profile` (
+  `agape_profile_memberID` int(10) unsigned NOT NULL,
+  `agape_profile_firstname` varchar(45) DEFAULT NULL,
+  `agape_profile_lastname` varchar(45) DEFAULT NULL,
+  `agape_profile_gender` varchar(15) DEFAULT NULL,
+  `agape_profile_dateOfBirth` datetime DEFAULT NULL,
+  `agape_profile_age` varchar(4) NOT NULL DEFAULT 'none',
+  `agape_profile_bodyType` varchar(25) DEFAULT NULL,
+  `agape_profile_height` varchar(25) DEFAULT 'Not Answered',
+  `agape_profile_city` varchar(45) DEFAULT NULL,
+  `agape_profile_state` varchar(25) DEFAULT NULL,
+  `agape_profile_email` varchar(45) DEFAULT NULL,
+  `agape_profile_friends` mediumtext,
+  `agape_profile_intentions` varchar(45) DEFAULT NULL,
+  `agape_profile_recreation` varchar(400) NOT NULL DEFAULT '[]',
+  `agape_profile_education` varchar(45) DEFAULT NULL,
+  `agape_profile_relationship_dist` varchar(25) NOT NULL,
+  `agape_profile_political` varchar(35) NOT NULL,
+  `agape_partner_political` varchar(35) NOT NULL,
+  `agape_profile_children` varchar(36) DEFAULT 'Not Answered',
+  `agape_profile_description` text,
+  `agape_profile_partner_description` text,
+  `agape_profile_firstDate` text,
+  `agape_profile_salary` varchar(25) DEFAULT 'Not Answered',
+  `agape_profile_accountType` varchar(240) NOT NULL DEFAULT 'Basic',
+  `agape_profile_username` varchar(45) DEFAULT NULL,
+  `agape_profile_default_img` text,
+  `agape_profile_password` varchar(45) DEFAULT NULL,
+  `agape_profile_religion` varchar(35) DEFAULT NULL,
+  `agape_profile_register_date` datetime DEFAULT NULL,
+  `agape_profile_drugs` varchar(25) DEFAULT 'Not answered',
+  `agape_profile_alcohol` varchar(25) DEFAULT 'Not answered',
+  `agape_partner_gender` varchar(40) NOT NULL,
+  `agape_partner_age_range` varchar(25) DEFAULT 'Not answered',
+  `agape_partner_salary` varchar(25) DEFAULT NULL,
+  `agape_partner_drugs` varchar(25) DEFAULT 'Not answered',
+  `agape_partner_religion` varchar(35) DEFAULT 'Not answered',
+  `agape_partner_education` varchar(45) DEFAULT 'Not anwsered',
+  `agape_partner_opts` varchar(450) NOT NULL DEFAULT '[]',
+  `agape_partner_alcohol` varchar(25) DEFAULT 'Not answered',
+  `agape_partner_children` varchar(35) DEFAULT 'Not answered',
+  `agape_partner_bodyType` varchar(25) DEFAULT NULL,
+  `agape_profile_opts` varchar(450) DEFAULT '[]',
+  `agape_profile_race` varchar(45) DEFAULT 'Not answered',
+  `agape_profile_fRequest` text,
+  `agape_partner_race` varchar(25) DEFAULT 'Not Answered',
+  `agape_partner_height` varchar(25) DEFAULT 'Not Answered',
+  `agape_profile_children_future` varchar(25) DEFAULT 'Not Answered',
+  `agape_profile_amt2Invest` varchar(25) DEFAULT 'Not Answered',
+  `agape_profile_nation` varchar(45) DEFAULT 'USA',
+  `agape_profile_accountStatus` varchar(35) NOT NULL DEFAULT 'Active',
+  `agape_friendList` mediumtext NOT NULL,
+  `agape_vote_recordThumbs` text NOT NULL,
+  `agape_vote_recordPolls` text NOT NULL,
+  `agape_vote_presidentialCandidates` text NOT NULL
+
+('agape_profile_memberID','agape_profile_firstname','agape_profile_lastname','agape_profile_gender','agape_profile_username','agape_profile_password','agape_profile_dateOfBirth','agape_profile_bodyType','agape_profile_height','agape_profile_city','agape_profile_state','agape_profile_email','agape_profile_religion','agape_profile_intentions','agape_profile_education','agape_profile_children','agape_profile_description','agape_profile_partner_description','agape_profile_firstDate','agape_profile_salary','agape_profile_drugs','agape_profile_alcohol','agape_profile_children_future','agape_partner_age_range','agape_partner_height','agape_partner_salary','agape_partner_drugs','agape_partner_religion','agape_partner_education','agape_partner_alcohol','agape_partner_children','agape_partner_bodyType','agape_profile_opts','agape_profile_default_img','agape_profile_race','agape_partner_race','agape_profile_amt2Invest','agape_profile_nation varchar','agape_profile_opts_partner')
+
+
+state_cities
+
+state_ID  ID Int
+state_name varchar 25
+state_abbreviation  varchar 5
+state_cities TEXT
+
+('state_ID','state_name','state_abbreviation','state_cities')
+
+
+agape_messages
+
+DROP TABLE IF EXISTS `agape_messages`;
+CREATE TABLE IF NOT EXISTS `agape_messages` (
+  `agape_message_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `agape_message_title` varchar(125) DEFAULT NULL,
+  `agape_message` text,
+  `agape_message_sender_ID` varchar(15) DEFAULT NULL,
+  `agape_message_sender_username` varchar(45) DEFAULT NULL,
+  `agape_message_receiver_username` varchar(45) DEFAULT NULL,
+  `agape_message_receiver_url` text,
+  `agape_message_receiver_ID` varchar(15) DEFAULT NULL,
+  `agape_message_send_date` datetime DEFAULT NULL,
+  `agape_message_update` datetime NOT NULL,
+  `agape_message_active` varchar(16) DEFAULT 'true',
+  `agape_message_opened` varchar(25) DEFAULT 'Sealed',
+  `agape_sender_url` text,
+  `agape_message_responses` text,
+  PRIMARY KEY (`agape_message_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+
+
+('agape_message_ID','agape_message_title','agape_message','agape_message_sender_ID','agape_message_sender_username','agape_message_receiver_username','agape_message_receiver_ID','agape_message_send_date')
+
+
+
+agape_ads
+ads_id INT(10)
+ads_title varchar 45
+ads_content TEXT
+ads_creatorID varchar 45
+ads_creatorUname varchar 25
+ads_status varchar 25
+ads_createDate Datetime
+
+('ads_id','ads_title','ads_content','ads_creatorID','ads_creatorUname','ads_status','ads_createDate')
+
+
+agape_friendrequest
+DROP TABLE IF EXISTS `agape_friendrequest`;
+CREATE TABLE IF NOT EXISTS `agape_friendrequest` (
+  `requestID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `requestorID` varchar(45) DEFAULT NULL,
+  `requestorUsername` varchar(35) DEFAULT NULL,
+  `requestedID` varchar(45) DEFAULT NULL,
+  `requestedUsername` varchar(45) DEFAULT NULL,
+  `requestSent` datetime DEFAULT NULL,
+  `requestStatus` varchar(45) DEFAULT 'sent',
+  `requestMessage` varchar(250) DEFAULT NULL,
+  `requestorImgUrl` text,
+  PRIMARY KEY (`requestID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+('requestID','requestorID','requestorUsername','requestedID','requestedUsername','requestSent','requestStatus','requestMessage','requestorImgUrl')
+
+
+
+
+agape_blogs_header
+
+blog_ID int
+blog_title
+blog_creator_username
+blog_creator_photo
+blog_createDate
+blog_lastReplyDate
+blog_lastReply_username
+blog_lastReply_ID
+blog_group
+blog_creatorID
+blog_Content
+blog_response_count
+
+
+
+agape_blog_responses
+
+blog_response_ID int
+blog_response_title
+blog_creator_username
+blog_response_creator_photo
+blog_createDate
+blog_response_group
+blog_response_creatorID
+blog_response_Content
+blog_ID
+
+
+
+table `agape_answers`
+--
+
+CREATE TABLE IF NOT EXISTS `agape_answers` (
+  `agape_answers_ID` int(11) NOT NULL,
+  `agape_answers_Question_ID` int(11) DEFAULT NULL,
+  `agape_answers_answer` varchar(45) NOT NULL,
+  `agape_answers_gender` varchar(25) NOT NULL,
+  `agape_answers_age` varchar(3) NOT NULL,
+  `agape_answers_religion` varchar(25) NOT NULL,
+  `agape_answers_city` varchar(25) NOT NULL,
+  `agape_answers_state` varchar(25) NOT NULL,
+  `agape_answers_race` varchar(20) NOT NULL,
+  `agape_answers_income` varchar(15) NOT NULL,
+  `agape_answers_politics` varchar(20) NOT NULL,
+  `agape_answers_education` varchar(15) NOT NULL,
+  `agape_answers_nation` varchar(15) NOT NULL,
+  'agape_answers_created' datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+table `issue_list`
+--
+
+CREATE TABLE IF NOT EXISTS `issue_list` (
+  `issue_ID` int(11) NOT NULL,
+  `issue_Name` varchar(35) NOT NULL,
+  `issue_Group` varchar(35) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `people_candidates`
+--
+
+CREATE TABLE IF NOT EXISTS `people_candidates` (
+  `president_ID` int(11) NOT NULL,
+  `president_Firstname` varchar(25) NOT NULL,
+  `president_Lastname` varchar(25) NOT NULL,
+  `president_Party` varchar(15) NOT NULL,
+  `president_BirthCity` varchar(20) NOT NULL,
+  `president_BirthState` varchar(10) NOT NULL,
+  `president_CurrentPosition` varchar(25) NOT NULL,
+  `president_workingCity` varchar(15) NOT NULL,
+  `president_working State` varchar(10) NOT NULL,
+  `president_upVotes` varchar(15) NOT NULL,
+  `president_downVotes` varchar(15) NOT NULL,
+  `president_website` varchar(120) NOT NULL,
+  `president_issue_list` text NOT NULL,
+  `president_Comments` varchar(400) NOT NULL,
+  `president_photos` text NOT NULL,
+  `president_LastPosition` varchar(125) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `presidential_candidates`
+--
+
+CREATE TABLE IF NOT EXISTS `presidential_candidates` (
+  `president_ID` int(11) NOT NULL,
+  `president_Firstname` varchar(25) NOT NULL,
+  `president_Lastname` varchar(25) NOT NULL,
+  `president_Party` varchar(15) NOT NULL,
+  `president_BirthCity` varchar(40) NOT NULL,
+  `president_BirthState` varchar(25) NOT NULL,
+  `president_CurrentPosition` varchar(25) NOT NULL,
+  `president_workingCity` varchar(15) NOT NULL,
+  `president_workingState` varchar(10) NOT NULL,
+  `president_upVotes` int(15) NOT NULL,
+  `president_downVotes` int(15) NOT NULL,
+  `president_website` varchar(120) NOT NULL,
+  `president_issue_list` text NOT NULL,
+  `president_Comments` text NOT NULL,
+  `president_photos` text NOT NULL,
+  `president_LastPosition` varchar(125) NOT NULL,
+  `agape_twitter` varchar(400) NOT NULL,
+  `president_facebook` varchar(400) NOT NULL,
+  `president_Candidacy_Active` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `presidential_issuegroup`
+--
+
+CREATE TABLE IF NOT EXISTS `presidential_issuegroup` (
+  `presidential_issueGroup_ID` int(11) NOT NULL,
+  `presidential_issueGroup_Title` varchar(45) NOT NULL,
+  `presidential_issueGroup_Comments` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `president_comments`
+--
+
+CREATE TABLE IF NOT EXISTS `president_comments` (
+  `president_commentsID` int(11) NOT NULL,
+  `president_commentsCommentData` mediumtext NOT NULL,
+  `president_commentsCommentDataResponse` text NOT NULL,
+  `president_commentsSource` varchar(25) NOT NULL,
+  `president_commentsLastComment_username` varchar(40) NOT NULL,
+  `president_commentsLastComment` datetime NOT NULL,
+  `president_comment_createdate` datetime NOT NULL,
+  `president_commentCreator_ID` varchar(10) NOT NULL,
+  `president_commentCreator_Username` varchar(15) NOT NULL,
+  `president_commentsMedia_type` varchar(50) NOT NULL,
+  `president_commentsMedia_typeLink` varchar(400) NOT NULL,
+  `president_comment_audience` varchar(150) NOT NULL,
+  `president_commentsThumbsUp` varchar(15) NOT NULL DEFAULT '0',
+  `president_commentsThumbsDown` varchar(15) NOT NULL DEFAULT '0',
+  `president_commentsReplys` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `president_issues`
+--
+
+CREATE TABLE IF NOT EXISTS `president_issues` (
+  `president_issuesID` int(11) NOT NULL,
+  `president_issuesTitle` varchar(100) NOT NULL,
+  `president_issuesCommentData` mediumtext NOT NULL,
+  `president_issuesCommentDataResponse` text NOT NULL,
+  `president_issuesSource` varchar(25) NOT NULL,
+  `president_issuesLastComment_username` varchar(40) NOT NULL,
+  `president_issuesLastComment` datetime NOT NULL,
+  `president_issues_createdate` datetime NOT NULL,
+  `president_issuesCreator_ID` varchar(10) NOT NULL,
+  `president_issuesCreator_Username` varchar(35) NOT NULL,
+  `president_issuesMedia_type` varchar(50) NOT NULL,
+  `president_issuesMedia_typeLink` varchar(400) NOT NULL,
+  `president_issues_group` varchar(35) NOT NULL,
+  `president_issuesThumbsUp` varchar(15) NOT NULL DEFAULT '0',
+  `president_issuesThumbsDown` varchar(15) NOT NULL DEFAULT '0',
+  `president_issuesReplys` varchar(25) NOT NULL,
+  `president_issuesCommsCount` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `president_media`
+--
+
+CREATE TABLE IF NOT EXISTS `president_media` (
+  `president_media_ID` int(11) NOT NULL,
+  `president_media_createDate` datetime NOT NULL,
+  `president_media_title` varchar(200) NOT NULL,
+  `president_media_content` text NOT NULL,
+  `president_media_author` varchar(150) NOT NULL,
+  `president_media_lastComment_date` datetime NOT NULL,
+  `president_media_comments_count` int(11) NOT NULL,
+  `president_media_reply` mediumtext NOT NULL,
+  `president_media_thumbsUp` varchar(80) NOT NULL,
+  `president_media_thumbsDown` varchar(80) NOT NULL,
+  `president_media_updatedBy` varchar(65) NOT NULL,
+  `president_media_images` text NOT NULL,
+  `president_media_author_ID` int(11) NOT NULL,
+  `president_media_updatedBy_ID` int(11) NOT NULL,
+  `president_media_group` varchar(40) NOT NULL,
+  `president_media_city` varchar(25) NOT NULL,
+  `president_media_state` varchar(25) NOT NULL,
+  `president_media_status` varchar(40) NOT NULL DEFAULT 'Active',
+  `president_media_comments` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+
+
+
+Ajax test username
+http://localhost/agape/AjaxPage1.php?job=usernameChk&username=uyuyu
+
+
+
+
+
+
+
+http://localhost/agape/AjaxPage1.php?job=createAccount&obj={/"agape_profile_firstname/":/"Burnie/"}

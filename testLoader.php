@@ -1,0 +1,63 @@
+<?php
+
+	$job=$_POST['job'];
+
+
+	switch($job){
+
+
+		case 'testMessage':
+			$ranD=rand(500,1500);
+			$uname="uname".$ranD;
+
+			$con=mysql_connect("localhost", "agapeAdmin", "Agape1422frg!") or die(mysql_error());
+			mysql_set_charset('utf8');
+			mysql_select_db("agape_media") or die(mysql_error());
+
+
+			$messObj=array("I have more respect for a man who lets me know where he stands, even if he's wrong. Than the one who comes up like an angel and is nothing but a devil.","There is nothing better than adversity. Every defeat, every heartbreak, every loss, contains its own seed, its own lesson on how to improve your performance the next time.","Don't cry because it's over, smile because it happened","I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best","You've gotta dance like there's nobody watching,Love like you'll never be hurt,Sing like there's nobody listening,
+And live like it's heaven on earth.","I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.","If you're not ready to die for it, put the word 'freedom' out of your vocabulary.","You only live once, but if you do it right, once is enough.","To live is the rarest thing in the world. Most people exist, that is all","It is better to be hated for what you are than to be loved for what you are not.","I'm Not Afraid of death; I just don't want to be there when it happens.","I'm the one that's got to die when it's time for me to die, so let me live my life the way I want to.","Who are you to judge the life I live? I know I'm not perfect -and I don't live to be- but before you start pointing fingers...make sure you hands are clean!","The fear of death follows from the fear of life. A man who lives fully is prepared to die at any time.","Just when you think it can't get any worse, it can. And just when you think it can't get any better, it can.","Life will break you. Nobody can protect you from that, and living alone won't either, for solitude will also break you with its yearning. You have to love. You have to feel. It is the reason you are here on earth. You are here to risk your heart. You are here to be swallowed up. And when it happens that you are broken, or betrayed, or left, or hurt, or death brushes near, let yourself sit by an apple tree and listen to the apples falling all around you in heaps, wasting their sweetness. Tell yourself you tasted as many as you could","Life's under no obligation to give us what we expect.","Don't say you don't have enough time. You have exactly the same number of hours per day that were given to Helen Keller, Pasteur, Michaelangelo, Mother Teresa, Leonardo da Vinci, Thomas Jefferson, and Albert Einstein.","America will never be destroyed from the outside. If we falter and lose our freedoms, it will be because we destroyed ourselves.","You can fool all the people some of the time, and some of the people all the time, but you cannot fool all the people all the time.","When you get released from the NFL it's Not A pleasant experience and I may have sulked for about two or three years. Then I was like, 'You know what? It's time to get back on the wagon.' I have nothing to be ashamed of.","And we reduce almost all male-female problems by working on both the female and the male. And that usually means having both sexes take responsibility.","Before success comes in any man's life, he's sure to meet with much temporary defeat and, perhaps some failures. When defeat overtakes a man, the easiest and the most logical thing to do is to quit. That's exactly what the majority of men do.","Strength and growth come only through continuous effort and struggle.","I like getting married, but I don't like being married.","I was married awfully young and I felt trapped. My wife had been divorced and all the time we were married we were out of the Church. It wasn't until we were divorced that we became good Catholics again.","I don't really care what they think about me.","It is better to remain silent and be thought a fool than to open one's mouth and remove all doubt.","A man is never more truthful than when he acknowledges himself a liar.","Forgiveness is the fragrance that the violet sheds on the heel that has crushed it.","The reports of my death have been greatly exaggerated.","The secret of getting ahead is getting started.","I don't like to commit myself about heaven and hell - you see, I have friends in both places.","All you need is ignorance and confidence and the success is sure.","You can't depend on your eyes when your imagination is out of focus.","Any emotion, if it is sincere, is involuntary.","I don't understand the mentality of a rock fan, being obsessed with two or three songs from 25 years ago. I'm not that kind of a fan.","Take risks. Ask big questions. Don't be afraid to make mistakes; if you don't make mistakes, you're not reaching far enough.","No matter how old a mother is she watches her middle-aged children for signs of improvement.","It is not easy to be sure that being yourself is worth the trouble, but we do know it is our sacred duty.","Nothing revives the past so completely as a smell that was once associated with it.","Complacency is a state of mind that exists only in retrospective: it has to be shattered before being ascertained.","But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint.","And I am convinced that nothing can ever separate us from God’s love. Neither death nor life, neither angels nor demons, neither our fears for today nor our worries about tomorrow—not even the powers of hell can separate us from God’s love. No power in the sky above or in the earth below—indeed, nothing in all creation will ever be able to separate us from the love of God that is revealed in Christ Jesus our Lord.","Consider it all joy, my brethren, when you encounter various trials, knowing that the testing of your faith produces endurance. And let endurance have its perfect result, so that you may be perfect and complete, lacking in nothing.","It is better to lead from behind and to put others in front, especially when you celebrate victory when nice things occur. You take the front line when there is danger. Then people will appreciate your leadership.","For to be free is not merely to cast off one's chains, but to live in a way that respects and enhances the freedom of others.","I like your Christ, I do not like your Christians. Your Christians are so unlike your Christ.",
+"It is better to lead from behind and to put others in front, especially when you celebrate victory when nice things occur. You take the front line when there is danger. Then people will appreciate your leadership.","If you want to make peace with your enemy, you have to work with your enemy. Then he becomes your partner.");
+	
+			$selectField=$_POST['selectField'];
+			$dbase=$_POST['dbase'];
+			$selectParam=$_POST['selectParam'];
+			$fieldIndex=$_POST['fieldIndex'];
+			//$countField=$_POST['countField'];
+
+			$pullstring="select ".$selectField." from ".$dbase." where ".$selectParam." = ".$fieldIndex;
+			$returnObj="";
+			$result = mysql_query($pullstring);
+			$cntr=0;
+			$val="";
+			//$colnum = mysql_num_fields($result);
+			if(!$result==""){
+				while($row = mysql_fetch_assoc($result))
+				{
+					$val=$row[$selectField];
+				}
+
+			}
+					
+			echo $val;
+
+
+		break;
+
+
+
+
+
+
+
+	}
+
+				
+				
+
+	
+
+
+
+
+?>

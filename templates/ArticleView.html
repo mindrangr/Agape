@@ -1,0 +1,452 @@
+<style>
+		.comClas{
+		background-color: #fff;
+		color:#000;
+		letter-spacing: 1px;
+		font-size:14px;
+		font-family:arial;
+	}
+
+	.comClas_alt{
+		background-color: #a59edd;
+		letter-spacing: 1px;
+		font-size:14px;
+		font-family:arial;
+	}
+
+</style>
+
+
+<div class="topTab">
+	<div class='communitySectionsStandard  newNav2' style="margin-top:25px;" ><img style='border:solid 1px #eee;' src="advertiseImages/autoAd.png"/></div>
+</div>
+
+<div style='clear:both'></div>
+<div>
+	<div style="width:855px;margin:auto;">
+	<div id='articles' class="presNavs presNavsSelectedRomance" >Blog</div>
+	<div id='comments' class="presNavs" >Comments (<span id="agape_media_comments_count" style="color:red;"></span>)</div>
+	<div id="returnButt" style='padding:0px;margin-top:5px;padding-left:9px;color:#000;font-family:arial;display:none;' class="newElemHeader_sub articleControls">Back</div>
+	<div id="AddComment" style='padding:0px;margin-top:5px;display:none;padding-left:9px;color:lime;text-decoration:underline;font-family:arial;' class="newElemHeader_sub articleControls">Add comment</div>
+</div>
+	<div id="articlesDiv" class="navDivs">
+		<div id='headerHolder' style="height:610px;overflow:auto;margin:auto;overflow-x:hidden;overflow-y:hidden;width: 852px;">
+		<!--<div style='clear:both'></div>-->
+			<div class='newsElems' style='background-color:#fff;width:850px;height:520px;'>
+				<div style='float:left;margin-right:10px;' ><img width="160" height="133" src="" id='newsImge'/></div>
+				<div style='float:left;width:510px;'>
+					<div id="agape_media_title" class="newElemHeader"  ></div>
+					<div  class="newElemHeader_sub" style='color:#000;' >By: <i id='agape_media_author'></i></div>
+					<div  style='color:#000;' class="newElemHeader_sub">Created: <span id="agape_media_createDate"></span></div>
+
+					
+					<div   style='color:red;'  class="newElemHeader_sub">Last comment date: <span style='color:blue;' id="agape_media_lastComment_date"></span></div>
+					<div  style='color:red;'  class="newElemHeader_sub">Last comment by: <span style='color:blue;' id="agape_media_updatedBy"></span></div>
+
+					<div>
+						<div style="float:left;margin-left:10px;"><img id="wthumbUp" src="images/thumbsUp.gif" height="13"><span id='agape_media_thumbsUp' class='articleControls_green' style="margin-left:3px;width:50px;">0</span></div>
+						<div style="float:left;margin-left:15px;"><img id="wthumbDown" src="images/thumbsDown.gif" height="13"><span id='agape_media_thumbsDown'  class='articleControls_red' style="margin-left:3px;width:50px;">0</span></div>
+						<div style="clear:both"></div>
+					</div>
+				</div>
+				<div style='clear:both'></div>
+				<div id='agape_media_content' style="color:#000;padding:8px;height:360px;overflow:auto;"></div>
+			</div>
+		</div>
+	</div>
+	<div id="commentsDiv" class="navDivs" style="display:none;height:560px">
+		<div id="commentsSet" style="height:500px;overflow:auto;border:solid 1px #000;width:852px;margin:auto;background-color:#fff;border-radius:0px 0px 5px 5px;overflow-x:hidden;">
+			<div id='addmessageTabSearch' style="width:852px;height:0px;padding:8px;padding-bottom: 0px; padding-top: 0px;background:#eee;overflow:auto;overflow-x:hidden;display:none;">
+				<div style='float:left;width:300px;font-family:arial;'>
+					<div>Message:</div>
+					<div style="margin-top:40px;">
+						
+						<div class="optButtons1" style="margin:auto;background:#524a92;color:lime;float:left;border-radius:5px;" id="searchPostmess">Post message</div>
+						<div id='cancel2' style="float:left;margin-left:10px;color:red;cursor:pointer;margin-top:7px;">cancel</div>
+						<div style='clear:both'></div>
+
+					</div>
+				</div>
+				<div style='float:left;width:500px;margin-top:10px;'><textarea id="inputboxnew" rows="6" style='width:200px;'></textarea></div>
+				<div style='clear:both'></div>
+			</div>
+			<div id="newsContent_MainComment"></div>
+
+		</div>
+				
+	</div>
+</div>
+<div id='formQuestions'></div>
+
+
+
+
+
+
+<script>
+	
+	//console.log(global.newsObjViewInx)
+
+	var index=_this.ingniteLightBox.temp.ViewInx;
+	var newObj=_this.newsObj.returnObj[index];
+	
+
+
+
+
+	//Populate fields initially	
+	for(var key in newObj){
+		if($("#"+key)){
+			
+			switch(key){
+				case 'agape_media_images':
+					var pic=$.parseJSON(newObj[key]);
+					$("#newsImge").attr("src",pic.defaultPic)
+
+				break;
+
+				case 'agape_media_createDate':
+					var cDate=getTime(newObj[key],'true','native');
+					$("#"+key).html(cDate);
+				break;
+
+
+				case 'agape_media_lastComment_date':
+					var cDate=getTime(newObj[key],'true','native');
+					$("#"+key).html(cDate);
+
+				break;
+
+				default:
+					$("#"+key).html(newObj[key]);
+
+					
+				break;
+
+
+			}
+			
+		}
+	}
+
+	//check thumbs up and down check for validity
+$(document).ready(function(){
+
+
+	
+	
+
+
+
+	//getsearchComms()
+
+
+
+
+	$(".presNavs").each(function(){
+		$(this).on("click",function(){
+			//alert($(this).attr("id"))
+			$(".presNavs").each(function(){
+				$(this).removeClass("presNavsSelectedRomance");
+			})
+			$(this).addClass("presNavsSelectedRomance");
+			$(".navDivs").each(function(){
+				$(this).hide();
+			})
+			var b=$(this).attr("id")+"Div";
+			$("#"+ b ).show();
+
+			if($(this).attr("id")=="comments"){
+				$("#AddComment").show();
+				$("#statsBarNews").css("width","380px");
+			}else{
+				$("#AddComment").hide();
+				$("#statsBarNews").css("width","270px");
+			}
+		})
+	})
+
+
+
+
+	/*$("#searchPostmess").unbind("click").on("click",function(){
+		var sendo={};
+		sendo.job='quickInsertAtomic';
+		sendo.dbase='agape_comments';
+		sendo.obj={};
+		sendo.obj.agape_comments_Comment=globalTools.stringClear($("#inputboxnew").val())
+		sendo.obj.agape_commentsCommentDataResponse="none"
+		sendo.obj.agape_commentsSource=global.newsObjView.agape_media_SourceID;
+		var h=[];
+		h[0]=global.newsObjView.agape_media_SourceID;
+
+		sendo.kob="where agape_commentsSource='"+global.newsObjView.agape_media_SourceID+"' order by agape_commentsLastComment desc";
+		if(global.candidate.id=="viewArticles"){
+			sendo.obj.agape_commentsSource=global.newsObjView.agape_media_SourceID;
+			h[0]=global.newsObjView.agape_media_SourceID;
+			sendo.kob="where agape_commentsSource='"+global.newsObjView.agape_media_SourceID+"' order by agape_commentsLastComment desc";
+		}
+		sendo.obj.agape_commentsLastComment_username=global.userObj.agape_profile_username;
+		sendo.obj.agape_commentsLastComment=convertNowToPhP();
+		sendo.obj.agape_comment_createdate=sendo.obj.agape_commentsLastComment
+		sendo.obj.agape_commentCreator_ID=global.userObj.agape_profile_memberID;
+		sendo.obj.agape_commentCreator_Username=global.userObj.agape_profile_username;
+		sendo.obj.agape_comments_count="agape_comments_count=agape_comments_count+1";
+		var tImage=$.parseJSON(global.userObj.agape_profile_default_img);
+		sendo.obj.agape_comments_image=tImage.defaultPic;
+		
+		sendo.obj.agape_commentsPagination=JSON.stringify(h)
+		sendo.key="quickSelect";
+		sendo.kdbase='agape_comments';
+
+		func=function(data){
+			TweenMax.to($("#addmessageTabSearch")[0],.4,{css:{height:"-16px"}});
+			var t=globalTools.verify(data);
+			loadMainpresComms(t.returnObj);
+			$(".mainCommsReply").each(function(){
+				$(this).unbind("click").on("click",function(){
+				
+					var mc=$(this).attr("id")+"";;
+					mc=mc.substr(5)
+					//alert(mc)
+					$("#TabSearch"+mc).show().animate({"height":"100px"},"slow")
+					//ingniteLightBox.lightBoxOff(div1,div2);
+
+
+					
+				})
+			})
+
+
+			$("div[id^='searchMess']").each(function(){
+				$(this).on("click",function(){
+					alert($(this).attr("id"))
+				})
+			})
+
+
+
+			$("div[id^='cancelMess']").each(function(){
+				$(this).unbind("click").on("click",function(){
+					j=$(this).attr("id")+"";
+					j=j.substr(10);
+					TweenMax.to($("#TabSearch"+j)[0],.4,{css:{height:"0px"}});
+					TweenMax.to($("#TabSearch"+j)[0],.3,{css:{display:"none"}});
+
+				})
+			})
+
+
+			var model={}
+			model.job="quickJamUpdate";
+			model.dbase="agape_topics";
+			model.param="agape_media_ID"
+			model.vals=global.newsObjView.agape_media_ID
+			model.updateStr="agape_media_lastComment_date='"+sendo.obj.agape_commentsLastComment+"', agape_media_updatedBy='"+global.userObj.agape_profile_username+"',agape_media_comments_count=agape_media_comments_count+1, agape_media_updatedBy_ID="+global.userObj.agape_profile_memberID;
+			model.selFunc="selectFunc";
+			model.kdbase="agape_topics";
+			model.kob="where agape_media_SourceID='"+global.newsObjView.agape_media_SourceID+"' order by agape_media_lastComment_date desc";
+			
+			var confunc1=function(datam2){
+			
+				//agape_media_comments_count
+				var b1=globalTools.verify(datam2);
+				$("#agape_media_comments_count").html(b1.returnObj[0].agape_media_comments_count)
+				$("#dia_tup"+global.newsObjViewInx).html(b1.returnObj[0].agape_media_thumbsUp)
+				$("#dia_tdown"+global.newsObjViewInx).html(b1.returnObj[0].agape_media_thumbsDownt)
+				$("#media_comm"+global.newsObjViewInx).html(b1.returnObj[0].agape_media_comments_count);
+				TweenMax.to($("#addmessageTabSearch")[0],.4,{css:{height:"0px"}});
+				TweenMax.to($("#addmessageTabSearch")[0],.3,{css:{display:"none"}});
+			}
+
+			ajaxCallMedia(model,confunc1);
+		}
+		ajaxCallMedia(sendo,func);
+
+
+
+
+
+		
+
+		
+
+
+		//
+
+
+	})*/
+
+	$("#AddComment").unbind("click").on("click",function(){
+		$("#addmessageTabSearch").show().animate({"height":"120px"},"slow")
+	})
+
+	//global.newsObjView.agape_media_SourceID
+
+
+	$("#cancel2").on("click",function(){
+		//$("#addmessageTabSearch").animate({"height":"0px"},"slow")
+		TweenMax.to($("#addmessageTabSearch")[0],.4,{css:{height:"0px"}});
+	
+	})
+
+	
+})
+
+	
+
+function getsearchComms(){
+
+
+		//get Comments
+	var searchComs={}
+	searchComs.job="atomic_selectAll";
+	searchComs.dbase="agape_comments";
+	searchComs.ob="where agape_commentsSource='"+global.newsObjView.agape_media_comments+"' order by agape_commentsLastComment desc";
+	var funk=function(data){
+		var datum=globalTools.verify(data);
+		global.newsObjComms=datum.returnObj;
+		loadMainpresComms(datum.returnObj);
+		$(".mainCommsReply").each(function(){
+			$(this).unbind("click").on("click",function(){
+			
+				var mc=$(this).attr("id")+"";
+				mc=mc.substr(5)
+				//alert(mc)
+				$("#TabSearch"+mc).show().animate({"height":"100px"},"slow")
+				//ingniteLightBox.lightBoxOff(div1,div2);
+
+				
+			})
+		})
+
+
+		/*$("div[id^='cancelMess']").each(function(){
+			$(this).unbind("click").on("click",function(){
+				j=$(this).attr("id")+"";
+				j=j.substr(10);
+				TweenMax.to($("#TabSearch"+j)[0],.4,{css:{height:"-16px"}});
+				TweenMax.to($("#TabSearch"+j)[0],.3,{css:{display:"none"}});
+
+			})
+		})
+
+
+		$("div[id^='searchMess']").each(function(){
+			$(this).on("click",function(){
+				var idx=$(this).attr("id")+"";
+				idx=idx.substr(10);
+				var res,createTime;
+				var sendObj={}
+				sendObj.job="quotesAddCom";
+				sendObj.dbase="agape_comments";
+				sendObj.lComment=convertNowToPhP();
+				sendObj.param=global.newsObjComms[idx].agape_commentsID
+				sendObj.lusername=global.userObj.agape_profile_username;
+				if(global.newsObjComms[idx].agape_commentsCommentDataResponse=="none"){
+					sendObj.addType="AddNew";
+				}else{
+					sendObj.addType="AddNew";
+					//.agape_replyID
+
+				}
+				//Add reply to comment
+				var tImage=$.parseJSON(global.userObj.agape_profile_default_img);
+				var nowTime=getTime(global.newsObjComms[idx].agape_commentsLastComment,'true','native');
+				var nowTi=getTime(global.newsObjComms[idx].agape_comment_createdate,'true','native');
+				var nowT=getTime(sendObj.lComment,'true','native');
+				var res = "<img src=images/replyarrow.png height=15 /> <span style=font-weight:bold;> reply to comment by </span><span style=color:blue;font-weight:bold>"+global.newsObjComms[idx].agape_commentsLastComment_username+"</span> <span style=font-weight:bold;> made on "+nowTi+"</span><br/><br/>"
+						
+				var comm1=globalTools.stringClear($("#boxnew"+idx).val());
+				var enco=getCodedDate();
+				var val={}
+				val.replyImg=tImage.defaultPic;
+				val.agape_commentsLastReply_username=global.userObj.agape_profile_username;
+				val.agape_reply_createdate=nowT;
+				val.agape_comments_Comment=comm1;
+				val.agape_replyID=global.newsObjComms[idx].agape_commentsID+"_"+enco;
+				sendObj.val=val;
+				sendObj.selFunc="selectFunc";
+				sendObj.kdbase="agape_comments";
+				sendObj.kob="where agape_commentsID="+global.newsObjComms[idx].agape_commentsID;
+				var func2=function(data){
+					console.log(33333)
+					console.log(data)
+					var t=globalTools.verify(data);
+					console.log(t)
+					console.log(33333)
+					var v = gener8Responses(t.returnObj[0].agape_commentsCommentDataResponse,idx);
+					$("#agape_media_comments_count").html(t.returnObj[0].agape_comment_count);
+
+					$("#resp"+idx).empty().show().append(v);
+					uDate=getTime(t.returnObj[0].agape_commentsLastComment,'true');
+					$("#agape_media_lastComment_date").html(uDate);
+					$("#media_commUpdateDate"+global.newsObjViewInx).html(uDate);
+					TweenMax.to($("#TabSearch"+idx)[0],.4,{css:{height:"-16px"}});
+					TweenMax.to($("#TabSearch"+idx)[0],.3,{css:{display:"none"}});
+					$("#repsdate"+idx).html(uDate)
+
+		
+
+
+
+
+					var model={}
+					model.job="quickJamUpdate";
+					model.dbase="agape_topics";
+					model.param="agape_media_ID"
+					model.vals=global.newsObjView.agape_media_ID
+					model.updateStr="agape_media_lastComment_date='"+sendObj.lComment+"', agape_media_updatedBy='"+global.userObj.agape_profile_username+"',agape_media_comments_count=agape_media_comments_count+1, agape_media_updatedBy_ID="+global.userObj.agape_profile_memberID;
+					model.selFunc="selectFunc";
+					model.kdbase="agape_topics";
+					model.kob="where agape_media_SourceID='"+global.newsObjView.agape_media_SourceID+"' order by agape_media_lastComment_date desc";
+					
+					var confunc1=function(datam2){
+						//agape_media_comments_count
+						var b1=globalTools.verify(datam2);
+						$("#agape_media_comments_count").html(b1.returnObj[0].agape_media_comments_count);
+						$("#dia_tup"+global.newsObjViewInx).html(b1.returnObj[0].agape_media_thumbsUp);
+						$("#dia_tdown"+global.newsObjViewInx).html(b1.returnObj[0].agape_media_thumbsDownt);
+						$("#agape_media_updatedBy").html(b1.returnObj[0].agape_media_updatedBy);
+						$("#media_comm"+global.newsObjViewInx).html(b1.returnObj[0].agape_media_comments_count);
+					}
+
+					ajaxCallMedia(model,confunc1);
+				}
+				ajaxCallMedia(sendObj,func2);		
+						
+				
+				//true**{"returnObj":[{"agape_commentsID":"2409","agape_comments_Comment":"Yu knwo you can go, but why don&#39;t you stay o until tomorrow.","agape_commentsType":"comment","agape_commentsCommentDataResponse":"{\"replyObj\":{\"replys\":[{\"replyImg\":\"profileImages\/female20_w.jpg\",\"agape_commentsLastReply_username\":\"uname663\",\"agape_reply_createdate\":\"February 8, 2017 1:05 PM\",\"agape_comments_Comment\":\"<img src=images\/replyarrow.png height=15 ><\/tChkLeng;i++){> <span style=font-weight:bold;> reply to comment by <\/span><span style=color:blue;font-weight:bold>uname779<\/span> <span style=font-weight:bold;> made on February 8, 2017 1:05 PM<\/span><br\/><br\/> don&#39;t want to\",\"agape_replyID\":\"2409_dW5hbWU2NjMyMDE3MTgxMzU1Ng\"}]}}","agape_comments_count":"0","agape_commentsSource":"718_topic0","agape_commentsLastComment_username":"uname663","agape_commentsLastComment":"2017-02-08 13:05:00","agape_comment_createdate":"2017-02-07 20:32:00","agape_commentCreator_ID":"779","agape_commentCreator_Username":"uname779","agape_comments_image":"profileImages\/male29_w.jpg","agape_commentsPagination":"[\"718_topic0\"]"}],"countR":1}**select * from agape_comments where agape_commentsID=2409
+			})
+		})*/
+
+
+
+		$("div[id^='addmessageReplySearch']").each(function(){
+			$(this).on("click",function(){
+				alert($(this).attr("id"))
+			})
+		})
+
+
+	}
+	ajaxCallMedia(searchComs,funk);
+	
+
+
+}
+
+
+$("#_lBoxMainDiv").addClass("bodyStyles_defaultGradient");
+
+//_this.ingniteLightBox.execute_afterOpen();
+
+
+//alert(4444)
+
+//"div[id^='artRep']"
+
+
+</script>
+
+	

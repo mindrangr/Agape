@@ -1,0 +1,419 @@
+<script>
+
+checkGuid()
+ var ingniteLightBox;
+
+
+
+
+
+	function allowLogin(UID){
+
+		var tFunk=function(){};
+		var sendO={}
+		sendO.job="login";
+		sendO.dbase="agape_profile"
+		sendO.ob=" where agape_profile_memberID="+UID.returnObj[0].sessiontable_user_ID;
+		var tFunk=function(data1){
+		
+			var user=globalTools.verify(data1);
+			global=globalTools.create();
+			global.userObj=user.returnObj[0];
+			global.navFunc ='LoggedIn';
+			$("#listedUname").html(global.userObj.agape_profile_username);
+			turnOnNav();
+			$("#logBoard").css("display","block");
+			var stateObj = new stateElem('statesFull',"agape_profile_state","agape_profile_city","true","true",global.userObj.agape_profile_state,global.userObj.agape_profile_city);
+
+
+			for(var key in global.userObj){
+				if($("#"+key)){
+					$("#"+key).val(global.userObj[key])
+				}
+
+			}
+			global.lastNav='accountTemplate.html';
+			globalTools.save();
+			if(global.userObj.agape_profile_romanceAccount=="Active"){
+				$("#RomanceAccount").attr("checked",true);
+				$("#romancefillerDiv").show();
+				$("#Search").show();
+			}
+
+			//sets status to online
+			$("#showOnline").on("change",function(){
+				if($(this).is(":checked")){
+					$("#onlineShow").show()
+					showOnline('on');
+				}else{
+					$("#onlineShow").hide();
+					showOnline('off');
+				}
+			})	
+			globalTools.save();
+		}
+		ajaxCallPost(sendO,tFunk);
+
+
+
+	}
+	checkGuid(allowLogin)
+
+
+	function showOnline(val){
+
+		var onlObj={};
+		onlObj.job="quickJamUpdate_Comm";
+		onlObj.dbase="agape_profile";
+		onlObj.uID=global.userObj.agape_profile_memberID;
+		onlObj.updateStr="agape_profile_onlineStatus='Online'";
+		onlObj.param="agape_profile_memberID"
+		onlObj.vals=global.userObj.agape_profile_memberID;
+
+		if(val=="off"){
+			onlObj.updateStr="agape_profile_onlineStatus='Offline'";
+		}
+
+		var SOFunk=function(data){
+		}
+
+		ajaxCallPost(onlObj,SOFunk)
+
+	}
+
+
+</script>
+
+
+	<div class="topTab">Account Dashboard</div>
+	<div >
+	
+
+
+
+	<div style='float:left;width:100%;font-family:arial;'>
+		<div style="margin:auto;">
+
+		<div style='float:left;margin-left:25px;color:#eee;width:80px;margin-left:50px;text-align:center;'>
+		<span class="basicAcctStyle">Show</span> Online<br/>
+			<input type="checkbox" id="showOnline"  />
+			<div id='onlineShow' style='display:none;'><img src="images/blue_equalizer.gif" height="45"/></div>
+		</div>
+		<div style='float:left;color:#eee;width:80px;margin-left:50px;text-align:center;'>
+			<div>Activate</div>
+			<span class="basicAcctStyle">Basic</span> Romance account<br/>
+			<input type="checkbox" id="RomanceAccount"  />
+		</div>
+		<div style='float:left;color:#eee;margin-left:50px;width:80px;text-align:center;'>
+			<div>Activate</div>
+			<span class="basicAcctStyle">Basic</span><br/><div style='color:#eee;'> Presidential accounfht</div>
+			<input type="checkbox" id="PresidentialAccount"/>
+		</div>
+		<div style='float:left;margin-left:50px;color:#eee;width:80px;text-align:center;'>
+			<span class="basicAcctStyle" style="color:orange;">Anonymous </span>surfing<br/>
+			<input type="checkbox" id="AnonymousAccount"/>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+	</div>
+	
+	<div style="clear:both"></div>
+
+	<hr  style="width:80%;margin:auto;margin-top:20px;margin-bottom:20px;" />
+
+	
+
+
+
+
+	<div id='formQuestions' style="width:margin:auto;font-family:arial;">
+	<div style='width:250px;margin:auto;'>
+			<div style='float:left;'>
+				<div id="updateButton" class='optButtons1' >Update</div>
+			</div>
+			<div style='float:left;width:180px;text-align:center;padding-top:4px;color:#eee;display:none;' id='updateIndicator' >Record updated</div>
+			<div style="clear:both"></div>
+			
+		</div>
+	<div style='float:left;width:500px;padding-left: 8px;'>
+		<div class="newQuestionHolder" >
+			<div style="width:100%;margin:auto;">
+				<div class='newQuestionbLabels'>First name:</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input type='textbox' class="inputboxnew" id='agape_profile_firstname' />
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		
+		</div>
+
+
+		<div class="newQuestionHolder" >
+			<div style="width:100%;margin:auto;">
+				<div class='newQuestionbLabels'>Last name:</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input type='textbox' class="inputboxnew" id='agape_profile_lastname' />
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		
+		</div>
+
+		<div class="newQuestionHolder" >
+			<div style="width:100%;margin:auto;">
+				<div class='newQuestionbLabels'>Gender:</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id='agape_profile_gender'>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+		<div class="newQuestionHolder">
+			<div style="width:100%;margin:auto;">
+				<div class='newQuestionbLabels'>Username:</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input type='textbox' class="inputboxnew" id='agape_profile_username' readonly/>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+		<div class="newQuestionHolder" >
+			<div style="width:100%;margin:auto;">
+				<div class='newQuestionbLabels'>Password</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input type='textbox' class="inputboxnew" id='agape_profile_password' />
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+		
+
+		<div class="newQuestionHolder">
+			<div style="width:100%;margin:auto;">
+				<div class='newQuestionbLabels'>What state do you reside in?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					
+					<select class="dropDownNew" id='agape_profile_state'>
+						<option>Select one</option>
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+
+		<div class="newQuestionHolder">
+			<div style="width:100%;margin:auto;">
+				<div class='newQuestionbLabels'>What city do you reside in?</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<select class="dropDownNew" id='agape_profile_city'>
+						<option>Select one</option>
+					
+					</select>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+
+		<div class="newQuestionHolder" >
+			<div style="width:100%;margin:auto;">
+				<div class='newQuestionbLabels'>Email address</div>
+				<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+					<input id='agape_profile_email' type='textbox' class="inputboxnew" readonly/>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+		
+		
+	</div>
+
+<div style='float:left;' >
+	<div style='margin-left:15px;display:none;' id="romancefillerDiv">
+	<div class="newQuestionHolder" >
+	<div id="SearchMsg" style="text-align:center;color:orange;width:200px;margin:auto;margin-bottom:15px;">Partner basics must be selected to use search</div>
+		<div style="width:100%;margin:auto;">
+			<div class='newQuestionbLabels' style='width:60%;'>Partner gender:</div>
+			<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+				<select class="dropDownNew" id='agape_partner_gender'>
+					<option value="Select">- Select one -</option>
+					<option>Male</option>
+					<option>Female</option>
+				</select>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+	
+	</div>
+
+	<div class="newQuestionHolder" >
+		<div >
+			<div class='newQuestionbLabels' style='width:220px;'>Partner race:</div>
+			<div style='float:left;padding:4px;background-color:#dedede;border-radius:5px;'>
+				<select class="dropDownNew" id='agape_partner_race'>
+					<option value="Select">- Select one -</option>
+					<option>White</option>
+					<option>Black</option>
+					<option>Latino</option>
+					<option>Not Important</option>
+				</select>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+	
+	</div>
+</div>
+
+
+</div>
+
+</div>
+
+
+<div style='clear:both;'></div>
+
+
+
+
+	</div>
+
+	<script type="text/javascript">
+
+		
+		
+			
+	
+		
+
+		/*function fillAccountform(){
+			_.each(global.userObj,function(index,key){
+			
+				if($("#"+key)){
+					$("#"+key).val(index);
+				}
+			})
+			var gend= $("#agape_partner_gender").val();
+			var race = $("#agape_partner_race").val();
+			if(gend=="Select"  || race == "Select"){
+				$("#SearchMsg").show();
+				$("#Search").hide();
+			}else{
+				
+				$("#SearchMsg").hide();
+				$("#Search").show();
+			}
+		}*/
+	
+	
+		$(document).ready(function(){
+
+			
+			
+
+			
+			//sets romance account status to Active
+			$("#RomanceAccount").on("change",function(){
+
+				if($(this).is(":checked")){
+					//alert("check")
+					$("#Profile").css("display","block");
+					$("#romancefillerDiv").show();
+					if(global.userObj.agape_partner_gender!='none' && global.userObj.agape_partner_gender!==undefined){
+						$("#Search").css("display","block");
+					}
+					var model={}
+					model.job="update_atomic";
+					model.dbase="agape_profile";
+					model.vals=global.userObj.agape_profile_memberID;
+					model.param="agape_profile_memberID";
+					model.key="false";
+					model.obj={};
+					model.obj.agape_profile_romanceAccount="Active";
+
+					funct=function(data){
+						global.userObj.agape_profile_romanceAccount="Active";
+						globalTools.save()
+					}
+
+					ajaxCallPost(model,funct)
+
+					global.navSet.romance="on";
+				}else{
+					//alert("not check")
+					$("#Profile").css("display","none");
+					$("#Search").css("display","none");
+					$("#romancefillerDiv").hide();
+					var model={}
+					model.job="update_atomic";
+					model.dbase="agape_profile";
+					model.vals=global.userObj.agape_profile_memberID;
+					model.param="agape_profile_memberID";
+					model.key="false";
+					model.obj={};
+					model.obj.agape_profile_romanceAccount="InActive";
+
+					funct=function(data){
+						global.userObj.agape_profile_romanceAccount="InActive";
+						globalTools.save()
+					}
+
+					ajaxCallPost(model,funct)
+					global.navSet.romance="off";
+				}
+				
+			})
+
+		})
+
+
+
+
+
+
+	
+		$("#updateButton").on("click",function(){
+			var formObj = {}
+			formObj.job="update_atomic";
+			formObj.dbase="agape_profile";
+			formObj.param="agape_profile_memberID";
+			formObj.vals=global.userObj.agape_profile_memberID;
+			formObj.obj={};
+			var send='true';
+			$("#formQuestions :input").each(function(){
+				if($(this).val()!="" && $(this).val()!="Select" ){
+					formObj.obj[$(this).attr("id")]=$(this).val();
+				}else{
+					//send='false';
+
+
+				}
+			})
+
+			console.log(777777)
+			console.log(formObj)
+			console.log(777777)
+
+
+			var teel=formObj.obj;
+			if(send=='true'){
+				var func=function(data1){
+					global.userObj=globalTools.objectDataClone(global.userObj,teel);
+					globalTools.save()
+					$("#updateIndicator").show().delay(3000).fadeOut(300);
+					
+				}
+				ajaxCallPost(formObj,func)
+			}
+			
+		})
+		
+		//$("#opacback").css("height","1147px");
+				//$("#transBack").css({"height":"0px"}).hide();
+		//$("#footerPush").css({"height":"987px"})
+
+	</script>

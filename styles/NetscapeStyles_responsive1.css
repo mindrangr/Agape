@@ -1,0 +1,199 @@
+
+/* desktop size   */
+@media only screen and (max-width: 1800px) {
+    .tag {
+        /*background-color: lime;*/
+    }
+
+
+    .mainAd{
+    	width:100%;
+    	margin:auto;
+    	background-color: #c96cbd;
+    	padding-bottom:4px;
+    }
+
+	a.nFooter:visited {
+			color:#c96cbd;
+
+		}
+
+	a.nFooter:link  {
+		color:#c96cbd;
+
+	}
+
+	a.nFooter:active  {
+		color:#c96cbd;
+
+	}
+
+	a.nFooter:hover {
+		color:lime;
+
+	}
+
+
+	.adverImageDiv{
+		width:700px;
+		margin:auto;
+		padding-top:4px;
+	}
+
+	.sponsorbackground{
+		background-color: #2f4774;
+		width:100%;color:#eee;
+		height:85px;padding-top: 10px;
+		border-top: solid 1px #000;
+		margin-top:200px;
+		border-bottom: solid 1px #000;
+	}
+
+	.FooterDiv{
+		background-color:#2f4774;
+		color:#eee;
+		height:60px;
+		margin-top:0px;
+	}
+
+
+	.secondtier{
+		margin-top:0px;
+		color:#000;
+	}
+
+
+	.secondtierContainer{
+		height:320px;
+		background-color:#eee;
+		width:100%;
+		padding-top:10px;
+		background-image:url('../images/secondTire.png');
+	}
+
+	.fontSizefront{
+		font-size: 20px;
+	}
+
+
+	.newsContainer{
+		color:#fff;
+		height:580px;
+		padding-top:130px;
+
+
+	}
+
+	   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Application size   */
+
+@media only screen and (max-width: 700px) {
+    .tag {
+        /*background-color: #4a5692;*/
+    }
+
+
+	a.nFooter:visited {
+		color:#c96cbd;
+
+	}
+
+	a.nFooter:link  {
+		color:#c96cbd;
+
+	}
+
+	a.nFooter:active  {
+		color:#c96cbd;
+
+	}
+
+	.sponsorBackground{
+		background-color: transparent;
+		width:100%;
+		color:#eee;
+		height:85px;
+		padding-top: 160px;
+		border-top: none;
+
+		margin-top:200px;
+	}
+
+
+
+	.FooterDiv{
+		background-color:#2f4774;
+		color:#eee;
+		height:60px;
+		margin-top:630px;
+
+	}
+
+	.secondtier{
+		margin-top:320px;
+		color:#eee;
+
+	}
+
+	.secondtierContainer{
+
+		height:320px;
+		width:100%;
+		padding-top:10px;
+		background-image:none;
+		color:#eee;
+
+	}
+
+
+	.fontSizefront{
+		font-size: 14px;
+	}
+
+	.newsContainer{
+		color:#fff;
+		height:580px;
+		padding-top:0px;
+
+
+	}
+		
+
+
+
+}
+
+
+@font-face {
+    font-family:Great Vibes;
+    src: url('../fonts/Great Vibes.ttf'), url('../fonts/Great Vibes.eot');
+}
+
+
+
+@media only screen and (max-width: 500px) {
+
+	.adverImage{
+		width:100%;
+	}
+
+
+	.adverImageDiv{
+		width:100%;
+		margin:auto;
+	}
+
+}

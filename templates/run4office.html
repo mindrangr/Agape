@@ -1,0 +1,1765 @@
+
+
+		<script type="text/javascript">
+			$("#_lBoxMainDiv").addClass("bodyStyles_defaultGradient").css("height","645px");
+			var party="false";
+
+		</script>
+	
+		<style>
+			.newQuestionbLabels{
+				width:150px;
+			}
+		</style>
+	
+	</head>
+	<div bgcolor="#000000" style='opacity:.93' >
+		<div  id="proView" style="width:100%;height:400px;padding:4px;font-family:arial;">	
+			<!-- Begin View panel-->
+			<h2 style='color:#eee;text-shadow:1px 1px #222;'>Create your Presidential profile</h2>
+			<div id="view" style="position:absolute;z-index:15;width:1000px;">
+				<br/>
+				<div style="width:90%;background-color:#2e2e2e;border:solid 2px #246970;height:535px;margin:auto;border-radius:7px">
+					<br/>
+					<br/>
+					<br/>
+					<div style='margin-left:125px;'>
+						<div id='presPro' class='presidentAppStyleNavcase presidentAppStyleNavcase_over'>Presidential profile</div>
+						<div id='presMed' class='presidentAppStyleNavcase' >Media</div>
+						<div id='presIss' class='presidentAppStyleNavcase' >Presidential issues</div>
+						<div id='presGroup' class='presidentAppStyleNavcase' style="color:orange;display:none;" >Presidential Premium</div>
+						<div id="profileMess" style="float:left;color:lime;font-size;10px;margin-top:3px;margin-left:5px;display:none;">Presidential account created</div>
+						<div style="clear:both"></div>
+					</div>
+					<div id='createprofiletab' class='run4Nav createprofiletab' style="width:800px;margin:auto;background-color:#222;border-radius:7px;height:415px;border:solid 1px #000;" >
+						<div id='createprofileForm' style='display:none;width:800px;margin:auto;'>
+							
+						<div style='float:left;width:420px;'>
+
+							<div style="width:410px;margin-top:8px;margin-left:18px;">
+								<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>First name</div>
+								<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;">
+									<input id="peopleCandidate_Firstname" type="textbox" class="inputboxnew" readonly>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+
+							<div style="width:420px;margin-top:8px;margin-left:18px;">
+								<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>Last name</div>
+								<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;">
+									<input id="peopleCandidate_Lastname" type="textbox" class="inputboxnew" readonly>
+								</div>
+									
+								<div style="clear:both"></div>
+							</div>
+							<div style="width:420px;margin-top:8px;margin-left:18px;">
+								<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>User name</div>
+								<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;">
+									<input id="agape_profile_username" type="textbox" class="inputboxnew">
+								</div>
+								<div style='float:left;color:red;margin-left:10px;font-weight:bold;display:none;'>used</div>
+								<div style="clear:both"></div>
+							</div>
+							<div style="width:420px;margin-top:8px;margin-left:18px;">
+								<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>Password</div>
+								<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;">
+									<input id="agape_profile_password" type="textbox" class="inputboxnew" >
+								</div>
+									
+								<div style="clear:both"></div>
+							</div>
+
+							<div style="width:400px;margin-top:8px;margin-left:18px;">
+								<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>Party</div>
+								<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;">
+									<select class="dropDownNew" id="peopleCandidate_Party">
+										<option value="Select">- Select -</option>
+										<option>Democratic Party</option>
+										<option>Republican Party</option>
+										<option>Green Party</option>
+										<option>Libetarian Party</option>
+										<option>Constitution Party</option>
+										<option>Independent Party</option>
+										<option>Not Important</option>
+									</select>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+
+
+							<div style="width:420px;margin-top:8px;margin-left:18px;">
+								<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>Email address</div>
+								<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;">
+									<input id="peopleCandidate_email" type="textbox" class="inputboxnew" >
+								</div>
+								<div style='float:left;color:red;margin-left:10px;font-weight:bold;display:none;'>used</div>
+								<div style="clear:both"></div>
+							</div>
+
+							<div style="width:400px;margin-top:8px;margin-left:18px;">
+								<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>Current position</div>
+								<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;">
+									<input id="peopleCandidate_CurrentPosition" type="textbox" class="inputboxnew">
+								</div>
+								<div style="clear:both"></div>
+							</div>
+
+							
+
+							<div style="width:400px;margin-top:8px;margin-left:18px;">
+								<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>State</div>
+
+								<div id="workingStateDiv" style="float:left;padding:4px;background-color:#dedede;border-radius:5px;">
+									<input id="peopleCandidate_workingState" type="textbox" class="inputboxnew" readonly>
+									
+								</div>
+
+								<div style="clear:both"></div>
+							</div>
+
+							<div style="width:400px;margin-top:8px;margin-left:18px;">
+								<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>City</div>
+								<div id="workingCityDiv" style="float:left;padding:4px;background-color:#dedede;border-radius:5px;">
+									<input id="peopleCandidate_workingCity" type="textbox" class="inputboxnew" readonly>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+
+							
+
+							<div style='margin:auto;margin-top:25px;margin-left:18px;font-family:arial;'><div class='optButtons1' id='createPresButton' style='float:none;margin-bottom:15px;'>Create Presidential account ></div></div>
+
+						
+						</div>
+
+						<div style='float:left;width:380px;margin-top:8px;'>
+							<div class="newQuestionbLabels" style='width:150px;text-shadow:1px 1px #000;margin-left:15px;'>Birth State</div>
+							<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;margin-top:8px;">
+								
+								<select class="dropDownNew" id="peopleCandidate_BirthState">
+								
+								</select>
+							</div>
+							<div style='clear:both'></div>
+
+
+
+							<div class="newQuestionbLabels" style='width:150px;text-shadow:1px 1px #000;margin-left:15px;margin-top:8px;'>Birth City</div>
+							<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;margin-top:8px;">
+							
+								<select class="dropDownNew" id="peopleCandidate_BirthCity">
+									<option value="Select">-Select-</option>
+								</select>
+							</div>
+							<div style='clear:both'></div>
+
+							<div class="newQuestionbLabels" style='width:150px;text-shadow:1px 1px #000;margin-left:15px;margin-top:8px;'>Gender</div>
+							<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;margin-top:8px;">
+							
+								<select class="dropDownNew" id="agape_profile_gender">
+									<option value="Select">- Select -</option>
+									<option>Male</option>
+									<option>Female</option>
+								</select>
+							</div>
+							<div style='clear:both'></div>
+							<br/>
+							<div class="newQuestionbLabels" style='width:150px;text-shadow:1px 1px #000;margin-left:15px;margin-top:15px;margin-bottom:15px;'>Images</div>
+							<div style='clear:both'></div>
+
+							<div id="imgDiv" style='display:none;'>
+								<div style="float:left;color:#eee;margin-right:25px;">
+									<div id="d1" style="width:135px;margin:auto;" class="d5"><img src="images\uploadImage.jpg" style="height:130px;width:130px;border-color:red;cursor:pointer;" border=3 /></div>
+									<div style="color:red;font-weight:bold;">Default</div>
+															
+								</div>
+								<div style="float:left;color:#eee;">
+									<div id="d2" style="width:135px;margin:auto;" class="d5"><img src="images\uploadImage.jpg" style="height:130px;width:130px;cursor:pointer;" /></div>
+									<div id="makeDeafult" style="color:lime;text-decoration:underline;cursor:pointer;">Make default</div>
+								</div>
+								<div style='clear:both'></div>
+								
+								
+								<div style='visibility:hidden;'><input type="file" name="fileToUpload" id="fileToUpload"></div>
+							
+								
+							</div>
+							<div id='logmess' style='width:200px;color:lime;font-size:18px;text-align:center;display:none;margin:auto;margin-top:25px;'>You can <span id="lgin" style="text-decoration:underline;cursor:pointer;">login</span> if you have a Agape account.
+
+							</div>	
+						</div>
+						<div style='clear:both'></div>
+						
+
+					</div>
+
+						
+						<div style='clear:both'></div>
+						<div id="logPres" style="display:none;width:400px;margin:auto;">
+						<div id='logmess' style='margin:auto;width:200px;color:lime;font-size:18px;text-align:center;margin-top:55px;'>You can  <span id='createPA1' style="text-decoration:underline;cursor:pointer;">create</span> an account to if you do not have an Agape account.
+
+							</div>	
+							<div style="width:400px;margin-top:8px;margin-left:18px;">
+								<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>User name</div>
+								<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;">
+									<input id="agape_profile_username_log" type="textbox" class="inputboxnew">
+								</div>
+								<div style="clear:both"></div>
+							</div>
+							<div style="width:400px;margin-top:8px;margin-left:18px;">
+								<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>Password</div>
+								<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;">
+									<input id="agape_profile_password_log" type="textbox" class="inputboxnew">
+								</div>
+								<div style="clear:both"></div>
+							</div>
+							<div style='margin:auto;margin-top:25px;'><div class='optButtons1' id='loginPresButton' style='float:none;margin-bottom:15px;margin-top:15px;margin:auto;'>Login</div></div>
+						</div>
+					</div>
+
+
+					<!--  Select issue tab -->
+					<div id='createissuestab' class='run4Nav' style='display:none;color:#eee;'>
+						<div style="float:left;">
+							<div  style='border:solid 1px #000;padding:15px;width:270px;margin:auto;background-color:#222;border-radius:7px;margin-left:20px;'>
+								<div class="newQuestionbLabels" style='color:red;width:200px;'>Presidential Issues</div>
+								<div style="clear:both"></div>
+								<div id='issueunit' style='height:320px;overflow:auto;'></div>
+							</div>
+							</div>
+							
+							<div style="float:left;">
+								<div id='createissuesForm' style="float:left;border:solid 1px #000;padding:15px;width:200px;margin:auto;background-color:#222;border-radius:7px;margin-left:10px;margin-right:10px;">
+
+									<div style="width:200px;margin-top:8px;margin:auto">
+										<div class="newQuestionbLabels" style='width:110px;text-shadow:1px 1px #000;'>Issue Title:</div>
+										
+										<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;">
+											<input id="president_issuesTitle" type="textbox" class="inputboxnew" maxlength="28">
+										</div>
+										<div style="clear:both"></div>
+									</div>
+									<div style="width:200px;margin-top:8px;margin:auto">
+										<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>Issue group:</div>
+										<div style="float:left;padding:4px;background-color:#dedede;border-radius:5px;">
+											<input id="president_issues_group" type="textbox" class="inputboxnew">
+										</div>
+										<div style="clear:both"></div>
+									</div>
+									<div style="width:200px;margin-top:8px;margint:auto;">
+										<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>Commentary:</div>
+										<div style="clear:both"></div>
+										<div style="padding:4px;background-color:#dedede;border-radius:5px;margin:auto;">
+											<textarea cols="20" rows="8" id="president_issuesCommentData" type="textbox" class="inputboxnew"></textarea>
+										</div>
+										<div style="clear:both"></div>
+
+										<div style='margin:auto;margin-top:25px;'><div class='optButtons1' id='createIssueButton' style='float:none;margin-bottom:15px;margin-top:15px;margin:auto;'>Create issue</div></div>
+
+										<div style='margin:auto;margin-top:25px;'><div class='optButtons1' id='updateIssueButton' style='float:none;margin-bottom:15px;margin-top:15px;margin:auto;display:none;'>Update issue</div></div>
+									</div>
+
+								</div>	
+
+								<div style="float:left;border:solid 1px #000;padding:15px;width:270px;margin:auto;background-color:#222;border-radius:7px;">
+									<div class="newQuestionbLabels" style='color:red;width:100px;'>My Issues</div>
+									<div style="float:left;padding-top:3px;display:none;" id="upFlag"></div>
+								<div style="clear:both"></div>
+								<div id="myIssues">
+
+								</div>
+								
+								</div>
+								<div style='clear:both'></div>	
+							</div>	
+							<div style='clear:both'></div>
+						</div>
+
+
+						<!--  Select issue tab -->
+					<div id='creategrouptab' class='run4Nav' style='display:none;color:#eee;'>
+						<div style="border:solid 1px #000;padding:15px;width:740px;margin:auto;background-color:#222;border-radius:7px;">
+							<div style="width:690px;margin-top:8px;margin:auto;height:380px;overflow:auto;">
+								<div style="font-family:impact;color:orange;font-size:26px;">Presidential Premium Package <span style='color:blue;text-decoration:underline;cursor:pointer;text-shadow:0px 1px 2px #eee;' id="signUpPPremium">$16.99</span> annually</div>
+
+								<div style="margin-top:20px;">Raise funds towards your campaign</div>
+								<hr style="margin:auto;width:90%;margin-top:10px;margin-bottom:10px;"/>	
+								<span style='color:#3598FE;font-size:13px;'><ul><li>Use your paypal account to raise funds and to collect money from your sponsors towards your campaign</li></ul></span>	
+
+								
+
+								<div style="margin-top:20px;">Create polls</div>
+								<hr style="margin:auto;width:90%;margin-top:10px;margin-bottom:10px;"/>	
+								
+								<div><ul style='color:#3598FE;font-size:13px;'><li>Create polls to be pubished on Agape and get a graphical display and demograpical display of results.</li></ul></div>
+
+
+								<div style="clear:both"></div>
+								<div style="margin-top:20px;">Form your own Political party</div>
+								<hr style="margin:auto;width:90%;margin-top:10px;margin-bottom:10px;"/>	
+								<div style='font-size:13px;margin-bottom:12px;'>Political party - <span style='color:lime;'><i>A group of men and women who come together to gain politcal power by organizing around a common set of political values.</i></span></div>
+								<div><span style='color:#3598FE;font-size:13px;'><ul><li>Create a party and recruit members who will support you in your quest to become the next president.</li></ul></span></div>
+								
+								<div><span style='color:#3598FE;font-size:13px;'><ul><li>Manage your memebers and strategize with your party.</li></ul></span></div>
+
+
+								<div style="margin-top:20px;">Upload multiple videos</div>
+								<hr style="margin:auto;width:90%;margin-top:10px;margin-bottom:10px;"/>	
+								
+								<div><ul style='color:#3598FE;font-size:13px;'><li>You can upload up to 20 10mb videos to our server.</li></ul></div>
+
+
+								<div style="margin-top:20px;">Access presidential reports</div>
+								<hr style="margin:auto;width:90%;margin-top:10px;margin-bottom:10px;"/>	
+								
+								<div><ul style='color:#3598FE;font-size:13px;'><li>Have exclusive rights to view aggregated stats for political questions and polls created by yourself and all other members as well as Agape polls.</li></ul></div>
+
+								<div style='display:none;'>
+								<div class="newQuestionbLabels" style='width:180px;text-shadow:1px 1px #000;margin-top:5px;'>Party name:</div>
+								<div style="float:left;padding:4px;background-color:gray;border-radius:5px;margin-top:5px;margin-bottom:5px;">
+									<input id="issue_Name" type="textbox" style="background-color:gray;" class="inputboxnew">
+								</div>
+								<div style="clear:both"></div>
+								
+								<div class="newQuestionbLabels" style='width:180px;text-shadow:1px 1px #000;margin-top:5px;'>Party principals:</div>
+								<div style="float:left;padding:4px;background-color:gray;border-radius:5px;">
+									<textarea id="issue_Name" style="background-color:gray;" type="textbox" rows="7" class="inputboxnew" readonly>Max 1500 chars</textarea>
+								</div>
+								<div style="clear:both"></div>
+								
+									<div class="newQuestionbLabels" style='width:180px;text-shadow:1px 1px #000;margin-top:10px;'>Party president:</div>
+									<div style="float:left;padding:4px;background-color:gray;border-radius:5px;margin-top:10px;">
+										<input id="issue_Name" type="textbox" style="background-color:gray;" class="inputboxnew" readonly>
+									</div>
+									<div style="clear:both"></div>
+
+									<div class="newQuestionbLabels" style='width:180px;text-shadow:1px 1px #000;margin-top:5px;'>Party officer 1:</div>
+									<div style="float:left;padding:4px;background-color:gray;border-radius:5px;margin-top:5px;">
+										<input id="issue_Name" type="textbox"  style="background-color:gray;" class="inputboxnew" readonly>
+									</div>
+									<div style="clear:both"></div>
+							
+									<div class="newQuestionbLabels" style='width:180px;text-shadow:1px 1px #000;margin-top:5px;'>Party officer 2:</div>
+									<div style="float:left;padding:4px;background-color:gray;border-radius:5px;margin-top:5px;">
+										<input id="issue_Name" type="textbox" style="background-color:gray;" class="inputboxnew" readonly>
+									</div>
+									<div style="clear:both"></div>
+								</div>
+								
+							</div>
+								
+						</div>
+				
+					</div>
+
+
+					<div id="createmediatab" class='run4Nav' style='display:none;'>
+						<div style="color:#eee;border:solid 1px #000;padding:15px;width:740px;margin:auto;background-color:#222;border-radius:7px;">
+							<div style="width:700px;margin-top:8px;margin-left:18px;">
+								<div style="float:left;">
+									<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>
+										<div>Video links</div>
+										<div style='font-size:10px;color:orange;'>Youtube embed</div>
+									</div>
+									<div  style="float:left;padding:4px;background-color:#dedede;border-radius:5px;width:250px;">
+									<input id="peopleCandidate_video0" type="textbox" class="inputboxnew" style="width:220px;" placeholder="https://www.youtube.com/embed/video id">
+									</div>
+									<div style="clear:both"></div>
+									<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>
+										<div>Video title</div>
+									</div>
+									<div  style="float:left;padding:4px;background-color:#dedede;border-radius:5px;width:250px;">
+										<input id="peopleCandidate_title0" type="textbox" class="inputboxnew" style="width:220px;">
+									</div>
+									<div style="clear:both"></div>
+									<div  style="width:60px;color:red;font-size:13px;">
+										<div style="cursor:pointer;" id="updateVid0">Update</div>
+										<div style="display:none;cursor:pointer;" id="deleteVid0" >Delete</div>
+									</div>
+								
+								</div>
+								<div style="float:left;">
+									<div  style="float:left;padding:4px;background-color:#dedede;border-radius:5px;margin-left:25px;width:205px;height:140px">
+										<img id="vidPng0" src="images/video.jpg" height="140" width="205"/>
+										<div id="youtubeDiv0" style="display:none;"><iframe id="youTube0" width="205" height="140" src="" frameborder="0" allowfullscreen></iframe></div>
+									</div>
+									<div style="clear:both"></div>
+								</div>
+								<div style="clear:both;"></div>
+							</div>
+
+
+
+
+
+
+
+
+
+							<div style="width:700px;margin-top:8px;margin-left:18px;">
+								<div style="float:left;">
+									<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>
+										<div>Video links</div>
+										<div style='font-size:10px;color:orange;'>Youtube embed</div>
+									</div>
+									<div  style="float:left;padding:4px;background-color:#dedede;border-radius:5px;width:250px;">
+									<input id="peopleCandidate_video1" type="textbox" class="inputboxnew" style="width:220px;" placeholder="https://www.youtube.com/embed/video id">
+									</div>
+									<div style="clear:both"></div>
+									<div class="newQuestionbLabels" style='width:170px;text-shadow:1px 1px #000;'>
+										<div>Video title</div>
+									</div>
+									<div  style="float:left;padding:4px;background-color:#dedede;border-radius:5px;width:250px;">
+										<input id="peopleCandidate_title1" type="textbox" class="inputboxnew" style="width:220px;" >
+									</div>
+									<div style="clear:both"></div>
+									<div  style="width:60px;color:red;font-size:13px;">
+										<div style="cursor:pointer;" id="updateVid1">Update</div>
+										<div style="display:none;cursor:pointer;" id="deleteVid1" >Delete</div>
+									</div>
+								
+								</div>
+								<div style="float:left;">
+									<div  style="float:left;padding:4px;background-color:#dedede;border-radius:5px;margin-left:25px;width:205px;height:140px">
+										<img id="vidPng1" src="images/video.jpg" height="140" width="205"/>
+										<div id="youtubeDiv1" style="display:none;"><iframe id="youTube1" width="205" height="140" src="" frameborder="0" allowfullscreen></iframe></div>
+									</div>
+									<div style="clear:both"></div>
+								</div>
+								<div style="clear:both;"></div>
+							</div>
+
+
+
+
+
+
+
+
+							
+							
+						</div>
+
+					
+					</div>
+
+			</div>							
+			<!-- End View panel-->
+		</div>
+		
+	</div>
+
+<script type="text/javascript" >
+
+var img1="none";
+var img2="none";
+
+
+
+function getIssues(){
+	if(global.navFunc!="LoggedOut"){
+		var model={};
+		$("#createPresButton").css("display","block");
+		model.peopleCandidate_Firstname=global.userObj.agape_profile_firstname;
+		model.peopleCandidate_Lastname=global.userObj.agape_profile_lastname;
+		model.peopleCandidate_Party=global.userObj.agape_profile_political;
+		model.peopleCandidate_email=global.userObj.agape_profile_email;
+		
+		model.peopleCandidate_workingCity=global.userObj.agape_profile_city;
+		model.peopleCandidate_workingState=global.userObj.agape_profile_state;
+		if(global.presidentialObj.peopleCandidate_ID!='none'){
+			if(global.presidentialObj.acct[0].peopleCandidate_ID!="none"){
+				model.peopleCandidate_video=global.presidentialObj.acct[0].peopleCandidate_video;
+				model.peopleCandidate_CurrentPosition=global.presidentialObj.acct[0].peopleCandidate_CurrentPosition;
+				model.peopleCandidate_BirthCity=global.presidentialObj.acct[0].peopleCandidate_BirthCity;
+				model.peopleCandidate_BirthState=global.presidentialObj.acct[0].peopleCandidate_BirthState;
+				model.agape_profile_password=global.userObj.agape_profile_password
+				
+			}else{
+				
+				model.peopleCandidate_BirthCity=global.userObj.agape_profile_city;
+				model.peopleCandidate_BirthState=global.userObj.agape_profile_state;
+				
+			}
+
+		}else{
+			model.peopleCandidate_BirthCity=global.userObj.agape_profile_city;
+			model.peopleCandidate_BirthState=global.userObj.agape_profile_state;
+			model.agape_profile_password=global.userObj.agape_profile_password;
+			model.agape_profile_gender=global.userObj.agape_profile_gender;
+		}
+		model.agape_profile_username=global.userObj.agape_profile_username
+		//model.peopleCandidate_video="";
+		for(key in model){
+			if($("#"+key)){
+				if(model[key]!="Not Important" && model[key]!="" && key!="peopleCandidate_video"){
+					$("#"+key).val(model[key]).attr("readonly","readonly");
+				}
+			}
+			if(key=="peopleCandidate_video" && model.peopleCandidate_video!="none"){
+				//$("#youTube").attr("src",model[key]);
+				//$("#youtubeDiv").fadeIn(400);
+				//$("#peopleCandidate_video").val(model[key])
+				var vido=$.parseJSON(model.peopleCandidate_video);
+				var vidoLeng=vido.length;
+
+
+				loadVids(vido);
+
+				
+					
+			}
+
+
+			$('div[id^=updateVid]').each(function(){
+				$(this).unbind("click").on("click",function(){
+					var idIndx=$(this).attr("id")+"";
+					idIndx=idIndx.substr(9)
+
+					if($("#peopleCandidate_title"+idIndx).val()!="" && $("#peopleCandidate_video"+idIndx).val()!=""){
+						if(global.presidentialObj.acct[0].peopleCandidate_video=="none"){
+							global.presidentialObj.acct[0].peopleCandidate_video="[]";
+						}
+						var vido1=$.parseJSON(global.presidentialObj.acct[0].peopleCandidate_video);
+
+
+						console.log("vido")
+						console.log(vido1)
+						console.log("vido")
+						vido1[idIndx]={}
+						vido1[idIndx].title=$("#peopleCandidate_title"+idIndx).val()
+						vido1[idIndx].url=$("#peopleCandidate_video"+idIndx).val();
+						vido1[idIndx].param="none";
+						
+						var passVido=vido1;
+						var updVidObj={};
+						updVidObj.job="update_atomic";
+						updVidObj.obj={}
+						updVidObj.obj.peopleCandidate_video=JSON.stringify(vido1);
+						updVidObj.param="peopleCandidate_ID";
+						updVidObj.vals=global.presidentialObj.acct[0].peopleCandidate_ID;
+						updVidObj.dbase="people_candidates";
+						funcVid=function(retdata){
+							global.presidentialObj.acct[0].peopleCandidate_video=updVidObj.obj.peopleCandidate_video;
+							loadVids(passVido)
+						
+						}
+						ajaxCall3(updVidObj,funcVid)
+
+
+					}else{
+						alert("Both fields must be completed")
+					}
+
+				}).on("mouseover",function(){
+					$(this).css("text-decoration","underline");
+				}).on("mouseout",function(){
+					$(this).css("text-decoration","none");
+				});
+
+			})
+
+
+
+
+
+		}
+
+	}
+}
+
+function loadVids(vidom){
+	vidoLeng=vidom.length;
+	for(i=0;i<vidoLeng;i++){
+		$("#youTube"+i).attr("src",vidom[i].url)
+		$("#youtubeDiv"+i).show();
+		$("#vidPng"+i).hide();
+		$("#peopleCandidate_title"+i).val(vidom[i].title)
+		$("#peopleCandidate_video"+i).val(vidom[i].url);
+
+		$("#deleteVid"+i).show().on("mouseover",function(){
+			$(this).css("text-decoration","underline");
+		}).on("mouseout",function(){
+			$(this).css("text-decoration","none");
+		}).unbind("click").on("click",function(){
+			removeIdex=$(this).attr("id")+"";
+			removeIdex=removeIdex.substr(9);
+
+			var inVido1=$.parseJSON(global.presidentialObj.acct[0].peopleCandidate_video);
+			var terriya=globalTools.arrayTool(inVido1,'removeIndex',removeIdex);
+			global.presidentialObj.acct[0].peopleCandidate_video=JSON.stringify(terriya);
+
+
+			var passVido1=terriya;
+			var updVidObj1={};
+			updVidObj1.job="update_atomic";
+			updVidObj1.obj={}
+			updVidObj1.obj.peopleCandidate_video=JSON.stringify(terriya);
+			updVidObj1.param="peopleCandidate_ID";
+			updVidObj1.vals=global.presidentialObj.acct[0].peopleCandidate_ID;
+			updVidObj1.dbase="people_candidates";
+			funcVid1=function(retdata){
+				global.presidentialObj.acct[0].peopleCandidate_video=updVidObj1.obj.peopleCandidate_video;
+				loadVids(passVido1);
+			}
+			ajaxCall3(updVidObj1,funcVid1);
+
+
+			globalTools.save();
+			turnOffVids()
+			loadVids(terriya)
+			//alert("funk")
+		});
+	}
+}
+
+function turnOffVids(){
+	for(c=0;c<2;c++){
+		$("#youtubeDiv"+c).hide();
+		$("#vidPng"+c).show();
+		$("#peopleCandidate_title"+c).val("")
+		$("#peopleCandidate_video"+c).val("");
+		$("#deleteVid"+c).hide()
+
+	}
+
+}
+
+function insertpeopleCandidate(){
+
+
+	var sendOff="true";
+	newModel={}
+	newModel.key="true";
+	newModel.dbase="people_candidates";
+	newModel.keyField="peopleCandidate_ID";
+	newModel.keydbase="people_candidates";
+	newModel.job="quickInsertAtomic";
+	newModel.keyColumn="agape_profile_ID"
+	newModel.keyvalue=global.userObj.agape_profile_memberID;
+	newModel.obj={};
+	$("#createprofileForm :input").each(function(){
+		if($(this).val()!=""){
+			newModel.obj[$(this).attr("id")]=$(this).val()
+		}else{
+			if($(this).attr("id")!="peopleCandidate_video"){
+				sendOff="false";
+				$(this).css("background-color","gray")
+			}
+		}
+	})
+
+	delete newModel.obj.agape_profile_username;
+	
+	if(sendOff=="true"){
+		var imgIc="Images/Male-icon.png";
+		if(global.agape_profile_gender=="Female"){
+			imgIc="Images/Female-icon.png"
+		}
+		imgStr="{\"defaultPic\":\""+imgIc+"\",\"defaultPicTitle\":\"My Pic\",\"Pic1\":\"Images/"+imgIc+"\",\"Pic1Title\":\"none\",\"Pic2\":\"none\",\"Pic2Title\":\"none\",\"Pic3\":\"none\",\"Pic3Title\":\"none\",\"Pic4\":\"none\",\"Pic4Title\":\"none\",\"Pic5\":\"none\",\"Pic5Title\":\"none\",\"Pic6\":\"none\",\"Pic6Title\":\"none\",\"Presidential\":\""+imgIc+"\",\"Pic7Title\":\"Presidential\",\"Presidential1\":\""+imgIc+"\",\"Pic8Title\":\"Presidential1\"}"
+		newModel.obj.peopleCandidate_photos=imgStr;
+		newModel.obj.agape_profile_ID=global.userObj.agape_profile_memberID;
+		var closure=newModel;
+		funct=function(data){
+			var id=data.split("**");
+			newModel2={};
+			$("#createPresButton").unbind("click").html("Update").on("click",function(){
+				updateProfile()
+			})
+			$("#profileMess").html("Presidential account created").css("display","block").delay(4000).fadeOut(500);
+			newModel2.job="update_atomic";
+			newModel2.param="agape_profile_memberID";
+			newModel2.dbase="agape_profile";
+			newModel2.vals=global.userObj.agape_profile_memberID;
+
+			newModel2.obj={}
+			newModel2.obj.agape_profile_presidentAccount=id[1];
+			global.presidentialObj.acct[0]=closure.obj
+			global.userObj.agape_profile_presidentAccount=id[1];
+			globalTools.save();
+			func5=function(data){
+				
+				addRunhandlers()
+			}
+			ajaxCallPost(newModel2,func5);
+
+		}
+
+		ajaxCall3(newModel,funct)
+		
+	}else{
+
+	}
+
+
+
+}
+
+
+
+function insertNewPeopleCandidate(){
+alert("jingle")
+
+	var sendOff="true";
+	newModel={}
+	newModel.key="true";
+	newModel.dbase="people_candidates";
+	newModel.keyField="peopleCandidate_ID";
+	newModel.keydbase="people_candidates";
+	newModel.job="quickInsertAtomic";
+	newModel.keyColumn="agape_profile_ID"
+	newModel.keyvalue=global.userObj.agape_profile_memberID;
+	newModel.obj={};
+	$("#createprofileForm :input").each(function(){
+		if($(this).val()!="" && $(this).val()!="Select"){
+			newModel.obj[$(this).attr("id")]=$(this).val()
+		}else{
+			if($(this).attr("id")!="peopleCandidate_video" && $(this).attr("id")!="fileToUpload"){
+				alert($(this).attr("id"))
+				sendOff="false";
+				$(this).css("background-color","gray")
+			}
+		}
+		console.log($(this).val())
+	})
+	
+	newModel.obj.peopleCandidate_AccountCreated=convertNowToPhP();
+	newModel.obj.peopleCandidate_AccountUpdated=newModel.obj.peopleCandidate_AccountCreated;
+	newModel.obj.peopleCandidate_upVotes=0;
+	newModel.obj.peopleCandidate_downVotes=0;
+	newModel.obj.peopleCandidate_issue_list="[]";
+	newModel.obj.peopleCandidate_video="[]";
+
+	
+
+	delete newModel.obj.agape_profile_username;
+	delete newModel.obj.agape_profile_password;
+	var imgIc="images/Male-icon.png";
+	alert("jingle23")
+	if(sendOff=="true"){
+		if(global.userObj.agape_profile_gender=="Female"){
+			imgIc="images/Female-icon.png"
+		}
+		imgStr=$.parseJSON(global.userObj.agape_profile_default_img);
+		imgStr.Presidential=imgIc;
+		imgStr.Presidential1=imgIc;
+		imgStr.Pres1Title="Presidential";
+		imgStr.Pres2Title="Presidential";
+		
+		newModel.obj.peopleCandidate_photos=JSON.stringify(imgStr);
+		newModel.obj.agape_profile_ID=global.userObj.agape_profile_memberID;
+		var closure=newModel;
+		funct=function(data){
+			console.log(232323)
+			console.log(data)
+			console.log(232323)
+			
+			var id=data.split("**");
+			newModel2={};
+			$("#createPresButton").unbind("click").html("Update").on("click",function(){
+				updateProfile()
+			})
+			$("#imgDiv").show();
+
+
+			$("#profileMess").html("Presidential account created").css("display","block").delay(4000).fadeOut(500);
+			newModel2.job="update_atomic";
+			newModel2.param="agape_profile_memberID";
+			newModel2.dbase="agape_profile";
+			newModel2.vals=global.userObj.agape_profile_memberID;
+
+			newModel2.obj={}
+			newModel2.obj.agape_profile_presidentAccount=id[1];
+			global.presidentialObj.acct=[];
+			global.presidentialObj.acct[0]=closure.obj
+			global.presidentialObj.acct[0].peopleCandidate_ID=id[1];
+			global.userObj.agape_profile_presidentAccount=id[1];
+			globalTools.save();
+			func5=function(data){
+
+				console.log("&*&111*&*&");
+			console.log(data)
+			console.log("&*&222*&*&")
+				addRunhandlers();
+				$("#office").html("Presidential Account").css({"color":"lime","text-decoration":"underline"}).show()
+				createPresOb();
+			}
+			ajaxCallPost(newModel2,func5)
+
+
+		}
+
+		
+		ajaxCall3(newModel,funct)
+		
+	}else{
+
+	}
+
+}
+
+$(document).ready(function(){
+
+
+	//Logged in
+	$("#createprofileForm").show();
+	window.scrollTo(500, 0);
+
+	if(global.navFunc!="LoggedOut"){
+
+		if(global.userObj.agape_profile_presidentAccount!='InActive'){
+			getpresOb();
+			addRunhandlers();
+			$("#createPresButton").unbind("click").html("Update").on("click",function(){
+				updateProfile()
+			});
+			$("#imgDiv").show();
+
+
+			var photos = $.parseJSON(global.presidentialObj.acct[0].peopleCandidate_photos);
+			$("#d1").children().attr("src",global.baseUrl+"/"+photos.Presidential)
+			$("#d2").children().attr("src",global.baseUrl+"/"+photos.Presidential1)
+
+		}else{
+			alert('spankton')
+			StateObj={};
+			StateObj.opt="populateNSet";
+			StateObj.elem="peopleCandidate_BirthState"
+			StateObj.cityElem="peopleCandidate_BirthCity";
+			StateObj.citySet=global.userObj.agape_profile_state;
+			StateObj.selectElem="true";
+			getStates(StateObj, getIssues);
+
+			$(".presidentAppStyleNavcase").each(function(){
+				$(this).unbind("click");
+			})
+			
+			$("#imgDiv").hide();
+			
+		}
+
+
+
+		
+
+
+		$("#updateIssueButton").unbind("click").on("click",function(){
+
+			issueModel={};
+			issueModel.obj={}
+			issueModel.job="update_atomic";
+			issueModel.param="president_issuesID";
+			issueModel.dbase="people_issues";
+			issueModel.vals=global.presidentialObj.issues[global.presidentialObj.iNdx].president_issuesID;
+			$("#createissuesForm :input").each(function(){
+				if($(this).val()!=""){
+					issueModel.obj[$(this).attr("id")]=globalTools.stringClear($(this).val());
+				}else{
+					pass="false";
+					$(this).css("background-color","gray");
+					$(this).parent().css("background-color","gray");
+				}
+			})
+			
+
+			var issObj=globalTools.objectDataClone(global.presidentialObj.issues[global.presidentialObj.iNdx],issueModel.obj);
+			global.presidentialObj.issues[global.presidentialObj.iNdx]=issObj;
+			globalTools.save();
+			stunk=function(dat){
+
+				$("#myIssues").empty();
+				v=global.presidentialObj.issues.length;
+				for(i=0;i<v;i++){
+					$("#myIssues").append("<div><div class='createdIssue' style='color:#3598FE;float:left;width:240px' id='issue"+i+"'>"+global.presidentialObj.issues[i].president_issuesTitle+"</div><div style='float:left;' class='imgRemove'><img src='"+global.baseUrl+"/images/remove.png' height='14' /><div style='clear:both;'></div></div>")
+				}
+				addCreateIsssueEvent();
+			}
+			ajaxCall3(issueModel,stunk)
+		})
+		
+		$(".d5").each(function(){
+			$(this).on("click",function(){
+				global.imgUpload=$(this).attr("id");
+				$("#fileToUpload").click();
+				
+			})
+		})
+
+		$("#makeDeafult").unbind("click").on("click",function(){
+			 var phots = $.parseJSON(global.presidentialObj.acct[0].peopleCandidate_photos);
+			 var img=phots.Presidential;
+			 var img1=phots.Presidential1;
+
+			 phots.Presidential=img1;
+			 phots.Presidential1= img;
+			$("#d1").children().attr("src",global.baseUrl+"/"+phots.Presidential)
+			$("#d2").children().attr("src",global.baseUrl+"/"+phots.Presidential1)
+			global.presidentialObj.acct[0].peopleCandidate_photos=JSON.stringify(phots);
+			globalTools.save();
+
+
+			 var sendO={};
+           sendO.job="update_atomic";
+           sendO.dbase="people_candidates";
+           sendO.param="peopleCandidate_ID";
+           sendO.vals=global.presidentialObj.acct[0].peopleCandidate_ID;
+           sendO.obj={};
+           sendO.obj.peopleCandidate_photos=global.presidentialObj.acct[0].peopleCandidate_photos;
+           sendO.obj.peopleCandidate_AccountUpdated=convertNowToPhP();
+           var funk=function(data){
+           }
+           ajaxCall3(sendO,funk)		
+
+
+
+		})
+
+
+
+
+			$("#fileToUpload").on("change",function(){
+				var file = this.files[0];
+				var create="true";
+				var oldUrl="none";
+
+				var photoFile = $.parseJSON(global.presidentialObj.acct[0].peopleCandidate_photos);
+				 if(global.imgUpload=="d1"){
+
+				 		var dch1=photoFile.Presidential+"";
+				 		dch1=dch1.search("Male-icon")
+
+				 		var dch2=photoFile.Presidential+"";
+				 		dch2=dch2.search("Female-icon")
+			           		
+			           	if(dch1!=-1 && dch2!=-1){
+			           		create="false";
+			           		oldUrl=photoFile.Presidential;
+			           		//alert(photoFile.Presidential)
+			           	}else{
+			           		//alert("now you got it")
+			           	}
+
+		           }
+
+		           if(global.imgUpload=="d2"){
+		           	var dch1=photoFile.Presidential1+"";
+				 		dch1=dch1.search("Male-icon")
+
+				 		var dch2=photoFile.Presidential1+"";
+				 		dch2=dch2.search("Female-icon")
+			           		
+			           	if(dch1!=-1 && dch2!=-1){
+			           		create="false";
+			           		oldUrl=photoFile.Presidential1;
+			           		//alert(photoFile.Presidential)
+			           	}else{
+			           		//alert("now you got it")
+			           	}
+		           		
+		           }
+
+
+			    // This code is only for demo ...
+			    //console.log("pooty")
+			    //console.log("name : " + file.name);
+			    //console.log("size : " + file.size);
+			    //console.log("type : " + file.type);
+			   	// console.log("date : " + file.lastModified);
+			    var url = 'upload_file.php';
+			    var xhr = new XMLHttpRequest();
+			    var fd = new FormData();
+			    fd.append("par", global.userObj.agape_profile_username);
+			    fd.append("create", create);
+			    fd.append("oldUrl", oldUrl);
+			    xhr.open("POST", url, true);
+			    xhr.onreadystatechange = function() {
+			        if (xhr.readyState == 4 && xhr.status == 200) {
+			            // Every thing ok, file uploaded
+			           var phots = $.parseJSON(global.presidentialObj.acct[0].peopleCandidate_photos);
+			           var oldPhots;
+			           if(global.imgUpload=="d1"){
+			           		img1=xhr.responseText;
+			           		oldPhots=phots.Presidential;
+			           		phots.Presidential=$.trim(img1);
+
+			           		
+			           }
+
+			           if(global.imgUpload=="d2"){
+			           		img2=xhr.responseText;
+			           		oldPhots=phots.Presidential1;
+			           		phots.Presidential1=$.trim(img2);
+			           }
+
+			            global.presidentialObj.acct[0].peopleCandidate_photos=JSON.stringify(phots);
+			           	globalTools.save();
+
+			           $("#"+global.imgUpload).children().attr("src",global.baseUrl+"/"+xhr.responseText);
+
+			           var sendO={};
+			           sendO.job="update_atomic";
+			           sendO.dbase="people_candidates";
+			           sendO.param="peopleCandidate_ID";
+			           sendO.vals=global.presidentialObj.acct[0].peopleCandidate_ID;
+			           sendO.obj={};
+			           sendO.obj.peopleCandidate_photos=global.presidentialObj.acct[0].peopleCandidate_photos;
+			           sendO.obj.peopleCandidate_AccountUpdated=convertNowToPhP();
+			           var funk=function(data){
+			           	var photoy = $.parseJSON(global.presidentialObj.acct[0].peopleCandidate_photos);
+
+						d = new Date();
+						$("#d1").children().attr("src", global.baseUrl+"/"+photoy.Presidential+"?"+d.getTime());
+
+						$("#d2").children().attr("src", global.baseUrl+"/"+photoy.Presidential1+"?"+d.getTime());
+			           		
+			           }
+			           ajaxCall3(sendO,funk)			           
+
+				
+			        }
+
+			    };
+
+			    fd.append("upload_file", file);
+			   xhr.send(fd);
+
+			});
+
+		//addRunhandlers();
+
+	}else{
+//alert("fie")
+		//Logged Out
+		$("#logmess").css("display","block");
+		$("#imgDiv").hide();
+		$("#workingStateDiv").empty().append("<select class='dropDownNew' id='peopleCandidate_workingState'></select>");
+		$("#workingCityDiv").empty().append("<select class='dropDownNew' id='peopleCandidate_workingCity'></select>");
+
+		var gIss=function(){}
+		StateObj={};
+		StateObj.opt="populateNSet";
+		StateObj.elem="peopleCandidate_BirthState"
+		StateObj.cityElem="peopleCandidate_BirthCity";
+		StateObj.citySet="Alabama";
+		StateObj.selectElem="true";
+		getStates(StateObj, gIss);
+
+		StateObj={};
+		StateObj.opt="populateNSet";
+		StateObj.elem="peopleCandidate_workingState"
+		StateObj.cityElem="peopleCandidate_workingCity";
+		StateObj.selectElem="true";
+		StateObj.citySet="Alabama";
+		getStates(StateObj, gIss);
+		validateEmail="true";
+		AddBlurEvents()
+		// create account from existing account
+		$("#lgin").each(function(){
+			$(this).on("click",function(){
+				$("#createprofileForm").hide();
+				$("#logPres").fadeIn(700);
+				$("#peopleCandidate_Firstname").attr("readonly","readonly");
+				$("#peopleCandidate_Lastname").attr("readonly","readonly");
+				
+			})
+		})
+
+		
+
+		// create account from non existing
+
+	
+		$("#createPresButton").unbind("click").on("click",function(){
+	
+			//insert initial record into people candidates and get ID
+			var sendpass="true";
+			var issueModel={};
+			issueModel.obj={};
+			issueModel.job="quickInsertAtomic";
+			issueModel.dbase="people_candidates";
+			issueModel.key="true";
+			issueModel.keyField="peopleCandidate_ID";
+			issueModel.keydbase=issueModel.dbase;
+			issueModel.keyColumn="peopleCandidate_email";
+			
+
+			$("#createprofileForm :input").each(function(){
+				if($(this).val()!="" && $(this).val()!="Select" ){
+					issueModel.obj[$(this).attr("id")]=$(this).val();
+					if($(this).attr("id")=="agape_profile_username"){
+						issueModel.username=$(this).val();
+					}
+					
+				}else{
+					if($(this).attr("id")=='peopleCandidate_video'  || $(this).attr("id")=="fileToUpload"){
+
+					}else{
+
+						alert($(this).attr("id"))
+						sendpass="false";
+						$(this).css("background-color","gray").on("keydown",function(){
+							$(this).css("background-color","#eee");
+							$(this).parent().css("background-color","#eee");
+						}).on("change",function(){
+							$(this).css("background-color","#eee");
+							$(this).parent().css("background-color","#eee");
+						});
+						$(this).parent().css("background-color","gray");
+					}
+				}
+			
+			})
+
+			var imgIc="images/Male-icon.png";
+			if(issueModel.obj.agape_profile_gender=="Female"){
+				imgIc="images/Female-icon.png"
+			}
+			imgStr="{\"defaultPic\":\""+imgIc+"\",\"defaultPicTitle\":\"My Pic\",\"Pic1\":\"Images/"+imgIc+"\",\"Pic1Title\":\"none\",\"Pic2\":\"none\",\"Pic2Title\":\"none\",\"Pic3\":\"none\",\"Pic3Title\":\"none\",\"Pic4\":\"none\",\"Pic4Title\":\"none\",\"Pic5\":\"none\",\"Pic5Title\":\"none\",\"Pic6\":\"none\",\"Pic6Title\":\"none\",\"Presidential\":\""+imgIc+"\",\"Pic7Title\":\"Presidential\",\"Presidential1\":\""+imgIc+"\",\"Pic8Title\":\"Presidential1\"}"
+
+			issueModel.obj.peopleCandidate_photos=imgStr;
+
+			issueModel.obj.peopleCandidate_upVotes=0;
+			issueModel.obj.peopleCandidate_downVotes=0;
+			issueModel.obj.peopleCandidate_issue_list="[]";
+			issueModel.obj.	peopleCandidate_video="[]";
+			issueModel.obj.peopleCandidate_AccountCreated=convertNowToPhP();
+			issueModel.obj.peopleCandidate_AccountUpdated=issueModel.obj.peopleCandidate_AccountCreated;	
+			global.presidentialObj.acct=[];
+			global.presidentialObj.acct[0]={}
+			//global.presidentialObj.acct[0]=issueModel.obj;
+			global.presidentialObj.acct[0]=globalTools.objectEmptyClone(global.presidentialObj.acct[0],issueModel.obj)
+			globalTools.save();
+
+			delete issueModel.obj.agape_profile_username;
+			delete issueModel.obj.agape_profile_password;
+			issueModel.keyvalue=issueModel.obj.peopleCandidate_email;
+
+
+			if(sendpass=="true"){
+				alert("inside")
+
+				var func2=function(val){
+
+				alert("inside2")
+				var val1=val.split("**");
+				var issueModel1={};
+				issueModel1.obj={};
+				global.presidentialObj.acct[0].peopleCandidate_ID=val1[1];
+				global.presidentialObj.peopleCandidate_ID=val1[1];
+				globalTools.save();
+				global=globalTools.create();
+				issueModel1.job="quickInsertAtomic";
+				issueModel1.dbase="agape_profile";
+				issueModel1.obj.agape_profile_username=global.presidentialObj.acct[0].agape_profile_username;
+				issueModel1.obj.agape_profile_email=global.presidentialObj.acct[0].peopleCandidate_email;
+				issueModel1.obj.agape_profile_firstname=global.presidentialObj.acct[0].peopleCandidate_Firstname;
+				issueModel1.obj.agape_profile_lastname=	global.presidentialObj.acct[0].peopleCandidate_Lastname;
+				issueModel1.obj.agape_profile_presidentAccount=val1[1];
+				issueModel1.obj.agape_profile_gender=global.presidentialObj.acct[0].agape_profile_gender
+				issueModel1.obj.agape_profile_political=global.presidentialObj.acct[0].peopleCandidate_Party
+				issueModel1.obj.agape_profile_city=global.presidentialObj.acct[0].peopleCandidate_workingCity
+				issueModel1.obj.agape_profile_state=global.presidentialObj.acct[0].peopleCandidate_workingState;
+
+				issueModel1.obj.agape_profile_password=global.presidentialObj.acct[0].agape_profile_password
+
+				var imgIc="images/Male-icon.png";
+				if(global.presidentialObj.acct[0].agape_profile_gender=="Female"){
+					imgIc="images/Female-icon.png"
+				}
+
+				issueModel1.obj.agape_profile_default_img="{\"defaultPic\":\""+imgIc+"\",\"defaultPicTitle\":\"My Pic\",\"Pic1\":\"Images/"+imgIc+"\",\"Pic1Title\":\"none\",\"Pic2\":\"none\",\"Pic2Title\":\"none\",\"Pic3\":\"none\",\"Pic3Title\":\"none\",\"Pic4\":\"none\",\"Pic4Title\":\"none\",\"Pic5\":\"none\",\"Pic5Title\":\"none\",\"Pic6\":\"none\",\"Pic6Title\":\"none\",\"Presidential\":\""+imgIc+"\",\"Pic7Title\":\"Presidential\",\"Presidential1\":\""+imgIc+"\",\"Pic8Title\":\"Presidential1\"}"
+				issueModel1.key="true";
+				issueModel1.keyField="agape_profile_memberID";
+				issueModel1.keydbase="agape_profile";
+				issueModel1.keyColumn="agape_profile_email";
+				issueModel1.keyvalue=issueModel1.obj.agape_profile_email;
+				issueModel1.obj=addObjCreateParameters(issueModel1.obj);
+				issueModel1.obj.agape_profile_dateOfBirth="Not Answered";
+				passMod=issueModel1.obj;
+				
+				func3=function(val2){
+					console.log(343434)
+					console.log(val2)
+					console.log(343434)
+					
+					alert("deck")
+					var val3=val2.split("**");
+					var issueModel2={};
+					issueModel2.obj={};
+					issueModel2.job="update_atomic";
+					issueModel2.dbase="people_candidates";
+					issueModel2.obj.agape_profile_ID=val3[1];
+					issueModel2.param="peopleCandidate_ID";
+					passMod1=passMod;
+					
+					passMod1.agape_profile_memberID=val3[1];
+					issueModel2.vals=global.presidentialObj.acct[0].peopleCandidate_ID;
+					func4=function(val4){
+						$("#profileMess").html("Presidential account created").css("display","block").delay(4000).fadeOut(500);
+						global.userObj=passMod1;
+						globalTools.save();
+						getIssueOb();
+						$("#logBoard").css("display","block");
+						turnOnNav();
+						$("#createprofileForm").fadeIn("fast");
+						$("#logmess").hide();
+						$("#logPres").hide();
+						
+						$("#listedUname").html(global.userObj.agape_profile_username);
+						$("#peopleCandidate_email").unbind("blur");
+						$("#agape_profile_username").unbind("blur");
+
+						$("#office").html("Presidential Account").css({"color":"lime","text-decoration":"underline"}).show()
+		
+						addRunhandlers();
+					}
+					ajaxCall3(issueModel2,func4)
+				}
+
+				ajaxCallPost(issueModel1,func3)
+
+			}
+				
+			ajaxCall3(issueModel,func2)
+		}
+	
+	});
+
+		
+		
+
+		$("#createPA1").each(function(){
+
+			$("#peopleCandidate_Firstname").attr("readonly",false);
+			$("#peopleCandidate_Lastname").attr("readonly",false);
+			$(this).on("click",function(){
+			$("#logPres").hide()
+			$("#createprofileForm").fadeIn(700);
+			
+			
+			}).unbind("keydown").on("keydown",function(){
+				$(this).css("background-color","#eee");
+				$(this).parent().css("background-color","#eee");
+			})
+
+			
+
+			
+		})
+
+
+		
+
+		/**   Begin Login button   **/
+		$("#loginPresButton").on("click",function(){
+		var sendModel={}
+		var send=true;
+		$("#logPres :input").each(function(){
+			if($(this).val()!=""){
+				if($(this).attr("id")=="agape_profile_username_log"){
+					sendModel["agape_profile_username"]=$(this).val();
+				}else if($(this).attr("id")=="agape_profile_password_log"){
+					sendModel["agape_profile_password"]=$(this).val();
+				}
+				else{
+					sendModel[$(this).attr("id")]=$(this).val();
+				}
+			}else{
+				send=false;
+			}
+		})
+
+		if(send==false){
+			alert("Authentication failed")
+		}else{
+			var strngr="where "
+			for(key in sendModel){
+				if(strngr!="where "){
+					strngr=strngr+"and "+key+"='"+sendModel[key]+"'";
+				}else{
+					strngr=strngr+""+key+"='"+sendModel[key]+"'";
+				}
+			}
+			sendModel.job="atomic_selectAll";
+			sendModel.ob=strngr;
+			sendModel.dbase="agape_profile";
+			funct=function(data){
+				var val1=globalTools.verify(data);
+				global.userObj=val1.returnObj[0];
+
+				global.navFunc="LoggedIn";
+				global.login="true";
+				globalTools.save();
+				$("#logBoard").css("display","block");
+				turnOnNav();
+				$("#createprofileForm").fadeIn("fast");
+				$("#logmess").hide();
+				$("#logPres").hide();
+				
+				$("#listedUname").html(global.userObj.agape_profile_username);
+				$("#peopleCandidate_email").unbind("blur");
+				$("#agape_profile_username").unbind("blur")
+				$("#agape_profile_email").unbind("blur")
+				$("#workingStateDiv").empty().append("<input id='peopleCandidate_workingState' type='textbox' class='inputboxnew' readonly>");
+				$("#workingCityDiv").empty().append("<input id='peopleCandidate_workingCity' type='textbox' class='inputboxnew' readonly>");
+			
+
+				if($.trim(global.userObj.agape_profile_presidentAccount)!='InActive'){
+					getpresOb();
+					
+					$("#createPresButton").unbind("click").html("Update").on("click",function(){
+						alert("erer")
+						$("#createprofileForm :input").each(function(){
+							console.log($(this).val())
+						})
+					});
+					if(global.presidentialObj.peopleCandidate_ID=='none'){
+						getIssues();
+					}else{
+						$("#peopleCandidate_CurrentPosition").val(global.presidentialObj.acct[0].peopleCandidate_CurrentPosition)
+						$("#createPresButton").unbind("click").html("Update").on("click",function(){
+								updateProfile()
+							});
+					}
+					addRunhandlers()
+				}else{
+					alert("diwieuwhvd")
+				
+					getIssues();
+					$("#createPresButton").unbind("click");
+					$("#createPresButton").on("click",function(){
+						//createissuestab
+						insertpeopleCandidate();
+						
+
+					
+					})
+				}
+
+			}	
+
+			ajaxCallPost(sendModel,funct)	
+		}
+	})
+
+/**   End Login button   **/
+
+}
+
+
+
+
+
+
+	var presObj={};
+	presObj.job="atomic_selectAll";
+	presObj.dbase="agape_issue_list";
+	presObj.ob="order by issue_Name asc";
+	func=function(data){
+		
+		var issueObj=globalTools.verify(data);
+		global.issue_list=issueObj.returnObj;
+		globalTools.save();
+		var lengo=issueObj.returnObj.length;
+		for(i=0;i<lengo;i++){
+			$("#issueunit").append("<div id='availIssue"+i+"' class='availIssue' >"+issueObj.returnObj[i].issue_Name+"</div>")
+		}
+		$("#president_issuesCommentData").on("keyup",function(){
+			$(this).css("background-color","#fff").parent().css("background-color","#fff");
+		})
+
+		$("#president_issuesTitle").on("keyup",function(){
+			$(this).css("background-color","#fff").parent().css("background-color","#fff");
+		})
+
+		$(".availIssue").each(function(){
+			$(this).on("mouseover",function(){
+				$(this).css({"color":"#cecece","text-decoration":"underline"});
+			}).on("mouseout",function(){
+				$(this).css({"color":"#eee","text-decoration":"none"});
+			}).unbind("click").on("click",function(){
+				var index=$(this).attr("id")+"";
+				index=index.substr(10);
+
+				$("#president_issues_group").val(global.issue_list[index].issue_Group).attr("readonly","readonly").css("background-color","#fff").parent().css("background-color","#fff");
+				$("#president_issuesTitle").val(global.issue_list[index].issue_Name).css("background-color","#fff").parent().css("background-color","#fff");
+				$("#createIssueButton").css("display","block");
+				$("#updateIssueButton").hide()
+				//$("#issue_Group").attr("readonly","readonly")
+
+				$("#president_issuesCommentData").val("");
+
+			})
+
+		})
+
+	}
+	ajaxCall3(presObj,func);
+
+
+})
+
+function addRunhandlers(){
+	//opens presidential menu
+	$("#createprofileForm").show();
+		$(".presidentAppStyleNavcase").unbind("click").on("click",function(){
+			$(".presidentAppStyleNavcase").each(function(){
+				$(this).removeClass("presidentAppStyleNavcase_over");
+			})
+			var teggo=$(this).attr("id");
+			$("#"+teggo).addClass("presidentAppStyleNavcase_over")
+
+			
+			$(".run4Nav").each(function(){
+				$(this).hide();
+			})
+
+			switch(teggo){
+
+				case 'presPro':
+					$("#createprofiletab").show();
+
+				break;
+
+				case 'presIss':
+					$("#createissuestab").show();
+				break;
+
+
+				case 'presGroup':
+					$("#creategrouptab").show();
+				break;
+
+				case 'presMed':
+					$("#createmediatab").show();
+				break;
+			}
+		})
+
+
+		$("#createIssueButton").unbind("click").on("click",function(){
+			var pass="true";
+			var issueModel = {}
+			issueModel.job="quickInsertAtomic";
+			issueModel.key="false";
+			issueModel.dbase="people_issues"
+			issueModel.obj={}
+			issueModel.obj.president_issuesLastComment_username=global.userObj.agape_profile_firstname+" "+global.userObj.agape_profile_lastname;
+			issueModel.obj.president_issuesCreator_ID=global.presidentialObj.acct[0].peopleCandidate_ID;
+			issueModel.obj.president_issuesSource=issueModel.obj.president_issuesCreator_ID;
+			issueModel.obj.people_issuesThumbsUp=0;
+			issueModel.obj.people_issuesThumbsDown=0;
+			issueModel.obj.president_issuesReplys=0;
+			issueModel.obj.people_issuesCommentDataResponse="[]";
+			issueModel.obj.president_issuesCreator_Username=issueModel.obj.president_issuesLastComment_username;
+			issueModel.obj.people_issuesCommsCount=0;
+			issueModel.obj.president_issuesLastComment=convertNowToPhP();
+			issueModel.obj.president_issues_createdate=convertNowToPhP();
+			
+			$("#createissuesForm :input").each(function(){
+				if($(this).val()!=""){
+					issueModel.obj[$(this).attr("id")]=globalTools.stringClear($(this).val());
+				}else{
+					pass="false";
+					$(this).css("background-color","gray");
+					$(this).parent().css("background-color","gray");
+				}
+			})
+
+			issueModel.keyField="president_issuesID";
+			issueModel.keydbase=issueModel.dbase;
+			issueModel.keyColumn="president_issuesCreator_ID";
+			issueModel.keyvalue=global.presidentialObj.acct[0].peopleCandidate_ID;
+			issueModel.key="true";
+			var title1=issueModel.obj.president_issuesTitle
+			func5 = function(dayta){
+				dayta=$.trim(dayta);
+				var keyVchk=dayta.split("**");
+				if(keyVchk[0]=="success"){
+					issueModel.obj.president_issuesID=keyVchk[1];
+				}else{
+					
+				}
+
+
+				if(global.presidentialObj.issues===undefined){
+					global.presidentialObj.issues=[];
+				}
+				global.presidentialObj.issues.push(issueModel.obj);
+				var id1=$(".createdIssue").last().attr("id");
+				if(id1!==undefined){
+					id1=id1.substr(5);
+					id1=parseInt(id1)+1;
+				}else{
+					id1=0
+				}
+				
+				$("#myIssues").append("<div><div class='createdIssue' style='color:#3598FE;float:left;width:240px' id='issue"+id1+"'>"+issueModel.obj.president_issuesTitle+"</div><div style='float:left;' class='imgRemove'><img src='images/remove.png' height='14' /><div style='clear:both;'></div></div>");
+
+
+				addCreateIsssueEvent();
+				$("#createIssueButton").hide()
+				$("#updateIssueButton").css("display","block");
+				$("#upFlag").html("Issue created").css("display","block").delay(4000).fadeOut(500);
+			}
+
+
+			if(pass=="true"){
+				ajaxCall3(issueModel,func5)
+			}
+
+
+		})
+
+
+
+
+
+}
+
+function updateProfile(){
+	alert("123")
+	var newModel={}
+	newModel.job="update_atomic";
+	newModel.dbase="people_candidates"
+	newModel.param="peopleCandidate_ID";
+	newModel.vals=global.presidentialObj.acct[0].peopleCandidate_ID
+	newModel.obj={};
+	$("#createprofileForm :input").each(function(){
+		if($(this).val()!=""){
+			newModel.obj[$(this).attr("id")]=$(this).val()
+		}else{
+			if($(this).attr("id")!="peopleCandidate_video"){
+				sendOff="false";
+				$(this).css("background-color","gray")
+			}
+		}
+	})
+	delete newModel.obj.agape_profile_username;
+	delete newModel.obj.agape_profile_password
+
+	for(key in global.presidentialObj.acct[0]){
+			for(key1 in newModel.obj){
+				if(key==key1){
+					global.presidentialObj.acct[0][key]=newModel.obj[key]
+				}
+			}
+		}
+		global.userObj.agape_profile_political=newModel.obj.peopleCandidate_Party;
+		globalTools.save();
+
+		func = function(data){
+
+		console.log(5533)
+		console.log(data)
+		console.log(5533)
+			getIssues();
+			$("#profileMess").html("Profile updated").css("display","block").delay(4000).fadeOut(500);
+			/*if(party=="true"){
+				party="false";
+				newModel1={}
+				newModel1.job="update_atomic";
+				newModel1.dbase="agape_profile"
+				newModel1.param="agape_profile_memberID";
+				newModel1.vals=global.userObj.agape_profile_memberID;
+				newModel1.obj={};
+				newModel1.obj.agape_profile_political=$("#peopleCandidate_Party").val();
+				func2 = function(datam){
+					global.userObj.agape_profile_political=$("#peopleCandidate_Party").val();
+					globalTools.save();
+				}
+				ajaxCallPost(newModel1,func2)
+			}*/
+	}
+	ajaxCall3(newModel,func)
+}
+
+
+function getpresOb(){
+	var send1={};
+	send1.job="atomic_selectAll";
+	send1.dbase="people_candidates"
+	send1.ob="where peopleCandidate_ID='"+global.userObj.agape_profile_presidentAccount+"'";
+
+	var func1=function(data2){
+		addRunhandlers()
+		var presidentialObj=globalTools.verify(data2);
+		global.presidentialObj.acct=presidentialObj.returnObj;
+		$("#peopleCandidate_CurrentPosition").val(global.presidentialObj.acct[0].peopleCandidate_CurrentPosition);
+		global.presidentialObj.peopleCandidate_ID=global.presidentialObj.acct[0].peopleCandidate_ID
+		globalTools.save();
+		$("#createPresButton").unbind("click").html("Update").on("click",function(){
+			updateProfile()
+		});
+		StateObj={};
+		StateObj.opt="populateNSet";
+		StateObj.elem="peopleCandidate_BirthState"
+		StateObj.cityElem="peopleCandidate_BirthCity";
+
+		StateObj.citySet=global.presidentialObj.acct[0].peopleCandidate_BirthState;
+
+		getStates(StateObj, getIssues)
+		getIssueOb();
+	}
+	ajaxCall3(send1,func1)
+}
+
+
+function getIssueOb(){
+	var sendo1={}
+	sendo1.job="atomic_selectAll";
+	sendo1.dbase="people_issues";
+	global=globalTools.create();
+	sendo1.ob="where president_issuesSource='"+global.presidentialObj.acct[0].peopleCandidate_ID+"'";
+	func2 = function(data3){
+		var reto=globalTools.verify(data3);
+		global.presidentialObj.issues=reto.returnObj;
+		global.navFunc="LoggedIn";
+		global.login="true";
+		globalTools.save();
+		$("#myIssues").empty();
+		v=reto.returnObj.length;
+		for(i=0;i<v;i++){
+			$("#myIssues").append("<div><div class='createdIssue' style='color:#3598FE;float:left;width:240px' id='issue"+i+"'>"+reto.returnObj[i].president_issuesTitle+"</div><div style='float:left;' class='imgRemove'><img src='images/remove.png' height='14' /><div style='clear:both;'></div></div>")
+		}
+		addCreateIsssueEvent()
+		
+	}
+	ajaxCall3(sendo1,func2)
+}
+
+
+function addCreateIsssueEvent(){
+
+	$(".createdIssue").each(function(){
+		$(this).on("mouseover",function(){
+			$(this).css({"color":"#cecece","text-decoration":"underline","cursor":"pointer"});
+		}).on("mouseout",function(){
+			$(this).css({"color":"#3598FE","text-decoration":"none"});
+		}).unbind("click").on("click",function(){
+		
+			$("#createIssueButton").hide()
+			$("#updateIssueButton").css("display","block");
+			var ID=$(this).attr("id");
+			var idx=ID.substr("5");
+			global.presidentialObj.iNdx=idx;
+			$("#president_issues_group").val(global.presidentialObj.issues[idx].president_issues_group).attr("readonly","readonly").css("background-color","#fff").parent().css("background-color","#fff");
+			var titl=globalTools.stringClearBack(global.presidentialObj.issues[idx].president_issuesTitle);
+
+			$("#president_issuesTitle").val(titl).css("background-color","#fff").parent().css("background-color","#fff");
+
+			var ishComm=globalTools.stringClearBack(global.presidentialObj.issues[idx].president_issuesCommentData)
+			$("#president_issuesCommentData").val(ishComm).css("background-color","#fff").parent().css("background-color","#fff");
+			
+		})
+	})
+
+	$(".imgRemove").each(function(){
+		$(this).unbind("click");
+		$(this).on("click",function(){
+			var id=$(this).prev().attr("id");
+			id=id.substr(5);
+			var chk=confirm("Are you sure you want to delete your position on "+ global.presidentialObj.issues[id].president_issuesTitle+"?");
+			if(chk==true){
+				var arry=global.presidentialObj.issues;
+				var tee=globalTools.arrayTool(arry,'removeIndex',id,'val');
+				var issueObj1={}
+				issueObj1.job="atomicDelete";
+				issueObj1.param="president_issuesID";
+				issueObj1.dbase="people_issues";
+				issueObj1.val=global.presidentialObj.issues[id].president_issuesID;
+				func3=function(dateM){
+					dateM=$.trim(dateM);
+					var datChk=dateM.split("**");
+					if(datChk[0]=="deleted"){
+						global.presidentialObj.issues=tee;
+						getIssueOb();
+						$("#upFlag").html("Issue deleted").css("display","block").delay(4000).fadeOut(500);
+					
+					}else{
+						alert("There is a database issue")
+					}
+				}
+				ajaxCall3(issueObj1,func3)
+			}
+		})
+	})
+}
+
+
+function AddBlurEvents(){
+
+
+
+	$("#peopleCandidate_email").unbind("blur").on("blur",function(){
+				model={};
+				model.job="quickVerifyRecs";
+				model.dbase="agape_profile";
+			 	model.param="agape_profile_email";
+				model.value=$(this).val();
+				var _this=this;
+			 	func=function(data){
+			 		data=data.split("**");
+					val=$.trim(data[0])
+			 		switch(val){
+			 			case 'No Good':
+			 				validateEmail="false";
+			 				$(_this).css("background-color","gray");
+			 				$(_this).parent().css("background-color","gray");
+			 				$(_this).parent().next().show();
+			 			break;
+
+			 			default:
+			 				validateEmail="true";
+			 				$(_this).parent().next().hide();
+			 			break;
+			 		}
+			 	}
+			 	ajaxCallPost(model,func);
+			}).on("keydown",function(){
+				$(this).css("background-color","#eee");
+				$(this).parent().css("background-color","#eee");
+				$(this).parent().next().hide();
+			})
+
+
+			$("#agape_profile_username").unbind("blur")
+			$("#agape_profile_username").on("blur",function(){
+				model={};
+				model.job="quickVerifyRecs";
+				model.dbase="agape_profile";
+			 	model.param="agape_profile_username";
+				model.value=$(this).val();
+				var _this=this;
+			 	func=function(data){
+			 		
+			 		data=data.split("**");
+					val=$.trim(data[0])
+			 		switch(val){
+			 			case 'No Good':
+			 				validateUsername="false";
+			 				$(_this).css("background-color","gray");
+			 				$(_this).parent().css("background-color","gray");
+			 				$(_this).parent().next().show();
+			 			break;
+
+			 			default:
+			 				validateUsername="true";
+			 				$(_this).parent().next().hide();
+			 			break;
+			 		}
+			 		
+			 	}
+			 	ajaxCallPost(model,func);
+			}).on("keydown",function(){
+				$(this).css("background-color","#eee");
+				$(this).parent().css("background-color","#eee");
+				$(this).parent().next().hide();
+			})
+
+
+
+}
+
+
+</script>

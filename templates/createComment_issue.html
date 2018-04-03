@@ -1,0 +1,148 @@
+<html>					
+	<head>
+		<script type="text/javascript">
+		</script>
+
+		<style>
+			.newQuestionbLabels{
+				width:150px;
+			}
+		</style>
+	
+	</head>
+	<body bgcolor="#000000" >
+		<div  id="proView" style="float:left;width:100%;height:500px;padding:4px;">	
+			<!-- Begin View panel-->
+			<div id="view" style="position:absolute;z-index:15;width:100%;">
+				<br/>
+				<span style='color:#eee;font-weight:bold;font-family:arial;font-size:18px;'>Comment:</span>
+				<br/>
+				<div id='comment' style='height:190px;'>
+			
+				<div style='background-color:#0f0f0f;width:570px;padding:8px;border-radius:6px;margin:auto;'>
+					<div id="commentTitle" style='color:#eee;padding:4px;font-family:arial;padding-bottom:8px;text-align:left'></div>
+					<div style='float:left;margin-left:20px;'><textarea id="inputboxnew" class='inputboxnew' style='width:420px;border-radius:5px;height:190px;'></textarea></div>
+					<div class='sliderButtonStyle1 messagebuttonStyle post' style="background-color:#1c4156">Post</div>
+					<br><br/>
+					<div class='sliderButtonStyle1 messagebuttonStyle cancel'>Cancel</div>
+					<div style='clear:both'></div>
+				</div>
+			
+				
+			</div>	
+			</div>							
+			<!-- End View panel-->
+		</div>		
+	</body>
+</html>
+<script type="text/javascript" >
+	$(document).ready(function(){
+		$(".cancel").on('click',function(){
+			var div1=document.getElementById("_lboxBackground");
+			var div2=document.getElementById("_lBoxMainDiv");
+			var template={};
+			template.page="viewIssue_open.php";
+			template.job="visitprofile";
+			id=glo.president_issuesID;
+			template.param=id;
+			ingniteLightBox = new LightBox(div1,div2,template,id)
+			ingniteLightBox.lightBoxOn();
+			ingniteLightBox.lightBoxOff(div1,div2);
+		})
+
+
+		$(".post").on("click",function(){
+			var comm={}
+			comm.job="update_atomic";
+			comm.selectField="president_issuesCommentDataResponse"
+			comm.dbase="president_issues";
+			comm.selectParam="president_issuesID";
+			comm.issuesID=glo.president_issuesID;
+			comm.obj="none";
+			comm.vals=glo.president_issuesID;
+			comm.username=global.userObj.agape_profile_username;
+			var img = $.parseJSON(global.userObj.agape_profile_default_img)
+			comm.param1="president_issuesID";
+			comm.param="president_IssuesComments";
+			var cm=$("#inputboxnew").val();
+
+			var d = new Date()
+			var year=d.getFullYear();
+			var month=d.getMonth();
+			var day=d.getDate();
+			var hours=d.getHours();
+			var min = d.getMinutes();
+			var seconds = d.getSeconds();
+			var milliSec = d.getMilliseconds();
+
+			second1 = Date.UTC(year,month,day,hours,min,seconds,milliSec);
+
+
+			var send1={};
+			send1.img=img
+			send1.username=global.userObj.agape_profile_username
+			send1.time=formattedPresent();
+			send1.comment=globalTools.stringClear(cm)
+			send1.id=glo.president_issuesID+"_"+glo.people_issuesCommsCount+"_"+second1;
+
+			comm.objR=send1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+					
+				funcIissue= function(data){
+					
+
+					var selObj={};
+					selObj.job="quickSelect_atomic";
+					selObj.dbase="president_issues";
+					selObj.param="president_issuesSource";
+					selObj.value=global.presObj.presidential_candidates[global.presObj.index].president_ID;
+					selObj.start=0;
+					var func36=function(data){
+						var cheese=globalTools.verify(data)
+						global.presObj.presidential_candidates[global.presObj.index].president_issues=cheese.returnObj
+						globalTools.save();
+						loadTemplate('mainLBHolder',"presidentView.php")
+						var div1=document.getElementById("_lboxBackground");
+						var div2=document.getElementById("_lBoxMainDiv");
+						var template={};
+						template.page="viewIssue_open.php";
+						template.job="visitprofile";
+						
+						id=glo.president_issuesID;
+						template.param=id;
+						ingniteLightBox = new LightBox(div1,div2,template,id)
+						ingniteLightBox.lightBoxOn();
+						ingniteLightBox.lightBoxOff(div1,div2);
+					}
+
+					ajaxCall3(selObj,func36);
+
+				}
+			
+				//ajaxCall3(comm,funcIissue)
+				console.log(545)
+				console.log(comm)
+				console.log(545)
+
+			})
+		
+		})
+	
+
+</script>

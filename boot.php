@@ -92,7 +92,7 @@ echo $actual_base;
       <div>
         <div class="row">
           <div class="col-sm-3">
-            <h3 style="color:#2f4774;text-shadow: 1px 1px #000;">Whats in the News?</h3>
+            <h3 style="color:#2f4774;text-shadow: 1px 1px #000;">What's in the News?</h3>
             <p class='newstoryHomeText fontSizefront' >Agape media strives to provide its users with the most current and relevant news stories available. Dive in and join the discussion. America wants to know what YOU think. This is a PC free zone!!</p>
             <p><a href="#" class="nFooter" style="font-size:20px;">Go to News</a></p>
           </div>

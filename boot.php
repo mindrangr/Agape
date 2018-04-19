@@ -38,98 +38,27 @@ include("Config_files/_shared_config.php");
  
 <body style="padding-top:70px;background-image: url('images/blog1Blur.jpg');background-repeat:no-repeat;background-color: #2f4774;">
  
-  <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style='background-color: #2f4774 !important;'>
-        <a class="navbar-brand caseStyleHeader" href="home">Welcome to the Agape Community</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse hamburgerStyle" id="navbarCollapse" >
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
-            </li>
-             <li class="nav-item LogI" style='display:none;' >
-              <a class="nav-link disabled" href="#">Account Settings</a>
-            </li>
-            <li class="nav-item LogI" style='display:none;' >
-              <a class="nav-link disabled" href="#">Messages</a>
-            </li>
-
-            <li class="nav-item LogI" style='display:none;'>
-              <a class="nav-link disabled" href="#">Friends</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Community</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Contact Us</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">About Us</a>
-            </li>
-          </ul>
-          <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-        
-      </nav>
-      
-       <div id="mainAd" class="mainAd col-sm-12 fixed-top" style="top:70px;background-image:url('images/banner1.png');border-bottom: solid 1px #000;" >
-          <div class='adverImageDiv' ><img src="advertiseImages/flashad1.gif" class='adverImage' /></div>
-      </div>
-    </header>
+  <?php include 'header.php';?>
 
     
-    <!--<div class="jumbotron text-center" style="padding:0px;">
-      <h1>Welcome to the Agape community</h1>
-     
-      <div style='width:100%' id='logD1'>
-        
-
-`       <!-- login form 
-        <form id="loginForm" method="post">
-          <div style="margin:auto;margin-bottom: 15px;padding-bottom:22px;width:320px;">
-            <div  class="newQuestionbLabels newQuestionbLabels_search">Username</div>
-            <div style="" class="loginElemDiv">
-              <input id="username" name="username" class="inputboxnew">
-            </div>
-          </div>
-          <div style="margin:auto;margin-bottom: 15px;padding-bottom:22px;width:320px;"><div style="" class="newQuestionbLabels newQuestionbLabels_search">Password</div>
-            <div style="" class="loginElemDiv">
-              <input id="password" name="password" class="inputboxnew">
-            </div>
-          </div>
-          <div id="logButtDiv" style="text-align: left; padding-left: 9px;">
-            <input type="button" value="login" onclick="login()" style="width:70px;height:25px;border-radius:4px 4px 4px 4px;margin-left:10px;">
-          </div>
-          <div style="clear:both;"></div>
-          <div style="height:20px;">
-            <span style="color:red;opacity:0px;font-family:arial" id="badpasslink"></span>
-          </div>
-
-        </form>
-
-
-</div>
-    </div>-->
-    <div id="nameDiv" style="width:100%;background-color:#000;margin-top:20px;height:45px;font-size:20px;color:#eee;padding:2%;margin-bottom:25px;display: none;">
-      Welcome: <span id="loginname">Marcus</span>
-    </div>
      
     <div class="container newsContainer" >
       <div class="overF">
         <div class="row">
-          <div class="col-sm-3 tPaddMobileLogin">
-              <div style="width:200px;padding:6px;">
+          <div class="col-sm-3 tPaddMobileLogin" >
+
+              <div id="loggedInBox" style="width:100%;background-color:#000;margin-top:20px;font-size:20px;color:#eee;padding:10px;margin-bottom:25px;display: none;border-radius:5px;"><div>Welcome: <span id="loginname">Marcus</span></div>
+                <div style="color:red;text-decoration: underline;cursor:pointer;font-size:13px;float:left;width:60px;">Log out</div>
+                <div style="color:lime;text-decoration: underline;cursor:pointer;font-size:13px;float:left;">Messages</div>
+                <div style='clear:both'></div>
+              </div>
+
+              <div style="width:200px;padding:6px;" id="loginNavBox">
                 <label style='color:#c96cbd;text-shadow: 1px 1px #000;font-size: 1.75rem;'>Login</label>
                 <form id="loginForm" method="POST">
                   <input id="username" name="username" class="form-control mr-sm-2" type="text" style='margin-bottom:10px;' placeholder="username" aria-label="username">
                   <input id="password" class="form-control mr-sm-2" type="text" style='margin-bottom:10px;' name="password" placeholder="password" aria-label="password">
-                  <div style="float:left;"><button id="login" class="btn btn-outline-success my-2 my-sm-0" type="button"  >Submit</button></div>
+                  <div style="float:left;"><button id="login" class="btn btn-outline-success my-2 my-sm-0" type="button"  >Login</button></div>
                   <div id='logMess' style="float:left;color:red;margin-left:5px;font-weight:bold;"></div>
                   <div style='clear:both'></div>
                 </form>
@@ -144,9 +73,6 @@ include("Config_files/_shared_config.php");
           </div>
           <script>
             var t = window.location.href+"";
-
-            
-
             if(t.search(/login/)!=-1){
               //var f=
               var t1=t.split("?");
@@ -191,7 +117,7 @@ include("Config_files/_shared_config.php");
 
    
 
-  <div class="container-fluid sponsorBackground" >
+  <div class="container-fluid sponsorBackground socialbanner" >
     <div class="row" id="sponsorDiv">
       <div class="col-sm-2">
         <div style="font-size:22px;">Meet our</div>
@@ -263,32 +189,7 @@ include("Config_files/_shared_config.php");
   </div>
 
 
-
-
-
-  <footer class="footer FooterDiv" data-background-color="black" >
-    <div style='width:400px;margin:auto;'>Copyright &copy; 2018 by the Agape Community</div>
-    <div class="container">
-      </br> 
-      <div class="col-sm-12" style="font-size:13px;text-align: center;color:#5c6e90;">
-        All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the publisher, except in the case of brief quotations embodied in critical reviews and certain other noncommercial uses permitted by copyright law. For permission requests, write to the publisher, addressed "Attention: Permissions Coordinator," at the address below.
-      </div>
-    </div>
-    <div class="container" >
-      <div class="col-sm-12 footerW" >
-        <div style="width:400px;margin: auto;">
-          <div style='float:left;margin-right:10px;color:'><a href="AboutUs" class="nFooter">About Us</a></div>
-          <div style='float:left;margin-right:10px;'><a href="#" class="nFooter">Contact Us</a></div>
-          <div style='float:left;margin-right:10px;'><a href="#" class="nFooter">Site Map</a></div>
-          <div style='float:left;margin-right:10px;'><a href="#" class="nFooter">Romance</a></div>
-           <div style='float:left;margin-right:10px;'><a href="#" class="nFooter">Poll Daddy</a></div>
-          <div style="clear:both;"></div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-
+  <?php include 'footer.html';?>
  
 </body>
 
@@ -296,26 +197,20 @@ include("Config_files/_shared_config.php");
   
   var globalTools = new Objtools();
   global=globalTools.create();
-  var kView=Verifyuser()
-  if(kView==true){
+  var kView=Verifyuser();
+
+  if(kView=='true'){
     turnOnNav();
   }else{
-    
-   
     turnOffNav();
     $("#login").on("click",function(){
       login();
     })
   }
 
-console.log(999999)
- console.log(global)
- console.log(999999)
- 
   var threadTool = new ThreadWheel();
   getSponsors();
   getOnlineUsers(global.userListCnt);
-
 
   var w1 = new Worker("web_workers/mainWebWorker.js");
   w1.onmessage=function(data){
@@ -327,7 +222,7 @@ console.log(999999)
 
       default:
       break;
-      }
     }
+  }
 
 </script>

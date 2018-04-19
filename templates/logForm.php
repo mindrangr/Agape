@@ -17,6 +17,8 @@
 		$countR = mysql_num_rows($result1);
 
 		if($countR>0){
+			$global=array();
+			$global['navFunc']="LoggedOut";
 
 			$colnum = mysql_num_fields($result1);
 			while($row = mysql_fetch_assoc($result1)) 
@@ -35,6 +37,7 @@
 					}	
 				}			
 				$cntr=$cntr+1;
+				$global['navFunc']="LoggedIn";
 			}
 			$dt=date("Y:m:d:h:i:s");
 			$key=$uname;
@@ -48,10 +51,7 @@
 
 
 
-			$global=array();
 
-
-			$global['navFunc']="LoggedOut";
 			$global['userObj']=$returnObj[0];
 			$global['sendMessage']='true';
 			$global['dataHolder']="";
@@ -89,29 +89,37 @@
 				$errStrg=mysqli_error($con);
 				if(stripos($errStrg,"Duplicate")!==false){
 					// "Duplicate record<br>";
-					header("location: ../community?returnVal=sessionMatch");
+					//header("location: ../community?returnVal=sessionMatch");
+					echo "wanker";
 				}else{
 					
 					//echo "Correct insertion<br>";
 				}
-
+				echo 1;
 			}else{
+				echo 2;
 				$insrt=mysqli_query($con,$sqlStrg);
 				$updSqlStr="update agape_profile set agape_profile_lastLogin='".$lk."'";
 				$upsrt=mysqli_query($con,$updSqlStr);
-			
-				header("location: ../account?returnVal=good&guid=".$d);
+				$cookie_name = "agapeGUID";
+				$cookie_value = $d;
+				setcookie($cookie_name, $cookie_value, 0, "/"); // 86400 = 1 day
+				
+				
+				header("location: ../account?uname=".$returnObj[0]["agape_profile_memberID"]);
+
 			}
 			mysqli_close($con);
 		}else{
-
-			header("location: ../community?returnVal=Badpass");
+		
+				
+			header("location: ../home?login=bad");
 		}
 
 	 }
 
-	 login($username,$password);
-	  ob_end_flush();
+	login($username,$password);
+	ob_end_flush();
 
 ?>
 

@@ -1,4 +1,6 @@
-var global={}
+
+var globalTools = new Objtools();
+var global=globalTools.create();
 
 // gets sponsors and loads them to page
 function getSponsors(){
@@ -118,9 +120,10 @@ function ajaxCallPost(jsonObj,retFunc)
 
 function Verifyuser(){
 	var auth="true";
-	if(typeof global==null){
+	if(typeof global!=null){
 		if(global.userObj){
 			if(global.navFunc){
+
 				if(global.navFunc=="LoggedIn"){
 					auth="true";
 					return auth;
@@ -147,6 +150,8 @@ function turnOnNav(){
 	$(".LogI").each(function(){
 		$(this).show();
 	})
+	$("#loginNavBox").hide();
+	$("#loggedInBox").show();
 }
 
 
@@ -193,8 +198,10 @@ function getOnlineUsers(b1){
 	var ext=global.baseUrl;
 	//userOnline.uID=global.userObj.agape_profile_memberID;
 	var repFunk=function(data){
+		console.log(888888)
+		console.log(data)
 		var dataSet=globalTools.verify(data);
-
+		console.log(888888)
 
 		if(dataSet.countR>0){
 			$("#usersOnline").show();
@@ -350,3 +357,333 @@ function fademessg(elem,mess){
 		})
 	}})
 }
+
+function loadPageFormData(val){
+	for(var key in val){
+		if($("#"+key)){
+			$("#"+key).val(val[key])
+		}
+		
+	}
+
+}
+
+
+class stateElem{
+			constructor(typeO,stElem,cyElem,addChangeEffect,selectElem,param,param1,position,option,retFunc,addChangeEffect_city){
+				this.Type=typeO;
+				this.stateElem=stElem;
+				this.cityElem=cyElem;
+				this.param=param;
+				this.param1=param1;
+				this.addChangeEffect=addChangeEffect;
+				this.position=position;
+				this.option=option;
+				this.cityObj={}
+				this.addChangeEffect_city=addChangeEffect_city;
+				this.selectElem=selectElem;
+				this.retFunc=retFunc;
+				_this=this
+				this.getData();
+			}
+			getData(){
+
+				switch(this.Type){
+					case 'states':
+						//Get states
+						var stateObj={};
+						stateObj.job="stateSelect_atomic";
+						stateObj.dbase="states";
+						var retFunc=function(dataStates){
+							var  stateObj=globalTools.verify(dataStates);
+							var leng=stateObj.returnObj.length;
+							$("#"+_this.stateElem).empty();
+							if(_this.selectElem=='true'){
+								$("#"+_this.stateElem).append("<option value='Select' class='stateClass'>- Select -</option>");
+							}
+							for(var b=0;b<leng;b++){
+								$("#"+_this.stateElem).append("<option value='"+stateObj.returnObj[b].state_full+"' class='stateClass'>"+stateObj.returnObj[b].state_full+"</option>");
+							}
+							_this.addOption()
+
+							if(_this.addChangeEffect=="true"){
+								$("#"+_this.stateElem).unbind("change").on("change",function(){
+									
+									var statev=$(this).val()+"";
+
+									if(statev!="Select" && statev!="All"){
+										
+										_this.cityObj.job="citySelect_atomic";
+										_this.cityObj.dbase="states";
+										_this.cityObj.val=statev;
+										var retFunc1=function(dataCities){
+											var cityObj1=globalTools.verify(dataCities);
+											var lengo2=cityObj1.returnObj.length;
+											for(r=0;r<lengo2;r++){
+												if(isNaN(cityObj1.returnObj[r].city)){
+													
+												}else{
+													cityObj1.returnObj=globalTools.arrayTool(cityObj1.returnObj,"removeIndex",r,"none");
+													r=-1;
+													lengo2=cityObj1.returnObj.length;
+													
+												}
+											}
+
+
+											
+											$("#"+_this.cityElem).empty();
+											if(_this.selectElem=='true'){
+												$("#"+_this.cityElem).append("<option value='Select'>- Select -</option>");
+											}
+											var lengo2=cityObj1.returnObj.length;
+											for(r=0;r<lengo2;r++){
+												$("#"+_this.cityElem).append("<option>"+cityObj1.returnObj[r].city+"</option>")
+											}
+
+											if(_this.addChangeEffect_city){
+												$("#"+_this.cityElem).unbind("change").on("change",function(){
+													_this.addChangeEffect_city();
+												})
+
+											}
+											
+
+										}
+										ajaxCallPost(_this.cityObj,retFunc1);
+									}else{
+										//alert("select")
+									}
+
+									_this.addchangeFunction()
+									if(statev=="All"){
+										$("#"+_this.cityElem).prop("disabled", true)
+									}else{
+										$("#"+_this.cityElem).prop("disabled", false)
+									}
+								})
+
+							}
+
+						}
+						ajaxCallPost(stateObj,retFunc);
+					break;
+
+
+
+					case 'statesFull':
+
+						var stateObj={};
+						stateObj.job="stateSelect_atomic";
+						stateObj.dbase="states";
+						var retFunc=function(dataStates){
+
+							var stateObj=globalTools.verify(dataStates);
+							var leng=stateObj.returnObj.length;
+							var f=""
+							for(var b=0;b<leng;b++){
+								if(stateObj.returnObj[b].state_full==_this.param){
+									f="selected";
+								}
+								$("#"+_this.stateElem).append("<option value='"+stateObj.returnObj[b].state_full+"' class='stateClass' "+f+">"+stateObj.returnObj[b].state_full+"</option>");
+								f="";
+							}
+							_this.cityObj.job="citySelect_atomic";
+							_this.cityObj.dbase="states";
+							_this.cityObj.val=_this.param;
+							var retFunc1=function(dataCities){
+
+
+								var cityObj1=globalTools.verify(dataCities);
+								var lengo2=cityObj1.returnObj.length;
+								$("#"+_this.cityElem).empty();
+								var f1=""
+								for(var r=0;r<lengo2;r++){
+									if(cityObj1.returnObj[r].city==_this.param1){
+										f1="selected";
+									}
+									$("#"+_this.cityElem).append("<option "+f1+">"+cityObj1.returnObj[r].city+"</option>");
+									f1="";
+								}
+							}
+							ajaxCallPost(_this.cityObj,retFunc1);
+
+							if(_this.addChangeEffect=="true"){
+								$("#"+_this.stateElem).on("change",function(){
+									
+									var statev=$(this).val()+"";
+
+									if(statev!="Select" && statev!="All"){
+										
+										_this.cityObj.job="citySelect_atomic";
+										_this.cityObj.dbase="states";
+										_this.cityObj.val=statev;
+										var retFunc1=function(dataCities){
+											var cityObj1=globalTools.verify(dataCities);
+											var lengo2=cityObj1.returnObj.length;
+											$("#"+_this.cityElem).empty();
+											if(_this.selectElem=='true'){
+												$("#"+_this.cityElem).append("<option value='Select'>- Select -</option>");
+											}
+											for(var r=0;r<lengo2;r++){
+												$("#"+_this.cityElem).append("<option>"+cityObj1.returnObj[r].city+"</option>")
+											}
+
+										}
+										ajaxCallPost(_this.cityObj,retFunc1);
+
+									}else{
+										//alert("select")
+									}
+								})
+
+							}
+						}
+						ajaxCallPost(stateObj,retFunc);
+					break;
+				}
+			}
+
+			static getCites(state,elem,selector,returnFunc){
+				switch(selector){
+					default:
+						var model2={};
+						model2.job="atomic_selectAll";
+						model2.dbase="states";
+						model2.uID=global.userObj.agape_profile_memberID
+						model2.ob="where state_full='"+state+"' order by city asc";
+						model2.uniqueSQL=" distinct city";
+						var funk=function(data){
+							
+							switch(elem){
+								case 'none':
+								break;
+
+								default:
+									var f=globalTools.verify(data);
+						
+									var gleng=f.returnObj.length;
+
+									for(var k=0;k<gleng;k++){
+										var t=f.returnObj[k].city
+										if(isNaN(t)){
+											$("#"+elem).append("<option value='"+f.returnObj[k].city+"'>"+f.returnObj[k].city+"</option>")
+										}else{
+											
+										}
+										
+									}
+
+									if(returnFunc){
+										if(returnFunc!="none"){
+											returnFunc();
+										}
+
+									}
+						
+									//$("#"+elem).append("<option value='"++"'>"++"</option>")
+								break;
+							}
+
+							return data;
+
+						}
+						ajaxCallPost(model2,funk);
+					break;
+
+				}
+
+				
+			}
+
+
+			addOption(){
+
+				switch(_this.position){
+					case 'prepend':
+						$("#"+_this.stateElem).prepend(_this.option);
+
+					break;
+
+					case 'append':
+						$("#"+_this.stateElem).append(_this.option);
+
+					break;
+
+				}
+			}
+
+
+			addchangeFunction(){
+				if(_this.retFunc){
+					_this.retFunc();
+				}
+			}
+
+		}
+
+
+
+
+		function lForms(){
+
+			//Function for loading form fields as we as options
+			  for(var g=18;g<91;g++){
+			    $("#agape_profile_age").append("<option value="+g+">"+g+"</option>")
+			  }
+
+			for(i=0;i<formObj.fields.length;i++){
+				if(formObj.fields[i].quesType=="select"){
+					if($("#"+formObj.fields[i].col)){
+
+						for(var key in formObj.fields[i].quesParams){
+							$("#"+formObj.fields[i].col).append("<option>"+formObj.fields[i].quesParams[key]+"</option>")
+						}
+
+
+
+						/*_.each(formObj.fields[i].quesParams,function(value2,b){
+							switch(value2){
+								case 'records':
+									_.each(formObj.fields[i].records,function(value3,index3){
+										var val=value3;
+										if(index3==(formObj.fields[i].records.length-1)){
+											val=val+"+";
+										}else{
+											var gg=parseInt(formObj.fields[i].records[index3+1])-1
+											val=val+"-"+gg;
+										}
+										$("#"+formObj.fields[i].col).append("<option value="+val+">"+val+"</option>")
+
+									})
+									
+								break;
+								
+								default:
+								if(value2!="Not Answered" && value2!="Not Important"){
+									$("#"+formObj.fields[i].col).append("<option>"+value2+"</option>")
+								}
+									
+									
+								break;
+							
+							}
+						
+						})*/
+								
+					}
+					if(formObj.fields[i].basicOptions){
+						$("#"+formObj.fields[i].col).parent().prev().children().eq(1).children().eq(1).html(formObj.fields[i].basicOptions.searchOpts);
+						var str1="search"+formObj.fields[i].basicOptions.searchOpts;
+						
+						$("#"+formObj.fields[i].col).parent().prev().children().eq(1).children().eq(1).attr("id",str1)
+						
+					}
+				}
+			}
+
+
+
+
+
+		}

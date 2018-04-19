@@ -7,6 +7,12 @@
 
 
 	switch($_POST['dbase']){
+
+		case 'states':
+			include("Config_files/config1_states.php");
+		break;
+
+
 		default:
 			include("Config_files/config1.php");
 		break;
@@ -83,6 +89,84 @@
 			echo "true**".$ray."**".$sqlString1;
 
 		break;
+
+		 case 'stateSelect_atomic':
+
+	
+			$cntr=0;
+			$dbase=$_POST['dbase'];
+			$sqlString1="select Distinct state, state_full from ".$dbase;
+
+		
+			$result1=mysql_query($sqlString1);
+			$countR= mysql_num_rows($result1);
+
+			$sqlType="select";
+			$addr1="false";
+			$bigPack="";
+			$returnObj=array();	
+			
+			
+			$colnum = mysql_num_fields($result1);
+			while($row = mysql_fetch_assoc($result1)) 
+			{
+				$returnObj[$cntr]=array();
+				for($ctr=0;$ctr<$colnum;$ctr++)
+				{				
+					$tag=mysql_field_name($result1, $ctr);
+					if($row[$tag]!='')
+					{
+						$returnObj[$cntr][$tag] = $row[$tag];					
+					}
+					else
+					{		
+						$returnObj[$cntr][$tag] = 'none';							
+					}	
+				}			
+				$cntr=$cntr+1;
+			}
+			$bigPack['returnObj']=$returnObj;
+			$bigPack['countR']=$countR;
+			$ray=json_encode($bigPack);
+			echo "true**".$ray."**".$sqlString1;
+				
+		 break;
+
+		 	 case 'citySelect_atomic':
+		$val=$_POST['val'];
+		$dbase=$_POST['dbase'];
+	 	$sqlString1="SELECT Distinct city from ". $dbase." where state_full='".$val."' order by city asc";
+	 	$cntr=0;
+
+
+	 	$bigPack="";
+		$returnObj=array();	
+		$result = mysql_query($sqlString1);
+		$countR = mysql_num_rows($result);
+		$colnum = mysql_num_fields($result);
+		while($row = mysql_fetch_assoc($result)) 
+		{
+			$returnObj[$cntr]=array();
+			for($ctr=0;$ctr<$colnum;$ctr++)
+			{				
+				$tag=mysql_field_name($result, $ctr);
+				if($row[$tag]!='')
+				{
+					$returnObj[$cntr][$tag] = $row[$tag];					
+				}
+				else
+				{		
+					$returnObj[$cntr][$tag] = 'none';							
+				}	
+			}			
+			$cntr=$cntr+1;
+		}
+		$bigPack['returnObj']=$returnObj;
+		$bigPack['countR']=$countR;
+		$ray=json_encode($bigPack);
+		echo "true**".$ray."**".$sqlString1;
+
+	 break;
 
 	}
 

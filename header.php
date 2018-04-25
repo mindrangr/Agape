@@ -10,7 +10,11 @@
               <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
             </li>
              <li class="nav-item LogI" style='display:none;' >
-              <a class="nav-link disabled" href="account">Account Settings</a>
+              <a class="nav-link disabled" href="account">Account</a>
+            </li>
+
+            <li class="nav-item LogI" style='display:none;' >
+              <a class="nav-link disabled" href="profile">Profile</a>
             </li>
             <li class="nav-item LogI" style='display:none;' >
               <a class="nav-link disabled" href="#">Messages</a>

@@ -419,7 +419,7 @@ var Objtools=function(){
 
 
 
-				this.userProfileEdit=function(dbase,data,param,vals){
+		this.userProfileEdit=function(dbase,data,param,vals){
 
 					var sendo={}
 					sendo.job="quickJamUpdate_full";
@@ -432,19 +432,12 @@ var Objtools=function(){
 					sendo.kob="where "+param+"="+vals;
 
 					var func=function(datal){
-						
 						global=globalTools.create();
-
-
 						var updaObj=globalTools.verify(datal);
-	
 						global.userObj=updaObj.returnObj[0];
-
 						globalTools.save();
 
 					}
-					
-
 					ajaxCallPost(sendo,func)
 
 

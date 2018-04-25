@@ -256,8 +256,38 @@
 					"quesLabel":"Height",
 					"quesParams":
 						[
-							"Not Answered",
-							"records"
+							"56",
+							"57",
+							"58",
+							"59",
+							"60",
+							"61",
+							"62",
+							"63",
+							"64",
+							"65",
+							"66",
+							"67",
+							"68",
+							"69",
+							"70",
+							"71",
+							"72",
+							"73",
+							"74",
+							"75",
+							"76",
+							"77",
+							"78",
+							"79",
+							"80",
+							"81",
+							"82",
+							"83",
+							"84",
+							"85",
+							"86",
+							"87"
 						],
 						
 						"records":[
@@ -308,8 +338,38 @@
 					"quesLabel":"Height",
 					"quesParams":
 						[
-							"Not Answered",
-							"records"
+							"56",
+							"57",
+							"58",
+							"59",
+							"60",
+							"61",
+							"62",
+							"63",
+							"64",
+							"65",
+							"66",
+							"67",
+							"68",
+							"69",
+							"70",
+							"71",
+							"72",
+							"73",
+							"74",
+							"75",
+							"76",
+							"77",
+							"78",
+							"79",
+							"80",
+							"81",
+							"82",
+							"83",
+							"84",
+							"85",
+							"86",
+							"87"
 						],
 						"records":
 						[
@@ -432,6 +492,7 @@
 					"quesParams":
 						[
 							"Not Answered",
+							"Yes",
 							"Yes, older live away",
 							"Yes, older live at home",
 							"Yes, teens",
@@ -521,7 +582,6 @@
 							"Reading",
 							"Programming",
 							"Flipping properties",
-							"Sex",
 							"Entertaining",
 							"Investing",
 							"Cooking",
@@ -582,8 +642,19 @@
 					"quesLabel":"Your annual salary",
 					"quesParams":
 						[
-							"Not Answered",
-							"records"
+							2000,
+							5000,
+							10000,
+							15000,
+							25000,
+							50000,
+							100000,
+							250000,
+							500000,
+							1000000,
+							2500000,
+							5000000,
+							10000000
 						],
 					"records":
 						[
@@ -614,8 +685,19 @@
 					"quesLabel":"Your annual salary",
 					"quesParams":
 						[
-							"Not Answered",
-							"records"
+							2000,
+							5000,
+							10000,
+							15000,
+							25000,
+							50000,
+							100000,
+							250000,
+							500000,
+							1000000,
+							2500000,
+							5000000,
+							10000000
 						],
 					"records":
 						[
@@ -953,6 +1035,7 @@
 					"quesParams":
 						[
 							"Not Answered",
+							"Yes",
 							"Yes, older live away",
 							"Yes, older live at home",
 							"Yes, teens",

@@ -5,17 +5,18 @@
 	include("../Config_files/config1.php");
 	date_default_timezone_set('America/New_York');
 
-	function  login($uname,$pword){
+	function login($uname,$pword){
 
 	 	$sqlString1="select * from agape_profile where agape_profile_username='".$uname."' and agape_profile_password='".$pword."'";
 
-	 	//echo $sqlString1;
+	 	
 	 	$cntr=0;
 	 	$returnObj=array();
 
  		$result1 = mysql_query($sqlString1);
 		$countR = mysql_num_rows($result1);
-
+		
+	
 		if($countR>0){
 			$global=array();
 			$global['navFunc']="LoggedOut";
@@ -23,6 +24,7 @@
 			$colnum = mysql_num_fields($result1);
 			while($row = mysql_fetch_assoc($result1)) 
 			{
+				
 				$returnObj[$cntr]=array();
 				for($ctr=0;$ctr<$colnum;$ctr++)
 				{				
@@ -49,7 +51,7 @@
 			$bigPack['countR']=$countR;
 			$ray=json_encode($bigPack);
 
-
+		
 
 
 			$global['userObj']=$returnObj[0];
@@ -89,22 +91,22 @@
 				$errStrg=mysqli_error($con);
 				if(stripos($errStrg,"Duplicate")!==false){
 					// "Duplicate record<br>";
-					//header("location: ../community?returnVal=sessionMatch");
-					echo "wanker";
+					header("location: ../community?returnVal=sessionMatch");
+					//echo "wanker";
 				}else{
 					
 					//echo "Correct insertion<br>";
 				}
-				echo 1;
+				
+	
 			}else{
-				echo 2;
+				
 				$insrt=mysqli_query($con,$sqlStrg);
 				$updSqlStr="update agape_profile set agape_profile_lastLogin='".$lk."'";
 				$upsrt=mysqli_query($con,$updSqlStr);
 				$cookie_name = "agapeGUID";
 				$cookie_value = $d;
 				setcookie($cookie_name, $cookie_value, 0, "/"); // 86400 = 1 day
-				
 				
 				header("location: ../account?uname=".$returnObj[0]["agape_profile_memberID"]);
 
@@ -113,9 +115,12 @@
 		}else{
 		
 				
-			header("location: ../home?login=bad");
+			//header("location: ../home?login=bad");
 		}
 
+		echo 5555;
+		die();
+			
 	 }
 
 	login($username,$password);

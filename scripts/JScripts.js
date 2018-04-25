@@ -198,11 +198,7 @@ function getOnlineUsers(b1){
 	var ext=global.baseUrl;
 	//userOnline.uID=global.userObj.agape_profile_memberID;
 	var repFunk=function(data){
-		console.log(888888)
-		console.log(data)
 		var dataSet=globalTools.verify(data);
-		console.log(888888)
-
 		if(dataSet.countR>0){
 			$("#usersOnline").show();
 			global.userListMax=dataSet.countR;
@@ -348,6 +344,26 @@ function slideUsers(){
 }
 
 
+
+
+	function calcUsers(){
+		var g=global.userListMax;
+		var b=g/25
+		b=parseInt(b)
+		if(g%25>0){
+			b=b+1;
+		}
+		var elem1=$("#listUsersOnlinePage")[0];
+		TweenMax.to(elem1,.4,{css:{top:0}})
+		if(global.userListCnt<b){
+			global.userListCnt=parseInt(global.userListCnt)+1;
+			getOnlineUsers(global.userListCnt)
+		}else{
+			getOnlineUsers(0)
+		}
+	}
+
+
 function fademessg(elem,mess){
 	elem.innerHTML=mess;
 	TweenMax.to(elem,.5,{css:{opacity:1},onComplete:function(){
@@ -363,6 +379,34 @@ function loadPageFormData(val){
 		if($("#"+key)){
 			$("#"+key).val(val[key])
 		}
+
+		if(key=="agape_profile_opts" || key=="agape_profile_recreation"){
+			
+
+			var arr=$.parseJSON(val[key]);
+			
+			
+			var indx=arr.length;
+
+			for(var f=0;f<indx;f++){
+				var id = arr[f]+"";
+				id=id.replace(/ /g, "_");
+				id = id.replace(/\./g,"");
+				id = id.replace(/\!/g,"");
+				id = id.replace(/\#/g,"");
+				if($("#"+id)){
+					$("#"+id).prop('checked',true);
+
+				}
+			}
+
+			
+		}
+
+
+
+
+
 		
 	}
 
@@ -628,62 +672,107 @@ class stateElem{
 		function lForms(){
 
 			//Function for loading form fields as we as options
-			  for(var g=18;g<91;g++){
-			    $("#agape_profile_age").append("<option value="+g+">"+g+"</option>")
-			  }
+		  	for(var g=18;g<91;g++){
+		    	$("#agape_profile_age").append("<option value="+g+">"+g+"</option>")
+		  	}
 
 			for(i=0;i<formObj.fields.length;i++){
-				if(formObj.fields[i].quesType=="select"){
-					if($("#"+formObj.fields[i].col)){
+				switch(formObj.fields[i].quesType){
 
-						for(var key in formObj.fields[i].quesParams){
-							$("#"+formObj.fields[i].col).append("<option>"+formObj.fields[i].quesParams[key]+"</option>")
-						}
+					case 'select':
+						if(formObj.fields[i].quesType=="select"){
 
 
+							switch(formObj.fields[i].col){
+								case 'agape_profile_height':
+									for(var key in formObj.fields[i].quesParams){
+										var hgt=parseInt(formObj.fields[i].quesParams[key]/12);
+										var rd=parseInt(formObj.fields[i].quesParams[key]%12)
+										hgt=hgt+"'"+rd;
+										$("#"+formObj.fields[i].col).append("<option value="+formObj.fields[i].quesParams[key]+">"+hgt+"</option>")
+									}
 
-						/*_.each(formObj.fields[i].quesParams,function(value2,b){
-							switch(value2){
-								case 'records':
-									_.each(formObj.fields[i].records,function(value3,index3){
-										var val=value3;
-										if(index3==(formObj.fields[i].records.length-1)){
-											val=val+"+";
-										}else{
-											var gg=parseInt(formObj.fields[i].records[index3+1])-1
-											val=val+"-"+gg;
-										}
-										$("#"+formObj.fields[i].col).append("<option value="+val+">"+val+"</option>")
-
-									})
-									
 								break;
-								
+
+								case 'agape_partner_height':
+									for(var key in formObj.fields[i].quesParams){
+										var hgt=parseInt(formObj.fields[i].quesParams[key]/12);
+										var rd=parseInt(formObj.fields[i].quesParams[key]%12)
+										hgt=hgt+"'"+rd;
+										$("#"+formObj.fields[i].col).append("<option value="+formObj.fields[i].quesParams[key]+">"+hgt+"</option>")
+									}
+
+								break;
+
+
 								default:
-								if(value2!="Not Answered" && value2!="Not Important"){
-									$("#"+formObj.fields[i].col).append("<option>"+value2+"</option>")
-								}
-									
-									
+
+
+									for(var key in formObj.fields[i].quesParams){
+										$("#"+formObj.fields[i].col).append("<option>"+formObj.fields[i].quesParams[key]+"</option>")
+									}
+
 								break;
-							
+
 							}
-						
-						})*/
+
+						}
+					
+
+					break;
+
+
+					case 'options':
+						switch(formObj.fields[i].col){
+							case 'agape_profile_opts':
+								var idx=formObj.fields[i].quesParams.length;
+								var strg="";
 								
-					}
-					if(formObj.fields[i].basicOptions){
-						$("#"+formObj.fields[i].col).parent().prev().children().eq(1).children().eq(1).html(formObj.fields[i].basicOptions.searchOpts);
-						var str1="search"+formObj.fields[i].basicOptions.searchOpts;
+
+								
+								for(var r=0;r<idx;r++){
+
+									var id = formObj.fields[i].quesParams[r]+"";
+									id=id.replace(/ /g, "_");
+									id = id.replace(/\./g,"");
+									id = id.replace(/\!/g,"");
+									id = id.replace(/\#/g,"");
+									strg=strg+"<span style='display:inline-block;width:120px;'>"+formObj.fields[i].quesParams[r]+"</span><span style='margin-right:7px;display:inline-block;'><input type='checkbox' id='"+id+"' class='profileOptions doNotSelect' value='"+formObj.fields[i].quesParams[r]+"' /></span>"
+								}
+
+								$("#agape_profile_opts").append(strg)
+
+							break;
+
+							case 'agape_profile_recreation':
+
+								var idx=formObj.fields[i].quesParams.length;
+
+								
+								var strg="";
+								for(var r=0;r<idx;r++){
+									var id = formObj.fields[i].quesParams[r]+"";
+									id=id.replace(/ /g, "_");
+									id = id.replace(/\./g,"");
+									id = id.replace(/\!/g,"");
+									id = id.replace(/\#/g,"");
+									strg=strg+"<span style='display:inline-block;width:120px;'>"+formObj.fields[i].quesParams[r]+"</span><span style='margin-right:7px;display:inline-block;'><input type='checkbox' id='"+id+"' class='profileRecreation doNotSelect' value='"+formObj.fields[i].quesParams[r]+"' /></span>"
+								}
+
+								$("#agape_profile_recreation").append(strg)
+							break;
+
+
+						}
 						
-						$("#"+formObj.fields[i].col).parent().prev().children().eq(1).children().eq(1).attr("id",str1)
-						
-					}
+					break;
+
+
+					default:
+					break
+
 				}
 			}
-
-
-
 
 
 		}

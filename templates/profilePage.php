@@ -6,6 +6,28 @@
 
 ?>
 <!Doctype html />
+<style>
+  .profileLabel{
+    color:#c96cbd;
+    float:left;
+    width:160px;
+    font-size:19px;
+
+  }
+
+
+
+  .profileTBoxStyle{
+    width:300px;
+    background-color:#eee;
+    height:40px;
+    float:left;
+    border-radius: 5px;
+    padding:5px;
+
+  }
+
+</style>
 <!--<script src="scripts/jquery-3.2.1.slim.min.js"></script>-->
 <script src="<?php echo $actual_base ?>/scripts/jquery-3.1.1.min.js"></script>  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -51,79 +73,69 @@
 
 
 
-            <div  >
+            
 
-              <div id="loggedInBox" style="width:100%;background-color:#000;margin-top:20px;font-size:20px;color:#eee;padding:10px;margin-bottom:25px;display: none;border-radius:5px;"><div>Welcome: <span id="loginname">Marcus</span></div>
-                <div style="color:red;text-decoration: underline;cursor:pointer;font-size:13px;float:left;width:60px;">Log out</div>
-                <div style="color:lime;text-decoration: underline;cursor:pointer;font-size:13px;float:left;">Messages</div>
-                <div style='clear:both'></div>
-              </div>
-
-              <div style="width:200px;padding:6px;" id="loginNavBox">
-                <label style='color:#c96cbd;text-shadow: 1px 1px #000;font-size: 1.75rem;'>Login</label>
-                <form id="loginForm" method="POST">
-                  <input id="username" name="username" class="form-control mr-sm-2" type="text" style='margin-bottom:10px;' placeholder="username" aria-label="username">
-                  <input id="password" class="form-control mr-sm-2" type="text" style='margin-bottom:10px;' name="password" placeholder="password" aria-label="password">
-                  <div style="float:left;"><button id="login" class="btn btn-outline-success my-2 my-sm-0" type="button"  >Login</button></div>
-                  <div id='logMess' style="float:left;color:red;margin-left:5px;font-weight:bold;"></div>
-                  <div style='clear:both'></div>
-                </form>
-              </div>
-              <div id='usersOnline' class='usersOnline' >
-                <div style="font-family: arial;font-size: 13px;padding:7px;color:#000;" ><div style='float:left;width:140px;'><span id='numUsersOnline' style='text-decoration: underline;cursor:pointer;'></span> users online</div><div style='float:left;'><img id="upArrowUsers" src='images/double-up-arrow.png' style="height:15px;cursor: pointer;display:none;"/></div><div id="userCloseButt" style='float:right;text-decoration: underline;cursor: pointer;'>close</div><div style='clear:both;'></div></div>
-                <div id='listUsersOnline' class="listUsersOnline" >
-                  <div id="listUsersOnlinePage" style='position: absolute;width:100%;top:0px;background-color:#fff;' ></div>
-                  
-                </div>
-            </div>
-          </div>
-
-
+            <?php include 'logBox.php';?>
           
 
 
           </div>
 
-          <div class="col-sm-5">
+          <div id="cnterForm" class="col-sm-6">
 
 
-            <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px;'>Firstname</div>
+            <!--<div style="margin-top:10px;">
+              <div class='profileLabel'>Firstname</div>
               <input id="agape_profile_firstname" class="form-control" style="width:300px;background-color: #eee;" type="text" placeholder="First name" aria-label="Search">
               <div style="clear:both;"></div>
             </div>
 
             <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>Lastname</div>
+              <div class='profileLabel'>Lastname</div>
               <input id="agape_profile_lastname" class="form-control" style="width:300px;background-color: #eee;" type="text" placeholder="Last Name" aria-label="Search">
               <div style="clear:both;"></div>
             </div>
 
             <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>Email</div>
+              <div class='profileLabel'>Email</div>
               <input id="agape_profile_email" class="form-control" style="width:300px;background-color: #eee;" type="text" placeholder="Email" aria-label="Search">
+              <div style="clear:both;"></div>
+            </div>-->
+
+             <div style="margin-top:10px;">
+              <div class='profileLabel'>Your intentions</div>
+              <div class="profileTBoxStyle">
+               
+                <select  id="agape_profile_intentions" style="width:280px;border:none;background-color: #eee;" >
+                </select>
+              </div>
+              <div style="float:left;color:red;margin-left:4px;">*</div>
               <div style="clear:both;"></div>
             </div>
 
+
+
             <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>State</div>
-              <div style="width:300px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
+              <div class='profileLabel'>State</div>
+              <div class="profileTBoxStyle">
                
                 <select  id="agape_profile_state" style="width:280px;border:none;background-color: #eee;" >
                 </select>
               </div>
+              <div style="float:left;color:red;margin-left:4px;">*</div>
               <div style="clear:both;"></div>
             </div>
 
 
              <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>City</div>
-              <div style="width:300px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
+              <div class='profileLabel'>City</div>
+              <div class="profileTBoxStyle">
                
                 <select  id="agape_profile_city" style="width:280px;border:none;background-color: #eee;" >
                   <option>Select</option>
                 </select>
               </div>
+              <div style="float:left;color:red;margin-left:4px;">*</div>
               <div style="clear:both;"></div>
             </div>
 
@@ -131,8 +143,8 @@
 
 
             <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>Gender</div>
-              <div style="width:300px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
+              <div class='profileLabel'>Gender</div>
+              <div class="profileTBoxStyle">
                
                 <select  id="agape_profile_gender" style="width:280px;border:none;background-color: #eee;" >
                   <option>Male</option>
@@ -146,8 +158,8 @@
 
 
              <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>Race</div>
-              <div style="width:300px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
+              <div class='profileLabel'>Race</div>
+              <div class="profileTBoxStyle">
                
                 <select  id="agape_profile_race" style="width:280px;border:none;background-color: #eee;" >
                 </select>
@@ -160,8 +172,8 @@
 
 
             <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>Age</div>
-              <div style="width:300px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
+              <div class='profileLabel'>Age</div>
+              <div class="profileTBoxStyle">
                
                 <select  id="agape_profile_age" style="width:280px;border:none;background-color: #eee;" >
                 </select>
@@ -171,8 +183,8 @@
             </div>
 
             <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>Religion</div>
-              <div style="width:300px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
+              <div class='profileLabel'>Religion</div>
+              <div class="profileTBoxStyle">
                
                 <select  id="agape_profile_religion" style="width:280px;border:none;background-color: #eee;" >
                   
@@ -182,23 +194,46 @@
             </div>
 
             <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>Body type</div>
-              <div style="width:300px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
+              <div class='profileLabel'>Body type</div>
+              <div class="profileTBoxStyle">
                
-                <select  id="agape_profile_bodyType" style="width:280px;border:none;" >
+                <select  id="agape_profile_bodyType" style="width:280px;border:none;background-color: #eee;" >
                   
                 </select>
               </div>
               <div style="clear:both;"></div>
             </div>
 
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Education</div>
+              <div class="profileTBoxStyle">
+             
+                <select  id="agape_profile_education" style="width:280px;border:none;background-color: #eee;" >
+                </select>
+              </div>
+              
+              <div style="clear:both;"></div>
+            </div>
 
 
             <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>Height</div>
-              <div style="width:300px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
+              <div class='profileLabel'>Income</div>
+              <div class="profileTBoxStyle">
+             
+                <select  id="agape_profile_salary" style="width:280px;border:none;background-color: #eee;" >
+                </select>
+              </div>
+              
+              <div style="clear:both;"></div>
+            </div>
+
+
+
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Height</div>
+              <div class="profileTBoxStyle">
                
-                <select  id="agape_profile_height" style="width:280px;border:none;" >
+                <select  id="agape_profile_height" style="width:280px;border:none;background-color: #eee;" >
                   
                 </select>
               </div>
@@ -209,47 +244,245 @@
   
 
             <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>Political affiliation</div>
-              <div style="width:300px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
+              <div class='profileLabel'>Political affiliation</div>
+              <div class="profileTBoxStyle">
                
-                <select  id="agape_profile_political" style="width:280px;border:none;" >
+                <select  id="agape_profile_political" style="width:280px;border:none;background-color: #eee;" >
                   
                 </select>
               </div>
               <div style="clear:both;"></div>
             </div>
-            <div style="text-decoration: underline;color:#eee;width:210px;margin: auto;font-size:20px;padding:8px;">Partner profile</div>
+
+
             <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>Gender seeking</div>
-              <div style="width:300px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
+              <div class='profileLabel'>Children</div>
+              <div class="profileTBoxStyle">
                
-                <select  id="agape_partner_gender" style="width:280px;border:none;" >
+                <select  id="agape_profile_children" style="width:280px;border:none;background-color: #eee;" >
+                  
+                </select>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+
+
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Brief Description of yourself</div>
+              <div class="profileTBoxStyle" style="height:110px;">
+               
+                <textarea  id="agape_profile_description" style="width:280px;border:none;height:100px;background-color: #eee;" >
+                  
+                </textarea>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+
+
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Brief Description of desired candidate</div>
+              <div class="profileTBoxStyle" style="height:110px;">
+               
+                <textarea  id="agape_profile_partner_description" style="width:280px;border:none;height:100px;background-color: #eee;" >
+                  
+                </textarea>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+
+
+
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Commitment traits you expect to display</div>
+              <div class="profileTBoxStyle" style="height:230px;">
+               
+                <div  id="agape_profile_opts" style="border:none;background-color: #eee;" >
+                  
+                </div>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+
+
+
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Hobbies</div>
+              <div class="profileTBoxStyle" style="height:490px;">
+               
+                <div  id="agape_profile_recreation" style="border:none;background-color: #eee;" >
+                  
+                </div>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+
+
+
+
+
+
+
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Do you drink alcohol?</div>
+              <div class="profileTBoxStyle">
+               
+                <select  id="agape_profile_alcohol" style="width:280px;border:none;background-color: #eee;" >
+                  
+                </select>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+
+
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Do you use drugs?</div>
+              <div class="profileTBoxStyle">
+               
+                <select  id="agape_profile_drugs" style="width:280px;border:none;background-color: #eee;" >
+                  
+                </select>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+
+
+            
+
+
+            <div style="text-decoration: underline;color:#eee;width:210px;margin: auto;font-size:20px;padding:8px;">Candidate profile</div>
+            
+
+
+
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Gender seeking</div>
+              <div class="profileTBoxStyle">
+               
+                <select  id="agape_partner_gender" style="width:280px;border:none;background-color: #eee;" >
                   <option>Male</option>
                   <option>Female</option>
                
                 </select>
               </div>
+              <div style="float:left;color:red;margin-left:4px;">*</div>
+              <div style="clear:both;"></div>
+            </div>
 
-              <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>Partner race</div>
-              <div style="width:300px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
-               
+
+
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Candidate race</div>
+              <div class="profileTBoxStyle">
+             
                 <select  id="agape_partner_race" style="width:280px;border:none;background-color: #eee;" >
                 </select>
               </div>
-              <div style="float:left;color:red;margin-left:4px;">*</div>
-              <div style="clear:both;"></div>
-            </div>
-              <div style="float:left;color:red;margin-left:4px;">*</div>
+              
               <div style="clear:both;"></div>
             </div>
 
 
 
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Candidate optimal height</div>
+              <div class="profileTBoxStyle">
+             
+                <select  id="agape_partner_height" style="width:280px;border:none;background-color: #eee;" >
+                </select>
+              </div>
+              
+              <div style="clear:both;"></div>
+            </div>
+
+
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Candidate optimal body type</div>
+              <div class="profileTBoxStyle">
+             
+                <select  id="agape_partner_bodyType" style="width:280px;border:none;background-color: #eee;" >
+                </select>
+              </div>
+              
+              <div style="clear:both;"></div>
+            </div>
 
 
 
-             <div ><button id="updateButton" class="btn btn-outline-success my-2 my-sm-0" type="button"  >Update</button></div>
+
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Candidate politics</div>
+              <div class="profileTBoxStyle">
+             
+                <select  id="agape_partner_political" style="width:280px;border:none;background-color: #eee;" >
+                </select>
+              </div>
+             
+              <div style="clear:both;"></div>
+            </div>
+
+
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Candidate religion</div>
+              <div class="profileTBoxStyle">
+             
+                <select  id="agape_partner_religion" style="width:280px;border:none;background-color: #eee;" >
+                </select>
+              </div>
+              
+              <div style="clear:both;"></div>
+            </div>
+
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Candidate children</div>
+              <div class="profileTBoxStyle">
+               
+                <select  id="agape_partner_children" style="width:280px;border:none;background-color: #eee;" >
+                  
+                </select>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Candidate education</div>
+              <div class="profileTBoxStyle">
+             
+                <select  id="agape_partner_education" style="width:280px;border:none;background-color: #eee;" >
+                </select>
+              </div>
+              
+              <div style="clear:both;"></div>
+            </div>
+
+              
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Candidate alcohol use</div>
+              <div class="profileTBoxStyle">
+               
+                <select  id="agape_partner_alcohol" style="width:280px;border:none;background-color: #eee;" >
+                  
+                </select>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+
+
+            <div style="margin-top:10px;">
+              <div class='profileLabel'>Candidate drug use</div>
+              <div class="profileTBoxStyle">
+               
+                <select  id="agape_partner_drugs" style="width:280px;border:none;background-color: #eee;" >
+                  
+                </select>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+
+
+
+
+
+             <div style="margin-top:10px;"><button id="updateButton" class="btn btn-outline-success my-2 my-sm-0" type="button"  >Update</button></div>
 
 
 
@@ -257,7 +490,7 @@
 
 
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-2">
           </div>
         </div>
 
@@ -318,7 +551,7 @@
   turnOnNav();
 
   uname=global.userObj.agape_profile_memberID;
-   lForms();
+  lForms();
   var Obj1={}
   Obj1.job="selectAll";
   Obj1.dbase="agape_profile"
@@ -334,7 +567,54 @@
     loadPageFormData(global.userObj)
 
   }
-  ajaxCallPost(Obj1,rFunk)
+  ajaxCallPost(Obj1,rFunk);
+
+
+
+
+  $("#updateButton").unbind("click").on("click",function(){
+    var updateObj={}
+    $("#cnterForm :input").each(function(){
+      if($(this).val()!="Not Answered"  && $(this).attr("id")!="updateButton" && $(this).attr("id")!==undefined && $(this).hasClass("doNotSelect")==false){
+
+        updateObj[$(this).attr("id")]=$(this).val();
+      }
+    })
+    var h=[]
+    var f=$(".profileOptions").each(function(){
+      if($(this).is(" :checked")){
+        if($(this).val()!="Not Answered"){
+           h.push($(this).val())
+        }
+       
+      }
+      updateObj.agape_profile_opts=JSON.stringify(h);
+      
+    })
+
+
+
+    var h=[]
+    var f=$(".profileRecreation").each(function(){
+      if($(this).is(" :checked")){
+        if($(this).val()!="Not Answered"){
+           h.push($(this).val())
+        }
+       
+      }
+      updateObj.agape_profile_recreation=JSON.stringify(h);
+      
+    })
+
+    //console.log(updateObj)
+    //console.log(global.userObj.agape_profile_memberID)
+
+
+    globalTools.userProfileEdit("agape_profile",updateObj,"agape_profile_memberID",global.userObj.agape_profile_memberID);
+
+
+  
+  })
 
 
   for(var g=18;g<91;g++){

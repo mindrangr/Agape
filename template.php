@@ -38,7 +38,7 @@ include("Config_files/_shared_config.php");
  
 <body style="padding-top:70px;background-color: #2f4774;">
  
- <?php include '../header.php';?>
+ <?php include 'header.php';?>
 
     
 
@@ -50,34 +50,13 @@ include("Config_files/_shared_config.php");
       <div class="overF">
         <div class="row">
           <div class="col-sm-3 tPaddMobileLogin">
-              <div style="width:200px;padding:6px;">
-                <label style='color:#c96cbd;text-shadow: 1px 1px #000;font-size: 1.75rem;'>Login</label>
-                <form id="loginForm" method="POST">
-                  <input id="username" name="username" class="form-control mr-sm-2" type="text" style='margin-bottom:10px;' placeholder="username" aria-label="username">
-                  <input id="password" class="form-control mr-sm-2" type="text" style='margin-bottom:10px;' name="password" placeholder="password" aria-label="password">
-                  <div style="float:left;"><button id="login" class="btn btn-outline-success my-2 my-sm-0" type="button"  >Login</button></div>
-                  <div id='logMess' style="float:left;color:red;margin-left:5px;font-weight:bold;"></div>
-                  <div style='clear:both'></div>
-                </form>
-              </div>
-
-
-              
-              <div id='usersOnline' class='usersOnline' >
-                <div style="font-family: arial;font-size: 13px;padding:7px;color:#000;" ><div style='float:left;width:140px;'><span id='numUsersOnline' style='text-decoration: underline;cursor:pointer;'></span> users online</div><div style='float:left;'><img id="upArrowUsers" src='images/double-up-arrow.png' style="height:15px;cursor: pointer;display:none;"/></div><div id="userCloseButt" style='float:right;text-decoration: underline;cursor: pointer;'>close</div><div style='clear:both;'></div></div>
-                <div id='listUsersOnline' class="listUsersOnline" >
-                  <div id="listUsersOnlinePage" style='position: absolute;width:100%;top:0px;background-color:#fff;' ></div>
-                  
-                </div>
-            </div>
+             <?php include 'templates/logBox.php';?>
           </div>
           <script>
             var t = window.location.href+"";
 
-            
-
             if(t.search(/login/)!=-1){
-              //var f=
+            
               var t1=t.split("?");
               var t2=t1[1]+"";
               t2=t2.split("=")
@@ -155,11 +134,7 @@ include("Config_files/_shared_config.php");
   </div>
 
 
-
-
-
-
-<?php include 'footer.html';?>
+  <?php include 'footer.html';?>
 
  
 </body>

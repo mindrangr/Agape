@@ -1,8 +1,6 @@
 <?php
   session_start();
-
   include("Config_files/_shared_config.php");
-
 ?>
 <!Doctype html />
   <script src="<?php echo $actual_base ?>/scripts/jquery-3.1.1.min.js"></script>  
@@ -63,14 +61,12 @@
                 case 'bad':
                   msg="bad login"
                 break;
-
               }
               fademessg($('#logMess')[0],msg);
             }else{
 
             }
 
-            
 
           </script>
           <div class="col-sm-3">
@@ -166,42 +162,10 @@
       <div class="col-sm-3"></div>
     </div>
   </div>
-
-
   <?php include 'footer.html';?>
  
 </body>
 
 <script>
-  
-  var globalTools = new Objtools();
-  global=globalTools.create();
-  var kView=Verifyuser();
-
-  if(kView=='true'){
-    turnOnNav();
-  }else{
-    turnOffNav();
-    $("#login").on("click",function(){
-      login();
-    })
-  }
-
-  var threadTool = new ThreadWheel();
   getSponsors();
-  getOnlineUsers(global.userListCnt);
-
-  var w1 = new Worker("web_workers/mainWebWorker.js");
-  w1.onmessage=function(data){
-    switch(data.data.type){
-      case 'rotateUsers':
-        slideUsers();
-      break;
-
-
-      default:
-      break;
-    }
-  }
-
 </script>

@@ -6,31 +6,32 @@
         </button>
         <div class="collapse navbar-collapse hamburgerStyle" id="navbarCollapse" >
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+
+            <li id="homeli" class="nav-item active">
               <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
             </li>
-             <li class="nav-item LogI" style='display:none;' >
+             <li id="Accountli" class="nav-item LogI" style='display:none;' >
               <a class="nav-link disabled" href="account">Account</a>
             </li>
 
-            <li class="nav-item LogI" style='display:none;' >
+            <li id="profileli" class="nav-item" style='display:none;' >
               <a class="nav-link disabled" href="profile">Profile</a>
             </li>
-            <li class="nav-item LogI" style='display:none;' >
-              <a class="nav-link disabled" href="#">Messages</a>
+            <li id="searchli" class="nav-item" style='display:none;' >
+              <a class="nav-link disabled" href="#">Search</a>
             </li>
 
-            <li class="nav-item LogI" style='display:none;'>
+            <li id="friendsli" class="nav-item LogI" style='display:none;'>
               <a class="nav-link disabled" href="#">Friends</a>
             </li>
-            <li class="nav-item">
+            <li id="communityli" class="nav-item">
               <a class="nav-link disabled" href="#">Community</a>
             </li>
-            <li class="nav-item">
+            <li id="contactusli" class="nav-item">
               <a class="nav-link disabled" href="#">Contact Us</a>
             </li>
 
-            <li class="nav-item">
+            <li id="Aboutusli" class="nav-item">
               <a class="nav-link disabled" href="aboutus">About Us</a>
             </li>
           </ul>
@@ -46,3 +47,14 @@
           <div class='adverImageDiv' ><img src="advertiseImages/flashad1.gif" class='adverImage' /></div>
       </div>
     </header>
+    <script>
+
+      var timeObj={
+        fullMonthsName: ["January","February","March","April","May","June","July","August","September","October","November","December"],
+        fullDay:[31,28,31,30,31,30,31,31,30,31,30,31],
+        halfMonthsName: ["Jan","Feb","Mar","Apri","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+        days:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+      }
+
+
+    </script>

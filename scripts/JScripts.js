@@ -1,6 +1,9 @@
 
 var globalTools = new Objtools();
 var global=globalTools.create();
+var g=sessionStorage.getItem("global")
+
+var threadTool = new ThreadWheel();
 
 // gets sponsors and loads them to page
 function getSponsors(){
@@ -9,8 +12,8 @@ function getSponsors(){
 	sendObj.dbase="agape_sponsors";
 	sendObj.kob=" limit 0,4";
 	var ext=global.baseUrl
-	ext="spitit"
 	var funct1=function(data){
+
 	 	datu=globalTools.verify(data);
 	 	global.userObj.sponsorList=datu.returnObj;
 	 	globalTools.save();
@@ -152,6 +155,12 @@ function turnOnNav(){
 	})
 	$("#loginNavBox").hide();
 	$("#loggedInBox").show();
+
+	if(global.userObj.agape_profile_romanceAccount=="Active"){
+    	$("#profileli").show();
+    	$("#searchli").show();
+  	}
+
 }
 
 
@@ -159,18 +168,25 @@ function turnOffNav(){
 	$(".LogI").each(function(){
 		$(this).hide();
 	})
+	$("#loginNavBox").show();
+	$("#loggedInBox").hide();
+	$("#profileli").hide();
+    $("#searchli").hide();
 }
 
 function login()
 {
+	
 	var username=$('#username').val();
 	var password=$('#password').val();
 	if(username!="" && password!="")	
 	{	
+		
 		$("#loginForm").attr("action","templates/logForm.php").submit();
 	}
 	else
 	{				
+		
 		if(username=="")
 		{
 			$('#username').css('background-color','#cccccc');		
@@ -181,6 +197,8 @@ function login()
 			$('#password').css('background-color','#cccccc');
 		}	
 	}
+
+
 
 }
 
@@ -776,3 +794,218 @@ class stateElem{
 
 
 		}
+
+
+		function ActivateRAevt(){
+			console.log(global)
+
+    $("#ActivateRA").unbind("click").click(function(){
+        if($(this).is(":checked")){
+          $("#profileli").show();
+          $("#searchli").show();
+
+          var mod1={}
+          mod1.job="quickJamUpdate_full"
+          mod1.dbase="agape_profile"
+          mod1.param="agape_profile_memberID"
+          mod1.vals=global.userObj.agape_profile_memberID;
+          mod1.selFunc="selectFunc"
+          mod1.kob=" where agape_profile_memberID="+mod1.vals
+          mod1.obj={};
+          mod1.obj.agape_profile_romanceAccount="Active";
+          global.navSet.romance="on"
+          var rFunk=function(datal){
+            var user=globalTools.verify(datal);
+            global.userObj=user.returnObj[0];
+            globalTools.save()
+          }
+          ajaxCallPost(mod1,rFunk)
+        }else{
+         
+          $("#profileli").hide();
+          $("#searchli").hide();
+          var mod1={}
+          mod1.job="quickJamUpdate_full"
+          mod1.dbase="agape_profile"
+          mod1.param="agape_profile_memberID"
+          mod1.vals=global.userObj.agape_profile_memberID;
+           mod1.selFunc="selectFunc"
+          mod1.kob=" where agape_profile_memberID="+mod1.vals
+          mod1.obj={};
+          mod1.obj.agape_profile_romanceAccount="InActive";
+          global.navSet.romance="off"
+          var rFunk=function(datal){
+            var user=globalTools.verify(datal);
+            global.userObj=user.returnObj[0];
+            globalTools.save()
+          }
+          ajaxCallPost(mod1,rFunk)
+        }
+      })
+
+
+
+  }
+
+
+
+  	function getTime(dateVal,time,native)
+    {
+	
+		var currentTime;
+		var hours;
+		var minutes;
+		var mon;
+		var day;
+		var FullYear ;
+		var presTime;
+		
+	
+	
+		var browserDetect=navigator.userAgent;
+		var bd=browserDetect.search(/MSIE/i);	
+		if(bd!=-1)
+		{
+			
+			var firstBreak=dateVal.split(" ");		
+			var ieObj=firstBreak[0].split("-");			
+			day=parseInt(ieObj[2])
+			mon=parseInt(ieObj[1])-1
+			FullYear=ieObj[0];
+			
+			tme=firstBreak[1].split(":")
+			
+			minutes=parseInt(tme[1]);
+			hours=parseInt(tme[0]);
+		
+					
+		
+		}
+
+	
+		bd=browserDetect.search(/Chrome/i);	
+		if(bd!=-1)
+		{
+			currentTime = new Date(dateVal)
+			hours = currentTime.getHours()
+			minutes = currentTime.getMinutes()
+			mon = currentTime.getMonth()
+			day = currentTime.getDate()
+			FullYear = currentTime.getFullYear();	
+		}
+		
+		
+		bd=browserDetect.search(/Firefox/i);	
+		if(bd!=-1)
+		{
+		
+		if(native!='Firefox'){
+			var f=dateVal+""
+			var format=f.split(" ");
+			var tre=format[0]+""
+			var formatedDate = tre.split("-");
+			var newDateString= formatedDate[1]+"/"+formatedDate[2]+"/"+formatedDate[0]+" "+format[1]
+		}else{
+				var f=dateVal+""
+				var format=f.split(" ");
+			
+			
+				switch(format[1])
+	       	{
+			       case 'Jan':
+			           mon = 1
+			           break;
+			       case 'Feb':
+			           mon = 2
+			           break;
+			       case 'Mar':
+			       mon = 3
+			       break;
+
+			       case 'Apr':
+			       mon = 4
+			       break;
+
+			       case 'May':
+			       mon = 5
+			       break;
+
+			       case 'Jun':
+			       mon = 6
+			       break;
+
+			       case 'Jul':
+			       mon = 7
+			       break;
+
+			       case 'Aug':
+			       mon = 8
+			       break;
+
+			       case 'Sep':
+			       mon = 9
+			       break;
+
+			       case  'Oct':
+			       mon = 10
+			       break;
+
+			       case 'Nov':
+			       mon = 11
+			       break;
+
+			       case 'Dec':
+			       mon = 12
+			       break;
+
+	       	}
+		
+			var newDateString= mon+"/"+format[2]+"/"+format[3]+" "+format[4];
+			
+		}
+	
+
+		currentTime = new Date(newDateString);
+		hours = currentTime.getHours()
+		minutes = currentTime.getMinutes()
+		mon = currentTime.getMonth()
+		day = currentTime.getDate()
+		FullYear = currentTime.getFullYear();	
+		
+	}
+
+	mon=timeObj.fullMonthsName[mon];
+	
+    var suffix = "AM";	
+	if(time=="true")
+	{
+    if (hours >= 12)
+        {
+            suffix = "PM";
+            hours = hours - 12; 
+        } 
+		
+		if (hours == 0)
+        {
+            hours = 12; 
+        } 
+			
+
+		if (minutes < 10)
+		{
+			minutes = "0" + minutes
+		} 	
+	
+
+		presTime=mon+" "+day+", "+FullYear+" "+hours+":"+minutes+" "+suffix;
+		
+	}
+	else
+	{
+		presTime=mon+" "+day+", "+FullYear;
+
+	}
+
+    
+    return presTime;
+} 

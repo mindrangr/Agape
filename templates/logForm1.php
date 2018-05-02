@@ -40,7 +40,6 @@
 				$cntr=$cntr+1;
 				$global['navFunc']="LoggedIn";
 			}
-
 			$dt=date("Y:m:d:h:i:s");
 			$key=$uname;
 			$c=base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $dt, MCRYPT_MODE_CBC, md5(md5($key))));
@@ -48,6 +47,11 @@
 			$returnObj[0]['agape_profile_guid']=$d;
 			$bigPack['returnObj']=$returnObj;
 			$bigPack['countR']=$countR;
+
+
+			
+
+
 			$global['userObj']=$returnObj[0];
 			$global['sendMessage']='true';
 			$global['dataHolder']="";
@@ -69,13 +73,17 @@
 			$global['presidentialObj']="";
 			$global['returnFunction_open']="none";
 			$global['returnFunction_close']="none";
+			
 			$global['returnFunction_go']="true";
+
 			$makeArr=json_decode($global['userObj']['agape_profile_recreation']);
 			$news=makeArrayStrg($makeArr);
-			//$global['userObj']['agape_profile_recreation']=$news
+			//$global['userObj']['agape_profile_recreation']=$news;
+
 			$makeArr=json_decode($global['userObj']['agape_partner_opts']);
 			$news=makeArrayStrg($makeArr);
 			//$global['userObj']['agape_partner_opts']=$news;
+
 			$makeArr=json_decode($global['userObj']['agape_profile_opts']);
 			$news=makeArrayStrg($makeArr);
 			//$global['userObj']['agape_profile_opts']=$news;
@@ -92,23 +100,25 @@
 					//header("location: ../community?returnVal=sessionMatch");
 					//echo "wanker";
 				}else{
+					
 					//echo "Correct insertion<br>";
 				}
 			}else{
+				setcookie("Login", "$ray1", 0, "/");
+				setcookie("burn", "$ray1", 0, "/");  
+				ob_end_flush();
 				$insrt=mysqli_query($con,$sqlStrg);
 				$updSqlStr="update agape_profile set agape_profile_lastLogin='".$lk."'";
 				$upsrt=mysqli_query($con,$updSqlStr);
 				$cookie_name = "agapeGUID";
 				$cookie_value = $d;
-				echo "<script> localStorage.setItem('key', '".$global['userObj']['agape_profile_memberID']."'); location.href='../account' </script>";
-				//echo $ray1;
-				//setcookie("test", $gra, 0, "/");
+				
 				//setcookie($cookie_name, $cookie_value, 0, "/"); // 86400 = 1 day
 				//header("location: ../account");
 			}
 			mysqli_close($con);
 		}else{
-			header("location: ../home?login=bad");
+			//header("location: ../home?login=bad");
 		}
 			
 	 }
@@ -123,9 +133,9 @@
 		$newString="[";
 		for($r=0;$r<$idx;$r++){
 			if($r<($idx-1)){
-				$newString=$newString."'".$val[$r]."',";
+				$newString=$newString."\'".$val[$r]."\',";
 			}else{
-				$newString=$newString."'".$val[$r]."'";
+				$newString=$newString."\'".$val[$r]."\'";
 			}
 
 			

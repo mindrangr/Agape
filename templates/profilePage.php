@@ -70,15 +70,7 @@
       <div class="container" >
         <div class="row"  >
           <div class="col-sm-4 tPaddMobileLogin">
-
-
-
-            
-
             <?php include 'logBox.php';?>
-          
-
-
           </div>
 
           <div id="cnterForm" class="col-sm-6">
@@ -115,7 +107,7 @@
 
 
 
-            <div style="margin-top:10px;">
+            <!--<div style="margin-top:10px;">
               <div class='profileLabel'>State</div>
               <div class="profileTBoxStyle">
                
@@ -137,7 +129,7 @@
               </div>
               <div style="float:left;color:red;margin-left:4px;">*</div>
               <div style="clear:both;"></div>
-            </div>
+            </div>-->
 
 
 
@@ -548,28 +540,17 @@
 <script>
 
   
-  turnOnNav();
+  
 
-  uname=global.userObj.agape_profile_memberID;
-  lForms();
-  var Obj1={}
-  Obj1.job="selectAll";
-  Obj1.dbase="agape_profile"
-  Obj1.kob="where agape_profile_memberID="+uname
-  var threadTool = new ThreadWheel();
-  var rFunk = function(data){
-    var t=data;
-    turnOnNav();
-    var user=globalTools.verify(data);
-    global.userObj=user.returnObj[0];
-    global.navFunc="LoggedIn";
-    globalTools.save();
-    loadPageFormData(global.userObj)
+  $(".nav-item").each(function(){
+  $(this).removeClass("active");
+  $(this).children().eq(0).addClass("disabled")
+  })
+  $("#profileli").addClass("active");
+  $("#profileli").children().eq(0).removeClass("disabled");
 
-  }
-  ajaxCallPost(Obj1,rFunk);
-
-
+ 
+ 
 
 
   $("#updateButton").unbind("click").on("click",function(){
@@ -622,23 +603,12 @@
   }
 
 
-  var stateObj = new stateElem('statesFull',"agape_profile_state","agape_profile_city","true","true",global.userObj.agape_profile_state,global.userObj.agape_profile_city);
 
   getSponsors();
-  var w1 = new Worker("web_workers/mainWebWorker.js");
-  w1.onmessage=function(data){
-    switch(data.data.type){
-      case 'rotateUsers':
-        slideUsers();
-      break;
-
-
-      default:
-      break;
-    }
-  }
+  lForms();
+  loadPageFormData(global.userObj);
   getOnlineUsers(global.userListCnt);
-  var kView=Verifyuser();
+
 
 
     

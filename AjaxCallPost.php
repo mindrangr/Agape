@@ -4,7 +4,7 @@
 		$job=$_POST['job'];
 
 	}
-
+	mysql_set_charset('utf8');
 
 	switch($_POST['dbase']){
 
@@ -46,47 +46,58 @@
 		 	}
 
 
-
+		 	$valpres="false";
 			$result1 = mysql_query($sqlString1);
-			$countR = mysql_num_rows($result1);
-			$colnum = mysql_num_fields($result1);
-			while($row = mysql_fetch_assoc($result1)) 
-			{
-				$returnObj[$cntr]=array();
-				for($ctr=0;$ctr<$colnum;$ctr++)
-				{				
-					$tag=mysql_field_name($result1, $ctr);
-					if($row[$tag]!="")
-					{
-						$returnObj[$cntr][$tag] = $row[$tag];					
+
+			
+
+			if($result1==false){
+				$countR=0;
+			}else{
+				$colnum = mysql_num_fields($result1);
+				$countR = mysql_num_rows($result1);
+				while($row = mysql_fetch_assoc($result1)) 
+				{
+					$returnObj[$cntr]=array();
+					for($ctr=0;$ctr<$colnum;$ctr++)
+					{				
+						$tag=mysql_field_name($result1, $ctr);
+						if($row[$tag]!="")
+						{
+							$returnObj[$cntr][$tag] = $row[$tag];					
+						}
+						else
+						{		
+							$returnObj[$cntr][$tag] = 'none';							
+						}	
+					}			
+					$cntr=$cntr+1;
+					$valpres="true";
+				}
+
+
+
+				if(isset($_POST['Getdetail'])){
+					switch($_POST['Getdetail']){
+						case 'GetCount':
+							$ob2=stripslashes($_POST['ob2']);
+							$sqlString2="select * from ".$kdbase." ".$ob2;
+							$result2 = mysql_query($sqlString2);
+							$countR = mysql_num_rows($result2);
+						
+						break;
 					}
-					else
-					{		
-						$returnObj[$cntr][$tag] = 'none';							
-					}	
-				}			
-				$cntr=$cntr+1;
-			}
-
-
-
-			if(isset($_POST['Getdetail'])){
-				switch($_POST['Getdetail']){
-					case 'GetCount':
-						$ob2=stripslashes($_POST['ob2']);
-						$sqlString2="select * from ".$kdbase." ".$ob2;
-						$result2 = mysql_query($sqlString2);
-						$countR = mysql_num_rows($result2);
-					
-					break;
 				}
 			}
+			
+			
+			
 
 
 			$bigPack['returnObj']=$returnObj;
 			$bigPack['countR']=$countR;
 			$ray=json_encode($bigPack);
-			echo "true**".$ray."**".$sqlString1;
+			echo $valpres."**".$ray."**".$sqlString1;
 
 		break;
 
@@ -132,41 +143,41 @@
 				
 		 break;
 
-		 	 case 'citySelect_atomic':
-		$val=$_POST['val'];
-		$dbase=$_POST['dbase'];
-	 	$sqlString1="SELECT Distinct city from ". $dbase." where state_full='".$val."' order by city asc";
-	 	$cntr=0;
+ 	 	case 'citySelect_atomic':
+			$val=$_POST['val'];
+			$dbase=$_POST['dbase'];
+		 	$sqlString1="SELECT Distinct city from ". $dbase." where state_full='".$val."' order by city asc";
+		 	$cntr=0;
 
 
-	 	$bigPack="";
-		$returnObj=array();	
-		$result = mysql_query($sqlString1);
-		$countR = mysql_num_rows($result);
-		$colnum = mysql_num_fields($result);
-		while($row = mysql_fetch_assoc($result)) 
-		{
-			$returnObj[$cntr]=array();
-			for($ctr=0;$ctr<$colnum;$ctr++)
-			{				
-				$tag=mysql_field_name($result, $ctr);
-				if($row[$tag]!='')
-				{
-					$returnObj[$cntr][$tag] = $row[$tag];					
-				}
-				else
-				{		
-					$returnObj[$cntr][$tag] = 'none';							
-				}	
-			}			
-			$cntr=$cntr+1;
-		}
-		$bigPack['returnObj']=$returnObj;
-		$bigPack['countR']=$countR;
-		$ray=json_encode($bigPack);
-		echo "true**".$ray."**".$sqlString1;
+		 	$bigPack="";
+			$returnObj=array();	
+			$result = mysql_query($sqlString1);
+			$countR = mysql_num_rows($result);
+			$colnum = mysql_num_fields($result);
+			while($row = mysql_fetch_assoc($result)) 
+			{
+				$returnObj[$cntr]=array();
+				for($ctr=0;$ctr<$colnum;$ctr++)
+				{				
+					$tag=mysql_field_name($result, $ctr);
+					if($row[$tag]!='')
+					{
+						$returnObj[$cntr][$tag] = $row[$tag];					
+					}
+					else
+					{		
+						$returnObj[$cntr][$tag] = 'none';							
+					}	
+				}			
+				$cntr=$cntr+1;
+			}
+			$bigPack['returnObj']=$returnObj;
+			$bigPack['countR']=$countR;
+			$ray=json_encode($bigPack);
+			echo "true**".$ray."**".$sqlString1;
 
-	 break;
+	 	break;
 
 
 

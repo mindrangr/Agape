@@ -7,16 +7,22 @@ var Objtools=function(){
 	}
 	this.create=function(){
 		var f;
+		if(localStorage.getItem("global")!=null){
+			var t=localStorage.getItem("global");
+			f=$.parseJSON(localStorage.getItem("global"));
+			localStorage.remove("global");
+			sessionStorage.setItem(t);
 
-
-		if(sessionStorage.getItem("global")!=null){
+		}else if(sessionStorage.getItem("global")!=null){
 			f=$.parseJSON(sessionStorage.getItem("global"));
 		
 		}else{
 			this.verifyChk="false"
 			f={
 				navFunc:"LoggedOut",
-				navSet:{},
+				navSet:{
+					"romance":"no"
+				},
 				userObj:{
 					"advertiseCode":"none"
 				},
@@ -436,7 +442,6 @@ var Objtools=function(){
 						var updaObj=globalTools.verify(datal);
 						global.userObj=updaObj.returnObj[0];
 						globalTools.save();
-
 					}
 					ajaxCallPost(sendo,func)
 

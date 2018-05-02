@@ -2,7 +2,7 @@ RewriteEngine on
 #RewriteCond %{REQUEST_URI} !-f
 #RewriteCond %{REQUEST_URI} !-d
 RewriteRule ^classified/?$ homePage.php [L]
-RewriteRule ^friends/?$ homePage.php [L]
+RewriteRule ^friends/?$ templates/friends.php [L]
 RewriteRule ^romance/?$ homePage.php [L]
 RewriteRule ^community/?$ homePage.php [L]
 RewriteRule ^politics/?$ homePage.php [L]
@@ -13,7 +13,7 @@ RewriteRule ^aboutus/?$ templates/aboutus.php [L]
 RewriteRule ^create_Romance_Account/?$ homePage.php [L]
 RewriteRule ^account/?$ templates/accountPage.php [L]
 RewriteRule ^register/?$ homePage.php [L]
-RewriteRule ^messages/?$ homePage.php [L]
+RewriteRule ^messages/?$ templates/messages.php [L]
 RewriteRule ^profile/?$ templates/profilePage.php [L]
 RewriteRule ^sponsors/?$ homePage.php [L]
 RewriteRule ^CommercialForm/?$ homePage.php [L]

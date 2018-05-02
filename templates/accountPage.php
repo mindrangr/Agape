@@ -1,11 +1,11 @@
 <?php
 
   if(!isset($_COOKIE["agapeGUID"])) {
-      header("location: home?login=bad");
+      //header("location: home?login=bad");
   } else {
       if($_COOKIE["agapeGUID"]=="none"){
-        setcookie("agapeGUID", FALSE, -1, '/');
-        header("location: home?login=bad");
+        //setcookie("agapeGUID", FALSE, -1, '/');
+        //header("location: home?login=bad");
       }
   }
 
@@ -54,39 +54,11 @@
 
     <body style="padding-top:190px;background-color: #2f4774;">
        <?php include '../header.php';?>
-      <div class="container" >
+      <div class="container" style="background-color: #000;padding-bottom: 20px;border-radius:6px;">
         <div class="row"  >
           <div class="col-sm-4 tPaddMobileLogin">
 
-
-
-            <div  >
-
-              <div id="loggedInBox" style="width:100%;background-color:#000;margin-top:20px;font-size:20px;color:#eee;padding:10px;margin-bottom:25px;display: none;border-radius:5px;"><div>Welcome: <span id="loginname">Marcus</span></div>
-                <div style="color:red;text-decoration: underline;cursor:pointer;font-size:13px;float:left;width:60px;">Log out</div>
-                <div style="color:lime;text-decoration: underline;cursor:pointer;font-size:13px;float:left;">Messages</div>
-                <div style='clear:both'></div>
-              </div>
-
-              <div style="width:200px;padding:6px;" id="loginNavBox">
-                <label style='color:#c96cbd;text-shadow: 1px 1px #000;font-size: 1.75rem;'>Login</label>
-                <form id="loginForm" method="POST">
-                  <input id="username" name="username" class="form-control mr-sm-2" type="text" style='margin-bottom:10px;' placeholder="username" aria-label="username">
-                  <input id="password" class="form-control mr-sm-2" type="text" style='margin-bottom:10px;' name="password" placeholder="password" aria-label="password">
-                  <div style="float:left;"><button id="login" class="btn btn-outline-success my-2 my-sm-0" type="button"  >Login</button></div>
-                  <div id='logMess' style="float:left;color:red;margin-left:5px;font-weight:bold;"></div>
-                  <div style='clear:both'></div>
-                </form>
-              </div>
-              <div id='usersOnline' class='usersOnline' >
-                <div style="font-family: arial;font-size: 13px;padding:7px;color:#000;" ><div style='float:left;width:140px;'><span id='numUsersOnline' style='text-decoration: underline;cursor:pointer;'></span> users online</div><div style='float:left;'><img id="upArrowUsers" src='images/double-up-arrow.png' style="height:15px;cursor: pointer;display:none;"/></div><div id="userCloseButt" style='float:right;text-decoration: underline;cursor: pointer;'>close</div><div style='clear:both;'></div></div>
-                <div id='listUsersOnline' class="listUsersOnline" >
-                  <div id="listUsersOnlinePage" style='position: absolute;width:100%;top:0px;background-color:#fff;' ></div>
-                  
-                </div>
-            </div>
-          </div>
-
+            <?php include 'logBox.php';?>
 
 
 
@@ -128,9 +100,7 @@
               <div style='color:#c96cbd;float:left;width:120px'>State</div>
               <div style="width:300px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
                
-                <select  id="agape_profile_state" style="width:280px;border:none;" >
-                  <option>HTML</option>
-               
+                <select  id="agape_profile_state" style="width:280px;border:none;background-color:#eee;" >
                 </select>
               </div>
               <div style="clear:both;"></div>
@@ -141,7 +111,7 @@
               <div style='color:#c96cbd;float:left;width:120px'>City</div>
               <div style="width:300px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
                
-                <select  id="agape_profile_city" style="width:280px;border:none;" >
+                <select  id="agape_profile_city" style="width:280px;border:none;background-color:#eee;" >
                   <option>Select</option>
                
                 </select>
@@ -156,7 +126,7 @@
               <div style='color:#c96cbd;float:left;width:120px'>Gender</div>
               <div style="width:300px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
                
-                <select  id="agape_profile_gender" style="width:280px;border:none;" >
+                <select  id="agape_profile_gender" style="width:280px;border:none;background-color:#eee;" >
                   <option>Male</option>
                   <option>Female</option>
                
@@ -169,10 +139,7 @@
               <div style='color:#c96cbd;float:left;width:120px'>Age</div>
               <div style="width:300px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
                
-                <select  id="agape_profile_age" style="width:280px;border:none;" >
-                  <option>18</option>
-                  <option>19</option>
-               
+                <select  id="agape_profile_age" style="width:280px;border:none;background-color:#eee;" >
                 </select>
               </div>
               <div style="clear:both;"></div>
@@ -189,13 +156,13 @@
 
             <div style="margin-top:10px;width:220px;">
 
-              <div id="noRomanceAccount" style="text-decoration: underline;cursor:pointer;color:#c96cbd;"><a href="profile" class="nFooter">Create romance account</a></div>
+              <div id="noRomanceAccount" style="text-decoration: underline;cursor:pointer;color:#c96cbd;display:none;"><a href="profile" class="nFooter">Create romance account</a></div>
 
 
 
               <div id="romancelever" style="display:none;">
                 <div style="color:#c96cbd;width:140px;text-align: center;margin:auto;">Activate Romance account</div>
-                <div style="width:220px"><div style="width:20px;margin:auto;"><input class="form-check-input" style="margin-left:0px;" type="checkbox" /></div>
+                <div style="width:220px"><div style="width:20px;margin:auto;"><input id="ActivateRA" class="form-check-input" style="margin-left:0px;" type="checkbox" checked/></div>
                 </div>
               </div> 
             </div>
@@ -262,68 +229,82 @@
 
 <script>
 
+
+  $(".nav-item").each(function(){
+    $(this).removeClass("active");
+    $(this).children().eq(0).addClass("disabled")
+  })
+  $("#Accountli").addClass("active");
+  $("#Accountli").children().eq(0).removeClass("disabled");
   
-  var t=window.location.href+"";
-  var t1=t.split("?")
-  var uname="";
-  if(t1[1]){
-    var t2=t1[1].split("=");
-    uname=t2[1];
-  }else{
-    uname=global.userObj.agape_profile_memberID;
-  }
 
 
+//Fills select boxes with informtion from forms1.js  
   lForms();
-  var Obj1={}
-  Obj1.job="selectAll";
-  Obj1.dbase="agape_profile"
-  Obj1.kob="where agape_profile_memberID="+uname
-  var threadTool = new ThreadWheel();
-  var rFunk = function(data){
-    var t=data;
-    turnOnNav();
-    var user=globalTools.verify(data);
-    global.userObj=user.returnObj[0];
-    global.navFunc="LoggedIn";
-    globalTools.save();
-    loadPageFormData(global.userObj)
-
-  }
-  ajaxCallPost(Obj1,rFunk)
-
-
-
-
-  var stateObj = new stateElem('statesFull',"agape_profile_state","agape_profile_city","true","true",global.userObj.agape_profile_state,global.userObj.agape_profile_city);
-
-  getOnlineUsers(global.userListCnt);
   getSponsors();
-  var kView=Verifyuser();
+ 
 
   $("#updateButton").unbind("click").bind("click",function(){
     var sendVar="true";
+    var upMod={}
+
+    upMod.param="agape_profile_memberID";
+    upMod.vals=global.userObj.agape_profile_memberID
+    upMod.obj={}
     $("#accountFields :input").each(function(){
       if($(this).val()=="" && $(this).attr("id")!="updateButton"){
           sendVar="false";
       }
+
+      if($(this).val()!="" && $(this).attr("id")!="updateButton"){
+          upMod.obj[$(this).attr("id")]=$(this).val()
+      }
     })
 
     if(sendVar=="true"){
-      alert("free")
+       globalTools.userProfileEdit("agape_profile",upMod.obj,"agape_profile_memberID",global.userObj.agape_profile_memberID);
     }else{
 
-      alert("false")
     }
 
   })
 
-  if(kView=='true'){
-    turnOnNav();
-  }else{
-    turnOffNav();
-    $("#login").on("click",function(){
-      login();
-    })
+
+
+
+switch(g1[2]){
+    case 'account':
+
+      if(global.userObj.agape_profile_romanceAccount=="Active"){
+        $("#romancelever").show()
+        $("#noRomanceAccount").hide()
+        $("#profileli").show();
+        $("#searchli").show();
+        ActivateRAevt()
+      }
+
+      if(global.userObj.agape_profile_romanceAccount=="InActive"){
+          $("#romancelever").show();
+          $("#noRomanceAccount").hide();
+          $("#profileli").hide();
+          $("#searchli").hide();
+          ActivateRAevt();
+      }
+
+
+      if(global.userObj.agape_profile_romanceAccount=="Not set"){
+        $("#romancelever").hide();
+        $("#noRomanceAccount").show();
+        $("#profileli").hide();
+        $("#searchli").hide();
+      }
+    
+    break;
+
   }
+
+loadPageFormData(global.userObj);
+
+
+  
 </script>

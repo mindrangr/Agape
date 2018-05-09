@@ -7,10 +7,13 @@
 <style>
   .replyButton{
     float:left;
-    width:100px;
+    width:50px;
     font-weight: bold;
     color:red;
-    cursor:pointer
+    cursor:pointer;
+    margin-right:10px;
+    margin-top:10px;
+    text-decoration:underline;
   }
 
 
@@ -19,6 +22,15 @@
     font-weight: bold;
     color:#000;
     cursor:pointer
+  }
+
+
+  .removeButt{
+    float:left;
+    margin-top:10px;
+    text-decoration:underline;
+    cursor:pointer;
+    font-weight:bold;
   }
 
 </style>
@@ -66,11 +78,29 @@
           </div>
       
           <div class="col-sm-9">
-            <div id="messBox" style="width:80%;height:400px;background-color: #eee;margin-top:20px;padding:4px;overflow: auto; overflow-x: hidden">
-              
-               
+            <div id="messBoxOpt" style="width:80%;background-color: #c96cbd;padding-left:10px;"><span id="createMess" style='cursor:pointer;font-weight:bold;text-decoration: underline;'>create message</span></div>
+            <div>
+              <div id="createMessBox" style='height:0px;width:500px;overflow: auto;overflow-y: hidden;'>
 
-            </div>
+                <div id="sendTo" style='float:left;width:120px;color:#eee;margin-top:10px;'>Send to:</div>
+                <div style='float:left;margin-top:10px;'><input  id='agape_message_receiver_username' placeholder="Receiver username" type="textbox" name="" class="form-control" ></div>
+                <div style='clear:both;margin-bottom: 10px;'></div>
+
+                <div style='float:left;width:120px;color:#c96cbd;'>Message title:</div>
+                <div style='float:left;'><input placeholder="Message title" id='agape_message_title' type="" name="" class="form-control" ></div>
+                <div style='clear:both;margin-bottom: 10px;'></div>
+                
+
+                <div style='float:left;width:120px;color:#c96cbd;'>Message:</div>
+                <div style='float:left;'><textarea id='agape_message'style='width:300px;height:50px;' class="form-control" ></textarea></div>
+                <div style='clear:both'></div>
+
+                <div style="margin-top:10px;"><button id="createButton" class="btn btn-outline-success my-2 my-sm-0" type="button">Create</button></div>
+              </div>
+             <div id="messBox" style="width:80%;height:400px;background-color: #eee;padding:4px;overflow: auto; overflow-x: hidden">
+
+              </div>  
+          </div>
            
           </div>
        
@@ -131,10 +161,10 @@
 </body>
 
 <script>
-
+  var obj
   $(".nav-item").each(function(){
-  $(this).removeClass("active");
-  $(this).children().eq(0).addClass("disabled")
+    $(this).removeClass("active");
+    $(this).children().eq(0).addClass("disabled")
   })
   //$("#profileli").addClass("active");
   //$("#profileli").children().eq(0).removeClass("disabled");
@@ -142,83 +172,256 @@
   
   getSponsors();
   //getOnlineUsers(global.userListCnt);
-         model={}
-        model.job="selectAll";
-        model.dbase="agape_messages";
-        model.kob=" where agape_message_receiver_ID="+global.userObj.agape_profile_memberID;
+  model={}
+  model.job="selectAll";
+  model.dbase="agape_messages";
+  model.kob=" where agape_message_receiver_ID="+global.userObj.agape_profile_memberID+" order by agape_message_update desc";
 
-        var modFunk1=function(data){
-          var mess=globalTools.verify(data)
-          //$("#messNum").html("("+mess.countR+")")
-        
-          
+  var modFunk1=function(data){
+  var mess=globalTools.verify(data)
+  obj=globalTools.verify(data);
+  displayRecs(obj)
 
-          var obj=globalTools.verify(data);
+}
+ajaxCallPost(model,modFunk1);
 
+     
+$("#createMess").unbind("click").on("click",function(){
+  var fr=$("#createMessBox").height();
+  if(fr==0){
+      TweenMax.to($("#createMessBox")[0],.5,{css:{height:210},onComplete:function(){
+      }})
 
+  }else{
+      TweenMax.to($("#createMessBox")[0],.5,{css:{height:0},onComplete:function(){
+      }})
+  }
+})
 
-var strg="";
-var bcolor="#bdb1bc"
-for(f=0;f<obj.countR;f++){
+var tiko
+var SendTiko="false";
+$("#agape_message_receiver_username").on("blur",function(){
 
-  var vic=getTime(obj.returnObj[f].agape_message_send_date,true)
-  var title=globalTools.stringClearBack(obj.returnObj[f].agape_message_title);
-  var body=globalTools.stringClearBack(obj.returnObj[f].agape_message);
+  var un=$("#agape_message_receiver_username").val();
+  if(un!=""){
+    var modl={}
+    modl.job="selectAll";
+    modl.dbase="agape_profile"
+    var un=$("#agape_message_receiver_username").val();
+    modl.kob=" where agape_profile_username='"+un+"'";
+    var retFunc=function(data){
+      tiko=globalTools.verify(data)
+      if(tiko.returnObj!="set empty"){
+        $("#sendTo").css({"color":"lime","text-decoration":"underline"});
+        SendTiko="true"
 
+      }else{
+        SendTiko="false";
+        $("#sendTo").css({"color":"#eee","text-decoration":"none"});
+      }
  
-    var innerMess=""
-    if(obj.returnObj[f].agape_message_responses!="none" && obj.returnObj[f].agape_message_type!="Agape Notification"){
-       
-        console.log(9999999)
-         console.log(obj.returnObj[f].agape_message_responses)
-         var teg=$.parseJSON(obj.returnObj[f].agape_message_responses)
-   console.log(teg)
-    
-
-     var ind=teg.length;
-     console.log(ind)
-     console.log(9999999)
- 
-     for(d=0;d<ind;d++){
-      innerMess=innerMess +"<div style='width:80%;margin-left:30px;background-color: #eee;border-radius: 5px;padding:5px;margin-top:15px'>"
-        innerMess=innerMess+teg[d].message;
-        innerMess=innerMess +"</div>"
-     }
     }
+    ajaxCallPost(modl,retFunc)
+
+  }
+  
+})
 
 
-    strg=strg+"<div style='width:100%;background-color: "+bcolor+";border-top:solid 1px #000;padding:5px;'>"
-         strg=strg+"<div style='float:left;font-weight:bold;width:100px'>"+obj.returnObj[f].agape_message_sender_username+"</div><div style='float:left;font-weight:bold;width:340px;margin-right:15px;font-style: italic;'>"+title+"</div>"
-          strg=strg+"<div style='float:left;text-decoration: underline;'>"+vic+"</div>"
-          strg=strg+"<div style='clear:both'></div>"
-          
+$("#createButton").unbind("click").on("click",function(){
+  var subVal="true"
+  $("#createMessBox :input").each(function(){
+    if($(this).val()=="" && $(this).attr("id") !="createButton"){
+      subVal="false";
+      $(this).css("background-color","#ddd");
+    }
+    
+  })
 
-          strg=strg+"<div style='margin-top:15px;'>"+body+"</div>"
 
-          
-            strg=strg+"<div id='chime'>"+innerMess;
+  if(subVal=="true" && SendTiko=="true"){
+    alert("Spankton")
+  }
+})
 
-            strg=strg+"<div><div style='float:left;margin-right:20px;font-weight:bold;color:red;margin-top:10px;text-decoration:underline;cursor:pointer;'>Reply</div><div style='float:left;margin-top:10px;'>remove</div><div style='clear:both'></div></div>"
-      
-            strg=strg+"</div>"
-            strg=strg+"</div>"
 
-          if(bcolor=="#bdb1bc"){
-              bcolor="#e0b9e8;"
+function submitInnerMess(id){
+      var indx=obj.returnObj.length;
+      var objI=0
+      for(f=0;f<indx;f++){
+        if(obj.returnObj[f].agape_message_ID==id){
+          objI=f;
+            //alert(obj.returnObj[f].agape_message_sender_username)
+        }
+      }
+
+      var mod={};
+      mod.job="quickJamUpdate_field";
+      mod.selectField="agape_message_responses";
+      mod.dbase="agape_messages";
+      mod.uBase="agape_messages";
+      mod.selectParam="agape_message_ID";
+      mod.issuesID=id;
+      mod.uVals=id;
+      mod.uParam="agape_message_ID";
+      mod.selFunc="selectFunc";
+      mod.kob=" where agape_message_ID="+id;
+      mod.upFunc="updateFunc";
+      var timePHP=convertNowToPhP();
+      var vic=getTime("none",'true');
+      var Obj={};
+      Obj.message=globalTools.stringClear($("#tarea"+id).val());
+      Obj.sender_username=global.userObj.agape_profile_username;
+      Obj.agape_message_sender_ID=global.userObj.agape_profile_memberID
+      Obj.sendDate=timePHP;
+      Obj.sendDateFormatted=vic;
+      Obj.receiver_uname=obj.returnObj[objI].agape_message_sender_username;
+      Obj.receiver_ID=obj.returnObj[objI].agape_message_sender_ID
+      Obj.sendGroup=[{"agape_message_receiver_username":"uname200","agape_message_receiver_ID":"200"}];
+      var modstrg=getseconds(1);
+      var codeStrg=global.userObj.agape_profile_username+modstrg
+      var d=Base64.encode(codeStrg)
+
+      Obj.idx=obj.returnObj[objI].agape_message_ID+"_"+d;
+     
+
+      mod.objR=Obj;
+      mod.obj={}
+      mod.obj.agape_message_update=timePHP;
+      mod.obj.agape_message_opened="Sealed"
+
+      var retFunc=function(data){
+        var b=globalTools.verify(data)
+        displayRecs(b);
+      }
+
+      ajaxCallPost(mod,retFunc)
+
+}
+
+
+function displayRecs(objh){
+
+
+  var strg="";
+  var bcolor="#bdb1bc"
+  for(f=0;f<objh.countR;f++){
+
+    var vic=getTime(objh.returnObj[f].agape_message_update,"true");
+    var ric=getTime(objh.returnObj[f].agape_message_send_date,"true")
+    var title=globalTools.stringClearBack(objh.returnObj[f].agape_message_title);
+    var body=globalTools.stringClearBack(objh.returnObj[f].agape_message);
+ 
+    var innerMess="";
+    if(objh.returnObj[f].agape_message_responses!="none" && objh.returnObj[f].agape_message_type!="Agape Notification"){
+        var teg=$.parseJSON(objh.returnObj[f].agape_message_responses)
+        var ind=teg.length;
+ 
+        for(d=0;d<ind;d++){
+          var img1="";
+          if(teg[d].sender_username==global.userObj.agape_profile_username){
+            img1=""
           }else{
-            bcolor="#bdb1bc"
+            img1="<img src='"+objh.returnObj[f].agape_sender_url+"' style='height:60px;width:50px;' />"
           }
 
+          innerMess=innerMess +"<div style='width:80%;margin-left:30px;background-color: #eee;border-radius: 5px;padding:5px;margin-top:15px'>"
+          innerMess=innerMess +"<div style='font-weight:bold;float:left;width:120px;'><div >"+img1+"</div><div style='font-size:13px;'>"+teg[d].sender_username+"</div></div>"
+          innerMess=innerMess +"<div style='float:left;font-size:13px;'>"+teg[d].sendDateFormatted+"</div>"
+          innerMess=innerMess +"<div style='clear:both;'></div>"
+            innerMess=innerMess+"<div style='font-size:13px;'>"+teg[d].message+"</div>";
+          innerMess=innerMess +"</div>"
+        }
     }
 
+  
 
-          $("#messBox").append(strg);
+    if(objh.returnObj[f].agape_message_type!="Agape Notification"){
+
+      strg=strg+"<div style='width:100%;background-color: "+bcolor+";border-top:solid 1px #000;padding:5px;'>"
+
+    }else{
+
+      if(objh.returnObj[f].agape_message_responses=="Female"){
+         strg=strg+"<div style='width:100%;background-color:#fff;background-image:url(images/wink_female.png);background-repeat:no-repeat;border-top:solid 1px #000;padding:5px;background-position: 200px -75px; '>"
+      }
+
+      if(objh.returnObj[f].agape_message_responses=="Male"){
+         strg=strg+"<div style='width:100%;background-color:#fff;background-image:url(images/wink_male.png);background-repeat:no-repeat;border-top:solid 1px #000;padding:5px;background-position: 200px -75px; '>"
+
+      }
+    }
+
+    var img="";
+    if(objh.returnObj[f].agape_message_sender_username==global.userObj.agape_profile_username){
+      img=""
+    }else{
+      img="<img src='"+objh.returnObj[f].agape_sender_url+"' style='height:60px;width:50px;' />"
+    }
+
+    strg=strg+"<div style='float:left;font-weight:bold;width:100px'><div>"+img+"</div><div style='font-size:13px;'>"+objh.returnObj[f].agape_message_sender_username+"</div></div><div style='float:left;font-weight:bold;width:280px;margin-right:15px;font-style: italic;'>"+title+"</div>"
+    strg=strg+"<div style='float:left;text-decoration: underline;width:220px;'><div style='font-size:12px;'>Updated: "+vic+"</div><div style='font-size:12px;width:220px;'>Created: "+ric+"</div></div>"
+    strg=strg+"<div style='clear:both'></div>"
+    
+
+    strg=strg+"<div style='margin-top:15px;'>"+body+"</div>"
+
+    strg=strg+"<div id='chime'>"+innerMess;
+
+    if(objh.returnObj[f].agape_message_type!="Agape Notification"){
+       strg=strg+"<div id='updateBox"+objh.returnObj[f].agape_message_ID+"' style='100px;overflow:auto;height:0px;overflow-x:hidden;overflow-y:hidden;'><div style='height:140px;width:350px;margin:auto;margin-top:10px;padding:8px;'><div style='margin-top:10px;'><textarea id='tarea"+objh.returnObj[f].agape_message_ID+"' style='width:340px;height:60px;border-radius:5px;'></textarea></div><div><span id='innerSub"+objh.returnObj[f].agape_message_ID+"' style='font-size:14px;text-decoration:underline;margin-right:8px;cursor:pointer;'>submit</span><span style='cursor:pointer;text-decoration:underline;' id='innerCancel"+objh.returnObj[f].agape_message_ID+"' style='font-size:14px;text-decoration:underline;margin-right:8px;'>cancel</span></div></div></div><div><div id='message"+objh.returnObj[f].agape_message_ID+"' class='replyButton'>Reply</div><div class='removeButt'>Remove</div><div style='clear:both'></div></div>";
+    }
+
+    strg=strg+"</div>"
+
+    strg=strg+"</div>"
+    if(bcolor=="#bdb1bc"){
+        bcolor="#e0b9e8;"
+    }else{
+      bcolor="#bdb1bc"
+    }
+
+  }
 
 
+
+
+  $("#messBox").empty().append(strg);
+  $("div[id^='message']").each(function(){
+    $(this).unbind("click").on("click",function(){
+      var b=$(this).attr("id")+"";
+      var b1=b.substr(7);
+
+      TweenMax.to($("#updateBox"+b1)[0],.5,{css:{height:140},onComplete:function(){
+      }})
+
+    })
+  })
+
+
+  $("span[id^='innerSub']").each(function(){
+    $(this).unbind("click").on("click",function(){
+        var b=$(this).attr("id")+"";
+        var b1=b.substr(8);
+        var val=$("#tarea"+b1).val();
+
+        if(val!=""){
+          submitInnerMess(b1)
+        }else{
+          //alert("no")
         }
-        ajaxCallPost(model,modFunk1);
+    })
+  })
 
-        
+  $("span[id^='innerCancel']").each(function(){
+    $(this).unbind("click").on("click",function(){
+      var b=$(this).attr("id")+"";
+      var b1=b.substr(11)
+      TweenMax.to($("#updateBox"+b1)[0],.5,{css:{height:0},onComplete:function(){
+      }})
+    })
+  })
 
+}
 
 </script>

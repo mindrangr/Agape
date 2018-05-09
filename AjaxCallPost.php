@@ -275,6 +275,82 @@
 		
 		break;
 
+
+
+
+		case 'quickJamUpdate_field':
+
+			$selectField=$_POST['selectField'];
+			$dbase=$_POST['dbase'];
+			$selectParam=$_POST['selectParam'];
+			$issuesID=$_POST['issuesID'];
+			$pullstring="select ".$selectField." from ".$dbase." where ".$selectParam." = ".$issuesID;
+
+
+			$returnObj="";
+			$subMiss=array();	
+			$result = mysql_query($pullstring);
+			$ray="none";
+			$colnum = mysql_num_fields($result);
+			while($row = mysql_fetch_assoc($result)) 
+			{
+				$returnObj=$row[$selectField];
+			}
+
+			if($returnObj=="" || $returnObj=="none"){
+					$objR=$_POST['objR'];
+					//$sub=json_decode($objR,true);
+					$subMiss[0]=$objR;
+					//print_r($subMiss);
+					$ray=$subMiss;
+				//echo "gift";
+
+			}else{
+				$objR=$_POST['objR'];
+				//$sub=json_decode($objR,true);
+				$ray=json_decode($returnObj,true);
+				array_unshift($ray,$objR);
+				//print_r($ray);
+			}	
+		
+			$ray=json_encode($ray);
+			$updateStr="update ".$dbase." SET ". $selectField."='".$ray."' where ".$selectParam."=".$issuesID;
+			mysql_query($updateStr);
+
+
+
+
+
+				if(isset($_POST['upFunc'])){
+					switch($_POST['upFunc']){
+						case 'updateFunc':
+							updateFunc();
+						break;
+					}
+				}else{
+						
+				}
+
+
+
+
+				if(isset($_POST['selFunc'])){
+					switch($_POST['selFunc']){
+						case 'selectFunc':
+							selectFunc();
+						//echo "**".$param."**".$updateStr1."**";
+						break;
+					}
+				}else{
+						
+				}
+
+			echo "updated**".$ray."**".$updateStr;
+			//echo $returnObj;
+		
+
+		break;
+
 	}
 
 
@@ -325,6 +401,48 @@
 		$bigPack['countR']=$countR;
 		$ray=json_encode($bigPack);
 		echo "true**".$ray."**".$sqlString1;
+
+	}
+
+
+
+	function updateFunc(){
+			$uBase=$_POST['uBase'];
+			$updateStr="";
+			$obj=$_POST['obj'];
+			$uParam=$_POST['uParam'];
+			$uVals=$_POST['uVals'];
+
+			$suprCol="none";
+			$suprVall="none";
+			$suprStrg="none";
+			$updateStr="none";
+			$strID="none";
+			$strID=$uVals;
+			foreach($obj as $key => $value)
+			{		
+				if($suprStrg=="none"  && $key!='agape_profile_memberID')
+				{
+					$suprStrg= "'".$value."'";
+					$suprVall=$key;
+					$updateStr=$key."='".$value."'";
+				}
+				else
+				{
+					if($value!="" && $key!='agape_profile_memberID')
+					{				
+						$suprStrg=$suprStrg.",'".$value."'";
+						$suprVall=$suprVall.",".$key;
+						$updateStr=$updateStr.",".$key."='".$value."'";				
+					}
+				}
+			}
+
+
+			$updateStr1="update ".$uBase." SET ". $updateStr." where ".$uParam."=".$uVals;
+			mysql_query($updateStr1);
+
+
 
 	}
 

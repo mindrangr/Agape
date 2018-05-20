@@ -99,7 +99,8 @@
               </div>
              <div id="messBox" style="width:80%;height:400px;background-color: #eee;padding:4px;overflow: auto; overflow-x: hidden">
 
-              </div>  
+              </div> 
+              <div id='messPagination' style='color:#fff;'>1 2 3 4 5 6 7</div> 
           </div>
            
           </div>
@@ -175,9 +176,12 @@
   model={}
   model.job="selectAll";
   model.dbase="agape_messages";
-  model.kob=" where agape_message_receiver_ID="+global.userObj.agape_profile_memberID+" order by agape_message_update desc";
+  model.Getdetail="GetCount"
+  model.ob2=" where agape_message_receiver_ID="+global.userObj.agape_profile_memberID+" or  agape_message_sender_ID="+global.userObj.agape_profile_memberID+" order by agape_message_update desc";
+  model.kob=" where agape_message_receiver_ID="+global.userObj.agape_profile_memberID+" or  agape_message_sender_ID="+global.userObj.agape_profile_memberID+" order by agape_message_update desc limit 0,25";
 
   var modFunk1=function(data){
+    var b=globalTools.verify(data)
   var mess=globalTools.verify(data)
   obj=globalTools.verify(data);
   displayRecs(obj)
@@ -230,7 +234,7 @@ $("#agape_message_receiver_username").on("blur",function(){
 
 $("#createButton").unbind("click").on("click",function(){
   var subVal="true"
-  $("#createMessBox :input").each(function(){
+  $("#messBox :input").each(function(){
     if($(this).val()=="" && $(this).attr("id") !="createButton"){
       subVal="false";
       $(this).css("background-color","#ddd");
@@ -240,7 +244,38 @@ $("#createButton").unbind("click").on("click",function(){
 
 
   if(subVal=="true" && SendTiko=="true"){
-    alert("Spankton")
+    var mod1={}
+    mod1.job="quickJamUpdate_insert";
+    mod1.dbase="agape_messages";
+    mod1.Getdetail="GetCount"
+    mod1.ob2=" where agape_message_receiver_ID="+global.userObj.agape_profile_memberID+" or agape_message_sender_ID="+global.userObj.agape_profile_memberID;
+    mod1.obj={};
+    mod1.obj.agape_message_responses="none";
+    mod1.obj.agape_message_sender_username=global.userObj.agape_profile_username;
+    mod1.obj.agape_message_sender_ID=global.userObj.agape_profile_memberID;
+    var img=$.parseJSON(global.userObj.agape_profile_default_img);
+    var img1=$.parseJSON(tiko.returnObj[0].agape_profile_default_img)
+    mod1.obj.agape_sender_url=img.defaultPic;
+    mod1.obj.agape_message_receiver_username=tiko.returnObj[0].agape_profile_username;
+    mod1.obj.agape_message_receiver_ID=tiko.returnObj[0].agape_profile_memberID;
+    mod1.obj.agape_message_receiver_url=img1.defaultPic;
+    mod1.obj.agape_message_send_date=convertNowToPhP();
+    mod1.obj.agape_message_update=mod1.obj.agape_message_send_date;
+    mod1.obj.agape_message_type="simple";
+    mod1.obj.agape_message_opened="Sealed";
+    mod1.obj.agape_message_title=globalTools.stringClear($("#agape_message_title").val());
+    mod1.obj.agape_message=globalTools.stringClear($("#agape_message").val());
+    mod1.selFunc="selectFunc";
+    mod1.dbase="agape_messages";
+    mod1.kob=" where agape_message_receiver_ID="+global.userObj.agape_profile_memberID+" or agape_message_sender_ID="+global.userObj.agape_profile_memberID +" order by agape_message_update desc limit 0,25";
+    var funk1=function(data){
+      var mesg=globalTools.verify(data)
+      displayRecs(mesg);
+      TweenMax.to($("#createMessBox")[0],.5,{css:{height:0},onComplete:function(){
+      }})
+
+    }
+    ajaxCallPost(mod1,funk1)
   }
 })
 
@@ -265,7 +300,7 @@ function submitInnerMess(id){
       mod.uVals=id;
       mod.uParam="agape_message_ID";
       mod.selFunc="selectFunc";
-      mod.kob=" where agape_message_ID="+id;
+      mod.kob=" where agape_message_receiver_ID="+global.userObj.agape_profile_memberID+" or agape_message_sender_ID="+global.userObj.agape_profile_memberID +" order by agape_message_update desc limit 0,25";
       mod.upFunc="updateFunc";
       var timePHP=convertNowToPhP();
       var vic=getTime("none",'true');
@@ -283,14 +318,13 @@ function submitInnerMess(id){
       var d=Base64.encode(codeStrg)
 
       Obj.idx=obj.returnObj[objI].agape_message_ID+"_"+d;
-     
-
       mod.objR=Obj;
       mod.obj={}
       mod.obj.agape_message_update=timePHP;
-      mod.obj.agape_message_opened="Sealed"
+      mod.obj.agape_message_opened="Sealed";
 
       var retFunc=function(data){
+
         var b=globalTools.verify(data)
         displayRecs(b);
       }
@@ -303,6 +337,7 @@ function submitInnerMess(id){
 function displayRecs(objh){
 
 
+
   var strg="";
   var bcolor="#bdb1bc"
   for(f=0;f<objh.countR;f++){
@@ -310,7 +345,7 @@ function displayRecs(objh){
     var vic=getTime(objh.returnObj[f].agape_message_update,"true");
     var ric=getTime(objh.returnObj[f].agape_message_send_date,"true")
     var title=globalTools.stringClearBack(objh.returnObj[f].agape_message_title);
-    var body=globalTools.stringClearBack(objh.returnObj[f].agape_message);
+    var body1=globalTools.stringClearBack(objh.returnObj[f].agape_message);
  
     var innerMess="";
     if(objh.returnObj[f].agape_message_responses!="none" && objh.returnObj[f].agape_message_type!="Agape Notification"){
@@ -319,14 +354,17 @@ function displayRecs(objh){
  
         for(d=0;d<ind;d++){
           var img1="";
+          img2=""
           if(teg[d].sender_username==global.userObj.agape_profile_username){
             img1=""
           }else{
             img1="<img src='"+objh.returnObj[f].agape_sender_url+"' style='height:60px;width:50px;' />"
+
+            img2="<img src='"+objh.returnObj[f].agape_message_receiver_url+"' style='height:60px;width:50px;' />"
           }
 
           innerMess=innerMess +"<div style='width:80%;margin-left:30px;background-color: #eee;border-radius: 5px;padding:5px;margin-top:15px'>"
-          innerMess=innerMess +"<div style='font-weight:bold;float:left;width:120px;'><div >"+img1+"</div><div style='font-size:13px;'>"+teg[d].sender_username+"</div></div>"
+          innerMess=innerMess +"<div style='font-weight:bold;float:left;width:120px;'><div >"+img2+"</div><div style='font-size:13px;'>"+teg[d].sender_username+"</div></div>"
           innerMess=innerMess +"<div style='float:left;font-size:13px;'>"+teg[d].sendDateFormatted+"</div>"
           innerMess=innerMess +"<div style='clear:both;'></div>"
             innerMess=innerMess+"<div style='font-size:13px;'>"+teg[d].message+"</div>";
@@ -353,18 +391,24 @@ function displayRecs(objh){
     }
 
     var img="";
+    var tet
+    var name=objh.returnObj[f].agape_message_sender_username
     if(objh.returnObj[f].agape_message_sender_username==global.userObj.agape_profile_username){
       img=""
+      name="To: "+objh.returnObj[f].agape_message_receiver_username;
+      tet="<span><img src='"+objh.returnObj[f].agape_message_receiver_url+"' style='height:60px;width:60px;border:solid 1px #000;margin-right:10px;margin-left:20px;' /></span>"+body1
     }else{
       img="<img src='"+objh.returnObj[f].agape_sender_url+"' style='height:60px;width:50px;' />"
+      name="From: "+objh.returnObj[f].agape_message_sender_username;
+      tet=body1;
     }
-
-    strg=strg+"<div style='float:left;font-weight:bold;width:100px'><div>"+img+"</div><div style='font-size:13px;'>"+objh.returnObj[f].agape_message_sender_username+"</div></div><div style='float:left;font-weight:bold;width:280px;margin-right:15px;font-style: italic;'>"+title+"</div>"
+    img="<img src='"+objh.returnObj[f].agape_sender_url+"' style='height:60px;width:50px;' />"
+    strg=strg+"<div style='float:left;font-weight:bold;width:100px'><div>"+img+"</div><div style='font-size:13px;'>"+name+"</div></div><div style='float:left;font-weight:bold;width:280px;margin-right:15px;font-style: italic;'>"+title+"</div>"
     strg=strg+"<div style='float:left;text-decoration: underline;width:220px;'><div style='font-size:12px;'>Updated: "+vic+"</div><div style='font-size:12px;width:220px;'>Created: "+ric+"</div></div>"
     strg=strg+"<div style='clear:both'></div>"
     
 
-    strg=strg+"<div style='margin-top:15px;'>"+body+"</div>"
+    strg=strg+"<div style='margin-top:15px;'>"+tet+"</div>"
 
     strg=strg+"<div id='chime'>"+innerMess;
 
@@ -382,8 +426,9 @@ function displayRecs(objh){
     }
 
   }
-
-
+  
+  control="messPagination"
+  mainPaginationFunc("messPagination",objh.countMax,0)
 
 
   $("#messBox").empty().append(strg);
@@ -391,7 +436,9 @@ function displayRecs(objh){
     $(this).unbind("click").on("click",function(){
       var b=$(this).attr("id")+"";
       var b1=b.substr(7);
-
+      console.log("_____")
+      console.log($(this).attr("id"))
+      console.log("_____")
       TweenMax.to($("#updateBox"+b1)[0],.5,{css:{height:140},onComplete:function(){
       }})
 

@@ -36,7 +36,7 @@
 
 		 	if($kdbase=="agape_profile"){
 		 		$sqlString1="select agape_profile_memberID,	agape_profile_firstname,agape_profile_lastname,agape_profile_gender,agape_profile_dateOfBirth,	agape_profile_age,agape_profile_bodyType, ";
-		 		 $sqlString1=$sqlString1."agape_profile_height,agape_profile_city,agape_profile_state,agape_profile_email,agape_profile_friends,agape_profile_intentions ,agape_profile_recreation, agape_profile_education,";
+		 		 $sqlString1=$sqlString1."agape_profile_height,agape_profile_city,agape_profile_state,agape_profile_email,agape_profile_friends,agape_profile_intentions ,agape_profile_recreation, agape_profile_education, agape_profile_zodiacSign,";
 				 $sqlString1=$sqlString1."agape_profile_relationship_dist,agape_profile_political,agape_partner_political,agape_profile_children,agape_profile_description, agape_profile_partner_description,";
 		 		 $sqlString1=$sqlString1."agape_profile_firstDate,agape_profile_salary,agape_profile_accountType,agape_profile_username,agape_profile_default_img,	agape_profile_religion,	agape_profile_register_date,"; 
 		 		 $sqlString1=$sqlString1."agape_profile_drugs,agape_profile_alcohol,agape_partner_gender,agape_partner_age_range,agape_partner_salary,agape_partner_drugs,agape_partner_religion,agape_partner_education,"; 
@@ -83,7 +83,7 @@
 							$ob2=stripslashes($_POST['ob2']);
 							$sqlString2="select * from ".$kdbase." ".$ob2;
 							$result2 = mysql_query($sqlString2);
-							$countR = mysql_num_rows($result2);
+							$bigPack['countMax'] = mysql_num_rows($result2);
 						
 						break;
 					}
@@ -185,83 +185,83 @@
 
 
 
-	 		// update from object 
-			case 'quickJamUpdate_full':
+ 		// update from object 
+		case 'quickJamUpdate_full':
 
 
 
 
-				//$passthrough=checksession();
-				$passthrough="true";
+			//$passthrough=checksession();
+			$passthrough="true";
 
-				if($passthrough=="true"){
-
-
-
-					$dbase=$_POST['dbase'];
-					$updateStr="";
-					$obj=$_POST['obj'];
-					$param=$_POST['param'];
-					$vals=$_POST['vals'];
+			if($passthrough=="true"){
 
 
-					$suprCol="none";
-					$suprVall="none";
-					$suprStrg="none";
-					$updateStr="none";
-					$strID="none";
-					$strID=$vals;
-					foreach($obj as $key => $value)
-					{		
-						if($suprStrg=="none"  && $key!='agape_profile_memberID')
-						{
-							$suprStrg= "'".$value."'";
-							$suprVall=$key;
-							$updateStr=$key."='".$value."'";
-						}
-						else
-						{
-							if($value!="" && $key!='agape_profile_memberID')
-							{				
-								$suprStrg=$suprStrg.",'".$value."'";
-								$suprVall=$suprVall.",".$key;
-								$updateStr=$updateStr.",".$key."='".$value."'";				
-							}
+
+				$dbase=$_POST['dbase'];
+				$updateStr="";
+				$obj=$_POST['obj'];
+				$param=$_POST['param'];
+				$vals=$_POST['vals'];
+
+
+				$suprCol="none";
+				$suprVall="none";
+				$suprStrg="none";
+				$updateStr="none";
+				$strID="none";
+				$strID=$vals;
+				foreach($obj as $key => $value)
+				{		
+					if($suprStrg=="none"  && $key!='agape_profile_memberID')
+					{
+						$suprStrg= "'".$value."'";
+						$suprVall=$key;
+						$updateStr=$key."='".$value."'";
+					}
+					else
+					{
+						if($value!="" && $key!='agape_profile_memberID')
+						{				
+							$suprStrg=$suprStrg.",'".$value."'";
+							$suprVall=$suprVall.",".$key;
+							$updateStr=$updateStr.",".$key."='".$value."'";				
 						}
 					}
-
-
-					$updateStr1="update ".$dbase." SET ". $updateStr." where ".$param."=".$vals;
-					//echo $updateStr;
-
-					//echo "$$".$updateStr1."$$";
-					mysql_query($updateStr1);
-					//echo $param."$$".$updateStr1."$$";
-					if(isset($_POST['selFunc'])){
-						switch($_POST['selFunc']){
-							case 'selectFunc':
-								selectFunc();
-								//echo "**".$param."**".$updateStr1."**";
-							break;
-						}
-					}else{
-						
-					}
-
 				}
 
 
+				$updateStr1="update ".$dbase." SET ". $updateStr." where ".$param."=".$vals;
+				//echo $updateStr;
 
-				/*if($passthrough=="false"){
+				//echo "$$".$updateStr1."$$";
+				mysql_query($updateStr1);
+				//echo $param."$$".$updateStr1."$$";
+				if(isset($_POST['selFunc'])){
+					switch($_POST['selFunc']){
+						case 'selectFunc':
+							selectFunc();
+							//echo "**".$param."**".$updateStr1."**";
+						break;
+					}
+				}else{
+					
+				}
 
-			 		$cook=$_COOKIE["agapeGUID"];
-					$cook=str_replace(" ","+",$cook);
-			 		echo "false**[]**";
-			 	}
-			*/
-				
-				
-			break;
+			}
+
+
+
+			/*if($passthrough=="false"){
+
+		 		$cook=$_COOKIE["agapeGUID"];
+				$cook=str_replace(" ","+",$cook);
+		 		echo "false**[]**";
+		 	}
+		*/
+			
+			
+		break;
 
 
 		case 'atomicDelete':
@@ -318,36 +318,156 @@
 			mysql_query($updateStr);
 
 
-
-
-
-				if(isset($_POST['upFunc'])){
-					switch($_POST['upFunc']){
-						case 'updateFunc':
-							updateFunc();
-						break;
-					}
-				}else{
-						
+			if(isset($_POST['upFunc'])){
+				switch($_POST['upFunc']){
+					case 'updateFunc':
+						updateFunc();
+					break;
 				}
+			}else{
+					
+			}
 
-
-
-
-				if(isset($_POST['selFunc'])){
-					switch($_POST['selFunc']){
-						case 'selectFunc':
-							selectFunc();
-						//echo "**".$param."**".$updateStr1."**";
-						break;
-					}
-				}else{
-						
+			if(isset($_POST['selFunc'])){
+				switch($_POST['selFunc']){
+					case 'selectFunc':
+						selectFunc();
+					//echo "**".$param."**".$updateStr1."**";
+					break;
 				}
+			}else{
+					
+			}
 
 			echo "updated**".$ray."**".$updateStr;
 			//echo $returnObj;
 		
+
+		break;
+
+
+
+		case 'quickJamUpdate_insert':
+			$dbase=$_POST['dbase'];
+			$obj=$_POST['obj'];
+			$suprCol="none";
+			$suprVall="none";
+			$suprStrg="none";
+			$obJo=$obj;
+			foreach($obJo as $key => $value)
+			{		
+			 	if($suprStrg=="none")
+		 		{
+				 	$suprStrg= "'".$value."'";
+				 	$suprVall=$key;
+			 	}
+			 	else
+			 	{
+				 	if($value!="")
+					 {				
+					 	$suprStrg=$suprStrg.",'".$value."'";
+					 	$suprVall=$suprVall.",".$key;
+				 	}
+			 	}
+
+			}
+			$debut="insert into ".$dbase." (".$suprVall.") values (".$suprStrg.")";
+
+			mysql_query($debut);
+
+			
+
+
+			if(isset($_POST['selFunc'])){
+				switch($_POST['selFunc']){
+					case 'selectFunc':
+						selectFunc();
+						//echo "**".$param."**".$updateStr1."**";
+					break;
+				}
+			}else{
+				
+			}
+		
+		
+
+		break;
+
+
+
+		case 'candSearch':
+			$dbase=$_POST['dbase'];
+			$state=$_POST['state'];
+			$city=$_POST['city'];
+			$indx=$_POST['indx'];
+			$mygender=$_POST['mygender'];
+			$genderSeeking=$_POST['genderSeeking'];
+			$sqlString1="select * from ".$dbase." where agape_profile_gender='".$genderSeeking."' and agape_partner_gender='".$mygender."' and agape_profile_state='".$state."' and agape_profile_city='".$city."' limit ".$indx.",25";
+
+			$cntr=0;
+			$ob2=" where agape_profile_gender='".$genderSeeking."' and agape_partner_gender='".$mygender."' and agape_profile_state='".$state."'";
+
+		 	$bigPack="";
+			$returnObj=array();	
+			$result = mysql_query($sqlString1);
+			$countR = mysql_num_rows($result);
+
+			$colnum = mysql_num_fields($result);
+			while($row = mysql_fetch_assoc($result)) 
+			{
+				$returnObj[$cntr]=array();
+				for($ctr=0;$ctr<$colnum;$ctr++)
+				{				
+					$tag=mysql_field_name($result, $ctr);
+					if($row[$tag]!='')
+					{
+						$returnObj[$cntr][$tag] = $row[$tag];					
+					}
+					else
+					{		
+						$returnObj[$cntr][$tag] = 'none';							
+					}	
+				}			
+				$cntr=$cntr+1;
+			}
+
+
+			if($countR<25){
+				$sqlString3="select * from ".$dbase." ".$ob2." limit ".$indx.",25";
+				$result3 = mysql_query($sqlString3);
+				$colnum1 = mysql_num_fields($result3);
+				$countR = mysql_num_rows($result3);
+				while($row = mysql_fetch_assoc($result3)) 
+				{
+					$returnObj[$cntr]=array();
+					for($ctr=0;$ctr<$colnum1;$ctr++)
+					{				
+						$tag=mysql_field_name($result3, $ctr);
+						if($row[$tag]!='')
+						{
+							$returnObj[$cntr][$tag] = $row[$tag];					
+						}
+						else
+						{		
+							$returnObj[$cntr][$tag] = 'none';							
+						}	
+					}			
+					$cntr=$cntr+1;
+				}
+			}
+
+
+
+			//$ob2=stripslashes($_POST['ob2']);
+			$sqlString2="select * from ".$dbase." ".$ob2;
+			$result2 = mysql_query($sqlString2);
+			$bigPack['countMax'] = mysql_num_rows($result2);
+						
+
+			$bigPack['returnObj']=$returnObj;
+			$bigPack['countR']=$countR;
+			$ray=json_encode($bigPack);
+			echo "true**".$ray."**".$sqlString1;
 
 		break;
 
@@ -397,6 +517,21 @@
 			}			
 			$cntr=$cntr+1;
 		}
+
+
+		if(isset($_POST['Getdetail'])){
+			switch($_POST['Getdetail']){
+				case 'GetCount':
+					$dbase=$_POST['dbase'];
+					$ob2=stripslashes($_POST['ob2']);
+					$sqlString2="select * from ".$dbase." ".$ob2;
+					$result2 = mysql_query($sqlString2);
+					$bigPack['countMax'] = mysql_num_rows($result2);
+				
+				break;
+			}
+		}
+
 		$bigPack['returnObj']=$returnObj;
 		$bigPack['countR']=$countR;
 		$ray=json_encode($bigPack);

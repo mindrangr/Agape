@@ -701,13 +701,14 @@ And live like it's heaven on earth.","I've learned that people will forget what 
 
 	
 
-	for($k=1;$k<5501;$k++)
+	for($k=1;$k<58;$k++)
 	{
-		$mon=rand(1,12);
+		$mon=rand(1,5);
 		$day=rand(1,28);
 		$hours=rand(0,23);
 		$min=rand(0,59);
-		$send_date="2015-".$mon."-".$day." ".$hours.":".$min.":00";
+		$year=rand(2017,2018);
+		$send_date=$year."-".$mon."-".$day." ".$hours.":".$min.":00";
 		
 		//profileImages/male6_l.jpg
 		
@@ -716,15 +717,15 @@ And live like it's heaven on earth.","I've learned that people will forget what 
 		$senderID=$profile_memberID[$senderIndx];
 		$senderUrl=$profile_url[$senderIndx];
 
-
+		$tu=json_decode($senderUrl,true);
 		//$senderUrl="{\"defaultPic\":\"profileImages/male6_b.jpg\",\"defaultPicTitle\":\"My Pics\",\"Pic1\":\"profileImages/male6_b.jpg\",\"Pic1Title\":\"Untitled\",\"Pic2\":\"Untitled\",\"Pic2Title\":\"Untitled\",\"Pic3\":\"Untitled\",\"Pic3Title\":\"Untitled\",\"Pic4\":\"Untitled\",\"Pic4Title\":\"Untitled\",\"Pic5\":\"Untitled\",\"Pic5Title\":\"Untitled\",\"Pic6\":\"Untitled\",\"Pic6Title\":\"Untitled\",\"Pic7\":\"Untitled\",\"Pic7Title\":\"Untitled\"}";
-		
+		$senderUrl=$tu['defaultPic'];
 		
 		$mTitle="Hey whats up? this is a test messge ";
 		
 		//var_dump(json_decode($senderUrl,true));
 		
-		$tu=json_decode($senderUrl,true);
+		
 		//echo $tu['defaultPic'];
 		$messIndx=rand(0,count($messObj)-1);
 		
@@ -734,15 +735,17 @@ And live like it's heaven on earth.","I've learned that people will forget what 
 		$reciverID=$profile_memberID[$reciverInd];
 		$reciverUrl=$profile_url[$reciverInd];
 		
+		$tu=json_decode($reciverUrl,true);
+		$reciverUrl=$tu['defaultPic'];
 		
-		//$reciverUname="uname250";
-		//$reciverID='250';
-		//$reciverUrl="{\"defaultPic\":\"profileImages/male9_w.jpg\",\"defaultPicTitle\":\"My Pics\",\"Pic1\":\"profileImages/male9_w.jpg\",\"Pic1Title\":\"Untitled\",\"Pic2\":\"Untitled\",\"Pic2Title\":\"Untitled\",\"Pic3\":\"Untitled\",\"Pic3Title\":\"Untitled\",\"Pic4\":\"Untitled\",\"Pic4Title\":\"Untitled\",\"Pic5\":\"Untitled\",\"Pic5Title\":\"Untitled\",\"Pic6\":\"Untitled\",\"Pic6Title\":\"Untitled\",\"Pic7\":\"Untitled\",\"Pic7Title\":\"Untitled\"}";
+		//$reciverUname="uname45";
+		//$reciverID='45';
+		//$reciverUrl="defaultPic\":\"profileImages/workImages/wjmKgNP67qseAbBNs2mnTvQNH7AflmDeTN5Uo5+TYkE.jpeg?val=1499326949000";
 		
-		//$senderUname="uname250";
-		//$senderID='250';
+		$senderUname="uname45";
+		$senderID='45';
 
-		//$senderUrl="{\"defaultPic\":\"profileImages/male9_w.jpg\",\"defaultPicTitle\":\"My Pics\",\"Pic1\":\"profileImages/male9_w.jpg\",\"Pic1Title\":\"Untitled\",\"Pic2\":\"Untitled\",\"Pic2Title\":\"Untitled\",\"Pic3\":\"Untitled\",\"Pic3Title\":\"Untitled\",\"Pic4\":\"Untitled\",\"Pic4Title\":\"Untitled\",\"Pic5\":\"Untitled\",\"Pic5Title\":\"Untitled\",\"Pic6\":\"Untitled\",\"Pic6Title\":\"Untitled\",\"Pic7\":\"Untitled\",\"Pic7Title\":\"Untitled\"}";
+		$senderUrl="defaultPic\":\"profileImages/workImages/wjmKgNP67qseAbBNs2mnTvQNH7AflmDeTN5Uo5+TYkE.jpeg?val=1499326949000";
 	
 		
 		$tt=$messObj[$messIndx];
@@ -1093,7 +1096,27 @@ function make_seed()
 }
 
 
+function zodiac(){
 
+	/*update agape_profile set agape_profile_zodiacSign=CASE 
+when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) <20 then 'Capricorn' 
+when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 20 and 49  then 'Aquarius' 
+when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 49 and 79  then 'Pisces' 
+when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 80 and 109  then 'Aries' 
+when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 110 and 140  then 'Taurus' 
+when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 141 and 171  then 'Gemini' 
+when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 172 and 203  then 'Cancer'
+when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 204 and 234  then 'Leo'
+when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 235 and 265  then 'Virgo'
+when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 266 and 295  then 'Libra'
+when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 296 and 325  then 'Scorpio'
+when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 326 and 355  then 'Sagittarius'
+when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) > 355 then 'Capricorn'
+
+END 
+WHERE agape_profile_memberID=45*/
+
+}
 
 
 
@@ -1228,6 +1251,13 @@ srand(mktime());
 //changeOnlineStatusBack();
 //updateSourceID();
 //fixBlogImages();
+
+//matchAgeBday()
+
+function matchAgeBday(){
+	// this code creates a new age based on birth date listed
+$uString="update agape_profile set agape_profile_age = (select round(DATEDIFF(Now(),agape_profile_dateOfBirth)/365 ))";
+}
 
 
 

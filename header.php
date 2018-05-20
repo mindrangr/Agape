@@ -18,7 +18,7 @@
               <a class="nav-link disabled" href="profile">Profile</a>
             </li>
             <li id="searchli" class="nav-item" style='display:none;' >
-              <a class="nav-link disabled" href="#">Search</a>
+              <a class="nav-link disabled" href="search">Search</a>
             </li>
 
             <li id="friendsli" class="nav-item LogI" style='display:none;'>

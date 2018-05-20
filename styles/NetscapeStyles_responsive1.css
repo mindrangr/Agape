@@ -1,7 +1,6 @@
 
 .overF{
 	overflow: auto;
-    height: 820px;
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -110,7 +109,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2f4774', end
 
 	.newsContainer{
 		color:#fff;
-		height:580px;
 		padding-top:130px;
 
 
@@ -169,11 +167,50 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2f4774', end
 	    left:25px
 	}
 
-	   
+
+	.pollStyle{
+	  width:100%;
+	  color:#ccc;
+	}
+
+
+    .rowHolderHeaders_search{
+        width:100%;height:30px;
+        text-align:center;
+        color:#fff;
+        background-color:#524a92;
+        padding-top:10px;
+        border-radius:4px 4px 0px 0px;
+    }
+
+
+    .pStyleDiv{
+    	width:94%;
+    	margin:auto;
+    	font-family:arial;
+    }
+
+
+    .pollHolder{
+    	padding-left:20px;
+    	border-bottom:solid 1px #eee;
+    	border-left:solid 1px #eee;
+    	padding-top:15px;
+    	border-right:solid 1px #eee;
+    	width:94%;
+    	margin-bottom:20px;
+    	padding-right:6px;
+    }
+
+
+    .searchPolls{
+
+    	width:90%;
+    	margin:auto;
+
+    }
+
 }
-
-
-
 
 
 
@@ -330,3 +367,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2f4774', end
 	}
 
 }
+
+
+
+.liStyles{
+	display:inline;
+	padding-top:0px;
+	padding:4px;
+	text-decoration:underline;
+	cursor:pointer;
+	font-size:12px;
+	font-family:helvetica;
+	color:lime;
+}
+
+
+.liStyles_over{
+   
+    color:red;
+    font-weight:bold;
+}
+	

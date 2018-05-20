@@ -3,6 +3,10 @@ var globalTools = new Objtools();
 var global=globalTools.create();
 var g=sessionStorage.getItem("global")
 
+
+// Keeps track of pagination view
+var control
+
 var threadTool = new ThreadWheel();
 
 // gets sponsors and loads them to page
@@ -205,8 +209,6 @@ function login()
 
 
 function getOnlineUsers(b1){
-
-
 	var userOnline={}
 	userOnline.job="selectAll"
 	userOnline.dbase="agape_profile";
@@ -214,14 +216,14 @@ function getOnlineUsers(b1){
 	userOnline.Getdetail="GetCount"
 	userOnline.ob2="where agape_profile_onlineStatus='Online'";
 	var ext=global.baseUrl;
+	
 	//userOnline.uID=global.userObj.agape_profile_memberID;
 	var repFunk=function(data){
 		var dataSet=globalTools.verify(data);
 		if(dataSet.countR>0){
 			$("#usersOnline").show();
 			global.userListMax=dataSet.countR;
-			$("#numUsersOnline").html(dataSet.countR);
-			
+			$("#numUsersOnline").html(dataSet.countMax);
 			var indx=dataSet.returnObj.length;
 			var sheet="<div>"
 			for(b=0;b<indx;b++){
@@ -231,42 +233,36 @@ function getOnlineUsers(b1){
 			}
 			sheet=sheet+"</div>"
 			$("#listUsersOnlinePage").empty().append(sheet);
-
-
-
 			$("div[id^='vProfile']").each(function(){
 				$(this).unbind("click").on("click",function(){
 
-				if(global.navFunc){
-					if(global.navFunc=="LoggedOut"){
-						alert("must be logged in to preview profile")
+					if(global.navFunc){
+						if(global.navFunc=="LoggedOut"){
+							alert("must be logged in to preview profile")
+						}else{
+							/*var div1=document.getElementById("_lboxBackground");
+							var div2=document.getElementById("_lBoxMainDiv");
+							var indx=$(this).attr("id")+"";
+							var idx1=indx.substr(8)
+							var template={};
+							var indx=0;
+							global.module="messages";
+							global.candidate.id=dataSet.returnObj[idx1].agape_profile_username;
+							template.page="viewpro1_open.html";
+							template.job="visitprofile";
+							ingniteLightBox = new LightBox(div1,div2,template,indx)
+							ingniteLightBox.lightBoxOn();*/
+
+							$('#homePageModal').modal('show');
+							var appstring="<div style='float:left;height:80px;width:100px'>"+datum[indx].agape_sponsors_Image+"</div><div style='float:left;'>gfh dfg dfgh</div><div style='clear:both;'></div>"
+	 						$("#innerModal").append(appstring);
+						}
+
 					}else{
-						/*var div1=document.getElementById("_lboxBackground");
-						var div2=document.getElementById("_lBoxMainDiv");
-						var indx=$(this).attr("id")+"";
-						var idx1=indx.substr(8)
-						var template={};
-						var indx=0;
-						global.module="messages";
-						global.candidate.id=dataSet.returnObj[idx1].agape_profile_username;
-						template.page="viewpro1_open.html";
-						template.job="visitprofile";
-						ingniteLightBox = new LightBox(div1,div2,template,indx)
-						ingniteLightBox.lightBoxOn();*/
-
-						$('#homePageModal').modal('show');
-						var appstring="<div style='float:left;height:80px;width:100px'>"+datum[indx].agape_sponsors_Image+"</div><div style='float:left;'>gfh dfg dfgh</div><div style='clear:both;'></div>"
- 						$("#innerModal").append(appstring)
-
+						alert("must be logged in to preview profile");
 					}
 
-
-				}else{
-					alert("must be logged in to preview profile")
-
-				}
-
-					
+						
 				})
 			})
 
@@ -797,7 +793,6 @@ class stateElem{
 
 
 		function ActivateRAevt(){
-			console.log(global)
 
     $("#ActivateRA").unbind("click").click(function(){
         if($(this).is(":checked")){
@@ -1206,3 +1201,455 @@ function getseconds(chk){
 
 
 }
+
+
+
+	mainPaginationVal=0;
+	function mainPaginationFunc(elem,total,val){
+		var pageNation=parseInt(total/25);
+		if(total>pageNation*25){
+			pageNation=pageNation+1;
+		}
+		
+		$("#"+elem).empty();
+		if(pageNation>35){
+			pageNation=35
+		}
+
+		for(j=0;j<pageNation;j++)
+		{
+			recordunit=(mainPaginationVal*25)+(j+1);
+			if(j==global.paginate){
+				$("#"+elem).append("<li class='liStyles' id='"+"record"+j+"' onclick='pageMaster(this)'>"+recordunit+"</li>");
+			}else{
+				$("#"+elem).append("<li class='liStyles liStyles_over' id='"+"record"+j+"' onclick='pageMaster(this)'>"+recordunit+"</li>");
+			}
+		}
+
+
+		/*$("#nextLog").unbind("click").on("click",function(){
+			var gray=parseInt(global.paginate)+1
+			var tell=$("#record"+gray);
+			
+			if(tell[0]!==undefined){
+				pageMaster(tell[0])
+			}else{
+				
+			}
+		})*/
+	}
+
+
+		function pageMaster(obj){
+			var idt=obj.id;
+
+			var indx=parseInt(idt.substring(6));
+			$("#messContainer").html("<div style='width:700px;text-align:center;'><img src='"+global.baseUrl+"/images/loading37.gif' height='185'/></div>")
+		
+			switch(control)
+			{
+				case 'messPagination':
+				
+					var h=$(obj).attr("id");
+					var h1=h.substr(6);
+					global.paginate=parseInt(h1);
+
+					var lim=h1*25;
+					  model={}
+					  model.job="selectAll";
+					  model.dbase="agape_messages";
+					  model.Getdetail="GetCount"
+					  model.ob2=" where agape_message_receiver_ID="+global.userObj.agape_profile_memberID+" or  agape_message_sender_ID="+global.userObj.agape_profile_memberID+" order by agape_message_update desc";
+					  model.kob=" where agape_message_receiver_ID="+global.userObj.agape_profile_memberID+" or  agape_message_sender_ID="+global.userObj.agape_profile_memberID+" order by agape_message_update desc limit "+lim+",25";
+
+					  var modFunk1=function(data){
+					  var b=globalTools.verify(data)
+					  var mess=globalTools.verify(data)
+					  obj=globalTools.verify(data);
+					  displayRecs(obj)
+
+					}
+					ajaxCallPost(model,modFunk1);
+
+
+					//global.paginate
+					
+				break;
+
+				case 'searchPagePagin':
+					var h=$(obj).attr("id");
+					var h1=h.substr(6);
+					global.paginate=parseInt(h1);
+
+					f25Searches(h1);
+
+				break;
+
+			}
+
+		}
+
+
+
+
+		function questionBuilder(StyleObj){
+	
+/** submit model function begins  **/
+/** This function creates the poll and submits the answers to the database  **/
+	var _this=this;
+	//this.questionReplyObj={};
+	this.fieldstyle={
+		"float":"left",
+		"width":"80px",
+		"background-color":"gray",
+		"position":"relative",
+		"margin-bottom":"1px"
+	}
+
+	this.chartstyle={};
+
+
+
+	if(StyleObj!==undefined){
+		for(key1 in StyleObj){
+			for(key2 in this.fieldstyle){
+				if(key1==key2){
+					if(StyleObj[key1]!=""){
+						this.fieldstyle[key2]=StyleObj[key1];
+					}
+				}
+			}
+
+		}
+		if(StyleObj.chartSlider){
+			this.chartstyle=StyleObj.chartSlider;
+
+		}
+	}
+
+
+
+	this.qReplyObj="";
+	this.createPoll=function(quesObjs,title,holder,id,chartID){
+		console.log(990099)
+		console.log(quesObjs)
+		console.log(990099)
+		$("#"+title).html(quesObjs.returnObj[0].question_Core);
+		var tr=$.parseJSON(quesObjs.returnObj[0].question_type);
+		this.chartID=chartID;
+		this.questionReplyObj={};
+		this.manualModel={};
+		switch(tr.type){
+			case "radio":
+				var er=$.parseJSON(quesObjs.returnObj[0].question_reply);
+				var leng=er.answers.length;
+				this.questionReplyObj=$.parseJSON(quesObjs.returnObj[0].question_reply);
+
+				var is="submitPoll"+quesObjs.returnObj[0].question_ID;
+				var im="Polls"+quesObjs.returnObj[0].question_ID;
+				str="<div>";
+
+				
+				var design=this.makestyle(this.fieldstyle);
+			
+				for(c=0;c<leng;c++){
+					
+					str=str+"<div style='margin-bottom:12px;'><div style='float:left;width:265px;font-size:12px;'><input type='radio' id='"+im+"' name='"+im+"' value='"+er.answers[c].param1+"'></input><span>"+er.answers[c].param1+"</span></div>";
+					str=str+"<div id='"+this.chartID+""+c+"' style='"+design+"'></div><div style='float:left;width:25px;color:yellow;font-size:12px;margin-left:6px;display:none;'></div>";
+					str=str+"<div style='clear:both;'></div></div>";
+				}
+				str=str+"</div>";
+				str=str+"<div id='Button"+this.chartID+"' style='margin:auto;margin-top:25px;'><div class='optButtons1' id='"+is+"' style='float:none;margin-bottom:15px;'>Submit</div></div>";
+				$("#"+holder).append(str);
+				var stubby=this.questionReplyObj;
+				_this.manualModel={};
+				_this.manualModel.qReplyObj=stubby;
+				var param3=chartID;
+
+				_this.manualModel.chID=chartID;
+				$("#"+is).on("click",function(){
+					//var ted=questionReplyObj
+
+				if(global.navFunc!="loggedOut"){
+
+
+					var mod=$("input:radio[id="+im+"]:checked").val();
+					if(mod==undefined){
+					
+					}else{
+						//Inserting answer into table
+						model={};
+						model.job="quickInsertAtomic";
+						model.dbase="agape_answers";
+						model.key="false";
+						model.obj={};
+						model.obj.agape_answers_gender=global.userObj.agape_profile_gender;
+						model.obj.agape_answers_answer=globalTools.stringClear(mod);
+						model.obj.agape_answers_age=global.userObj.agape_profile_age;
+						model.obj.agape_answers_religion=global.userObj.agape_profile_religion;
+						model.obj.agape_answers_city=global.userObj.agape_profile_city;
+						model.obj.agape_answers_state=global.userObj.agape_profile_state;
+						model.obj.agape_answers_race=global.userObj.agape_profile_race;
+						model.obj.agape_answers_Question_ID=quesObjs.returnObj[0].question_ID;
+						model.obj.agape_answers_income=global.userObj.agape_profile_salary;
+						model.obj.agape_answers_politics=global.userObj.agape_profile_political;
+						model.obj.agape_answers_education=global.userObj.agape_profile_education;
+						model.obj.agape_answers_nation=global.userObj.agape_profile_nation;
+						
+						var qReplyObj=stubby;
+						var chID1=param3;
+
+						var chID=chID1;
+						var qIdd=qReplyObj;
+						var __this=_this
+						model.obj.agape_answers_created=convertNowToPhP()
+
+						func=function(data){
+								//updating the vote count in the questions database
+								model1={};
+								model1.job="updateVoteCount";
+								model1.QID=quesObjs.returnObj[0].question_ID;
+								model1.addedname=globalTools.stringClear(mod);
+								model1.chID=chID;
+								model1.qReplyObj=qIdd;
+								var func1=function(data1){
+									model2=model1;
+									__this.manualGenerateChart(model2.QID);
+
+									//update the profile presidential_poll record
+									this.formula=model2;
+									recPollObj={};
+									recPollObj.pollType="poll";
+									recPollObj.id=model2.QID;
+									if(global.userObj.agape_vote_recordPolls=="Not Answered"){
+										global.userObj.agape_vote_recordPolls=[];
+										global.userObj.agape_vote_recordPolls.push(recPollObj)
+									}else{
+										global.userObj.agape_vote_recordPolls= $.parseJSON(global.userObj.agape_vote_recordPolls);
+										global.userObj.agape_vote_recordPolls.push(recPollObj);
+									}
+									global.userObj.agape_vote_recordPolls=JSON.stringify(global.userObj.agape_vote_recordPolls);
+									globalTools.save();
+									model3={};
+									model3.job="update_atomic"
+									model3.param="agape_vote_recordPollsUpdate";
+									model3.dbase="agape_profile";
+									model3.obj={};
+									model3.obj.agape_profile_memberID="agape_profile_memberID"
+									model3.vals=global.userObj.agape_profile_memberID;
+									model3.param1=global.userObj.agape_vote_recordPolls;
+									func2=function(data2){
+									}
+									ajaxCallPost(model3,func2)
+									//agape_vote_recordPolls
+
+								}
+								ajaxCallQues(model1,func1)
+							}
+							ajaxCallQues(model,func);
+					}
+				}else{
+					alert("You must login to take polls.")
+				}
+				})
+			break;
+
+
+			case '':
+			break;
+
+		}
+	}
+	/** End of submitModel function **/
+
+
+
+
+	this.makestyle=function(styleObj){
+		styleString="";
+		for(key in styleObj){
+				if(key!="color"){
+				styleString=styleString+key+":"+styleObj[key]+";"
+			}
+		}
+		styleString=styleString+"color:"+styleObj['background-color']+";text-align:left;"
+		return styleString;
+	}
+
+
+
+
+
+
+
+	/** get chart range begins here **/
+
+	this.getChartRanges=function(param){
+
+		leng1=param.qReplyObj.answers.length;
+		var val=0;
+		var wed=0;
+		for(d=0;d<leng1;d++){
+			if(wed<param.qReplyObj.answers[d].count){
+				wed=param.qReplyObj.answers[d].count;
+			}
+		}
+		var range=10;
+		if(wed>10 && wed<=25){
+			range=25;
+		}
+		if(wed>25 && wed<=50){
+			range=50;
+		}
+		if(wed>50 && wed<=100){
+			range=100;
+		}
+		if(wed>100 && wed<=250){
+			range=250;
+		}
+		if(wed>250 && wed<=500){
+			range=500;
+		}
+		if(wed>500 && wed<=1000){
+			range=1000;
+		}
+		if(wed>1000 && wed<=2500){
+			range=2500;
+		}
+		if(wed>2500 && wed<=5000){
+			range=5000;
+		}
+		if(wed>5000 && wed<=10000){
+			range=10000;
+		}
+		if(wed>10000 && wed<=25000){
+			range=25000;
+		}
+
+		if(wed>25000 && wed<=50000){
+			range=50000;
+		}
+		
+		return range;
+
+	}
+
+	/** get chart range ends here **/
+
+
+	/** generate chart begins here **/
+
+
+
+
+	/** generate chart end here **/
+
+
+
+	this.manualGenerateChart=function(alt){
+
+		/* Random Poll  begin*/
+
+		var qb1
+		var quesObj1={};
+		quesObj1.job="quickSelect_atomic"
+		quesObj1.dbase="questions";
+		quesObj1.param="question_ID";
+		quesObj1.start=0;
+		quesObj1.value=alt
+		var cStyle=_this.chartstyle;
+		func22=function(data){
+			var data1=globalTools.verify(data);
+			var freedom=data1.returnObj[0].question_reply;
+			freedom=$.parseJSON(freedom);
+			ob1={};
+			ob1.chID=alt;
+			ob1.qReplyObj=freedom;
+			alt=ob1;
+		
+		var rangeGC=_this.getChartRanges(alt);
+		cnt=0;
+		var gChartLength=alt.qReplyObj.answers.length;
+		for(z=0;z<gChartLength;z++){
+			cnt=cnt+alt.qReplyObj.answers[z].count
+		}
+
+		var styO={
+			"position":"relative",
+			"z-index":10,
+			"background-color":"blue",
+			"width":"0px",
+			"color":"#000",
+			"text-align":"center",
+		}
+		var stylee=cStyle
+
+
+		if(stylee!==undefined){
+			for(key1 in stylee){
+				for(key2 in styO){
+					if(key1==key2){
+						if(stylee[key1]!=""){
+							styO[key2]=stylee[key1];
+						}
+					}
+				}
+
+			}
+		}
+
+		
+		for(z=0;z<gChartLength;z++){
+			var perc=(parseFloat(alt.qReplyObj.answers[z].count)/rangeGC)*100;
+			if(perc<1){
+				perc=1;
+			}
+
+			styO.width=perc+"%";
+			var keyString=_this.makestyle(styO)
+			var tot=alt.qReplyObj.answers[z].count/cnt;
+			tot=parseInt(tot*100);
+			tot=tot+"%";
+			$("#"+alt.chID+""+z).append("<div style='"+keyString+";'><img src='images/invisible.png' height=1 style='visibility:hidden;' /></div><div style='position:absolute;color:lime;z-index:11;left:0px;top:0px;width:80px;'><div style='margin:auto;width:100%;text-align:center;color:"+styO.color+";font-size:12px;'>"+alt.qReplyObj.answers[z].count+"</div></div>");
+			$("#"+alt.chID+""+z).next().html(tot).css("display","block")
+			$("#"+alt.chID+""+z).prev().children().eq(0).css("display","none");
+			$("#"+alt.chID+""+z).prev().css("width","135px")
+
+		}
+		//	question_answerCount
+		$("#Button"+alt.chID).html("<div style='color:lime;font-size:12px;margin-bottom:10px;'> Total votes: "+cnt+"</div><div>Thanks for taking our Poll.</div>")
+
+
+
+
+
+
+
+
+
+	}
+	ajaxCallQues(quesObj1,func22);
+	/* Random Poll  Ends*/
+
+
+
+	}
+
+	this.pollVerify=function(num,mb){
+		if(global.userObj.agape_vote_recordPolls!==undefined){
+			if(global.userObj.agape_vote_recordPolls!="Not Answered"){
+				var pollO=$.parseJSON(global.userObj.agape_vote_recordPolls);
+				pollOLeng=pollO.length;
+				for(y=0;y<pollOLeng;y++){
+
+					if(pollO[y].id==num){
+						mb.manualGenerateChart(num)
+					}
+				}
+			}
+		}
+	}
+
+
+}
+

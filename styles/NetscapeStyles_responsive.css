@@ -923,3 +923,15 @@ opacity:.9;
 	}
 
 }
+
+
+.liStyles{
+	display:inline;
+	padding-top:0px;
+	padding:4px;
+	text-decoration:underline;
+	cursor:pointer;
+	font-size:12px;
+	font-family:helvetica;
+	color:lime;
+}

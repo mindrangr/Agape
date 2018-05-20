@@ -2,7 +2,7 @@
 
         <div id="loggedInBox" style="width:100%;background-color:#000;margin-top:20px;font-size:20px;color:#eee;padding:10px;margin-bottom:25px;display: none;border-radius:5px;"><div>Welcome: <span id="loginname"></span></div>
           <div id="logOutButton" style="color:red;text-decoration: underline;cursor:pointer;font-size:13px;float:left;width:60px;">Log out</div>
-          <div id="gotoMessges" style="color:lime;text-decoration: underline;cursor:pointer;font-size:13px;float:left;">Messages <span id="messNum" style='color:lime;'>0</span></div>
+          <div id="gotoMessges" style="color:lime;cursor:pointer;font-size:13px;float:left;">Messages <span id="messNum" style='color:lime;'>0</span></div>
           <div style='clear:both'></div>
         </div>
 
@@ -232,11 +232,14 @@ function DelButtMess(){
         model={}
         model.job="selectAll";
         model.dbase="agape_messages";
-        model.kob=" where agape_message_opened='Sealed' and agape_message_receiver_ID="+global.userObj.agape_profile_memberID;
+        model.Getdetail="GetCount";
+        model.ob2=" where agape_message_receiver_ID="+global.userObj.agape_profile_memberID+" or agape_message_sender_ID="+global.userObj.agape_profile_memberID+" and agape_message_opened='Sealed'";
+        model.kob=" where agape_message_receiver_ID="+global.userObj.agape_profile_memberID+" or agape_message_sender_ID="+global.userObj.agape_profile_memberID +" order by agape_message_update desc limit 0,25";
 
         var modFunk1=function(data){
-          var mess=globalTools.verify(data)
-          $("#messNum").html("("+mess.countR+")")
+          var mess=globalTools.verify(data);
+          $("#messNum").html("("+mess.countMax+")");
+          //$("#fullNum").html(mess.countMax);
         }
         ajaxCallPost(model,modFunk1);
 

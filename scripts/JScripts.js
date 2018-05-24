@@ -1331,9 +1331,6 @@ function getseconds(chk){
 
 	this.qReplyObj="";
 	this.createPoll=function(quesObjs,title,holder,id,chartID){
-		console.log(990099)
-		console.log(quesObjs)
-		console.log(990099)
 		$("#"+title).html(quesObjs.returnObj[0].question_Core);
 		var tr=$.parseJSON(quesObjs.returnObj[0].question_type);
 		this.chartID=chartID;
@@ -1354,7 +1351,7 @@ function getseconds(chk){
 			
 				for(c=0;c<leng;c++){
 					
-					str=str+"<div style='margin-bottom:12px;'><div style='float:left;width:265px;font-size:12px;'><input type='radio' id='"+im+"' name='"+im+"' value='"+er.answers[c].param1+"'></input><span>"+er.answers[c].param1+"</span></div>";
+					str=str+"<div style='margin-bottom:12px;'><div style='float:left;width:265px;font-size:12px;'><input type='radio' id='"+im+"' name='"+im+"' value='"+er.answers[c].param1+"'></input><span> "+er.answers[c].param1+"</span></div>";
 					str=str+"<div id='"+this.chartID+""+c+"' style='"+design+"'></div><div style='float:left;width:25px;color:yellow;font-size:12px;margin-left:6px;display:none;'></div>";
 					str=str+"<div style='clear:both;'></div></div>";
 				}
@@ -1444,9 +1441,9 @@ function getseconds(chk){
 									//agape_vote_recordPolls
 
 								}
-								ajaxCallQues(model1,func1)
+								ajaxCallPost(model1,func1)
 							}
-							ajaxCallQues(model,func);
+							ajaxCallPost(model,func);
 					}
 				}else{
 					alert("You must login to take polls.")
@@ -1552,13 +1549,18 @@ function getseconds(chk){
 
 		var qb1
 		var quesObj1={};
-		quesObj1.job="quickSelect_atomic"
-		quesObj1.dbase="questions";
-		quesObj1.param="question_ID";
+		quesObj1.job="selectAll"
+		quesObj1.dbase="agape_pollquestions";
+		quesObj1.kob=" where question_ID="+alt;
 		quesObj1.start=0;
 		quesObj1.value=alt
 		var cStyle=_this.chartstyle;
 		func22=function(data){
+
+			console.log(2222)
+			console.log(data)
+			console.log(2222)
+
 			var data1=globalTools.verify(data);
 			var freedom=data1.returnObj[0].question_reply;
 			freedom=$.parseJSON(freedom);
@@ -1609,6 +1611,7 @@ function getseconds(chk){
 			var keyString=_this.makestyle(styO)
 			var tot=alt.qReplyObj.answers[z].count/cnt;
 			tot=parseInt(tot*100);
+			keyString=keyString+";height:19px"
 			tot=tot+"%";
 			$("#"+alt.chID+""+z).append("<div style='"+keyString+";'><img src='images/invisible.png' height=1 style='visibility:hidden;' /></div><div style='position:absolute;color:lime;z-index:11;left:0px;top:0px;width:80px;'><div style='margin:auto;width:100%;text-align:center;color:"+styO.color+";font-size:12px;'>"+alt.qReplyObj.answers[z].count+"</div></div>");
 			$("#"+alt.chID+""+z).next().html(tot).css("display","block")
@@ -1628,7 +1631,7 @@ function getseconds(chk){
 
 
 	}
-	ajaxCallQues(quesObj1,func22);
+	ajaxCallPost(quesObj1,func22);
 	/* Random Poll  Ends*/
 
 

@@ -43,7 +43,7 @@
     border-radius: 0px 0px 0px 9px;
   }
 
-   .topBannerInfoImg_basic{
+  .topBannerInfoImg_basic{
     position: absolute;
     background-color: #000;
     opacity: .7;
@@ -73,6 +73,40 @@
     width:110px;
     font-weight: bold;
   }
+
+  .searchDrpDwn{
+    color:#c96cbd;
+    float:left;
+    width:120px
+  }
+
+
+.searchCenterDiv{
+  margin-left:15px;
+  background-color: #000;
+  border-radius: 5px;
+  border:solid 1px #c96cbd;
+  width:100%;
+  /*padding:25px;*/
+}
+
+
+  .searchDrpDwnDiv{
+    width:87%;
+    background-color:#eee;
+    height:40px;
+    float:left;
+    border-radius: 5px;
+    padding:5px;
+  }
+
+  .searchDrpDwnSelect{
+    width:90%;
+    border:none;
+    background-color:#eee;
+  }
+
+
 
 
 
@@ -158,20 +192,20 @@
   </div>
 </div>
  
-<body style="padding-top:70px;background-image: url('images/blog1Blur.jpg');background-repeat:no-repeat;background-color: #2f4774;">
+<body style="padding-top:70px;background-image: url('images/blog2Blur.jpg');background-repeat:no-repeat;background-color: #2f4774;">
  
   <?php include '../header.php';?>
      
     <div class="container newsContainer" >
       <div class="overF">
         <div class="row">
-          <div class="col-sm-3 tPaddMobileLogin" >
+          <div class="col-sm-3 tPaddMobileLogin" style="height:770px;" >
             <?php include '../templates/logBox.php';?>
           </div>
       
           <div class="col-sm-6" >
-            <div style="margin-left:15px;background-color: #000;border-radius: 5px;border:solid 1px #c96cbd;width:470px;padding:25px;">
-            <div style="width:270px;float:left;">
+            <div class="searchCenterDiv">
+            <div class="searchIBox">
               <div style='font-size:13px;'>There are <span id="countMax" style='color:lime;text-decoration: underline;cursor:pointer' >0</span> candidates in your area.</div>
               
 
@@ -179,89 +213,93 @@
                 <div id="cViews" style="position: absolute;z-index:10;height:140px;width:270px;height:0px;background-color:#eee;overflow: auto;">
               </div>
 
-
-
-
-              </div>
+            </div>
 
 
 
 
-              <div id='idHolder' style='height:510px;margin-top:10px;width:270px;overflow: auto;overflow-x: hidden;'>
+              <div id='idHolder' style='height:730px;margin-top:10px;width:100%;overflow: auto;overflow-x: hidden;'>
                 
               
 
               </div>
               <div id="searchPagePagin"></div>
 
-              <div class="pollStyle" >
-                <div id="polltitle1" class="rowHolderHeaders_search" style="width:100%;margin-top:15px;padding-top:9px;height:56px;padding-left:6px;padding-right:6px;padding-bottom:15px;"></div>
-                <input type="hidden" id="poll_ID1" />
-                <div id="pollHolder1" class='pollHolder'>
-                  
-                </div>
-
-              </div>
+              
             </div>
-            <div style="height:600px;width:120px;float:left;margin-left:15px;margin-top:10px;">
+            <div style="height:600px;width:45%;float:left;margin-left:10px;margin-top:10px;">
               <div>
-                <img src='advertiseImages/atlhousing.png' style='width:140px;height:130px;' />
+                <img src='advertiseImages/atlhousing.png' style='width:95%;height:32%;margin-top: 10px;' />
               </div>
                <div>
-                <img src='advertiseImages/OptimalHearing.png' style='width:140px;height:130px;margin-top:10px;' />
+                <img src='advertiseImages/OptimalHearing.png' style='width:95%;height:32%;margin-top: 10px;' />
               </div>
                <div>
-                <img src='advertiseImages/MegaPath.PNG' style='width:140px;height:130px;margin-top:10px;' />
+                <img src='advertiseImages/MegaPath.PNG' style='width:95%;height:32%;margin-top: 10px;' />
               </div>
-               <div>
-                <img src='advertiseImages/ellis.png' style='width:140px;height:130px;margin-top:10px;' />
+              
+               <div >
+                <img src='advertiseImages/ellis.png' style='width:95%;height:32%;margin-top: 10px;' />
               </div>
-               
 
 
             </div>
             <div style="clear:both;"></div>
 
           </div>
+          <!--<div style="margin-left:15px;float:left;">
+            <div class="pollStyle" >
+              <div id="polltitle1" class="rowHolderHeaders_search" style="width:54%;margin-top:15px;height:56px;padding-left:6px;padding-right:6px;padding-bottom:15px;"></div>
+              <input type="hidden" id="poll_ID1" />
+              <div id="pollHolder1" class='pollHolder'>
+                
+              </div>
+
+            </div>
+          </div>
+
+           
+
+              <div style="clear:both;"></div>-->
           </div>
           
 
-          <div class="col-sm-3">
-            <div style='padding:10px;background-color: #000;border-radius: 5px;border:solid 1px #c96cbd;'>
+          <div class="col-sm-3" style="height:770px;">
+            <div id="searchBox1" style='padding:10px;background-color: #000;border-radius: 5px;border:solid 1px #c96cbd;'>
               
             <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>Body type</div>
-                <div style="width:220px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
+              <div class='searchDrpDwn'>Body type</div>
+                <div class="searchDrpDwnDiv">
 
-              <select  id="agape_profile_bodyType" style="width:200px;border:none;background-color:#eee;" >
+              <select  id="agape_profile_bodyType" class="searchDrpDwnSelect" >
                 </select>
               </div>
               <div style="clear:both;"></div>
             </div>
 
             <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px;'>Religion</div>
+              <div class='searchDrpDwn'>Religion</div>
               
               <div style="clear:both;"></div>
-              <div style="width:220px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
-              <select  id="agape_profile_religion" style="width:200px;border:none;background-color:#eee;" >
+              <div class="searchDrpDwnDiv">
+              <select  id="agape_profile_religion" class="searchDrpDwnSelect" >
                 </select>
               </div>
             </div>
 
             <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>Politics</div>
-              <div style="width:220px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
-              <select  id="agape_profile_political" style="width:200px;border:none;background-color:#eee;" >
+              <div class='searchDrpDwn'>Politics</div>
+              <div class="searchDrpDwnDiv">
+              <select  id="agape_profile_political" class="searchDrpDwnSelect" >
                 </select>
               </div>
               <div style="clear:both;"></div>
             </div>
 
             <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>Age</div>
-              <div style="width:220px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
-               <select  id="agape_profile_age" style="width:200px;border:none;background-color:#eee;" >
+              <div class='searchDrpDwn'>Age</div>
+              <div class="searchDrpDwnDiv">
+               <select  id="agape_profile_age" class="searchDrpDwnSelect" >
                 </select>
               </div>
               </div>
@@ -271,15 +309,15 @@
            
 
             <div style="margin-top:10px;">
-              <div style='color:#c96cbd;float:left;width:120px'>Height</div>
-              <div style="width:220px;background-color:#eee;height:40px;float:left;border-radius: 5px;padding:5px;">
+              <div class='searchDrpDwn'>Height</div>
+              <div class="searchDrpDwnDiv">
                
-                <select  id="agape_profile_height" style="width:200px;border:none;background-color:#eee;" >
+                <select  id="agape_profile_height" class="searchDrpDwnSelect" >
                 </select>
               </div>
               <div style="clear:both;"></div>
             </div>
-             <div style='margin-top: 15px;'><button id="updateButton" class="btn btn-outline-success my-2 my-sm-0" type="button"  >Search</button></div>
+             <div style='margin-top: 15px;'><button id="searchButton" class="btn btn-outline-success my-2 my-sm-0" type="button"  >Search</button></div>
 
 
            </div>
@@ -366,6 +404,14 @@
     })
 
 
+  $("#searchButton").unbind().on("click",function(){
+    $("#searchBox1 :input").each(function(){
+      console.log($(this).attr("id"))
+    })
+
+  })
+
+
 
   function f25Searches(lim){
       var model={};
@@ -380,11 +426,7 @@
 
       var func21=function(data){
         var cands=globalTools.verify(data)
-        global.searchObj.cands=cands
-
-        console.log(999999)
-        console.log(global.searchObj.cands.returnObj)
-        console.log(999999)
+        global.searchObj.cands=cands;
         
         $("#countMax").html(cands.countMax)
         var h=cands.countR;
@@ -447,7 +489,7 @@
 
             heightVal=heightVal+"' "+modulos;
             var tstring="<div>"
-            tstring=tstring+"<div style='float:left;'><img src='"+img2.defaultPic+"' style='height:160px;width:180px;' /></div>";
+            tstring=tstring+"<div style='float:left;'><img src='"+img2.defaultPic+"' style='height:160px;width:98%;' /></div>";
 
             tstring=tstring+"<div style='float:left;padding-left:10px;'>"
 
@@ -693,8 +735,8 @@ $(document).ready(function(){
   var quesObj1={};
   quesObj1.job="selectAll"
   quesObj1.dbase="agape_pollQuestions";
-  quesObj1.kob="where question_ID=22";
-  quesObj1.value=22;
+  quesObj1.kob="where question_ID=39";
+  quesObj1.value=39;
   var func1=function(data){
     var data1=globalTools.verify(data);
     qb1 = new questionBuilder({
@@ -708,7 +750,7 @@ $(document).ready(function(){
           "tColor":"#eee"
       }
     });
-    qb1.createPoll(data1,"polltitle1",'pollHolder1','poll_ID1',22);
+    qb1.createPoll(data1,"polltitle1",'pollHolder1','poll_ID1',39);
     qb1.pollVerify(quesObj1.value,qb1);
   }
   ajaxCallPost(quesObj1,func1);

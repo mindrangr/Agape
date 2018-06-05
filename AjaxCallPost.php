@@ -41,7 +41,7 @@
 		 		 $sqlString1=$sqlString1."agape_profile_firstDate,agape_profile_salary,agape_profile_accountType,agape_profile_username,agape_profile_default_img,	agape_profile_religion,	agape_profile_register_date,"; 
 		 		 $sqlString1=$sqlString1."agape_profile_drugs,agape_profile_alcohol,agape_partner_gender,agape_partner_age_range,agape_partner_salary,agape_partner_drugs,agape_partner_religion,agape_partner_education,"; 
 		 		 $sqlString1=$sqlString1."agape_partner_opts,agape_partner_alcohol,agape_partner_children,agape_partner_bodyType,agape_profile_opts,agape_profile_race,agape_profile_fRequest,	agape_partner_race,"; 
-		 		 $sqlString1=$sqlString1."agape_partner_height,	agape_profile_children_future,agape_profile_amt2Invest,agape_profile_nation,agape_profile_accountStatus,agape_friendList,agape_vote_recordThumbs,";
+		 		 $sqlString1=$sqlString1."agape_partner_height,	agape_profile_onlineStatus, agape_profile_children_future,agape_profile_amt2Invest,agape_profile_nation,agape_profile_accountStatus,agape_friendList,agape_vote_recordThumbs,";
 		 		 $sqlString1=$sqlString1."agape_vote_recordPolls,agape_vote_presidentialCandidates,agape_profile_romanceAccount,	agape_profile_commercial_Account,agape_profile_presidentAccount,agape_profile_presidentAccount_type from ".$kdbase." ".$kob;
 		 	}
 

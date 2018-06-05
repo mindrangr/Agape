@@ -1097,8 +1097,8 @@ function make_seed()
 
 
 function zodiac(){
-
-	/*update agape_profile set agape_profile_zodiacSign=CASE 
+$con1=mysql_connect("localhost", "agapeAdmin", "Agape1422frg!") or die(mysql_error());
+$qString="update agape_profile set agape_profile_zodiacSign=CASE 
 when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) <20 then 'Capricorn' 
 when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 20 and 49  then 'Aquarius' 
 when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 49 and 79  then 'Pisces' 
@@ -1111,11 +1111,8 @@ when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 235 and 265  then 'Vi
 when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 266 and 295  then 'Libra'
 when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 296 and 325  then 'Scorpio'
 when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) between 326 and 355  then 'Sagittarius'
-when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) > 355 then 'Capricorn'
-
-END 
-WHERE agape_profile_memberID=45*/
-
+when (SELECT DAYOFYEAR(agape_profile_dateOfBirth)) > 355 then 'Capricorn' END where 'agape_profile_username<>''";
+mysql_query($qString);
 }
 
 
@@ -1251,12 +1248,15 @@ srand(mktime());
 //changeOnlineStatusBack();
 //updateSourceID();
 //fixBlogImages();
-
-//matchAgeBday()
+//zodiac();
+//matchAgeBday();
 
 function matchAgeBday(){
 	// this code creates a new age based on birth date listed
-$uString="update agape_profile set agape_profile_age = (select round(DATEDIFF(Now(),agape_profile_dateOfBirth)/365 ))";
+	$con1=mysql_connect("localhost", "agapeAdmin", "Agape1422frg!") or die(mysql_error());
+	$uString="update agape_profile set agape_profile_age = (select round(DATEDIFF(Now(),agape_profile_dateOfBirth)/365 ))";
+
+	$result2=mysql_query($uString);
 }
 
 

@@ -121,7 +121,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <div style="float:left;"><h5 class="modal-title" id="searchModalLabel"></h5></div>
-        <div style="float:left;margin-left:25px;">Intentions: <span id="intentions" style="font-weight: bold;"></span></div>
+        <div style="float:left;margin-left:25px;margin-top: 4px;">Intentions: <span id="intentions" style="font-weight: bold;"></span></div>
         <div style="clear:both"></div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -134,14 +134,14 @@
 
           <div id="profBox">
          
-          <div style="float: left;width:100px;">Education:</div>
+          <div style="float: left;width:100px;font-weight:bold;">Education:</div>
           <div id="education" style="float: left;"></div>
 
           <div style="clear:both;"></div>
 
 
 
-          <div style="float: left;width:100px;">Politics:</div>
+          <div style="float: left;width:100px;font-weight:bold;">Politics:</div>
           <div id="politics" style="float: left;"></div>
 
           <div style="clear:both;"></div>
@@ -266,6 +266,19 @@
 
           <div class="col-sm-3" style="height:770px;">
             <div id="searchBox1" style='padding:10px;background-color: #000;border-radius: 5px;border:solid 1px #c96cbd;'>
+
+
+            <div style="margin-top:10px;">
+              <div class='searchDrpDwn'>Gender seeking</div>
+                <div class="searchDrpDwnDiv">
+
+              <select  id="agape_profile_gender" class="searchDrpDwnSelect" >
+                </select>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+
+
               
             <div style="margin-top:10px;">
               <div class='searchDrpDwn'>Body type</div>
@@ -275,6 +288,18 @@
                 </select>
               </div>
               <div style="clear:both;"></div>
+            </div>
+
+ 
+
+            <div style="margin-top:10px;">
+              <div class='searchDrpDwn'>Intentions</div>
+              
+              <div style="clear:both;"></div>
+              <div class="searchDrpDwnDiv">
+              <select  id="agape_profile_intentions" class="searchDrpDwnSelect" >
+                </select>
+              </div>
             </div>
 
             <div style="margin-top:10px;">
@@ -287,14 +312,29 @@
               </div>
             </div>
 
+
+
             <div style="margin-top:10px;">
-              <div class='searchDrpDwn'>Politics</div>
+              <div class='searchDrpDwn'>Race</div>
               <div class="searchDrpDwnDiv">
-              <select  id="agape_profile_political" class="searchDrpDwnSelect" >
+              <select  id="agape_profile_race" class="searchDrpDwnSelect" >
                 </select>
               </div>
               <div style="clear:both;"></div>
             </div>
+
+
+            <div style="margin-top:10px;">
+              <div class='searchDrpDwn'>Zodiac sign</div>
+              <div class="searchDrpDwnDiv">
+              <select  id="agape_profile_zodiacSign" class="searchDrpDwnSelect" >
+                </select>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+
+
+
 
             <div style="margin-top:10px;">
               <div class='searchDrpDwn'>Age</div>
@@ -405,10 +445,170 @@
 
 
   $("#searchButton").unbind().on("click",function(){
+    var gtr={};
+    var sebxcntr=0;
     $("#searchBox1 :input").each(function(){
-      console.log($(this).attr("id"))
+      if($(this).attr("id")!="searchButton" && $(this).val()!="Not Answered"){
+        console.log($(this).val())
+        gtr[$(this).attr("id")]=$(this).val();
+        sebxcntr=sebxcntr+1;
+      }
+      
     })
+    var gstrg="";
+    var t=0
+    for(var b in gtr){
+      t=t+1;
+      if(t<sebxcntr){
+        switch(b){
 
+          case 'agape_profile_height':
+            var idx=parseInt(gtr[b]);
+            var lw=idx-2;
+            var hw=idx+3;
+            var fstr="";
+            for(i=lw;i<hw;i++){
+
+              if(i<(hw-1)){
+                fstr=fstr+"'"+i+"', "; 
+              }else{
+                fstr=fstr+"'"+i+"'"; 
+              }        
+            }
+            gstrg=gstrg+ b+" in ("+fstr+") and ";
+          break;
+
+
+          case 'agape_profile_intentions':
+
+            if(gtr[b]=="Friendship"){
+              gstrg=gstrg+ b+" in ('Friendship','Business Contact') and "
+            }else if(gtr[b]=="Casual Dating"){
+              gstrg=gstrg+ b+" in ('Casual Dating','Hook up') and "
+            }else if(gtr[b]=="Hook up"){
+                gstrg=gstrg+ b+" = '"+gtr[b]+"' and "
+            }else if(gtr[b]=="Marriage"){
+                gstrg=gstrg+ b+" = '"+gtr[b]+"' and "
+            }else if(gtr[b]=="Other"){
+                gstrg=gstrg+ b+" in ('Other','Lets Talk') and "
+            }else if(gtr[b]=="Lets Talk"){
+                gstrg=gstrg+ b+" in ('Other','Lets Talk','Business Contact','Hook up') and "
+            }
+
+
+
+          break;
+
+          case 'agape_profile_age':
+            var idx=parseInt(gtr[b]);
+            var lw=idx-2;
+            var hw=idx+3;
+            var fstr="";
+            for(i=lw;i<hw;i++){
+
+              if(i<(hw-1)){
+                fstr=fstr+"'"+i+"', "; 
+              }else{
+                fstr=fstr+"'"+i+"'"; 
+              }        
+            }
+            gstrg=gstrg+ b+" in ("+fstr+") and ";
+          break;
+
+
+          default:
+            gstrg=gstrg+ b+"='"+gtr[b]+"' and ";
+          break;
+        }
+
+         
+      }else{
+       
+        switch(b){
+
+          case 'agape_profile_height':
+            var idx=parseInt(gtr[b]);
+            var lw=idx-2;
+            var hw=idx+4;
+            var fstr="";
+            for(i=lw;i<hw;i++){
+
+              if(i<(hw-1)){
+                fstr=fstr+"'"+i+"', "; 
+              }else{
+                fstr=fstr+"'"+i+"'"; 
+              }        
+            }
+            gstrg=gstrg+ b+" in ("+fstr+")";
+          break;
+
+          case 'agape_profile_age':
+            var idx=parseInt(gtr[b]);
+            var lw=idx-3;
+            var hw=idx+4;
+            var fstr="";
+            for(i=lw;i<hw;i++){
+
+              if(i<(hw-1)){
+                fstr=fstr+"'"+i+"', "; 
+              }else{
+                fstr=fstr+"'"+i+"'"; 
+              }        
+            }
+            gstrg=gstrg+ b+" in ("+fstr+") ";
+          break;
+
+
+
+           case 'agape_profile_intentions':
+
+            if(gtr[b]=="Friendship"){
+              gstrg=gstrg+ b+" in ('Friendship','Business Contact')"
+            }else if(gtr[b]=="Casual Dating"){
+              gstrg=gstrg+ b+" in ('Casual Dating','Hook up')"
+            }else if(gtr[b]=="Hook up"){
+                gstrg=gstrg+ b+" = '"+gtr[b]+"'"
+            }else if(gtr[b]=="Marriage"){
+                gstrg=gstrg+ b+" = '"+gtr[b]+"'"
+            }else if(gtr[b]=="Other"){
+                gstrg=gstrg+ b+" in ('Other','Lets Talk')"
+            }else if(gtr[b]=="Lets Talk"){
+                gstrg=gstrg+ b+" in ('Other','Lets Talk','Business Contact','Hook up')"
+            }
+
+
+
+          break;
+
+
+          default:
+            gstrg=gstrg+ b+"='"+gtr[b]+"' ";
+          break;
+        }
+
+
+
+
+
+
+      }
+    }
+    gstrg=gstrg+" and agape_partner_gender ='"+global.userObj.agape_profile_gender+"' and agape_profile_state='"+global.userObj.agape_profile_state+"'";
+    global.searchObj.sql= " where "+gstrg
+
+    var model={}
+    model.job="selectAll";
+    model.dbase="agape_profile";
+    model.kob=global.searchObj.sql + " limit 0,25";
+    model.Getdetail="GetCount";
+    model.ob2=global.searchObj.sql;
+    var retFun=function(data){
+      var newb=globalTools.verify(data)
+      control="searchPageSearch"
+      displaySearchRecords(data)
+    }
+
+    ajaxCallPost(model,retFun)
   })
 
 
@@ -425,9 +625,18 @@
 
 
       var func21=function(data){
-        var cands=globalTools.verify(data)
+        control="searchPagePagin"
+        displaySearchRecords(data);
+      }
+
+      ajaxCallPost(model,func21);
+    
+  }
+
+  function displaySearchRecords(data){
+
+    var cands=globalTools.verify(data)
         global.searchObj.cands=cands;
-        
         $("#countMax").html(cands.countMax)
         var h=cands.countR;
         var strg="";
@@ -441,7 +650,8 @@
                 if(global.userObj.agape_profile_accountType=="Premium"){
                   package="topBannerInfoImg";
                 }  
-                strg=strg+"<div class='"+package+"'>"
+                strg=strg+"<div class='"+package+"'>";
+
                 if(cands.returnObj[i].agape_profile_onlineStatus=="Offline"){
                   strg=strg+"<div style='position:absolute;color:#6b6262;left:10px;'>"+cands.returnObj[i].agape_profile_onlineStatus+"</div>"
                 }
@@ -469,8 +679,8 @@
 
         }
         $("#idHolder").empty().append(strg);
-       
-        control="searchPagePagin"
+
+
         mainPaginationFunc("searchPagePagin",cands.countMax,"none")
         $("div[id^='VUB']").each(function(){
           $(this).on("click",function(){
@@ -489,7 +699,7 @@
 
             heightVal=heightVal+"' "+modulos;
             var tstring="<div>"
-            tstring=tstring+"<div style='float:left;'><img src='"+img2.defaultPic+"' style='height:160px;width:98%;' /></div>";
+            tstring=tstring+"<div style='float:left;'><img src='"+img2.defaultPic+"' style='height:160px;width:180px;' /></div>";
 
             tstring=tstring+"<div style='float:left;padding-left:10px;'>"
 
@@ -534,13 +744,10 @@
             $("#education").html(global.searchObj.cands.returnObj[idx1].agape_profile_education);
           })
         })
-      }
 
-      ajaxCallPost(model,func21);
-    
+
+
   }
-
-
 
 
 
@@ -728,6 +935,8 @@ $(document).ready(function(){
 
         }
         ajaxCallPost(mod1,funk1)
+      }else{
+        alert("hold em")
       }
     })
 
@@ -763,5 +972,7 @@ $(document).ready(function(){
   lForms();
   getSponsors();
   f25Searches(0);
+  $("#agape_profile_gender").val(global.userObj.agape_partner_gender)
+  $("#agape_profile_AGE").val(global.userObj.agape_partner_age)
   //getOnlineUsers(global.userListCnt);
 </script>

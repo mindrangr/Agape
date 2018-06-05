@@ -77,7 +77,7 @@
            <div class="col-sm-3">
             <h3 style="color:#c96cbd;text-shadow: 1px 1px #000;" class="fontColorLabels">Romance</h3>
             <p class='newstoryHomeText fontSizefront' >Agape romance is a free web based community of individuals looking to meet someone just like you. Sign up and complete a few fields and you'll be ready to meet your perfect match today! </p>
-            <p><a href="#" class="nFooter" style="font-size:20px;">Go to Romance</a></p>
+            <p><a href="search" class="nFooter" style="font-size:20px;">Go to Romance</a></p>
           </div>
            <div class="col-sm-3">
               <h3 style="color:#2f4774;text-shadow: 1px 1px #000;" class="fontColorLabels">Agape Politics</h3>

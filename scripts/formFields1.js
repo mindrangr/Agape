@@ -15,9 +15,11 @@
 					"quesType":"select",
 					"quesLabel":"Intentions",
 					"quesParams":[
+						"Not Answered",
 						"Friendship",
 						"Marriage",
 						"Casual Dating",
+						"Hook up",
 						"Business Contact",
 						"Lets talk",
 						"Other"
@@ -36,6 +38,30 @@
 					"premiumOptions":{
 						"searchOpts":"5"
 					}
+				},
+
+
+				{
+					"col":"agape_profile_zodiacSign",
+					"additionalParams":"none",
+					"quesType":"select",
+					"quesLabel":"Intentions",
+					"quesParams":[
+						"Not Answered",
+						"Aquarius",
+						"Pisces",
+						"Aries",
+						"Taurus",
+						"Gemini",
+						"Cancer",
+						"Leo",
+						"Virgo",
+						"Libra",
+						"Scorpio",
+						"Sagittarius",
+						"Capricorn"
+					],
+
 				},
 
 				{

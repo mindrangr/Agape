@@ -22,7 +22,7 @@
             </li>
 
             <li id="friendsli" class="nav-item LogI" style='display:none;'>
-              <a class="nav-link disabled" href="#">Friends</a>
+              <a class="nav-link disabled" href="friends">Friends</a>
             </li>
             <li id="communityli" class="nav-item">
               <a class="nav-link disabled" href="#">Community</a>

@@ -1285,6 +1285,30 @@ function getseconds(chk){
 
 				break;
 
+				case 'searchPageSearch':
+					var h=$(obj).attr("id");
+					var h1=h.substr(6);
+					var lim=h1*25
+					global.paginate=parseInt(h1);
+					var model={}
+				    model.job="selectAll";
+				    model.dbase="agape_profile";
+				    model.kob=global.searchObj.sql +" limit "+lim+",25";
+				    model.Getdetail="GetCount";
+				    model.ob2=global.searchObj.sql;
+				    var retFun=function(data){
+				      var newb=globalTools.verify(data)
+				      control="searchPageSearch"
+				      displaySearchRecords(data)
+				    }
+
+			    	ajaxCallPost(model,retFun)
+
+				break;
+
+
+
+
 			}
 
 		}

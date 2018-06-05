@@ -1,10 +1,22 @@
 <?php
   session_start();
 
-  include("Config_files/_shared_config.php");
+  include("../Config_files/_shared_config.php");
 
 ?>
 <!Doctype html />
+<head>
+  <style>
+  .friendRecStyle1{
+    width:100%;
+    height:30px;
+    border-bottom: solid 1px;
+    color:#000;
+    font-family: arial;
+  }
+</style>
+
+</head>
   <script src="<?php echo $actual_base ?>/scripts/jquery-3.1.1.min.js"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
@@ -39,7 +51,7 @@
  
 <body style="padding-top:70px;background-image: url('images/blog1Blur.jpg');background-repeat:no-repeat;background-color: #2f4774;">
  
-  <?php include 'header.php';?>
+  <?php include '../header.php';?>
 
     
      
@@ -47,17 +59,27 @@
       <div class="overF">
         <div class="row">
           <div class="col-sm-3 tPaddMobileLogin" >
-            <?php include 'templates/logBox.php';?>
+            <?php include '../templates/logBox.php';?>
              
           </div>
       
-          <div class="col-sm-3">
+          <div class="col-sm-7">
+            <div style="width:90%;height:80%;background-color: #fff;border-radius: 5px;">
+              <div style="width:100%;height:100%;overflow: auto;overflow-x: hidden">
+              <div class="friendRecStyle1">Marcus</div>
+              <div class="friendRecStyle1">Marcus</div>
+              <div class="friendRecStyle1">Marcus</div>
+              <div class="friendRecStyle1">Marcus</div>
+
+              </div>
+
+
+            </div>
+           
+         
            
           </div>
-           <div class="col-sm-3">
-           
-          </div>
-           <div class="col-sm-3">
+           <div class="col-sm-2">
              
             </div>
             
@@ -111,7 +133,7 @@
    
 
 
-  <?php include 'footer.html';?>
+  <?php include '../footer.html';?>
  
 </body>
 

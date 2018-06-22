@@ -782,25 +782,30 @@ function loadFrRequest()
 	{
 		$profile_memberID[$cntr]=$row['agape_profile_memberID'];
 		$profile_username[$cntr]=$row['agape_profile_username'];
-		$profile_url[$cntr]=$row['agape_profile_default_img'];
+		//print_r($row['agape_profile_default_img']);
+		//echo "<br/><br/>";
+		$jj=json_decode($row['agape_profile_default_img']);
+		$profile_url[$cntr]=$jj->defaultPic;
 	
 		$cntr++;
 	}
 	
-	for($k=1;$k<3000;$k++)
+	for($k=1;$k<163;$k++)
 	{
 	
 		$mon=rand(1,12);
 		$day=rand(1,28);
 		$hours=rand(0,23);
 		$min=rand(0,59);
-		$yearly=rand(2014,2015);
+		$yearly=rand(2015,2017);
 		$send_date=$yearly."-".$mon."-".$day." ".$hours.":".$min.":00";
 		
 		$senderIndx=rand(0,count($profile_username)-1);
 		$senderUname=$profile_username[$senderIndx];
 		$senderID=$profile_memberID[$senderIndx];
+		$kk=json_decode($profile_url[$senderIndx]);
 		$senderUrl=$profile_url[$senderIndx];
+		//$senderUrl=$profile_url[$senderIndx];
 		
 		//$senderUname="uname250";
 		//$senderID="250";
@@ -810,11 +815,24 @@ function loadFrRequest()
 		$reciverInd=rand(0,count($profile_memberID)-1);
 		$reciverUname=$profile_username[$reciverInd];
 		$reciverID=$profile_memberID[$reciverInd];
+		$reciverURL=$profile_url[$reciverInd];
 	
 		//$reciverUname="uname45";
 		//$reciverID="45";	
+		//$reciverURL="profileImages/workImages/wjmKgNP67qseAbBNs2mnTvQNH7AflmDeTN5Uo5+TYkE.jpeg?val=1499326949000";
+		$stat="sent";
+
+		$statChk=rand(0,100);
+		$req="0000-00-00 00:00:00";
+		if($statChk>39){
+			$stat="Accepted";
+			$mon=rand($mon,12);
+			$yearly=rand($yearly,2018);
+			$day=rand($day,28);
+			$req=$yearly."-".$mon."-".$day." ".$hours.":".$min.":00";
+		}
 		
-		$debut="insert into agape_friendrequest (requestorID,requestorUsername,requestedID,requestedUsername,requestSent,requestMessage,requestorImgUrl) values ('".$senderID."','".$senderUname."','".$reciverID."','".$reciverUname."','".$send_date."','".$message."','".$senderUrl."')";
+		$debut="insert into agape_friendrequest (requestorID,requestorUsername,requestedID,requestedUsername,requestSent,requestMessage,requestorImgUrl,requestedImgUrl,requestResponse,requestStatus) values ('".$senderID."','".$senderUname."','".$reciverID."','".$reciverUname."','".$send_date."','".$message."','".$senderUrl."','".$reciverURL."','".$req."','".$stat."')";
 		echo $k."<br/>";
 		echo $debut."<br/><br/>";
 		mysql_query($debut);
@@ -1074,7 +1092,7 @@ function createFriends(){
 
 		$ob=json_encode($arrlist);
 		$insertStrg="update agape_profile set agape_profile_friends='".$ob."' where agape_profile_memberID=".$Receiver;
-		$insertStrg="update agape_profile set agape_profile_friends='".$ob."' where agape_profile_memberID=250";
+		$insertStrg="update agape_profile set agape_profile_friends='".$ob."' where agape_profile_memberID=45";
 		//echo $Receiver." ".$ob."<br/>";
 		mysql_query($insertStrg);
 		echo $insertStrg;
@@ -1238,7 +1256,7 @@ srand(mktime());
 //createFriends();	
 //loadProfile(5);
 //loadMessage();
-//loadFrRequest();
+loadFrRequest();
 //updateRecords();
 //loadBlogHeaders();
 //updateOptions();

@@ -219,6 +219,7 @@ function getOnlineUsers(b1){
 	
 	//userOnline.uID=global.userObj.agape_profile_memberID;
 	var repFunk=function(data){
+
 		var dataSet=globalTools.verify(data);
 		if(dataSet.countR>0){
 			$("#usersOnline").show();
@@ -1264,6 +1265,7 @@ function getseconds(chk){
 
 					  var modFunk1=function(data){
 					  var b=globalTools.verify(data)
+					  //global.friendsO
 					  var mess=globalTools.verify(data)
 					  obj=globalTools.verify(data);
 					  displayRecs(obj)
@@ -1304,6 +1306,25 @@ function getseconds(chk){
 
 			    	ajaxCallPost(model,retFun)
 
+				break;
+
+
+				case 'friendPagination':
+					var h=$(obj).attr("id");
+					var h1=h.substr(6);
+					global.paginate=parseInt(h1);
+				  	var mod={}
+				  	mod.job="selectAll";
+				  	mod.dbase="agape_friendrequest"
+				  	mod.kob=" where (requestedID="+global.userObj.agape_profile_memberID+" or requestorID = "+global.userObj.agape_profile_memberID+") and requestStatus='Accepted' limit "+global.paginate+",25";
+				  	mod.Getdetail="GetCount";
+				  	mod.ob2=" where (requestedID="+global.userObj.agape_profile_memberID+" or requestorID = "+global.userObj.agape_profile_memberID+") and requestStatus='Accepted'";
+				  	var ftn=function(data){
+				    	var de=globalTools.verify(data)
+				    	global.friendsObj=de;
+				    	listFriends(de);
+				  	}
+				  	ajaxCallPost(mod,ftn);
 				break;
 
 
@@ -1679,4 +1700,11 @@ function getseconds(chk){
 
 
 }
+
+
+function displayRecords(data){
+
+    var strg
+        $("#innerModal").empty().append(strg);
+    }
 

@@ -64,6 +64,7 @@ function ajaxCallPost(jsonObj,retFunc)
 			this.connection={};
 			this.connection.status="open";
 			this.connection.queue=[];
+
 			_this=this;
 			this.queue = [];
 			this.connection.func="";
@@ -76,16 +77,16 @@ function ajaxCallPost(jsonObj,retFunc)
 			}
 			this.connection.CompleteQueue=function(){
 
+
 				if(this.queue.length>0){
-					
+		
 					connection.post_Obj(this.queue[0].data,this.queue[0].retCall);
 				}	this.queue.shift();
 			}
 			this.connection.post_Obj=function(dataM,ret,url){
-				
+
 				this.func=ret;
 				this.datum=dataM;
-				this.queue=[];
 				switch(this.status)
 				{
 
@@ -116,7 +117,6 @@ function ajaxCallPost(jsonObj,retFunc)
 						}else{
 							this.queue.push(postObj)
 						}
-						
 					break;
 				}
 				
@@ -1033,7 +1033,8 @@ function convertNowToPhP(){
 	if(parseInt(mon)<10){
 		mon="0"+mon;
 	}
-	presTime =FullYear +"-"+mon+"-"+day +" "+hours+":"+minutes+":00"
+	presTime =FullYear +"-"+mon+"-"+day +" "+hours+":"+minutes+":00";
+
 	return presTime;
 
 }
@@ -1313,21 +1314,41 @@ function getseconds(chk){
 					var h=$(obj).attr("id");
 					var h1=h.substr(6);
 					global.paginate=parseInt(h1);
+					var lim=parseInt(global.paginate)*25;
 				  	var mod={}
 				  	mod.job="selectAll";
 				  	mod.dbase="agape_friendrequest"
-				  	mod.kob=" where (requestedID="+global.userObj.agape_profile_memberID+" or requestorID = "+global.userObj.agape_profile_memberID+") and requestStatus='Accepted' limit "+global.paginate+",25";
+				  	mod.kob=" where (requestedID="+global.userObj.agape_profile_memberID+" or requestorID = "+global.userObj.agape_profile_memberID+") and requestStatus='Accepted' limit "+lim+",25";
 				  	mod.Getdetail="GetCount";
 				  	mod.ob2=" where (requestedID="+global.userObj.agape_profile_memberID+" or requestorID = "+global.userObj.agape_profile_memberID+") and requestStatus='Accepted'";
 				  	var ftn=function(data){
 				    	var de=globalTools.verify(data)
-				    	global.friendsObj=de;
+				    	global.friendsObj.friend=de;
 				    	listFriends(de);
 				  	}
 				  	ajaxCallPost(mod,ftn);
 				break;
 
 
+				case 'friendRequestPagination':
+					var h=$(obj).attr("id");
+					var h1=h.substr(6);
+					global.paginate=parseInt(h1);
+					var lim=parseInt(global.paginate)*25;
+
+				  	var mod={}
+				  	mod.job="selectAll";
+				  	mod.dbase="agape_friendrequest"
+				  	mod.kob=" where requestedID="+global.userObj.agape_profile_memberID+" and requestStatus='sent' order by requestSent desc  limit "+lim+",25";
+				  	mod.Getdetail="GetCount";
+				  	mod.ob2=" where requestedID="+global.userObj.agape_profile_memberID+" and requestStatus='sent'";
+				  	var ftn=function(data){
+				    	var de=globalTools.verify(data)
+				    	global.friendsObj.friend=de;
+				    	listFriends(de);
+				  	}
+				  	ajaxCallPost(mod,ftn);
+				break;
 
 
 			}
@@ -1337,10 +1358,10 @@ function getseconds(chk){
 
 
 
-		function questionBuilder(StyleObj){
+	function questionBuilder(StyleObj){
 	
-/** submit model function begins  **/
-/** This function creates the poll and submits the answers to the database  **/
+	/** submit model function begins  **/
+	/** This function creates the poll and submits the answers to the database  **/
 	var _this=this;
 	//this.questionReplyObj={};
 	this.fieldstyle={
@@ -1602,9 +1623,6 @@ function getseconds(chk){
 		var cStyle=_this.chartstyle;
 		func22=function(data){
 
-			console.log(2222)
-			console.log(data)
-			console.log(2222)
 
 			var data1=globalTools.verify(data);
 			var freedom=data1.returnObj[0].question_reply;
@@ -1669,12 +1687,6 @@ function getseconds(chk){
 
 
 
-
-
-
-
-
-
 	}
 	ajaxCallPost(quesObj1,func22);
 	/* Random Poll  Ends*/
@@ -1707,4 +1719,8 @@ function displayRecords(data){
     var strg
         $("#innerModal").empty().append(strg);
     }
+
+
+
+
 

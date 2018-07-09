@@ -89,6 +89,10 @@
 					}
 				}
 			}
+
+			if(isset($_POST['returnValue'])){
+				$bigPack['returnValue']=$_POST['returnValue'];
+			}
 			
 			
 			

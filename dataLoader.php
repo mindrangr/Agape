@@ -790,14 +790,14 @@ function loadFrRequest()
 		$cntr++;
 	}
 	
-	for($k=1;$k<163;$k++)
+	for($k=1;$k<89;$k++)
 	{
 	
 		$mon=rand(1,12);
 		$day=rand(1,28);
 		$hours=rand(0,23);
 		$min=rand(0,59);
-		$yearly=rand(2015,2017);
+		$yearly=rand(2016,2017);
 		$send_date=$yearly."-".$mon."-".$day." ".$hours.":".$min.":00";
 		
 		$senderIndx=rand(0,count($profile_username)-1);
@@ -807,9 +807,9 @@ function loadFrRequest()
 		$senderUrl=$profile_url[$senderIndx];
 		//$senderUrl=$profile_url[$senderIndx];
 		
-		//$senderUname="uname250";
-		//$senderID="250";
-		//$senderUrl=	"{\"defaultPic\":\"profileImages/male9_w.jpg\",\"defaultPicTitle\":\"My Pics\",\"Pic1\":\"profileImages/male9_w.jpg\",\"Pic1Title\":\"Untitled\",\"Pic2\":\"Untitled\",\"Pic2Title\":\"Untitled\",\"Pic3\":\"Untitled\",\"Pic3Title\":\"Untitled\",\"Pic4\":\"Untitled\",\"Pic4Title\":\"Untitled\",\"Pic5\":\"Untitled\",\"Pic5Title\":\"Untitled\",\"Pic6\":\"Untitled\",\"Pic6Title\":\"Untitled\",\"Pic7\":\"Untitled\",\"Pic7Title\":\"Untitled\"}";
+		$senderUname="uname45";
+		$senderID="45";
+		$senderUrl="profileImages/workImages/wjmKgNP67qseAbBNs2mnTvQNH7AflmDeTN5Uo5+TYkE.jpeg?val=1499326949000";
 
 		$message="You have received a Friendship request from ".$senderUname;
 		$reciverInd=rand(0,count($profile_memberID)-1);

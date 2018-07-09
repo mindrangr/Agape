@@ -35,7 +35,7 @@
 
 
   .friendpageTab{
-    width:90px;
+    
     padding:3px;
     color:#000;
     background-color:lime;
@@ -63,6 +63,7 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="scripts/bootstrap.min.js"></script>
+<script src="scripts/tasks.js"></script>
 <script type="text/javascript" src="<?php echo $actual_base ?>/scripts/jTools.js"></script>
 <script src="scripts/jScripts.js"></script>
 
@@ -110,6 +111,8 @@
     </div>
   </div>
 </div>
+
+
  
 <body style="padding-top:70px;background-image: url('images/blog1Blur.jpg');background-repeat:no-repeat;background-color: #2f4774;">
  
@@ -125,14 +128,14 @@
       
           <div class="col-sm-7">
             <div style="width:90%;height:700px;border-radius: 5px;">
-              <div class='friendpageTab' id="tab_friendHoldDiv">Friends</div>
-              <div class='friendpageTab friendpageTab_over' id="tab_friendReqHoldDiv" style="margin-left:3px;" >Requests</div>
+              <div class='friendpageTab' id="tab_friendHoldDiv">Friends (<span id="totFriends">0</span>)</div>
+              <div class='friendpageTab friendpageTab_over' id="tab_friendReqHoldDiv" style="margin-left:3px;" >Requests (<span id="totRequests">0</span>)</div>
               <div style="clear:both;"></div>
               <div id="pag1" style="background-color: #000;border-radius: 0px 4px 0px 0px;padding:3px;"></div>
               <div id="friendHoldDiv" style="width:100%;height:500px;overflow: auto;overflow-x: hidden">
               
               </div>
-              <div id="friendReqHoldDiv" style="display:none;">khklhaslkhf hWIOEF f</div>
+              <div id="friendReqHoldDiv" style="display:none;"></div>
             </div>
            
           </div>
@@ -184,8 +187,6 @@
   </div>
 
 
-   
-
 
   <?php include '../footer.html';?>
  
@@ -195,28 +196,72 @@
 
 
 
+selectFriends("friendRequest");
   
-  
-    
+function selectFriends(val){
+  var mod={}
+  mod.job="selectAll"
+  mod.returnValue=val
+    switch(val){
+      case 'friends':
+        mod.dbase="agape_friendrequest"
+        mod.kob=" where (requestedID="+global.userObj.agape_profile_memberID+" or requestorID = "+global.userObj.agape_profile_memberID+") and requestStatus='Accepted' limit 0,25";
+        mod.Getdetail="GetCount";
+        mod.ob2=" where (requestedID="+global.userObj.agape_profile_memberID+" or requestorID = "+global.userObj.agape_profile_memberID +") and requestStatus='Accepted'";
+         
+      break;
+
+      case 'friendRequest':
+        mod.dbase="agape_friendrequest"
+        mod.kob=" where requestedID="+global.userObj.agape_profile_memberID+"  and requestStatus='sent'  order by requestSent desc  limit 0,25";
+        mod.Getdetail="GetCount";
+        mod.ob2=" where requestedID="+global.userObj.agape_profile_memberID+"  and requestStatus='sent'";
+        
+      break;
+
+
+    }
+
+   
+    var ftn=function(data){
+      var de=globalTools.verify(data);
+      global.friendsObj.friend=de;
+      switch(de.returnValue){
+        case 'friends':
+          control="friendPagination" 
+        break;
+
+        case 'friendRequest':
+          control="friendRequestPagination"
+        break;
+      }
+
+
+      listFriends(global.friendsObj.friend);
+    }
+    ajaxCallPost(mod,ftn)
+ }   
 
 
 
 
 function  listFriends(val){
-//friendHoldDiv
-console.log(1111111)
-console.log(val)
-console.log(1111111)
-
+  console.log(11111111)
+  console.log(val)
+  console.log(11111111)
+  
   let idx=val.returnObj.length;
   let strg="";
   let cSting="";
-  var name
+  var name;
 
   for(i=0;i<idx;i++){
     var b=$.parseJSON(global.userObj.agape_profile_default_img);
     name=global.userObj.agape_profile_username;
     var img=val.returnObj[i].requestorImgUrl
+    if(val.returnObj[i].requestorUsername==global.userObj.agape_profile_username){
+      img=val.returnObj[i].requestedImgUrl
+    }
     if(name==val.returnObj[i].requestorUsername){
       name=val.returnObj[i].requestedUsername
       img=b.defaultPic;
@@ -224,13 +269,31 @@ console.log(1111111)
       name=val.returnObj[i].requestorUsername;
 
     }
+
+
       cSting=cSting+"<div class='friendRecStyle1'>"
       cSting=cSting+"<div style='float:left;width:60px;'><img src='"+img+"' class='friendRecImgStyle' /></div>"
       cSting=cSting+"<div style='float:left;width:90px;margin-top:10px;'><span style='text-decoration:underline;cursor:pointer;' id='vProfButton"+i+"'>"+name+"</span></div>"
                 
-      cSting=cSting+"<div style='float:right;width:90px;margin-top:2px'>"
-      cSting=cSting+"<div ><button id='createButton"+i+"' class='btn btn-success my-2 my-sm-0' type='button'>Unfriend</button></div>"
+      if(val.returnObj[i].requestStatus=="Accepted"){
+        cSting=cSting+"<div style='float:right;width:90px;margin-top:2px'>"
+      cSting=cSting+"<div ><button id='unfriendButton"+i+"' class='btn btn-success my-2 my-sm-0' type='button'>Unfriend</button></div>"
       cSting=cSting+"</div>"
+      }
+
+      if(val.returnObj[i].requestStatus=="sent"){
+        cSting=cSting+"<div style='float:right;width:260px;margin-top:2px'><div >";
+
+        if(val.returnObj[i].requestedUsername==global.userObj.agape_profile_username){
+          cSting=cSting+"<button style='margin-right:8px;' id='acceptFrButton"+i+"' class='btn btn-success my-2 my-sm-0' type='button'>Accept Friendship</button>"
+        }
+        
+
+        cSting=cSting+"<button id='removeReButton"+i+"' class='btn btn-secondary my-2 my-sm-0' type='button'>Remove</button></div>"
+        cSting=cSting+"</div>"
+      }
+
+      
 
      //cSting=cSting+"<div style='float:right;width:90px;margin-top:2px;margin-right:6px;margin-left:12px;'>"
       //cSting=cSting+"<div ><button id='messageButton"+i+"' class='btn btn-primary my-2 my-sm-0' type='button'>Message</button></div></div>"
@@ -240,140 +303,315 @@ console.log(1111111)
   }
   $("#friendHoldDiv").empty().append(cSting);
 
-  control="friendPagination"
-  mainPaginationFunc("pag1",val.countMax,"none")
+  if(control=="friendRequestPagination"){
+    $("#totRequests").html(val.countMax);
+  }
+
+  if(control=="friendPagination"){
+    $("#totFriends").html(val.countMax)
+  }
 
 
-  //global.friendsObj=val
- // $("button[id^='messageButton']").each(function(){
-   // $(this).unbind("click").on("click",function(){
-     //   $('#friendPageModal').modal('show');
-   // })
- // })
 
-  $("button[id^='createButton']").each(function(){
+  mainPaginationFunc("pag1",val.countMax,"none");
+
+  $("button[id^='unfriendButton']").each(function(){
     $(this).unbind("click").on("click",function(){
-       $('#friendPageModal').modal('show');
+      var uFri=$(this).attr("id")+"";
+      var uFri1=uFri.substr(14);
+      var delname=global.friendsObj.friend.returnObj[uFri1].requestorUsername
+      if(global.friendsObj.friend.returnObj[uFri1].requestorUsername==global.userObj.agape_profile_username){
+        delname=global.friendsObj.friend.returnObj[uFri1].requestedUsername
+      }
+      var delFriend=confirm("Are you sure you want to remove "+delname+" from your friend list?");
+      if(delFriend==true){
+        var upDateObj={};
+        upDateObj.job="quickJamUpdate_full";
+        upDateObj.dbase="agape_friendrequest";
+        upDateObj.param="requestID";
+        upDateObj.vals=global.friendsObj.friend.returnObj[uFri1].requestID;
+        upDateObj.obj={};
+        upDateObj.obj.requestStatus="unfriended";
+        var ti=convertNowToPhP()
+        upDateObj.obj.requestResponse=ti;
+        upDateObj.selFunc="selectFunc";
+        upDateObj.kob=" where (requestedID="+global.userObj.agape_profile_memberID+" or requestorID = "+global.userObj.agape_profile_memberID+") and requestStatus='Accepted' limit 0,25";
+        upDateObj.Getdetail="GetCount"
+        upDateObj.ob2=" where (requestedID="+global.userObj.agape_profile_memberID+" or requestorID = "+global.userObj.agape_profile_memberID+") and requestStatus='Accepted' ";
+
+        var func=function(data){
+          var b=globalTools.verify(data)
+          b.returnValue="friends";
+          listFriends(b)
+        }
+        ajaxCallPost(upDateObj,func)
+    }
+  })
+})
+
+
+
+  $("button[id^='removeReButton']").each(function(){
+    
+    $(this).unbind("click").on("click",function(){
+      var uFri=$(this).attr("id")+"";
+      var uFri1=uFri.substr(14);
+      var delname=global.friendsObj.friend.returnObj[uFri1].requestorUsername;
+      var delFriend=confirm("Are you sure you want to remove request to/from "+delname+"?");
+      if(delFriend==true){
+        var upDateObj={};
+        upDateObj.job="quickJamUpdate_full";
+        upDateObj.dbase="agape_friendrequest";
+        upDateObj.param="requestID";
+        upDateObj.vals=global.friendsObj.friend.returnObj[uFri1].requestID;
+        upDateObj.obj={};
+        upDateObj.obj.requestStatus="removed";
+        var ti=convertNowToPhP()
+        upDateObj.obj.requestResponse=ti;
+        upDateObj.selFunc="selectFunc";
+        upDateObj.kob=" where requestedID="+global.userObj.agape_profile_memberID+" and requestStatus='sent' order by requestSent desc limit 0,25";
+        upDateObj.Getdetail="GetCount"
+        upDateObj.ob2=" where requestedID="+global.userObj.agape_profile_memberID+" and requestStatus='sent' ";
+
+        var func=function(data){
+          var b=globalTools.verify(data)
+          b.returnValue="friendRequest";
+          listFriends(b)
+        }
+        ajaxCallPost(upDateObj,func)
+      }
+      if(delFriend==false){
+        
+
+      }
     })
   })
 
+  $("button[id^='acceptFrButton']").each(function(){
+    $(this).unbind("click").on("click",function(){
+      var uFri=$(this).attr("id")+"";
+      var uFri1=uFri.substr(14);
+      var delname=global.friendsObj.friend.returnObj[uFri1].requestorUsername
+      if(global.friendsObj.friend.returnObj[uFri1].requestorUsername==global.userObj.agape_profile_username){
+        delname=global.friendsObj.friend.returnObj[uFri1].requestedUsername
+      }
+      var delFriend=confirm("Are you sure you want to befriend "+delname+"?");
+      if(delFriend==true){
+        var upDateObj={};
+        upDateObj.job="quickJamUpdate_full";
+        upDateObj.dbase="agape_friendrequest";
+        upDateObj.param="requestID";
+        upDateObj.vals=global.friendsObj.friend.returnObj[uFri1].requestID;
+        upDateObj.obj={};
+        upDateObj.obj.requestStatus="Accepted";
+        var tim=convertNowToPhP();
+        upDateObj.obj.requestResponse=tim;
+        upDateObj.selFunc="selectFunc";
+        upDateObj.kob=" where requestedID="+global.userObj.agape_profile_memberID+" and requestStatus='sent' order by requestSent desc limit 0,25";
+        upDateObj.Getdetail="GetCount"
+        upDateObj.ob2=" where requestedID="+global.userObj.agape_profile_memberID+" and requestStatus='sent' ";
+        var func=function(data){
+
+          var b=globalTools.verify(data)
+          b.returnValue="friends";
+          listFriends(b)
+        }
+        ajaxCallPost(upDateObj,func)
+    }
+  })
+  })
+
+  
+
+  
+
   $("span[id^='vProfButton']").each(function(){
-   
-    
     $(this).unbind("click").on("click",function(){
       $("#modalBod").css("height","0")
         $('#friendPageModal').modal('show');
         var fr=$(this).attr("id")+"";
         var fr1=fr.substr("11");
         global.friendsObj.idx=fr1;
-        //alert(fr1)
-
-        console.log(222222)
-        console.log(global.friendsObj.returnObj[fr1])
-        console.log(222222)
         var strg1="";
-        strg1=strg1+"<div style='float:left;'><img style='height:100px;width:120px;border-radius:12px;' src='"+global.friendsObj.returnObj[fr1].requestorImgUrl+"' /></div>";
-        strg1=strg1+"<div style='float:left;margin-left:10px'><span style='font-weight:bold;display:inline-block;width:120px;'>Name: </span>"+global.friendsObj.returnObj[fr1].requestorUsername+"</div>"
+        if(global.friendsObj.friend.returnObj[fr1].requestStatus=="Accepted"){
+          let freed=global.friendsObj.friend.returnObj[fr1].requestResponse;
+          var f = new Date();
+        f=f.toLocaleString();
+        var now=f.split(",");
+        var tody=now[0]+"";
+        var currTime=tody.split("/");
 
-        strg1=strg1+"<div style='float:left;margin-left:10px'><span style='font-weight:bold;display:inline-block;width:120px;'>Friends for: </span>19 yrs 2 months </div>"
+        var g = new Date(global.friendsObj.friend.returnObj[fr1].requestResponse)
+        var g1=g.toLocaleString();
+
+
+        var dateO1=g1.split(",");
+        var dateArr01=dateO1[0]+"";
+        var responded=dateArr01.split("/");
+
+         var strg="";
+         var carrymon="false"; 
+         var carryYear="false";
+         var daystrg="";
+         var monStrg="";
+         var yrStrg="";
+
+         if(parseInt(currTime[1])>=parseInt(responded[1])){
+          var val=parseInt(currTime[1])-parseInt(responded[1])
+        
+            if(val==0){
+              daystrg=""
+            }else{
+              daystrg=val+" day(s)"
+            }
+         }else{
+            var val=parseInt(currTime[1])-parseInt(responded[1])+30
+           
+            currTime[0]=(parseInt(currTime[0])-1);
+            if(val==0){
+              daystrg=""
+            }else{
+              daystrg=val+" day(s)"
+            }
+        
+         }
+
+
+         if(parseInt(currTime[0])>=parseInt(responded[0])){
+          var val=parseInt(currTime[0])-parseInt(responded[0])
+            
+            if(val==0){
+              monStrg=""
+            }else{
+              monStrg=val+" month(s)";
+            }
+         }else{
+          var val=parseInt(currTime[0])-parseInt(responded[0])+12
+            
+            currTime[2]=currTime[2]-1;
+            if(val==0){
+              monStrg=""
+            }else{
+              monStrg=val+" month(s)";
+            }
+
+         }
+
+
+          if(parseInt(currTime[2])>=parseInt(responded[2])){
+          var val=parseInt(currTime[2])-parseInt(responded[2])
+            
+            if(val==0){
+              yrStrg=""
+            }else{
+              yrStrg=val+" yr(s)"
+            }
+         }else{
+
+         }
+
+      
+      if(yrStrg!=""){
+        strg=yrStrg;
+      }
+
+      if(monStrg!=""){
+        if(strg==""){
+          strg=monStrg;
+        }else{
+          strg=strg+", "+monStrg
+        }
+        
+      }
+
+      if(daystrg==""){
+        strg=daystrg;
+      }else{
+        strg=strg+", "+daystrg
+      }
+
+      if(strg==""){
+        strg="Since today!!"
+      }
+
+    }else{
+      strg="Still in request state"
+
+    }
 
         
+     
+        strg1=strg1+"<div style='float:left;'><img style='height:100px;width:120px;border-radius:12px;' src='"+global.friendsObj.friend.returnObj[fr1].requestorImgUrl+"' /></div>";
+        strg1=strg1+"<div style='float:left;margin-left:10px'><span style='font-weight:bold;display:inline-block;width:120px;'>Name: </span>"+global.friendsObj.friend.returnObj[fr1].requestorUsername+"</div>"
+
+        strg1=strg1+"<div style='float:left;margin-left:10px'><span style='font-weight:bold;display:inline-block;width:120px;'>Friends for: </span>"+strg+"</div>";
 
         strg1=strg1+"<div style='clear:both;'></div>"
         strg1=strg1+"<div></div>"
         $("#innerModal").empty().append(strg1);
-        $("#agape_message_receiver_username").val(global.friendsObj.returnObj[fr1].requestorUsername)
+        $("#agape_message_receiver_username").val(global.friendsObj.friend.returnObj[fr1].requestorUsername)
     })
   })
 }
 
 
-  $(document).ready(function(){
+$(document).ready(function(){
+  getSponsors();
+  selectFriends("friends");
+  $("#sendMessButton").unbind("click").on("click",function(){
+      $("#messBox").show();
+      if($("#modalBod").height()<280){
+        TweenMax.to($("#modalBod")[0],.4,{css:{height:"300px"},onComplete:function(){
+        }})
+      }else{
+        TweenMax.to($("#modalBod")[0],.4,{css:{height:"0px"},onComplete:function(){
+        }})
+      }
+  })
 
 
-    getSponsors();
-    var mod={}
-    mod.job="selectAll"
-
-    mod.dbase="agape_friendrequest"
-    mod.kob=" where (requestedID="+global.userObj.agape_profile_memberID+" or requestorID = "+global.userObj.agape_profile_memberID+") and requestStatus='Accepted' limit 0,25";
-    mod.Getdetail="GetCount";
-    mod.ob2=" where (requestedID="+global.userObj.agape_profile_memberID+" or requestorID = "+global.userObj.agape_profile_memberID +") and requestStatus='Accepted'";
-    var ftn=function(data){
-      var de=globalTools.verify(data);
-      global.friendsObj.friend=de;
-      console.log("_________")
-      console.log(global.friendsObj.friend)
-      console.log("_________")
-
-      listFriends(global.friendsObj.friend);
-    }
-    ajaxCallPost(mod,ftn)
-
-
-    $("#sendMessButton").unbind("click").on("click",function(){
-        $("#messBox").show();
-        if($("#modalBod").height()<280){
-           TweenMax.to($("#modalBod")[0],.4,{css:{height:"300px"},onComplete:function(){
-
-            }})
-
+  $("#sendButton").unbind("click").on("click",function(){
+    let sendo={};
+    let sendChk="true";
+    sendo.job="quickJamUpdate_insert";
+    sendo.obj={}
+    sendo.dbase="agape_messages"
+    $("#messBox :input").each(function(){
+      if($(this).val()!=""){
+        sendo.obj[$(this).attr("id")]=$(this).val()
+      }else{
+        if($(this).attr("id")!="sendButton"){
+          sendChk="false"
         }else{
 
-           TweenMax.to($("#modalBod")[0],.4,{css:{height:"0px"},onComplete:function(){
-
-        }})
-
         }
+      }
+      
     })
 
 
-    $("#sendButton").unbind("click").on("click",function(){
-      let sendo={};
-      let sendChk="true";
-      sendo.job="quickJamUpdate_insert";
-      sendo.obj={}
-      sendo.dbase="agape_messages"
-      $("#messBox :input").each(function(){
-        if($(this).val()!=""){
-          sendo.obj[$(this).attr("id")]=$(this).val()
-        }else{
-          if($(this).attr("id")!="sendButton"){
-            sendChk="false"
-          }else{
-
-          }
-        }
-        
-      })
-      if(sendChk=="true"){
-        //sendo.selFunc="selectFunc";
-        //sendo.kob=" where agape_message_sender_ID="+global.userObj.agape_profile_memberID+" or  agape_message_receiver_ID="+global.userObj.agape_profile_memberID+ " order by agape_message_update limit 0,25";
-        sendo.obj.agape_message_sender_ID=global.userObj.agape_profile_memberID;
-        sendo.obj.agape_message_sender_username=global.userObj.agape_profile_username;
-        sendo.obj.agape_message_receiver_ID=global.friendsObj.returnObj[global.friendsObj.idx].requestorID
-        sendo.obj.agape_message_send_date =convertNowToPhP();
-        sendo.obj.agape_message_update=sendo.obj.agape_message_send_date;
-        sendo.obj.agape_message_active="true";
-        sendo.obj.agape_message_responses="none";
-        sendo.obj.agape_message_opened="Sealed";
-        sendo.obj.agape_message_receiver_url=global.friendsObj.returnObj[global.friendsObj.idx].requestorImgUrl;
-        var img=$.parseJSON(global.userObj.agape_profile_default_img)
-        sendo.obj.agape_sender_url=img.defaultPic;
-        let funk=function(dta){
-          let y=globalTools.verify(dta)
-          console.log("dta")
-          console.log(dta)
-          console.log(y)
-          console.log("dta")
-          TweenMax.to($("#modalBod")[0],.4,{css:{height:"0px"},onComplete:function(){
-            let innMess=$("#innerMess")[0]
-            fademessg(innMess,"Message sent")
-        }})
-        }
-        ajaxCallPost(sendo,funk)
+    if(sendChk=="true"){
+      
+      sendo.obj.agape_message_sender_ID=global.userObj.agape_profile_memberID;
+      sendo.obj.agape_message_sender_username=global.userObj.agape_profile_username;
+      sendo.obj.agape_message_receiver_ID=global.friendsObj.returnObj[global.friendsObj.idx].requestorID
+      sendo.obj.agape_message_send_date =convertNowToPhP();
+      sendo.obj.agape_message_update=sendo.obj.agape_message_send_date;
+      sendo.obj.agape_message_active="true";
+      sendo.obj.agape_message_responses="none";
+      sendo.obj.agape_message_opened="Sealed";
+      sendo.obj.agape_message_receiver_url=global.friendsObj.returnObj[global.friendsObj.idx].requestorImgUrl;
+      var img=$.parseJSON(global.userObj.agape_profile_default_img)
+      sendo.obj.agape_sender_url=img.defaultPic;
+      let funk=function(dta){
+        let y=globalTools.verify(dta);
+        TweenMax.to($("#modalBod")[0],.4,{css:{height:"0px"},onComplete:function(){
+          let innMess=$("#innerMess")[0]
+          fademessg(innMess,"Message sent")
+      }})
+      }
+      ajaxCallPost(sendo,funk)
     }
-
 
   })
 
@@ -385,20 +623,34 @@ console.log(1111111)
       
       $(".friendpageTab").each(function(){
         $(this).addClass("friendpageTab_over");
-      })
-     
-      $("#friendHoldDiv").hide();
-      $("#friendReqHoldDiv").hide();
+      });
 
       $(this).removeClass("friendpageTab_over");
       let rte= $(this).attr("id")+"";
       let yte=rte.substr(4);
-      $("#"+yte).show();
+
+      switch(rte){
+        case 'tab_friendReqHoldDiv':
+          control="friendRequestPagination"
+          selectFriends("friendRequest");
+          global.paginate=0;
+        break;
+
+        case 'tab_friendHoldDiv':
+          control="friendPagination";
+          selectFriends("friends");
+          global.paginate=0;
+        break;
+        
+        default:
+        
+        break;
+
+      }
      
     })
   })  
-
-    
+ 
 })
 
 

@@ -192,15 +192,10 @@
  		// update from object 
 		case 'quickJamUpdate_full':
 
-
-
-
 			//$passthrough=checksession();
 			$passthrough="true";
 
 			if($passthrough=="true"){
-
-
 
 				$dbase=$_POST['dbase'];
 				$updateStr="";
@@ -219,27 +214,53 @@
 				{		
 					if($suprStrg=="none"  && $key!='agape_profile_memberID')
 					{
-						$suprStrg= "'".$value."'";
-						$suprVall=$key;
-						$updateStr=$key."='".$value."'";
+						switch($param){
+							case 'incField':
+								$suprStrg= $value;
+								$suprVall=$key;
+								$updateStr=$key."=".$value;
+								$param=$_POST['field'];
+
+							break;
+
+							default:
+								$suprStrg= "'".$value."'";
+								$suprVall=$key;
+								$updateStr=$key."='".$value."'";
+
+							break;
+						}
 					}
 					else
 					{
 						if($value!="" && $key!='agape_profile_memberID')
 						{				
-							$suprStrg=$suprStrg.",'".$value."'";
-							$suprVall=$suprVall.",".$key;
-							$updateStr=$updateStr.",".$key."='".$value."'";				
+							
+							switch($param){
+								case 'incField':
+									$suprStrg=$suprStrg.",".$value;
+									$suprVall=$suprVall.",".$key;
+									$updateStr=$updateStr.",".$key."=".$value;	
+								break;
+
+
+								default:
+									$suprStrg=$suprStrg.",'".$value."'";
+									$suprVall=$suprVall.",".$key;
+									$updateStr=$updateStr.",".$key."='".$value."'";	
+								break;
+							}
+
+
+										
 						}
 					}
 				}
 
 
 				$updateStr1="update ".$dbase." SET ". $updateStr." where ".$param."=".$vals;
-				//echo $updateStr;
-
-				//echo "$$".$updateStr1."$$";
 				mysql_query($updateStr1);
+				echo $updateStr1;
 				//echo $param."$$".$updateStr1."$$";
 				if(isset($_POST['selFunc'])){
 					switch($_POST['selFunc']){
@@ -344,8 +365,6 @@
 			}
 
 			echo "updated**".$ray."**".$updateStr;
-			//echo $returnObj;
-		
 
 		break;
 
@@ -379,9 +398,6 @@
 
 			mysql_query($debut);
 
-			
-
-
 			if(isset($_POST['selFunc'])){
 				switch($_POST['selFunc']){
 					case 'selectFunc':
@@ -392,7 +408,6 @@
 			}else{
 				
 			}
-		
 		
 
 		break;
@@ -475,6 +490,85 @@
 
 		break;
 
+
+		case 'updateComment':
+		
+
+			$strID=$_POST['strID'];
+			$param1=$_POST['param1'];
+			$selectField=$_POST['selectField'];
+			$dbase=$_POST['dbase'];
+			
+			$selectParam=$_POST['selectParam'];
+			$issuesID=$_POST['issuesID'];
+			$pullstring="select ".$selectField." from ".$dbase." where ".$selectParam." = ".$issuesID;
+			//$dato=$_POST['dato'];
+			$now=$_POST['now'];
+			//echo $pullstring."**";
+			$returnObj="";
+			$username=$_POST['username'];	
+			$subMiss=array();	
+			
+			$result = mysql_query($pullstring);
+			$ray="none";
+			$ray1="";
+			$colnum = mysql_num_fields($result);
+			
+			while($row = mysql_fetch_assoc($result)) 
+			{
+				$returnObj=$row[$selectField];
+			}	
+
+				if($returnObj=="" || $returnObj=="none"){
+					
+					$objR=$_POST['objR'];
+					$subMiss[0]=$objR;
+					$ray=$subMiss;
+					$replyObj = new stdClass();
+					$replyObj->replyObj->replys[0]=$objR;
+					$ray=json_encode($replyObj,JSON_UNESCAPED_SLASHES);
+
+				}else{
+					//echo 88;
+					$objR=$_POST['objR'];
+					//echo $returnObj;
+					$sub=json_decode($returnObj,true);
+					
+					//echo 
+					//echo 99;
+					//$ray=json_decode($returnObj,true);
+					//echo $ray;
+					array_unshift($sub['replyObj']['replys'],$objR);
+					$cern=json_encode($sub);
+					//print_r($sub['replyObj']['replys']);
+					//echo $cern;
+					$returnObj=$cern;
+				}
+				//echo 66;
+				//$ray=json_encode($ray);
+				$updateStr="UPDATE ".$dbase." SET ".$selectField."='".$returnObj."' where ".$param1."=".$strID;
+				mysql_query($updateStr);
+
+
+				if(isset($_POST['selFunc'])){
+				switch($_POST['selFunc']){
+					case 'selectFunc':
+						selectFunc();
+					//echo "**".$param."**".$updateStr1."**";
+					break;
+				}
+			}else{
+					
+			}
+
+
+				echo "**updated**".$ray1."**".$pullstring."**".$updateStr."**".$returnObj;
+
+
+			
+				
+			break;
+
 	}
 
 
@@ -486,6 +580,18 @@
 		//$value=$_POST['value'];
 
 		$kob=$_POST['kob'];
+
+		if(isset($_POST['selDbase'])){
+			switch($$_POST['selDbase']){
+				case 'change':
+					selectFunc();
+					//echo "**".$param."**".$updateStr1."**";
+				break;
+			}
+		}
+
+
+
 	 	$sqlString1="select * from ".$kdbase." ".$kob;
 
 
@@ -546,43 +652,40 @@
 
 
 	function updateFunc(){
-			$uBase=$_POST['uBase'];
-			$updateStr="";
-			$obj=$_POST['obj'];
-			$uParam=$_POST['uParam'];
-			$uVals=$_POST['uVals'];
+		$uBase=$_POST['uBase'];
+		$updateStr="";
+		$obj=$_POST['obj'];
+		$uParam=$_POST['uParam'];
+		$uVals=$_POST['uVals'];
 
-			$suprCol="none";
-			$suprVall="none";
-			$suprStrg="none";
-			$updateStr="none";
-			$strID="none";
-			$strID=$uVals;
-			foreach($obj as $key => $value)
-			{		
-				if($suprStrg=="none"  && $key!='agape_profile_memberID')
-				{
-					$suprStrg= "'".$value."'";
-					$suprVall=$key;
-					$updateStr=$key."='".$value."'";
-				}
-				else
-				{
-					if($value!="" && $key!='agape_profile_memberID')
-					{				
-						$suprStrg=$suprStrg.",'".$value."'";
-						$suprVall=$suprVall.",".$key;
-						$updateStr=$updateStr.",".$key."='".$value."'";				
-					}
+		$suprCol="none";
+		$suprVall="none";
+		$suprStrg="none";
+		$updateStr="none";
+		$strID="none";
+		$strID=$uVals;
+		foreach($obj as $key => $value)
+		{		
+			if($suprStrg=="none"  && $key!='agape_profile_memberID')
+			{
+				$suprStrg= "'".$value."'";
+				$suprVall=$key;
+				$updateStr=$key."='".$value."'";
+			}
+			else
+			{
+				if($value!="" && $key!='agape_profile_memberID')
+				{				
+					$suprStrg=$suprStrg.",'".$value."'";
+					$suprVall=$suprVall.",".$key;
+					$updateStr=$updateStr.",".$key."='".$value."'";				
 				}
 			}
+		}
 
 
-			$updateStr1="update ".$uBase." SET ". $updateStr." where ".$uParam."=".$uVals;
-			mysql_query($updateStr1);
-
-
-
+		$updateStr1="update ".$uBase." SET ". $updateStr." where ".$uParam."=".$uVals;
+		mysql_query($updateStr1);
 	}
 
 ?>

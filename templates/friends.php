@@ -194,7 +194,12 @@
 
 <script>
 
-
+  $(".nav-item").each(function(){
+    $(this).removeClass("active");
+    $(this).children().eq(0).addClass("disabled")
+  })
+  $("#friendsli").addClass("active");
+  $("#friendsli").children().eq(0).removeClass("disabled");
 
 selectFriends("friendRequest");
   
@@ -246,9 +251,6 @@ function selectFriends(val){
 
 
 function  listFriends(val){
-  console.log(11111111)
-  console.log(val)
-  console.log(11111111)
   
   let idx=val.returnObj.length;
   let strg="";

@@ -25,7 +25,7 @@
               <a class="nav-link disabled" href="friends">Friends</a>
             </li>
             <li id="communityli" class="nav-item">
-              <a class="nav-link disabled" href="#">Community</a>
+              <a class="nav-link disabled" href="community">Community</a>
             </li>
             <li id="contactusli" class="nav-item">
               <a class="nav-link disabled" href="#">Contact Us</a>

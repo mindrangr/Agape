@@ -423,7 +423,12 @@
   var cObj
 
 
-
+  $(".nav-item").each(function(){
+    $(this).removeClass("active");
+    $(this).children().eq(0).addClass("disabled")
+  })
+  $("#searchli").addClass("active");
+  $("#searchli").children().eq(0).removeClass("disabled");
 
 
 

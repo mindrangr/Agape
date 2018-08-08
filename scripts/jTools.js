@@ -351,6 +351,14 @@ var Objtools=function(){
 			return t;
 		}
 
+		this.stripSlash=function(str){
+
+			var t=str+"";
+			t = t.replace(/\\/g,"");
+			return t;
+
+		}
+
 		this.addslashes = function(str){
 			var t=str+"";
 			t = t.replace(/"/g,"\\\"");

@@ -1,44 +1,134 @@
 <?php
+  session_start();
 
-include("../Config_files/_shared_config.php");
+  include("../Config_files/_shared_config.php");
+
 ?>
+<!Doctype html />
+  <script src="<?php echo $actual_base ?>/scripts/jquery-3.1.1.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="styles/NetscapeStyles_responsive1.css" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo $actual_base ?>/scripts/jTools.js"></script>
+<script src="scripts/jScripts.js"></script>
+
+<script src="<?php echo $actual_base ?>/scripts/TweenMax.js"></script>
+<!-- Modal -->
+<div class="modal fade" id="homePageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="innerModal"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<body style="padding-top:70px;background-image: url('images/blog1Blur.jpg');background-repeat:no-repeat;background-color: #2f4774;">
+ 
+  <?php include '../header.php';?>
+
+    
+     
+    <div class="container newsContainer" >
+      <div class="overF">
+        <div class="row">
+          <div class="col-sm-3 tPaddMobileLogin" >
+            <?php include 'logBox.php';?>
+             
+          </div>
+      
+         
+           <div class="col-sm-6">
+           	<div>Trumps America</div>
+           	<div><a href="President_Trump"><img src="images\trumpBanner1.png" style='border:1px solid #000;'></a></div>
+
+           	<div>Agape Media</div>
+           	<div><img src="images\news.gif" style='border:1px solid #000;'></div>
+
+           	<div>Agape Romance</div>
+           	<div><img src="images\romanceBanner.gif" style='border:1px solid #000;'></div>
+           
+          </div>
+           <div class="col-sm-3">
+             
+            </div>
+            
+        
+      </div>
+    </div>
+  </div>
+
+   
+
+  <div class="container-fluid sponsorBackground socialbanner" >
+    <div class="row" id="sponsorDiv">
+      <div class="col-sm-2">
+        <div style="font-size:22px;">Meet our</div>
+        <div style="color:#c96cbd;text-shadow: 1px 1px #000;font-size:20px;">Sponsors:</div>
+      </div>
+    </div>
+  </div>
+
+ 
+
+     <div class="container-fluid sponsorBackground htClass" style="margin-top:0px;background-color:#c96cbd;" >
+    <div class="row" id="sponsorDiv" >
+      <div class="col-sm-2">
+        <div style="font-size:22px;">Social Connections</div>
+        
+      </div>
+
+      <div class="col-sm-1">
+        <div >Instagram</div>
+        <div><img src="images/instagram.png" style="height:40px" /></div>
+
+  
+      </div>
+       <div class="col-sm-1">
+
+        <div >Twitter</div>
+        <div><img src="images/twitter-logo_19.png" style="height:40px" /></div>
+
+        
+      </div>
+       <div class="col-sm-1">
+        <div >FaceBook</div>
+        <div><img src="images/facebook.jpg" style="height:40px" /></div>
+        
+      </div>
+    </div>
+  </div>
+
+
+   
+
+
+  <?php include '../footer.html';?>
+ 
+</body>
+
 <script>
-	var h=Verifyuser()
-
-	if(h=="true"){
-		$("#logD1").hide();
-	}else{
-		$("#logD1").show();
-	}
-</script>
-	<div class="topTab" >the Agape Community</br><span >where everything is up for discussion en</span></div>
-	<div style="width:100%;text-align: center;background-color: #fff;color:#35b7fe;font-family: arial;">community</div>
-		<div  class="panelLead_sub" style="background-color: #eee;">
-				<div  class="panelLead_sub_holder" style="background-color: transparent" >
-					<div style="margin:auto;">
-						<div style="width:100%;margin:auto;" id="friendContainer">
-							<!--<div style='width:700px;text-align:center;'><img src="images/loading37.gif" height='185'/></div>-->
-
-							<div id="roseDiv" class='communitySections'  ><a href="romance"><img id="romanceImg" class='communityPageMainImage' src="<?php echo $actual_base;?>/images/romanceBanner.gif"/></a></div>
-							
-							
-							<div class='communitySections' ><a href="media"><img id="newsImg" class='communityPageMainImage' src="<?php echo $actual_base;?>/images/news.gif"/></a></div>
-							<br/>
 
 
-							<!--<div class='communitySections' ><a href="President_Trump"><img id="trumpImg" class='communityPageMainImage' src="<?php echo $actual_base;?>/images/trumpBanner1.png"/></a></div>-->
-							<!--<div class='communitySections' ><a href="politics"><img id="presImg" class='communityPageMainImage' src="<?php echo $actual_base;?>/images/pres.gif"/></a></div>-->
-							
-						</div>
-						<br/>
-					</div>				
-				</div>
-				
-				
-			</div>
-			<script style="text/javascript">
-				$("#opacback").css("height","0px");
-				$("#transBack").css({"height":"0px"}).hide();
-			</script>
-	
-								
+
+  
+  getSponsors();
+  //getOnlineUsers(global.userListCnt);
+
+
+
+</script>				

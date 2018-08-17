@@ -105,13 +105,8 @@ class CommentBoss{
 										}
 									}
 								}
-
-
-
 							}
-							//var wr=$.parseJSON(obj.returnObj[g].agape_commentsCommentDataResponse);
-							//console.log(wr)
-							console.log(obj.returnObj[g].agape_commentsCommentDataResponse)
+		
 							var wr="";
 							if(obj.returnObj[g].agape_commentsCommentDataResponse!="none"){
 								wr=$.parseJSON(obj.returnObj[g].agape_commentsCommentDataResponse);
@@ -125,7 +120,7 @@ class CommentBoss{
 									strg=strg+"<div style='float:right;margin-right:8px;'>"+wr.replyObj.replys[k].agape_reply_createdate+"</div>"
 									strg=strg+"<div style='float:left'></div>";
 									strg=strg+"<div style='clear:both;'></div>";
-									strg=strg+"<div style='width:300px;margin:auto;'>"+wr.replyObj.replys[k].agape_comments_Comment+"</div>";
+									strg=strg+"<div style='width:350px;margin:auto;'>"+wr.replyObj.replys[k].agape_comments_Comment+"</div>";
 									strg=strg+"<div id='innRep' style='margin-left:10px;text-decoration:underline;margin-bottom;10px;cursor:pointer;'>reply</div>";
 									strg=strg+"</div>";
 									if(bGrnd=="#dedede"){
@@ -137,10 +132,7 @@ class CommentBoss{
 								strg=strg+"</div>"
 							}
 
-							
-							console.log(wr)
-							
-
+		
 							switch(loadr){
 
 								case 'none':
@@ -245,6 +237,7 @@ class CommentBoss{
 						var es1=es.substr(9);
 						var es2=$("#repComBox"+es1).val();
 						var mod={};
+						
 						mod.job="updateComment";
 						mod.selectField="agape_commentsCommentDataResponse";
 						mod.dbase="agape_comments"
@@ -256,7 +249,8 @@ class CommentBoss{
 						mod.selFunc="selectFunc";
 						mod.kob=" where agape_commentsID="+global.searchObj.romanceObj.returnObj[es1].agape_commentsID;
 						mod.Getdetail="GetCount";
-						mod.ob2=""
+						mod.adQuery="addStrgQury";
+						mod.ob2=",agape_commentsLastComment='"+mod.now+"', agape_commentsLastComment_username='"+global.userObj.agape_profile_username+"'";
 						mod.param1="agape_commentsID";
 						mod.objR={}
 						var img=$.parseJSON(global.userObj.agape_profile_default_img)
@@ -267,26 +261,46 @@ class CommentBoss{
 						var trr=getCodedDate();
 						mod.objR.agape_replyID=global.searchObj.romanceObj.returnObj[es1].agape_commentsID+"_"+trr
 						var fK=function(data){
-							console.log(9999999)
 							data=data+"";
 							var flng=data.length;
 							var e=data.substr(3)
 							var h=data.substr(4,200);
+							b = new CommentBoss('trumpVid','vidCommModal',global.searchObj.romanceObj.returnObj[es1].agape_commentsSource);
+
+							var model1={};
+							model1.job="quickJamUpdate";
+							model1.dbase="agape_topics";
+							model1.obj={}
+							model1.param="agape_media_ID";
+							model1.vals=global.dataHolder.TrumpVids[global.dataHolder.vidIndex].agape_media_ID;
+							model1.updateStr="agape_media_lastComment_date='"+mod.now+"',agape_media_updatedBy='"+global.userObj.agape_profile_username+"', agape_media_comments_count=agape_media_comments_count+1"
+							model1.selFunc="selectFunc";
+							model1.kob="where agape_media_SourceID='"+global.searchObj.romanceObj.returnObj[es1].agape_commentsSource+"'";
+
+							var fk1=function(datum){
 							
-							//console.log(e)
-							//console.log(h)
-							console.log(data)
-							
-							//var b=globalTools.stripSlash(data)
-							//console.log(b)
-							//var j=$.parseJSON(b)
-							//console.log(j)
-							console.log(9999999)
+								console.log(313131)
+								console.log(datum)
+								var br=globalTools.verify(datum)
+								console.log(br)
+								global.dataHolder.TrumpVids=br;
+								console.log(global.dataHolder.TrumpVids)
+								console.log(313131);
+
+							}
+
+							ajaxCallPost(model1,fk1)
+						
 						}
-						console.log(666666666666)
-						console.log(mod)
-						console.log(666666666666)
 						ajaxCallPost(mod,fK)
+						//global.dataHolder.TrumpVids
+						//global.dataHolder.vidIndex
+
+						console.log(99999999999)
+						console.log(global.dataHolder.TrumpVids)
+						console.log(global.dataHolder.vidIndex)
+						console.log(global.dataHolder.TrumpVids[global.dataHolder.vidIndex])
+						console.log(99999999999)
 
 					})
 				})

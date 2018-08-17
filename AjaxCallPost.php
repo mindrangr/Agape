@@ -249,10 +249,7 @@
 									$suprVall=$suprVall.",".$key;
 									$updateStr=$updateStr.",".$key."='".$value."'";	
 								break;
-							}
-
-
-										
+							}		
 						}
 					}
 				}
@@ -260,7 +257,7 @@
 
 				$updateStr1="update ".$dbase." SET ". $updateStr." where ".$param."=".$vals;
 				mysql_query($updateStr1);
-				echo $updateStr1;
+				//echo $updateStr1;
 				//echo $param."$$".$updateStr1."$$";
 				if(isset($_POST['selFunc'])){
 					switch($_POST['selFunc']){
@@ -491,6 +488,36 @@
 		break;
 
 
+		case 'quickJamUpdate':
+		
+			$dbase=$_POST['dbase'];
+			$updateStr=$_POST['updateStr'];
+			$param=$_POST['param'];
+			$vals=$_POST['vals'];
+			//echo $updateStr."$$";
+			
+			$grady = str_replace("&#34;", "\"", $updateStr);
+			$grady = str_replace("&#39;", "'", $grady);
+			$updateStr1="update ".$dbase." SET ". $grady." where ".$param."=".$vals;
+			//echo $updateStr1."**";
+			mysql_query($updateStr1);
+			
+			/*****     You must set kob   ****/
+			if(isset($_POST['selFunc'])){
+				switch($_POST['selFunc']){
+					case 'selectFunc':
+						selectFunc();
+						//echo "**".$param."**".$updateStr1."**";
+					break;
+				}
+			}else{
+				
+			}
+			
+		
+		break;
+
+
 		case 'updateComment':
 		
 
@@ -498,7 +525,7 @@
 			$param1=$_POST['param1'];
 			$selectField=$_POST['selectField'];
 			$dbase=$_POST['dbase'];
-			
+			$now=$_POST['now'];
 			$selectParam=$_POST['selectParam'];
 			$issuesID=$_POST['issuesID'];
 			$pullstring="select ".$selectField." from ".$dbase." where ".$selectParam." = ".$issuesID;
@@ -513,7 +540,7 @@
 			$ray="none";
 			$ray1="";
 			$colnum = mysql_num_fields($result);
-			
+			$addQry="";
 			while($row = mysql_fetch_assoc($result)) 
 			{
 				$returnObj=$row[$selectField];
@@ -526,7 +553,7 @@
 					$ray=$subMiss;
 					$replyObj = new stdClass();
 					$replyObj->replyObj->replys[0]=$objR;
-					$ray=json_encode($replyObj,JSON_UNESCAPED_SLASHES);
+					$returnObj=json_encode($replyObj,JSON_UNESCAPED_SLASHES);
 
 				}else{
 					//echo 88;
@@ -546,10 +573,22 @@
 				}
 				//echo 66;
 				//$ray=json_encode($ray);
-				$updateStr="UPDATE ".$dbase." SET ".$selectField."='".$returnObj."' where ".$param1."=".$strID;
+				if(isset($_POST['adQuery'])){
+				switch($_POST['adQuery']){
+					case 'addStrgQury':
+						//selectFunc();
+					//echo "**".$param."**".$updateStr1."**";
+						$ob2=stripslashes($_POST['ob2']);
+						$addQry=$ob2;
+					
+					break;
+					}
+				}
+
+				$updateStr="UPDATE ".$dbase." SET ".$selectField."='".$returnObj."' ".$addQry." where ".$param1."=".$strID;
 				mysql_query($updateStr);
 
-
+				//echo $updateStr;
 				if(isset($_POST['selFunc'])){
 				switch($_POST['selFunc']){
 					case 'selectFunc':
@@ -562,7 +601,7 @@
 			}
 
 
-				echo "**updated**".$ray1."**".$pullstring."**".$updateStr."**".$returnObj;
+			//echo "**updated**".$ray1."**".$pullstring."**".$updateStr."**".$returnObj;
 
 
 			

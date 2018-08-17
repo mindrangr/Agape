@@ -85,23 +85,16 @@
         <div class="row">
           <div class="col-sm-3 tPaddMobileLogin" >
             <?php include 'logBox.php';?>
-             
           </div>
-      
          
-           <div class="col-sm-6">
+          <div class="col-sm-6">
            	<div style="font-size:28px;text-shadow: 1px 1px #000;">Trumps America</div>
            	<div><a href="President_Trump"><img src="images\donald-trump-1.jpg" style='border:1px solid #000;height:380px;box-shadow: 0px 0px 6px #000;width:570px'></a></div>
-
-           
-           
           </div>
-           <div class="col-sm-3">
 
-            
-             
-            </div>
-            
+          <div class="container-fluid" style='color:#eee;margin-top:20px;margin-bottom:20px;font-size:20px;'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+
+          <div class="col-sm-3"></div>
         
       </div>
     </div>
@@ -114,7 +107,6 @@
   </div>
 </div>
 <div class="container-fluid" >
-
   <div style="width:60%;margin:auto;">
     <div id="leftVids" style="float:left;">
     </div>
@@ -141,18 +133,18 @@
  
 
      <div class="container-fluid sponsorBackground htClass" style="margin-top:0px;background-color:#c96cbd;" >
-    <div class="row" id="sponsorDiv" >
-      <div class="col-sm-2">
-        <div style="font-size:22px;">Social Connections</div>
+        <div class="row" id="sponsorDiv" >
+          <div class="col-sm-2">
+            <div style="font-size:22px;">Social Connections</div>
         
-      </div>
+          </div>
 
-      <div class="col-sm-1">
-        <div >Instagram</div>
-        <div><img src="images/instagram.png" style="height:40px" /></div>
+          <div class="col-sm-1">
+            <div >Instagram</div>
+            <div><img src="images/instagram.png" style="height:40px" /></div>
 
-  
-      </div>
+    
+          </div>
        <div class="col-sm-1">
 
         <div >Twitter</div>
@@ -245,7 +237,7 @@
       var td=formatNumber(val[v].agape_media_thumbsDown);
 
       var ft=" <div style='margin-top:15px;padding:4px;'>"
-      ft=ft+" <div style='color:#fff;font-size:20px;'>"+val[v].agape_media_title+"</div>"
+      ft=ft+" <div style='color:#fff;font-size:20px;width:350px;'>"+val[v].agape_media_title+"</div>"
       ft=ft+" <div>"
         ft=ft+" <iframe width='360' height='205' src='"+val[v].agape_media_link+"' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>"
       ft=ft+" </div>"
@@ -290,9 +282,7 @@
         }
         
         var upo=function(data){
-          console.log(11111)
-          console.log(data)
-          console.log(11111);
+
         }
 
         ajaxCallPost(we,upo);
@@ -316,6 +306,9 @@
         vid=vid+" <div style='margin-top:10px;margin-left:15px;'><button id='createMessButt' type='button' class='btn btn-secondary' >Create Message</button></div></div>"
 
         vid=vid+" <div style='clear:both;'></div>"
+
+
+
         b = new CommentBoss('trumpVid','vidCommModal',val[dew].agape_media_comments);
         $("#vidInnerModal").html(vid);
         $("#createMessButt").unbind("click").on("click",function(){

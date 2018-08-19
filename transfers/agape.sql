@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2018 at 12:21 AM
+-- Generation Time: Aug 19, 2018 at 03:17 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.5.28
 
@@ -100,7 +100,9 @@ CREATE TABLE IF NOT EXISTS `agape_comments` (
   `agape_commentCreator_ID` varchar(10) NOT NULL,
   `agape_commentCreator_Username` varchar(15) NOT NULL,
   `agape_comments_image` varchar(150) NOT NULL,
-  `agape_commentsPagination` varchar(2500) NOT NULL
+  `agape_commentsPagination` varchar(2500) NOT NULL,
+  `agape_comments_thumbsUp` int(11) NOT NULL DEFAULT '10',
+  `agape_comments_thumbsDown` int(11) NOT NULL DEFAULT '25'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -388,7 +390,7 @@ CREATE TABLE IF NOT EXISTS `agape_topics` (
   `agape_media_images` text NOT NULL,
   `agape_media_author_ID` int(11) NOT NULL,
   `agape_media_updatedBy_ID` int(11) NOT NULL,
-  `agape_media_group` varchar(40) NOT NULL,
+  `agape_media_group` varchar(240) NOT NULL,
   `agape_media_type` varchar(20) NOT NULL,
   `agape_media_link` varchar(250) NOT NULL DEFAULT 'None',
   `agape_media_city` varchar(25) NOT NULL,

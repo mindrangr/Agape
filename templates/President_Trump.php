@@ -195,6 +195,7 @@
 
 
   $("#sendButt").unbind("click").on("click",function(){
+    alert("774")
     var fModel={}
     fModel.job="quickJamUpdate_insert";
     fModel.dbase="agape_comments";
@@ -216,6 +217,9 @@
     fModel.selDbase="change"
 
     var fred=function(data){
+      console.log(555555)
+      console.log(data)
+      console.log(555555)
       b = new CommentBoss('trumpVid','vidCommModal',global.dataHolder.TrumpVids[global.dataHolder.vidIndex].agape_media_SourceID);
 
     }
